@@ -43,4 +43,14 @@ export class ShowComponent implements OnInit{
     this.page = event;
     this.getProviderAcc();
   }
+  logout(){
+    localStorage.clear();
+    this.router.navigate([''])
+  }
+  goToProfile(){
+    this.router.navigate(['/showProfile'])
+  }
+  goToEditProfile(){
+    this.router.navigate(['/changeInfo'])
+  }
 }

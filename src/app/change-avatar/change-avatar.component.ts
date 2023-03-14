@@ -11,7 +11,7 @@ constructor(private router:Router) {
 }
   logout(){
     localStorage.clear();
-    this.router.navigate(['/login'])
+    this.router.navigate([''])
   }
   goToProfile(){
     this.router.navigate(['/showProfile'])
