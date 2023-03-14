@@ -221,13 +221,14 @@
                     <!-- User menu -->
 
                     <ul class="dropdown-user-menu">
-                        <li><a href="#"> <i class="uil-bolt"></i> Go PRO</a> </li>
-                        <li><a href="profile.html"> <i class="uil-user"></i> My Profile </a> </li>
-                        <li><a href="email-inbox.html"> <i class="uil-envelope"></i> My Inbox </a></li>
-                        <li><a href="profile-setting.html"> <i class="uil-edit"></i> Edit Profile </a></li>
+                        <li><a href="#"> <i class="uil-bolt"></i> Go PRO</a></li>
+                        <li><a (click)="goToProfile()"> <i class="uil-user"></i> My Profile </a></li>
+                        <li><a > <i class="uil-envelope"></i> My Inbox </a></li>
+                        <li><a (click)="goToEditProfile()"> <i class="uil-edit"></i> Edit Profile </a></li>
                         <li><a href="profile-setting.html"> <i class="uil-cog"></i> Account Settings</a></li>
-                        <li class="menu-divider">  </li>
-                        <li><a href="form-modern-login.html"> <i class="icon-feather-log-out"></i> Sing Out</a> </li>
+                        <li class="menu-divider"></li>
+                        <li><a (click)="logout()"> <i class="icon-feather-log-out"></i> Sing Out</a>
+                        </li>
                     </ul>
 
 
@@ -408,7 +409,7 @@
                         </form>
                         <hr class="mb-0">
                         <div class="uk-flex uk-flex-right p-3">
-                            <a href="#"  class="btn btn-soft-primary btn-sm mr-2">Cancle</a>
+                            <a (click)="goToProfile()" class="btn btn-soft-dark btn-sm mr-2">Cancle</a>
                             <a href="#"  class="btn btn-primary btn-sm">Save Changes</a>
                         </div>
                     </div>
@@ -420,7 +421,7 @@
                     <nav class="card responsive-tab style-3 setting-menu"
                          uk-sticky="top:30 ; offset:100; media:@m ;bottom:true">
                         <ul>
-                            <li class="uk-active"><a href="#"> <i class="uil-cog"></i> General </a></li>
+                            <li ><a (click)="goToProfile()"> <i class="uil-user"></i> Profile </a></li>
                             <li><a routerLink="/changeInfo"> <i class="uil-info-circle"></i> Info </a></li>
                             <li><a routerLink="/changeAvatar"> <i class="uil-scenery"></i> Avatar </a></li>
                             <li><a routerLink="/changeAppearance"> <i class="uil-hunting"></i> Appearance </a></li>

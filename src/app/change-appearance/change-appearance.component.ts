@@ -3,6 +3,7 @@ import {AccountForChange} from "../model/AccountForChange";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AccountService} from "../service/account/account.service";
 import Swal from "sweetalert2";
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-change-appearance',
@@ -10,7 +11,7 @@ import Swal from "sweetalert2";
     styleUrls: ['./change-appearance.component.css']
 })
 export class ChangeAppearanceComponent implements OnInit {
-    constructor(private accountsService: AccountService) {
+    constructor(private accountsService: AccountService,private router:Router) {
     }
 
     account!: any;
@@ -80,5 +81,15 @@ export class ChangeAppearanceComponent implements OnInit {
         this.accountChange.view=this.account.view;
         this.accountChange.wallet=this.account.wallet;
         this.accountsService.changeInfo(this.accountChange).subscribe(res=> Swal.fire('Done!', 'Change Appearance', 'success'))
+    }
+    logout(){
+        localStorage.clear();
+        this.router.navigate(['/login'])
+    }
+    goToProfile(){
+        this.router.navigate(['/showProfile'])
+    }
+    goToEditProfile(){
+        this.router.navigate(['/changeInfo'])
     }
 }

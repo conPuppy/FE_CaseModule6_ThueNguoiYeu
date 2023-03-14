@@ -14,6 +14,7 @@ import {SupplierComponent} from "./User/supplier/supplier.component";
 import { HomeComponent } from './User/home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { ShowProfileComponent } from './User/show-profile/show-profile.component';
 
 const routes: Routes = [
   {path:"admin", component: HomeAdminComponent},
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path:"changeAvatar", component: ChangeAvatarComponent},
   {path:"changeAppearance", component: ChangeAppearanceComponent},
   {path:"changePassword", component: ChangePasswordComponent},
+  {path:"showProfile", component: ShowProfileComponent},
 ];
 
 @NgModule({

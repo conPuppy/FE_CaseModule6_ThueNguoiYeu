@@ -4,6 +4,7 @@ import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/form
 import {AccountForChange} from "../model/AccountForChange";
 import {Account} from "../model/Account";
 import Swal from "sweetalert2";
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-change-password',
@@ -21,7 +22,7 @@ export class ChangePasswordComponent implements OnInit {
     summit1:boolean=true
     summit2:boolean=true
     public checkConfirmPassword: boolean = false;
-    constructor(private accountService: AccountService) {
+    constructor(private accountService: AccountService,private router:Router) {
     }
 
 
@@ -96,6 +97,16 @@ export class ChangePasswordComponent implements OnInit {
             this.accountChange.password=this.formChangePassword.value.newPassword;
             this.accountService.changeInfo(this.accountChange).subscribe(res=> Swal.fire('Done!', 'Change Password', 'success'))
         })
+    }
+    logout(){
+        localStorage.clear();
+        this.router.navigate(['/login'])
+    }
+    goToProfile(){
+        this.router.navigate(['/showProfile'])
+    }
+    goToEditProfile(){
+        this.router.navigate(['/changeInfo'])
     }
 
 }

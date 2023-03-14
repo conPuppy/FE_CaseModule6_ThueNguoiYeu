@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AccountService} from "../../service/account/account.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import { Account } from 'src/app/model/Account';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-admin',
@@ -22,7 +23,7 @@ export class HomeAdminComponent implements OnInit{
   p: number = 1;
   total: number = 0;
 
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: AccountService,private router:Router) {
   }
   ngOnInit(): void {
     this.getAllAccount();
@@ -69,5 +70,15 @@ export class HomeAdminComponent implements OnInit{
     this.accountService.findById(id).subscribe((data) => {
       this.account = data;
     })
+  }
+  logout(){
+    localStorage.clear();
+    this.router.navigate(['/login'])
+  }
+  goToProfile(){
+    this.router.navigate(['/showProfile'])
+  }
+  goToEditProfile(){
+    this.router.navigate(['/changeInfo'])
   }
 }

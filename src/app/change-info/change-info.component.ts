@@ -3,6 +3,7 @@ import {AccountService} from "../service/account/account.service";
 import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AccountForChange} from "../model/AccountForChange";
 import Swal from "sweetalert2";
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-change-info',
@@ -10,7 +11,7 @@ import Swal from "sweetalert2";
     styleUrls: ['./change-info.component.css']
 })
 export class ChangeInfoComponent implements OnInit {
-    constructor(private accountService: AccountService) {
+    constructor(private accountService: AccountService, private router:Router) {
     }
     public checkDuplicateEmail: boolean = false;
     public checkDuplicateUsername: boolean = false;
@@ -117,22 +118,14 @@ export class ChangeInfoComponent implements OnInit {
             })
         })
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    logout(){
+        localStorage.clear();
+        this.router.navigate(['/login'])
+    }
+    goToProfile(){
+        this.router.navigate(['/showProfile'])
+    }
+    goToEditProfile(){
+        this.router.navigate(['/changeInfo'])
+    }
 }
