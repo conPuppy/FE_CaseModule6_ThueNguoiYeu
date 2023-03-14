@@ -221,13 +221,14 @@
                     <!-- User menu -->
 
                     <ul class="dropdown-user-menu">
-                        <li><a href="#"> <i class="uil-bolt"></i> Go PRO</a></li>
-                        <li><a href="profile.html"> <i class="uil-user"></i> My Profile </a></li>
-                        <li><a href="email-inbox.html"> <i class="uil-envelope"></i> My Inbox </a></li>
-                        <li><a href="profile-setting.html"> <i class="uil-edit"></i> Edit Profile </a></li>
+                        <li><a (click)="goToProvider()"> <i class="uil-bolt"></i> Become Provider </a></li>
+                        <li><a (click)="goToProfile()"> <i class="uil-user"></i> My Profile </a></li>
+                        <li><a > <i class="uil-envelope"></i> My Inbox </a></li>
+                        <li><a (click)="goToEditProfile()"> <i class="uil-edit"></i> Edit Profile </a></li>
                         <li><a href="profile-setting.html"> <i class="uil-cog"></i> Account Settings</a></li>
                         <li class="menu-divider"></li>
-                        <li><a href="form-modern-login.html"> <i class="icon-feather-log-out"></i> Sing Out</a></li>
+                        <li><a (click)="logout()"> <i class="icon-feather-log-out"></i> Sing Out</a>
+                        </li>
                     </ul>
 
 
@@ -390,8 +391,8 @@
         <div class="page-content-inner">
 
             <div class="row">
-
-                <div class="col-lg-9 col-12">
+                Nói lời yêu thương
+                <div class="col-lg-12 col-12">
                     <div class="card">
                         <div class="card-header bg-light">
                             <h4> Upload Image </h4>
@@ -423,59 +424,11 @@
                             <h4> Basic Service </h4>
                         </div>
                         <form class="uk-child-width-1-2@s uk-grid-small p-4 uk-grid" uk-grid="">
-                            <div class="uk-first-column">
+                            <div class="uk-grid-margin" *ngFor="let bp of arrayBasicProvision">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="1" checked disabled>
+                                    <input class="form-check-input" type="checkbox" value="" checked disabled>
                                     <label class="form-check-label">
-                                        Ra mắt người nhà, bạn bè
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="2" checked disabled>
-                                    <label class="form-check-label">
-                                        Du lịch chung cùng nhóm bạn
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="uk-grid-margin uk-first-column">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="3" checked disabled>
-                                    <label class="form-check-label">
-                                        Đi chơi chung
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="4" checked disabled>
-                                    <label class="form-check-label">
-                                        Tham dự sinh nhật
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="uk-grid-margin">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="5" checked disabled>
-                                    <label class="form-check-label">
-                                        Trò chuyện offline
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="6" checked disabled>
-                                    <label class="form-check-label">
-                                        Trò chuyện online
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="uk-grid-margin">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="7" checked disabled>
-                                    <label class="form-check-label">
-                                        Đi chơi tết.
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="8" checked disabled>
-                                    <label class="form-check-label">
-                                        Đi chơi ngày lễ.
+                                        {{bp.name}}
                                     </label>
                                 </div>
                             </div>
@@ -485,7 +438,6 @@
                             <a href="#" class="btn btn-primary btn-sm">Changes</a>
                         </div>
                     </div>
-
                     <div class="card mt-4">
                         <div class="card-header bg-light">
                             <h4> More Service </h4>
@@ -493,61 +445,19 @@
                         <form class="uk-child-width-1-2@s uk-grid-small p-4 uk-grid" uk-grid="">
                             <div class="uk-first-column">
                                 <h5 class="uk-text-bold mb-2"> Free </h5>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="9">
+                                <div class="form-check" *ngFor="let fp of arrayFreeProvision">
+                                    <input class="form-check-input" type="checkbox" >
                                     <label class="form-check-label">
-                                        Nắm tay
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="10">
-                                    <label class="form-check-label">
-                                        Nói Yêu
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="11">
-                                    <label class="form-check-label">
-                                        Nhìn mắt
+                                        {{fp.name}}
                                     </label>
                                 </div>
                             </div>
                             <div>
                                 <h5 class="uk-text-bold mb-2"> Extends </h5>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="12">
+                                <div class="form-check" *ngFor="let ep of arrayExtendProvision">
+                                    <input class="form-check-input" type="checkbox" value="">
                                     <label class="form-check-label">
-                                        Khoác vai
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="13">
-                                    <label class="form-check-label">
-                                        Hôn tay
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="14">
-                                    <label class="form-check-label">
-                                        Ôm
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="15">
-                                    <label class="form-check-label">
-                                        Nhõng nhẽo
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="16">
-                                    <label class="form-check-label">
-                                        Cử chỉ thân mật
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="17">
-                                    <label class="form-check-label">
-                                        Nói lời yêu thương
+                                        {{ep.name}}
                                     </label>
                                 </div>
                             </div>
@@ -566,33 +476,11 @@
                         </form>
                         <hr class="mb-0">
                         <div class="uk-flex uk-flex-right p-3">
-                            <a href="#" class="btn btn-soft-primary btn-sm mr-2">Cancle</a>
-                            <a href="#" class="btn btn-primary btn-sm">Save Changes</a>
+                            <a href="#" class="btn btn-soft-primary btn-sm mr-2">Cancel</a>
+                            <a href="#" class="btn btn-primary btn-sm">Create Provision </a>
                         </div>
                     </div>
-
                 </div>
-
-                <div class="col-lg-3 col-12">
-
-                    <nav class="card responsive-tab style-3 setting-menu"
-                         uk-sticky="top:30 ; offset:100; media:@m ;bottom:true">
-                        <ul>
-                            <li class="uk-active"><a href="#"> <i class="uil-cog"></i> General </a></li>
-                            <li><a href="#"> <i class="uil-info-circle"></i> Info</a></li>
-                            <li><a href="#"> <i class="uil-unlock-alt"></i> Password </a></li>
-                            <li><a href="#"> <i class="uil-bell"></i> Notifications</a></li>
-                            <li><a href="#"> <i class="uil-scenery"></i> Avatar &amp; Cover</a></li>
-                            <li><a href="#"> <i class="uil-shield-check"></i> Security</a></li>
-                            <li><a href="#"> <i class="uil-bolt"></i> Membarship</a></li>
-                            <li><a href="#"> <i class="uil-share-alt"></i> Social links</a></li>
-                            <li><a href="#"> <i class="uil-history"></i> Manage Sessions</a></li>
-                            <li><a href="#"> <i class="uil-trash-alt"></i> Delete account</a></li>
-                        </ul>
-                    </nav>
-
-                </div>
-
             </div>
 
         </div>

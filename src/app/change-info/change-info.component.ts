@@ -128,4 +128,7 @@ export class ChangeInfoComponent implements OnInit {
     goToEditProfile(){
         this.router.navigate(['/changeInfo'])
     }
+    goToProvider(){
+        this.router.navigate(['/supplier'])
+    }
 }

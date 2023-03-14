@@ -24,7 +24,7 @@ const routes: Routes = [
   {path:"admin", component: HomeAdminComponent},
   {path:"login", component: LoginComponent},
   {path:"", component: HomeComponent},
-  {path:"supplier/: id", component: SupplierComponent},
+  {path:"supplier", component: SupplierComponent},
   {path:"changeInfo", component: ChangeInfoComponent},
   {path:"changeAvatar", component: ChangeAvatarComponent},
   {path:"changeAppearance", component: ChangeAppearanceComponent},

@@ -108,5 +108,8 @@ export class ChangePasswordComponent implements OnInit {
     goToEditProfile(){
         this.router.navigate(['/changeInfo'])
     }
+    goToProvider(){
+        this.router.navigate(['/supplier'])
+    }
 
 }

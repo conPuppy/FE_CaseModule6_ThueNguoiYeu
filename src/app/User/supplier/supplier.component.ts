@@ -1,21 +1,36 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormGroup} from "@angular/forms";
 import {addFormatToken} from "ngx-bootstrap/chronos/format/format";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {finalize} from "rxjs";
+import { Provision } from 'src/app/model/Provision';
+import { Image } from 'src/app/model/Image';
+import { AccountService } from 'src/app/service/account/account.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-supplier',
     templateUrl: './supplier.component.html',
     styleUrls: ['./supplier.component.css']
 })
-export class SupplierComponent {
+export class SupplierComponent implements OnInit {
     @ViewChild('uploadFile1', {static: true}) public avatarDom1: ElementRef | undefined;
 
     arrFiles: any = [];
     arrayPicture : string[] = [];
 
-    constructor(private storage: AngularFireStorage) {
+    arrayBasicProvision!: Provision[];
+    arrayFreeProvision!: Provision[];
+    arrayExtendProvision!: Provision[];
+
+    image!: Image;
+    id!: number;
+
+    constructor(private storage: AngularFireStorage, private accountService: AccountService,private router:Router) {
+    }
+
+    ngOnInit(): void {
+        this.getAllService()
     }
 
     submit() {
@@ -27,6 +42,9 @@ export class SupplierComponent {
                     finalize(() => (fileRef.getDownloadURL().subscribe(
                         url => {
                             this.arrayPicture.push(url);
+                            this.accountService.getAccountToken().id = this.id;
+                            // Account account
+                            // this.image = new Image(url, this.accountService.findById(this.id))
                             console.log(url);
                         })))
                 ).subscribe();
@@ -40,4 +58,26 @@ export class SupplierComponent {
         }
         this.submit();
     }
+
+    getAllService() {
+
+
+    }
+
+    saveImage(image: Image) {
+    }
+    logout(){
+        localStorage.clear();
+        this.router.navigate(['/login'])
+    }
+    goToProfile(){
+        this.router.navigate(['/showProfile'])
+    }
+    goToEditProfile(){
+        this.router.navigate(['/changeInfo'])
+    }
+    goToProvider(){
+        this.router.navigate(['/supplier'])
+    }
+
 }

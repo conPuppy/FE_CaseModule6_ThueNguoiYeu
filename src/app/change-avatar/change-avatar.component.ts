@@ -19,4 +19,8 @@ constructor(private router:Router) {
   goToEditProfile(){
     this.router.navigate(['/changeInfo'])
   }
+  goToProvider(){
+    this.router.navigate(['/supplier'])
+  }
+
 }

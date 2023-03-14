@@ -28,4 +28,7 @@ export class ShowProfileComponent implements OnInit{
   goToEditProfile(){
     this.router.navigate(['/changeInfo'])
   }
+  goToProvider(){
+    this.router.navigate(['/supplier'])
+  }
 }
