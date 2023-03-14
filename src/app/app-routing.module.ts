@@ -16,14 +16,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 const routes: Routes = [
-  // {path:"", component: HomeComponent},
   {path:"admin", component: HomeAdminComponent},
-  {path:"home", component: ShowComponent},
+  {path:"show", component: ShowComponent},
   {path:"topview", component: ShowtopviewComponent},
-  {path:"", component: RegisterComponent},
+  {path:"register", component: RegisterComponent},
   {path:"admin", component: HomeAdminComponent},
   {path:"login", component: LoginComponent},
-  // {path:"home", component: HomeComponent},
+  {path:"", component: HomeComponent},
   {path:"supplier/: id", component: SupplierComponent},
   {path:"changeInfo", component: ChangeInfoComponent},
   {path:"changeAvatar", component: ChangeAvatarComponent},

@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 import { Account } from 'src/app/model/Account';
 
 import {AccountService} from "../../service/account/account.service";
@@ -11,7 +12,7 @@ import {AccountService} from "../../service/account/account.service";
 export class HomeComponent implements OnInit{
   account!: Account;
 
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: AccountService,private router:Router) {
   }
 
 
@@ -19,5 +20,10 @@ export class HomeComponent implements OnInit{
     this.account = this.accountService.getAccountToken();
     console.log(this.account)
   }
-
+  login(){
+    this.router.navigate(['/login']);
+  }
+  register(){
+    this.router.navigate(['/register']);
+  }
 }
