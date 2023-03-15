@@ -15,7 +15,6 @@ export class ChangePasswordComponent implements OnInit {
     changeType: String = "password";
     check: number = 1;
     id!: number;
-    account!:Account;
     accountChange!:AccountForChange;
     formChangePassword!: any;
     checkPassword: boolean = false;
@@ -27,6 +26,7 @@ export class ChangePasswordComponent implements OnInit {
 
 
     ngOnInit() {
+        this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res=>this.accountChange=res)
         this.formChangePassword = new FormGroup({
             password: new FormControl('', [Validators.required]),
             newPassword: new FormControl('', [Validators.required, Validators.maxLength(16), Validators.minLength(6)]),
@@ -97,7 +97,16 @@ export class ChangePasswordComponent implements OnInit {
             this.accountChange.password=this.formChangePassword.value.newPassword;
             this.accountService.changeInfo(this.accountChange).subscribe(res=> Swal.fire('Done!', 'Change Password', 'success'))
         })
+    }requestVip(){
+        this.accountChange.statusVip=3
+        this.accountService.changeInfo(this.accountChange).subscribe((res)=>{
+            this.accountService.findById(this.accountService.getAccountToken().id).subscribe((data)=>{
+                this.accountChange=res;
+                Swal.fire('Done!', 'Request sent successfully!', 'success')
+            })
+        })
     }
+
     logout(){
         localStorage.clear();
         this.router.navigate([''])
