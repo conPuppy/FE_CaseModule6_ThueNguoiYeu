@@ -4,7 +4,6 @@ export class AccountToken {
     id!:number;
     username: string;
     token: string;
-
     roles: Role[];
 
 

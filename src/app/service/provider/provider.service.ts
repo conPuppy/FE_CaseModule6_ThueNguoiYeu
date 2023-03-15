@@ -18,9 +18,15 @@ export class ProviderService {
     getProviderTopView(): Observable<Provider[]> {
         return this.http.get<Provider[]>(this.url + "/top/view");
     }
+    getBoyProviderTopView(): Observable<Provider[]> {
+        return this.http.get<Provider[]>(this.url+ "/top/view/boy");
+    }
+    getGirlProviderTopView(): Observable<Provider[]> {
+        return this.http.get<Provider[]>(this.url+ "/top/view/girl");
+    }
 
     findProviderById(id: number): Observable<Provider> {
-        return this.http.get<Provider>(this.url + "/" + id);
+        return this.http.get<Provider>(this.url + "/viewer/" + id);
     }
     increaseViewProviderById(id: number): Observable<Provider> {
         return this.http.post<Provider>(this.url+"/view/"+id,this.findProviderById(id));

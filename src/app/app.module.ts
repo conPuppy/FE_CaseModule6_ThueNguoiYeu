@@ -24,6 +24,7 @@ import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import {environment} from "../environments/environment";
 import { HomeboyComponent } from './homeboy/homeboy.component';
+import { HomegirlComponent } from './homegirl/homegirl.component';
 
 // @ts-ignore
 @NgModule({
@@ -43,6 +44,7 @@ import { HomeboyComponent } from './homeboy/homeboy.component';
         ChangeAppearanceComponent,
         ChangePasswordComponent,
         HomeboyComponent,
+        HomegirlComponent,
 
     ],
     imports: [

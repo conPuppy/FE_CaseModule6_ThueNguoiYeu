@@ -15,6 +15,8 @@ import { HomeComponent } from './User/home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { ShowProfileComponent } from './User/show-profile/show-profile.component';
+import { HomeboyComponent } from './homeboy/homeboy.component';
+import { HomegirlComponent } from './homegirl/homegirl.component';
 
 const routes: Routes = [
   {path:"admin", component: HomeAdminComponent},
@@ -30,6 +32,8 @@ const routes: Routes = [
   {path:"changeAppearance", component: ChangeAppearanceComponent},
   {path:"changePassword", component: ChangePasswordComponent},
   {path:"showProfile", component: ShowProfileComponent},
+  {path:"homeBoy", component: HomeboyComponent},
+  {path:"homeGirl", component: HomegirlComponent},
 ];
 
 @NgModule({
