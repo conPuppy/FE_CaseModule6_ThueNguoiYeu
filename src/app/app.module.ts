@@ -23,6 +23,7 @@ import { SupplierComponent } from './User/supplier/supplier.component';
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import {environment} from "../environments/environment";
+import { CreateProviderComponent } from './create-provider/create-provider.component';
 
 // @ts-ignore
 @NgModule({
@@ -41,6 +42,7 @@ import {environment} from "../environments/environment";
         ChangeAvatarComponent,
         ChangeAppearanceComponent,
         ChangePasswordComponent,
+        CreateProviderComponent,
 
     ],
     imports: [
