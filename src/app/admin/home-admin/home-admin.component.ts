@@ -81,4 +81,7 @@ export class HomeAdminComponent implements OnInit{
   goToEditProfile(){
     this.router.navigate(['/changeInfo'])
   }
+  goToShowAllBill() {
+    this.router.navigate(['/showAllBill'])
+  }
 }
