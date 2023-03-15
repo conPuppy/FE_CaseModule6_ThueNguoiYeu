@@ -19,15 +19,21 @@ export class RegisterComponent implements OnInit {
     public checkDuplicateEmail: boolean = false;
     public checkConfirmPassword: boolean = false;
     today!: any
+    accountCreate!:AccountCreate;
 
     ngOnInit() {
         this.today = new Date().toISOString().split("T")[0];
         this.formRegister = new FormGroup({
             username: new FormControl('', [Validators.required, Validators.maxLength(40)]),
+            fullName: new FormControl('',[Validators.required, Validators.pattern('^[a-zA-Z\'-\'\\sáàảãạăâắằấầặẵẫậéèẻ ẽẹếềểễệóêòỏõọôốồổỗộ ơớờởỡợíìỉĩịđùúủũụưứ� �ửữựÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠ ƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼ� ��ỀỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞ ỠỢỤỨỪỬỮỰỲỴÝỶỸửữựỵ ỷỹ]*$'), Validators.maxLength(40)]),
             email: new FormControl('', [Validators.required, Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')]),
+            phoneNumber: new FormControl('',[Validators.required, Validators.pattern('^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$')]),
             password: new FormControl('', [Validators.required, Validators.maxLength(16), Validators.minLength(6)]),
             confirmPassword: new FormControl('', [Validators.required, Validators.maxLength(16), Validators.minLength(6)]),
             birthday: new FormControl('', [Validators.required, this.checkDateOfBirth]),
+            genderObj: new FormGroup({
+                gender: new FormControl('Orther')
+            }),
         })
     }
 
@@ -47,6 +53,19 @@ export class RegisterComponent implements OnInit {
                 message: 'Please enter your email in the format abc@xyz.jqk!'
             }
         ],
+        fullName: [
+            {type: 'required', message: 'Vui lòng nhập tên'},
+            {type: 'maxlength', message: 'Vui lòng nhập tên > 40.'},
+            {type: 'pattern', message: 'Không được nhập ký tự đặt biệt hoặc số'}
+        ],
+        phoneNumber: [
+            {type: 'required', message: 'Vui lòng nhập số điện thoại'},
+            {
+                type: 'pattern',
+                message: 'Vui lòng nhập số địa thoại đúng định dạng đầu số của Việt Nam'
+            }
+        ],
+
         password: [
             {type: 'required', message: 'Please enter a password.'},
             {type: 'maxlength', message: 'Please enter password less than 16 characters.'},
@@ -96,10 +115,10 @@ export class RegisterComponent implements OnInit {
     }
 
     createAccount() {
-        // @ts-ignore
-        let accountCreate = new AccountCreate(this.formRegister.get("username").value, this.formRegister.get("email").value, this.formRegister.get("password").value, this.formRegister.get("birthday").value)
-        this.accountService.createAccount(accountCreate).subscribe(
-            res => {
+        this.accountCreate=new AccountCreate(this.formRegister.value.username,this.formRegister.value.fullName,this.formRegister.value.email,this.formRegister.value.phoneNumber,this.formRegister.value.password,this.formRegister.value.birthday,this.formRegister.value.genderObj.gender)
+        console.log(this.accountCreate)
+        this.accountService.createAccount(this.accountCreate).subscribe(
+            (res) => {
                 Swal.fire('Done!', 'Congratulations on your successful registration', 'success');
                 this.router.navigate(["/login"]);
             }

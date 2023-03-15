@@ -24,7 +24,11 @@ import { SupplierComponent } from './User/supplier/supplier.component';
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import {environment} from "../environments/environment";
+
 import { ShowAllBillComponent } from './admin/show-all-bill/show-all-bill.component';
+
+import { CreateProviderComponent } from './create-provider/create-provider.component';
+
 
 // @ts-ignore
 @NgModule({
@@ -43,7 +47,10 @@ import { ShowAllBillComponent } from './admin/show-all-bill/show-all-bill.compon
         ChangeAvatarComponent,
         ChangeAppearanceComponent,
         ChangePasswordComponent,
+
         ShowAllBillComponent,
+
+        CreateProviderComponent,
 
     ],
     imports: [
