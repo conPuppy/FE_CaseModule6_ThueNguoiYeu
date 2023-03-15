@@ -81,18 +81,18 @@ export class ChangeAppearanceComponent implements OnInit {
         this.accountChange.view=this.account.view;
         this.accountChange.wallet=this.account.wallet;
         this.accountsService.changeInfo(this.accountChange).subscribe(res=> Swal.fire('Done!', 'Change Appearance', 'success'))
-    }
+    };
     logout(){
         localStorage.clear();
         this.router.navigate([''])
-    }
+    };
     goToProfile(){
         this.router.navigate(['/showProfile'])
-    }
+    };
     goToEditProfile(){
         this.router.navigate(['/changeInfo'])
     }
     goToProvider(){
         this.router.navigate(['/supplier'])
-    }
+    };
 }
