@@ -5,6 +5,7 @@ import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
+import { CommonModule } from "@angular/common";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +27,11 @@ import {environment} from "../environments/environment";
 import { HomeboyComponent } from './homeboy/homeboy.component';
 import { HomegirlComponent } from './homegirl/homegirl.component';
 
+import { ShowAllBillComponent } from './admin/show-all-bill/show-all-bill.component';
+
+import { CreateProviderComponent } from './create-provider/create-provider.component';
+
+
 // @ts-ignore
 @NgModule({
     declarations: [
@@ -46,9 +52,14 @@ import { HomegirlComponent } from './homegirl/homegirl.component';
         HomeboyComponent,
         HomegirlComponent,
 
+        ShowAllBillComponent,
+
+        CreateProviderComponent,
+
     ],
     imports: [
         BrowserModule,
+        CommonModule,
         AppRoutingModule,
         ReactiveFormsModule,
         FormsModule,

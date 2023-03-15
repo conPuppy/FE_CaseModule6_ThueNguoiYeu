@@ -24,8 +24,8 @@ export class AccountService implements OnInit {
         return this.http.get<Account[]>("http://localhost:8080/accounts");
     }
 
-    createAccount(accountCreate: AccountCreate): Observable<any> {
-        return this.http.post<any>('http://localhost:8080/register', accountCreate)
+    createAccount(accountCreate: AccountCreate): Observable<Account> {
+        return this.http.post<Account>('http://localhost:8080/register', accountCreate)
     }
 
     findAccountByUsername(username: String): Observable<any> {

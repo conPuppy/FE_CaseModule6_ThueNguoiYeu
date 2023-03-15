@@ -15,9 +15,8 @@ export class ChangeInfoComponent implements OnInit {
     }
     public checkDuplicateEmail: boolean = false;
     public checkDuplicateUsername: boolean = false;
-
-    account!: any;
     accountChange!:AccountForChange
+    accountChangeTemp!:AccountForChange
     id!: number;
     formChangeInfo:any;
     ngOnInit() {
@@ -30,21 +29,22 @@ export class ChangeInfoComponent implements OnInit {
             city: new FormControl(),
             country: new FormControl(),
             genderObj: new FormGroup({
-                gender: new FormControl()
+                gender: new FormControl('Orther')
             }),
         })
 
         this.id = this.accountService.getAccountToken().id
         this.accountService.findById(this.id).subscribe((res) => {
-            this.account=res
-            this.formChangeInfo.get('id').setValue(res.id)
-            this.formChangeInfo.get('fullName').setValue(res.fullName)
-            this.formChangeInfo.get('username').setValue(res.username)
-            this.formChangeInfo.get('email').setValue(res.email)
-            this.formChangeInfo.get('birthday').setValue(res.birthday)
-            this.formChangeInfo.get('city').setValue(res.city)
-            this.formChangeInfo.get('country').setValue(res.country)
-            this.formChangeInfo.get('genderObj').get('gender').setValue(res.gender)
+            this.accountChange=res;
+            this.accountChangeTemp=res;
+            this.formChangeInfo.get('id').setValue(res.id);
+            this.formChangeInfo.get('fullName').setValue(res.fullName);
+            this.formChangeInfo.get('username').setValue(res.username);
+            this.formChangeInfo.get('email').setValue(res.email);
+            this.formChangeInfo.get('birthday').setValue(res.birthday);
+            this.formChangeInfo.get('city').setValue(res.city);
+            this.formChangeInfo.get('country').setValue(res.country);
+            this.formChangeInfo.get('genderObj').get('gender').setValue(res.gender);
         })
     }
     validation_messages = {
@@ -92,28 +92,28 @@ export class ChangeInfoComponent implements OnInit {
     changeInfo(){
         this.accountChange=this.formChangeInfo.value;
         this.accountChange.gender=this.formChangeInfo.value.genderObj.gender;
-        this.accountChange.avatar=this.account.avatar;
-        this.accountChange.dateOfRegister=this.account.dateOfRegister;
-        this.accountChange.description=this.account.description;
-        this.accountChange.height=this.account.height;
-        this.accountChange.weight=this.account.weight;
-        this.accountChange.hobby=this.account.hobby;
-        this.accountChange.logoutTime=this.account.logoutTime;
-        this.accountChange.password=this.account.password;
-        this.accountChange.statusAccount=this.account.statusAccount;
-        this.accountChange.statusComment=this.account.statusComment;
-        this.accountChange.statusVip=this.account.statusVip;
-        this.accountChange.view=this.account.view;
-        this.accountChange.wallet=this.account.wallet;
+        this.accountChange.avatar=this.accountChangeTemp.avatar;
+        this.accountChange.dateOfRegister=this.accountChangeTemp.dateOfRegister;
+        this.accountChange.description=this.accountChangeTemp.description;
+        this.accountChange.height=this.accountChangeTemp.height;
+        this.accountChange.weight=this.accountChangeTemp.weight;
+        this.accountChange.hobby=this.accountChangeTemp.hobby;
+        this.accountChange.logoutTime=this.accountChangeTemp.logoutTime;
+        this.accountChange.password=this.accountChangeTemp.password;
+        this.accountChange.statusAccount=this.accountChangeTemp.statusAccount;
+        this.accountChange.statusComment=this.accountChangeTemp.statusComment;
+        this.accountChange.statusVip=this.accountChangeTemp.statusVip;
+        this.accountChange.wallet=this.accountChangeTemp.wallet;
+        this.accountChange.phoneNumber=this.accountChangeTemp.phoneNumber;
+        this.accountChange.roles=this.accountChangeTemp.roles;
         this.accountService.changeInfo(this.accountChange).subscribe(res=> Swal.fire('Done!', 'Change Info', 'success'))
     }
 
     requestVip(){
-        this.account.statusVip=3
-        console.log(this.account)
-        this.accountService.changeInfo(this.account).subscribe((res)=>{
+        this.accountChange.statusVip=3
+        this.accountService.changeInfo(this.accountChange).subscribe((res)=>{
             this.accountService.findById(this.accountService.getAccountToken().id).subscribe((data)=>{
-                this.account=res;
+                this.accountChange=res;
                 Swal.fire('Done!', 'Request sent successfully!', 'success')
             })
         })

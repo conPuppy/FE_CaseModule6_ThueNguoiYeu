@@ -14,7 +14,7 @@ export class ChangeAppearanceComponent implements OnInit {
     constructor(private accountsService: AccountService,private router:Router) {
     }
 
-    account!: any;
+    account!: AccountForChange;
     accountChange!: AccountForChange
     id!: number;
     formChangeAppearance: any;
@@ -78,10 +78,22 @@ export class ChangeAppearanceComponent implements OnInit {
         this.accountChange.statusAccount=this.account.statusAccount;
         this.accountChange.statusComment=this.account.statusComment;
         this.accountChange.statusVip=this.account.statusVip;
-        this.accountChange.view=this.account.view;
+        this.accountChange.phoneNumber=this.account.phoneNumber;
+        this.accountChange.roles=this.account.roles;
         this.accountChange.wallet=this.account.wallet;
         this.accountsService.changeInfo(this.accountChange).subscribe(res=> Swal.fire('Done!', 'Change Appearance', 'success'))
     };
+    
+    requestVip(){
+        this.account.statusVip=3
+        this.accountsService.changeInfo(this.account).subscribe((res)=>{
+            this.accountsService.findById(this.accountsService.getAccountToken().id).subscribe((data)=>{
+                this.account=res;
+                Swal.fire('Done!', 'Request sent successfully!', 'success')
+            })
+        })
+    }
+
     logout(){
         localStorage.clear();
         this.router.navigate([''])

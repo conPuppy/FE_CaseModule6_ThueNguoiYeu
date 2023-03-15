@@ -1,15 +1,15 @@
-<div id="wrapper">
+<div id="wrapper" xmlns:text-align="http://www.w3.org/1999/xhtml">
 
 
     <!-- header -->
-    <div id="main_header" class="header-transparent bg-dark" uk-sticky="top:10; cls-inactive :header-transparent bg-dark">
+    <div id="main_header" class="header-transparent" uk-sticky="top:10; cls-inactive :header-transparent">
         <header>
 
             <!-- Logo-->
             <i class="header-traiger uil-bars" uk-toggle="target: #wrapper ; cls: mobile-active"></i>
 
 
-            <div class="h5 uk-hidden@m mr-3 mb-0"> Bootstro </div>
+            <div class="h5 uk-hidden@m mr-3 mb-0"> Bootstro</div>
             <!-- form search-->
             <div class="head_search uk-visible@m">
                 <form>
@@ -26,20 +26,20 @@
             <div class="head_user">
 
 
-
                 <!-- browse apps  -->
-                <a href="#" class="opts_icon uk-visible@s"> <i class="uil-apps"></i> </a>
+                <a href="#" class="opts_icon uk-visible@s"> <i class="uil-shop"></i></a>
+                <a href="#" class="opts_icon uk-visible@s"> <i class="uil-shopping-basket"></i></a>
 
                 <!-- browse apps dropdown -->
                 <div uk-dropdown="pos: top;mode:click ; animation: uk-animation-scale-up" class="icon-browse">
 
-                    <a href="#" class="icon-menu-item"> <i class="uil-shop"></i> Dashboard </a>
-                    <a href="#" class="icon-menu-item"> <i class="uil-envelope-alt"></i> Messages </a>
-                    <a href="#" class="icon-menu-item"> <i class="uil-bookmark"></i> Bookmark </a>
-                    <a href="#" class="icon-menu-item"> <i class="uil-shopping-basket"></i> Cart </a>
-                    <a href="#" class="icon-menu-item"> <i class="uil-shield-check"></i> Privacy </a>
-                    <a href="#" class="icon-menu-item"> <i class="uil-bolt-alt"></i> Upgrade </a>
-                    <a href="#" class="more-app"> More Features</a>
+                    <!--          <a href="#" class="icon-menu-item"> <i class="uil-shop"></i> Dashboard </a>-->
+                    <!--          <a href="#" class="icon-menu-item"> <i class="uil-envelope-alt"></i> Messages </a>-->
+                    <!--          <a href="#" class="icon-menu-item"> <i class="uil-bookmark"></i> Bookmark </a>-->
+                    <!--          <a href="#" class="icon-menu-item"> <i class="uil-shopping-basket"></i> Cart </a>-->
+                    <!--          <a href="#" class="icon-menu-item"> <i class="uil-shield-check"></i> Privacy </a>-->
+                    <!--          <a href="#" class="icon-menu-item"> <i class="uil-bolt-alt"></i> Upgrade </a>-->
+                    <!--          <a href="#" class="more-app"> More Features</a>-->
                 </div>
 
 
@@ -82,7 +82,7 @@
                                         </span>
                                     <div class="notification-text notification-msg-text">
                                         <strong>Stella Johnson</strong>
-                                        <p> Alia Joseph just joined Messenger! say Hi.   </p>
+                                        <p> Alia Joseph just joined Messenger! say Hi. </p>
                                         <span class="time-ago"> 7 hours ago </span>
                                     </div>
                                 </a>
@@ -221,7 +221,7 @@
                     <!-- User menu -->
 
                     <ul class="dropdown-user-menu">
-                        <li><a (click)="goToProvider()"> <i class="uil-bolt"></i> Become Provider </a></li>
+                        <li><a href="#"> <i class="uil-bolt"></i> Go PRO</a></li>
                         <li><a (click)="goToProfile()"> <i class="uil-user"></i> My Profile </a></li>
                         <li><a > <i class="uil-envelope"></i> My Inbox </a></li>
                         <li><a (click)="goToEditProfile()"> <i class="uil-edit"></i> Edit Profile </a></li>
@@ -355,21 +355,20 @@
                     <div class="left-side">
                         <div class="profile-image">
                             <a href="#">
-                                <img src="assets/images/team/team-2.jpg" alt="">
+                                <img src="{{accountChange.avatar}}" alt="">
                             </a>
                         </div>
                         <div class="profile-details-info">
-                            <h3> Adrian Mohani </h3>
-                            <p> 12k Subscirptions</p>
+                            <h3> {{accountChange.fullName}} </h3>
                         </div>
                     </div>
                     <div class="right-side uk-visible@m">
                         <div class="btn-subscribe">
-                            <button *ngIf="account?.statusVip==1" (click)="requestVip()" class="btn btn-warning btn-sm">
+                            <button *ngIf="accountChange?.statusVip==1" (click)="requestVip()" class="btn btn-warning btn-sm">
                                 <i class="icon-feather-user"></i> Up Account VIP </button>
-                            <button *ngIf="account?.statusVip==2" class="btn btn-danger btn-sm">
+                            <button *ngIf="accountChange?.statusVip==2" class="btn btn-danger btn-sm">
                                 <i class="icon-feather-user"></i> Account VIP </button>
-                            <button  *ngIf="account?.statusVip==3" class="btn btn-success btn-sm">
+                            <button  *ngIf="accountChange?.statusVip==3" class="btn btn-success btn-sm">
                                 <i class="icon-feather-user"></i> Request Sended </button>
                         </div>
                     </div>
@@ -408,7 +407,7 @@
                             </div>
                             <div>
                                 <h5 class="uk-text-bold mb-2"> Username </h5>
-                                <input type="text" class="uk-input" placeholder="Username" (transitionend)="funcCheckDuplicateUsername(formChangeInfo.get('username')?.value)" formControlName="username">
+                                <input type="text" class="uk-input" placeholder="Username" (change)="funcCheckDuplicateUsername(formChangeInfo.get('username')?.value)" formControlName="username">
                                 <div class="uk-position-relative w-100" *ngFor="let validation of validation_messages.username">
                                     <div class="error-message"
                                          *ngIf="formChangeInfo?.get('username')?.hasError(validation.type) && (formChangeInfo?.get('username')?.dirty || formChangeInfo?.get('username')?.touched)">
@@ -423,7 +422,7 @@
 
                             <div class="uk-grid-margin uk-first-column">
                                 <h5 class="uk-text-bold mb-2"> Email </h5>
-                                <input type="email" class="uk-input" placeholder="Email" (transitionend)="funcCheckDuplicateEmail(formChangeInfo.get('email')?.value)" formControlName="email">
+                                <input type="email" class="uk-input" placeholder="Email" (change)="funcCheckDuplicateEmail(formChangeInfo.get('email')?.value)" formControlName="email">
                                 <div class="uk-position-relative w-100" *ngFor="let validation of validation_messages.email">
                                     <div class="error-message"
                                          *ngIf="formChangeInfo?.get('email')?.hasError(validation.type) && (formChangeInfo?.get('email')?.dirty || formChangeInfo?.get('email')?.touched)">
@@ -451,11 +450,11 @@
                             <div class="uk-grid-margin uk-first-column">
                                 <h5 class="uk-text-bold mb-2"> Gender </h5>
                                 <fieldset formGroupName="genderObj">
-                                <select class="selectpicker" formControlName="gender">
-                                    <option value=""></option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </select>
+                                    <select class="selectpicker"  formControlName="gender">
+                                        <option value="Orther">Orther</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
                                 </fieldset>
                             </div>
 

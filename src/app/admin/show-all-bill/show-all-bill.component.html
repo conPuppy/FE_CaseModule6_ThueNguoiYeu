@@ -1,4 +1,7 @@
-<div id="wrapper" xmlns:text-align="http://www.w3.org/1999/xhtml">
+
+
+
+<div id="wrapper">
 
 
     <!-- header -->
@@ -9,7 +12,7 @@
             <i class="header-traiger uil-bars" uk-toggle="target: #wrapper ; cls: mobile-active"></i>
 
 
-            <div class="h5 uk-hidden@m mr-3 mb-0"> Bootstro</div>
+            <div class="h5 uk-hidden@m mr-3 mb-0"> Bootstro </div>
             <!-- form search-->
             <div class="head_search uk-visible@m">
                 <form>
@@ -26,20 +29,20 @@
             <div class="head_user">
 
 
+
                 <!-- browse apps  -->
-                <a href="#" class="opts_icon uk-visible@s"> <i class="uil-shop"></i></a>
-                <a href="#" class="opts_icon uk-visible@s"> <i class="uil-shopping-basket"></i></a>
+                <a href="#" class="opts_icon uk-visible@s"> <i class="uil-apps"></i> </a>
 
                 <!-- browse apps dropdown -->
                 <div uk-dropdown="pos: top;mode:click ; animation: uk-animation-scale-up" class="icon-browse">
 
-                    <!--          <a href="#" class="icon-menu-item"> <i class="uil-shop"></i> Dashboard </a>-->
-                    <!--          <a href="#" class="icon-menu-item"> <i class="uil-envelope-alt"></i> Messages </a>-->
-                    <!--          <a href="#" class="icon-menu-item"> <i class="uil-bookmark"></i> Bookmark </a>-->
-                    <!--          <a href="#" class="icon-menu-item"> <i class="uil-shopping-basket"></i> Cart </a>-->
-                    <!--          <a href="#" class="icon-menu-item"> <i class="uil-shield-check"></i> Privacy </a>-->
-                    <!--          <a href="#" class="icon-menu-item"> <i class="uil-bolt-alt"></i> Upgrade </a>-->
-                    <!--          <a href="#" class="more-app"> More Features</a>-->
+                    <a href="#" class="icon-menu-item"> <i class="uil-shop"></i> Dashboard </a>
+                    <a href="#" class="icon-menu-item"> <i class="uil-envelope-alt"></i> Messages </a>
+                    <a href="#" class="icon-menu-item"> <i class="uil-bookmark"></i> Bookmark </a>
+                    <a href="#" class="icon-menu-item"> <i class="uil-shopping-basket"></i> Cart </a>
+                    <a href="#" class="icon-menu-item"> <i class="uil-shield-check"></i> Privacy </a>
+                    <a href="#" class="icon-menu-item"> <i class="uil-bolt-alt"></i> Upgrade </a>
+                    <a href="#" class="more-app"> More Features</a>
                 </div>
 
 
@@ -82,7 +85,7 @@
                                         </span>
                                     <div class="notification-text notification-msg-text">
                                         <strong>Stella Johnson</strong>
-                                        <p> Alia Joseph just joined Messenger! say Hi. </p>
+                                        <p> Alia Joseph just joined Messenger! say Hi.   </p>
                                         <span class="time-ago"> 7 hours ago </span>
                                     </div>
                                 </a>
@@ -221,14 +224,13 @@
                     <!-- User menu -->
 
                     <ul class="dropdown-user-menu">
-                        <li><a href="#"> <i class="uil-bolt"></i> Go PRO</a></li>
-                        <li><a (click)="goToProfile()"> <i class="uil-user"></i> My Profile </a></li>
-                        <li><a > <i class="uil-envelope"></i> My Inbox </a></li>
-                        <li><a (click)="goToEditProfile()"> <i class="uil-edit"></i> Edit Profile </a></li>
+                        <li><a href="#"> <i class="uil-bolt"></i> Go PRO</a> </li>
+                        <li><a href="profile.html"> <i class="uil-user"></i> My Profile </a> </li>
+                        <li><a href="email-inbox.html"> <i class="uil-envelope"></i> My Inbox </a></li>
+                        <li><a href="profile-setting.html"> <i class="uil-edit"></i> Edit Profile </a></li>
                         <li><a href="profile-setting.html"> <i class="uil-cog"></i> Account Settings</a></li>
-                        <li class="menu-divider"></li>
-                        <li><a (click)="logout()"> <i class="icon-feather-log-out"></i> Sing Out</a>
-                        </li>
+                        <li class="menu-divider">  </li>
+                        <li><a href="form-modern-login.html"> <i class="icon-feather-log-out"></i> Sing Out</a> </li>
                     </ul>
 
 
@@ -248,17 +250,17 @@
         <span class="btn-menu-trigger" uk-toggle="target: #wrapper ; cls: menu-collapsed"></span>
 
         <!-- logo -->
-        <div class="logo uk-visible@s bg-dark">
+        <div class="logo uk-visible@s">
             <a href="dashboard.html"> <img src="assets/images/logo.svg" alt=""> <span> Bootstro</span> </a>
         </div>
         <div class="page-menu-inner" data-simplebar>
             <ul>
-                <li><a href="dashboard.html"><i class="uil-home-alt"></i> <span> Dashboard </span></a></li>
+                <li><a href="dashboard.html"><i class="uil-home-alt"></i> <span> Dashboard </span></a> </li>
             </ul>
 
 
             <ul data-submenu-title="Apps">
-                <li><a href="app-calender.html"><i class="uil-calendar-alt"></i> <span> Calendar</span></a></li>
+                <li><a href="app-calender.html"><i class="uil-calendar-alt"></i> <span> Calendar</span></a> </li>
                 <li><a href="chat.html"><i class="uil-comment-alt-dots"></i> <span>Chat</span> </a></li>
                 <li><a href="#"><i class="uil-envelope-alt"></i> <span>Email</span> </a>
                     <ul>
@@ -271,57 +273,54 @@
                 </li>
                 <li><a href="#"><i class="uil-shopping-basket"></i> <span>E-commerce</span> </a>
                     <ul>
-                        <li><a href="shop-card.html"> Products Grid </a></li>
-                        <li><a href="shop-listing.html"> Products List </a></li>
-                        <li><a href="shop-product.html"> Product </a></li>
-                        <li><a href="shop-cart.html"> Products Cart </a></li>
-                        <li><a href="shop-checkout.html"> Products Checkout </a></li>
+                        <li> <a href="shop-card.html"> Products Grid </a> </li>
+                        <li> <a href="shop-listing.html"> Products List </a> </li>
+                        <li> <a href="shop-product.html"> Product </a> </li>
+                        <li> <a href="shop-cart.html"> Products Cart </a> </li>
+                        <li> <a href="shop-checkout.html"> Products Checkout </a> </li>
                     </ul>
                 </li>
                 <li><a href="#"><i class="uil-users-alt"></i> <span>Users</span> </a>
                     <ul>
-                        <li><a href="user-card.html"> Users Grid </a></li>
-                        <li><a href="user-listing.html"> Users List </a></li>
-                        <li><a href="user-view.html"> User view </a></li>
+                        <li> <a href="user-card.html"> Users Grid </a> </li>
+                        <li> <a href="user-listing.html"> Users List </a> </li>
+                        <li> <a href="user-view.html"> User view </a> </li>
                     </ul>
                 </li>
             </ul>
 
             <ul data-submenu-title="Pages">
-                <li><a href="profile.html"><i class="uil-user-square"></i> <span> Profile </span> </a></li>
-                <li><a href="profile-setting.html"><i class="uil-cog"></i> <span> Setting </span> </a></li>
-                <li><a href="page-invoice.html"><i class="uil-invoice"></i> <span> Invoice </span> </a></li>
-                <li><a href="page-gallery.html"><i class="uil-images"></i> <span> Gallery </span> </a></li>
-                <li><a href="page-faqs.html"><i class="uil-equal-circle"></i> <span> FAQ </span> </a></li>
-                <li><a href="page-pricing.html"><i class="uil-dollar-sign-alt"></i> <span> pricing </span> </a></li>
-                <li><a href="error.html"><i class="uil-minus-circle"></i> <span> Error </span> </a></li>
-                <li><a href="page-maintanence.html"><i class="uil-sync-exclamation"></i> <span> Maintence </span> </a>
-                </li>
-                <li><a href="page-comming-soon.html"><i class="uil-stopwatch"></i> <span> Comming soon </span> </a></li>
+                <li><a href="profile.html"><i class="uil-user-square"></i> <span> Profile </span> </a> </li>
+                <li><a href="profile-setting.html"><i class="uil-cog"></i> <span> Setting </span> </a> </li>
+                <li><a href="page-invoice.html"><i class="uil-invoice"></i> <span> Invoice </span> </a> </li>
+                <li><a href="page-gallery.html"><i class="uil-images"></i> <span> Gallery </span> </a> </li>
+                <li><a href="page-faqs.html"><i class="uil-equal-circle"></i> <span> FAQ </span> </a> </li>
+                <li><a href="page-pricing.html"><i class="uil-dollar-sign-alt"></i> <span> pricing </span> </a> </li>
+                <li><a href="error.html"><i class="uil-minus-circle"></i> <span> Error </span> </a> </li>
+                <li><a href="page-maintanence.html"><i class="uil-sync-exclamation"></i> <span> Maintence </span> </a> </li>
+                <li><a href="page-comming-soon.html"><i class="uil-stopwatch"></i> <span> Comming soon </span> </a> </li>
             </ul>
 
             <ul data-submenu-title="Development">
-                <li><a href="development-elements.html"><i class="uil-layers"></i> <span> UI Elements </span> </a></li>
-                <li><a href="development-components.html"><i class="uil-code"></i> <span> UI Components </span> </a>
-                </li>
-                <li><a href="development-icons.html"><i class="icon-feather-flag"></i> <span> Icon Pack </span> </a>
-                </li>
+                <li><a href="development-elements.html"><i class="uil-layers"></i> <span> UI Elements </span> </a> </li>
+                <li><a href="development-components.html"><i class="uil-code"></i> <span> UI Components </span> </a> </li>
+                <li><a href="development-icons.html"><i class="icon-feather-flag"></i> <span> Icon Pack </span> </a> </li>
 
                 <li><a href="#"><i class="uil-check-circle"></i> <span> Forms </span> </a>
                     <ul>
-                        <li><a href="form-element.html"> Form Elements </a></li>
-                        <li><a href="form-layouts.html"> Form Layouts </a></li>
-                        <li><a href="form-validation.html"> Form Validation </a></li>
+                        <li> <a href="form-element.html"> Form Elements </a> </li>
+                        <li> <a href="form-layouts.html"> Form Layouts </a> </li>
+                        <li> <a href="form-validation.html"> Form Validation </a> </li>
                     </ul>
                 </li>
                 <li><a href="#"><i class="uil-list-ul"></i> <span> Tables </span> </a>
                     <ul>
-                        <li><a href="table-basic.html"> Basic Table </a></li>
-                        <li><a href="table-database.html"> Data Table </a></li>
+                        <li> <a href="table-basic.html"> Basic Table </a> </li>
+                        <li> <a href="table-database.html"> Data Table </a> </li>
                     </ul>
                 </li>
 
-                <li><a href="charts.html"><i class="uil-chart"></i> <span> Charts </span> </a></li>
+                <li><a href="charts.html"><i class="uil-chart"></i> <span> Charts </span> </a> </li>
 
             </ul>
 
@@ -344,137 +343,134 @@
 
     <!-- content -->
     <div class="page-content">
-
-        <div class="profile">
-            <div class="profile-cover">
-
-                <!-- profile cover -->
-                <img src="assets/images/team/user-cover.jpg" alt="">
-
-            </div>
-
-            <div class="page-content-inner">
-                <div class="profile-details">
-                    <div class="left-side">
-                        <div class="profile-image">
-                            <a href="#">
-                                <img src="{{accountChange.avatar}}" alt="">
-                            </a>
-                        </div>
-                        <div class="profile-details-info">
-                            <h3> {{accountChange.fullName}} </h3>
-                        </div>
-                    </div>
-                    <div class="right-side uk-visible@m">
-                        <div class="btn-subscribe">
-                            <button *ngIf="accountChange?.statusVip==1" (click)="requestVip()" class="btn btn-warning btn-sm">
-                                <i class="icon-feather-user"></i> Up Account VIP </button>
-                            <button *ngIf="accountChange?.statusVip==2" class="btn btn-danger btn-sm">
-                                <i class="icon-feather-user"></i> Account VIP </button>
-                            <button  *ngIf="accountChange?.statusVip==3" class="btn btn-success btn-sm">
-                                <i class="icon-feather-user"></i> Request Sended </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="nav-profile" k-sticky="offset:61;media : @s">
-                    <nav class="responsive-tab">
-                        <ul>
-                            <li class="uk-active"><a class="active" href="#0">Your Profile</a></li>
-                        </ul>
-                    </nav>
-                    <form class="nav-profile-saerchbox">
-                        <i class="uil-search"></i>
-                        <input class="uk-input" type="text" value="Search Post...">
-                    </form>
-                </div>
-            </div>
-
-
-        </div>
-
         <div class="page-content-inner">
 
-            <div class="row">
+            <h2 class="text-white"> All Orders</h2>
+            <nav id="breadcrumbs" class="text-white">
+            </nav>
 
-                <div class="col-lg-9 col-12">
-                    <div class="card">
-                        <div class="card-header bg-light">
-                            <h4> Change Password </h4>
+
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header actions-toolbar border-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4 class="d-inline-block mb-0">List</h4>
+                        <div class="d-flex">
+
+                            <a href="#" class="btn btn-icon btn-hover  btn-circle" uk-tooltip="Search product" >
+                                <i class="uil-search"></i>
+                            </a>
+                            <div class="uk-drop" uk-drop="mode: click; pos: left-center; offset: 0">
+                                <form class="uk-search uk-search-navbar uk-width-1-1">
+                                    <input class="uk-search-input shadow-0" type="search" placeholder="Search..." autofocus>
+                                </form>
+                            </div>
+
+                            <a href="#" class="btn btn-icon btn-hover  btn-circle" uk-tooltip="filter">
+                                <i class="uil-filter"></i>
+                            </a>
+                            <div uk-dropdown="pos: bottom-right ; mode: click ;animation: uk-animation-scale-up">
+                                <ul class="uk-nav uk-dropdown-nav">
+                                    <li class="uk-active"><a (click)="getOrderByStatus(5)"> Completed </a></li>
+                                    <li class="uk-active"><a (click)="getOrderByStatus(4)"> Rejected </a></li>
+                                    <li class="uk-active"><a (click)="getOrderByStatus(3)"> Confirmed </a></li>
+                                    <li class="uk-active"><a (click)="getOrderByStatus(2)"> Pending </a></li>
+                                    <li class="uk-active"><a (click)="getOrderByStatus(1)"> UnShipped </a></li>
+                                </ul>
+                            </div>
+
+
+                            <a href="#" class="btn btn-icon btn-hover  btn-circle" uk-tooltip="More">
+                                <i class="uil-ellipsis-h"></i>
+                            </a>
+                            <div uk-dropdown="pos: bottom-right ; mode: click ;animation: uk-animation-scale-up">
+                                <ul class="uk-nav uk-dropdown-nav">
+                                    <li><a (click)="getAllOrder()"> Refresh </a></li>
+                                    <li><a href="#">Manage</a></li>
+                                    <li><a href="#">Setting</a></li>
+                                </ul>
+                            </div>
                         </div>
-                        <form [formGroup]="formChangePassword" (ngSubmit)="funcChangePassword()" class="uk-child-width-1@s uk-grid-small p-4 uk-grid" uk-grid="">
-                            <div class="uk-first-column">
-                                <h5 class="uk-text-bold mb-2"> Your Password </h5>
-                                <input [type]="changeType" class="uk-input" placeholder="Your password" (ngModelChange)="funcCheckPassword()" formControlName="password">
-                                <div class="uk-position-relative w-100" *ngFor="let validation of validation_messages.password">
-                                    <div class="error-message"
-                                         *ngIf="formChangePassword?.get('password')?.hasError(validation.type) && (formChangePassword?.get('password')?.dirty || formChangePassword?.get('password')?.touched)">
-                                        {{validation.message}}</div>
-                                </div>
-                                <div class="uk-position-relative w-100" *ngIf="checkPassword">
-                                    <div class="error-message">
-                                       Wrong Password !
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="uk-first-column">
-                                <h5 class="uk-text-bold mb-2"> New Password </h5>
-                                <input [type]="changeType" class="uk-input" placeholder="Your name" formControlName="newPassword">
-                                <div class="uk-position-relative w-100" *ngFor="let validation of validation_messages.newPassword">
-                                    <div class="error-message"
-                                         *ngIf="formChangePassword?.get('newPassword')?.hasError(validation.type) && (formChangePassword?.get('newPassword')?.dirty || formChangePassword?.get('newPassword')?.touched)">
-                                        {{validation.message}}</div>
-                                </div>
-                            </div>
-                            <div class="uk-first-column">
-                                <h5 class="uk-text-bold mb-2"> Re-Check New Password </h5>
-                                <input [type]="changeType" class="uk-input" placeholder="Your name" formControlName="reCheckNewPassword" (ngModelChange)="funcCheckConfirmPassword()">
-                                <div class="uk-position-relative w-100" *ngFor="let validation of validation_messages.reCheckNewPassword">
-                                    <div class="error-message"
-                                         *ngIf="formChangePassword?.get('reCheckNewPassword')?.hasError(validation.type) && (formChangePassword?.get('reCheckNewPassword')?.dirty || formChangePassword?.get('reCheckNewPassword')?.touched)">
-                                        {{validation.message}}</div>
-                                </div>
-                                <div class="uk-position-relative w-100" *ngIf="checkConfirmPassword">
-                                    <div class="error-message">
-                                        Re-entered password does not match!
-                                    </div>
-                                </div>
-                            </div>
-                            <a (click)="funcShowPassword()" *ngIf="changeType=='text'" class="opts_account"> <i class="uil-eye-slash" ></i> <span> Hidden password</span> </a>
-                            <a (click)="funcShowPassword()" *ngIf="changeType=='password'" class="opts_account"> <i class="uil-eye"></i> <span>Show password</span> </a>
-                            <div class="uk-flex uk-flex-right p-3">
-                                <a (click)="goToProfile()" class="btn btn-soft-dark btn-sm mr-2">Cancle</a>
-                                <button [disabled]="checkSummit()" type="submit" class="btn btn-primary btn-sm">Save Changes</button>
-                            </div>
-                        </form>
-
-                        <hr class="mb-0">
-
                     </div>
-
                 </div>
-
-                <div class="col-lg-3 col-12">
-
-                    <nav class="card responsive-tab style-3 setting-menu"
-                         uk-sticky="top:30 ; offset:100; media:@m ;bottom:true">
-                        <ul>
-                            <li ><a (click)="goToProfile()"> <i class="uil-user"></i> Profile </a></li>
-                            <li><a routerLink="/changeInfo"> <i class="uil-info-circle"></i> Info </a></li>
-                            <li><a routerLink="/changeAvatar"> <i class="uil-scenery"></i> Avatar </a></li>
-                            <li><a routerLink="/changeAppearance"> <i class="uil-hunting"></i> Appearance </a></li>
-                            <li><a routerLink="/changePassword"> <i class="uil-unlock-alt"></i> Password </a></li>
-                        </ul>
-                    </nav>
-
+                <!-- Table -->
+                <div class="table-responsive">
+                    <table class="table align-items-center">
+                        <thead>
+                        <tr>
+                            <th scope="col">Provider</th>
+                            <th scope="col">Customer</th>
+                            <th scope="col">Created at</th>
+                            <th scope="col">Total Time</th>
+                            <th scope="col">Total sales</th>
+                            <th scope="col">Status</th>
+                            <th scope="col"> </th>
+                        </tr>
+                        </thead>
+                        <tbody class="list" *ngFor="let o of listOrderLover">
+                        <tr>
+                            <th scope="row">
+                                <div class="media align-items-center">
+                                    <div>
+                                        <div class="avatar-parent-child" style="width: max-content">
+                                            <img alt="Image placeholder" src="{{o?.provider?.account?.avatar}}"
+                                                 class="avatar  rounded-circle">
+                                            <span class="avatar-child avatar-badge bg-success"></span>
+                                        </div>
+                                    </div>
+                                    <div class="media-body ml-4">
+                                        <a href="#" class="name h6 mb-0 text-sm">{{o?.provider?.account?.fullName}}</a>
+                                    </div>
+                                </div>
+                            </th>
+                            <th scope="row">
+                                <div class="media align-items-center">
+                                    <div>
+                                        <div class="avatar-parent-child" style="width: max-content">
+                                            <img alt="Image placeholder" src="{{o?.account?.avatar}}"
+                                                 class="avatar  rounded-circle">
+                                            <span class="avatar-child avatar-badge bg-success"></span>
+                                        </div>
+                                    </div>
+                                    <div class="media-body ml-4">
+                                        <a href="#" class="name h6 mb-0 text-sm">{{o?.account?.fullName}}</a>
+                                    </div>
+                                </div>
+                            </th>
+                            <td> {{o?.dateOfOrder}} </td>
+                            <td> {{o?.orderTime}} </td>
+                            <td> ${{o?.total}} </td>
+                            <td  *ngIf="o.statusOrder == 5"><span class="badge badge-success rounded-pill">Completed</span></td>
+                            <td  *ngIf="o.statusOrder == 4"><span class="badge badge-dark rounded-pill">Rejected</span></td>
+                            <td  *ngIf="o.statusOrder == 3"><span class="badge badge-success rounded-pill">Confirmed</span></td>
+                            <td  *ngIf="o.statusOrder == 2"><span class="badge badge-danger rounded-pill">Pending</span></td>
+                            <td  *ngIf="o.statusOrder == 1"><span class="badge badge-warning rounded-pill">UnShipped</span></td>
+                            <td class="text-right">
+                                <!-- Actions -->
+                                <div class="actions ml-3">
+                                    <a href="#" class="btn btn-icon btn-hover btn-sm btn-circle"
+                                       uk-tooltip="Quick view">
+                                        <i class="uil-external-link-alt "></i> </a>
+                                    <a href="#" class="btn btn-icon btn-hover btn-sm btn-circle"
+                                       uk-tooltip="Edit">
+                                        <i class="uil-pen "></i> </a>
+                                    <a href="#" class="btn btn-icon btn-hover btn-sm btn-circle"
+                                       uk-tooltip="Delete user">
+                                        <i class="uil-trash-alt text-danger"></i> </a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
-
             </div>
+
 
         </div>
 
+
         <!-- footer
-        ================================================== -->
+           ================================================== -->
         <div class="footer">
             <div class="uk-grid-collapse" uk-grid>
                 <div class="uk-width-expand@s uk-first-column">

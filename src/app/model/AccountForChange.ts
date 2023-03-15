@@ -7,10 +7,10 @@ export class AccountForChange {
     username!: String;
     email!:String;
     birthday!:Date;
+    phoneNumber!:String;
     city!:String;
     country!:String;
     gender!:String;
-
     avatar!:String;
     dateOfRegister!:String;
     description!:String;
@@ -22,17 +22,17 @@ export class AccountForChange {
     statusAccount!:number;
     statusComment!:number;
     statusVip!:number
-    view!:number;
     wallet!:number;
-    role!:Role
+    roles!:Role
 
 
-    constructor(id: number, fullName: String, username: String, email: String, birthday: Date, city: String, country: String, gender: String, avatar: String, dateOfRegister: String, description: String, height: number, weight: number, hobby: String, logoutTime: Date, password: String, statusAccount: number, statusComment: number, statusVip: number, view: number, wallet: number, role: Role) {
+    constructor(id: number, fullName: String, username: String, email: String, birthday: Date, phoneNumber: String, city: String, country: String, gender: String, avatar: String, dateOfRegister: String, description: String, height: number, weight: number, hobby: String, logoutTime: Date, password: String, statusAccount: number, statusComment: number, statusVip: number, wallet: number, roles:Role) {
         this.id = id;
         this.fullName = fullName;
         this.username = username;
         this.email = email;
         this.birthday = birthday;
+        this.phoneNumber = phoneNumber;
         this.city = city;
         this.country = country;
         this.gender = gender;
@@ -47,8 +47,7 @@ export class AccountForChange {
         this.statusAccount = statusAccount;
         this.statusComment = statusComment;
         this.statusVip = statusVip;
-        this.view = view;
         this.wallet = wallet;
-        this.role = role;
+        this.roles = roles;
     }
 }
