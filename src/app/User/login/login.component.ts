@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
         this.accountService.setAccountToken(accountToken);
         this.accountService.findById(accountToken.id).subscribe(res => {
             this.account = res;
-            if (this.account.statusAccount == 3) {
+            if (this.account.statusAccount == 2) {
                 Swal.fire(
                     ' ',
                     '<h2 style="color: red; font-size: 32px">The account has been banned</h2>',

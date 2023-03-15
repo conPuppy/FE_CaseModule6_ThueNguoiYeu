@@ -1,15 +1,15 @@
-<div id="wrapper">
+<div id="wrapper" xmlns:text-align="http://www.w3.org/1999/xhtml">
 
 
     <!-- header -->
-    <div id="main_header" class="header-transparent bg-dark" uk-sticky="top:10; cls-inactive :header-transparent bg-dark">
+    <div id="main_header" class="header-transparent" uk-sticky="top:10; cls-inactive :header-transparent">
         <header>
 
             <!-- Logo-->
             <i class="header-traiger uil-bars" uk-toggle="target: #wrapper ; cls: mobile-active"></i>
 
 
-            <div class="h5 uk-hidden@m mr-3 mb-0"> Bootstro </div>
+            <div class="h5 uk-hidden@m mr-3 mb-0"> Bootstro</div>
             <!-- form search-->
             <div class="head_search uk-visible@m">
                 <form>
@@ -26,20 +26,20 @@
             <div class="head_user">
 
 
-
                 <!-- browse apps  -->
-                <a href="#" class="opts_icon uk-visible@s"> <i class="uil-apps"></i> </a>
+                <a href="#" class="opts_icon uk-visible@s"> <i class="uil-shop"></i></a>
+                <a href="#" class="opts_icon uk-visible@s"> <i class="uil-shopping-basket"></i></a>
 
                 <!-- browse apps dropdown -->
                 <div uk-dropdown="pos: top;mode:click ; animation: uk-animation-scale-up" class="icon-browse">
 
-                    <a href="#" class="icon-menu-item"> <i class="uil-shop"></i> Dashboard </a>
-                    <a href="#" class="icon-menu-item"> <i class="uil-envelope-alt"></i> Messages </a>
-                    <a href="#" class="icon-menu-item"> <i class="uil-bookmark"></i> Bookmark </a>
-                    <a href="#" class="icon-menu-item"> <i class="uil-shopping-basket"></i> Cart </a>
-                    <a href="#" class="icon-menu-item"> <i class="uil-shield-check"></i> Privacy </a>
-                    <a href="#" class="icon-menu-item"> <i class="uil-bolt-alt"></i> Upgrade </a>
-                    <a href="#" class="more-app"> More Features</a>
+                    <!--          <a href="#" class="icon-menu-item"> <i class="uil-shop"></i> Dashboard </a>-->
+                    <!--          <a href="#" class="icon-menu-item"> <i class="uil-envelope-alt"></i> Messages </a>-->
+                    <!--          <a href="#" class="icon-menu-item"> <i class="uil-bookmark"></i> Bookmark </a>-->
+                    <!--          <a href="#" class="icon-menu-item"> <i class="uil-shopping-basket"></i> Cart </a>-->
+                    <!--          <a href="#" class="icon-menu-item"> <i class="uil-shield-check"></i> Privacy </a>-->
+                    <!--          <a href="#" class="icon-menu-item"> <i class="uil-bolt-alt"></i> Upgrade </a>-->
+                    <!--          <a href="#" class="more-app"> More Features</a>-->
                 </div>
 
 
@@ -82,7 +82,7 @@
                                         </span>
                                     <div class="notification-text notification-msg-text">
                                         <strong>Stella Johnson</strong>
-                                        <p> Alia Joseph just joined Messenger! say Hi.   </p>
+                                        <p> Alia Joseph just joined Messenger! say Hi. </p>
                                         <span class="time-ago"> 7 hours ago </span>
                                     </div>
                                 </a>
@@ -221,7 +221,7 @@
                     <!-- User menu -->
 
                     <ul class="dropdown-user-menu">
-                        <li><a (click)="goToProvider()"> <i class="uil-bolt"></i> Become Provider </a></li>
+                        <li><a href="#"> <i class="uil-bolt"></i> Go PRO</a></li>
                         <li><a (click)="goToProfile()"> <i class="uil-user"></i> My Profile </a></li>
                         <li><a > <i class="uil-envelope"></i> My Inbox </a></li>
                         <li><a (click)="goToEditProfile()"> <i class="uil-edit"></i> Edit Profile </a></li>
@@ -237,6 +237,7 @@
             </div>
 
         </header>
+
 
     </div>
 
@@ -355,20 +356,21 @@
                     <div class="left-side">
                         <div class="profile-image">
                             <a href="#">
-                                <img src="assets/images/team/team-2.jpg" alt="">
+                                <img src="{{account.avatar}}" alt="">
                             </a>
                         </div>
                         <div class="profile-details-info">
-                            <h3> Adrian Mohani </h3>
-                            <p> 12k Subscirptions</p>
+                            <h3> {{account.fullName}} </h3>
                         </div>
                     </div>
                     <div class="right-side uk-visible@m">
                         <div class="btn-subscribe">
-                            <a href="#" class="btn btn-soft-primary btn-sm">
-                                <i class="uil-envelope-alt"></i> Send message </a>
-                            <a href="#" class="btn btn-primary btn-sm">
-                                <i class="icon-feather-user-plus"></i> Add Friend </a>
+                            <button *ngIf="account?.statusVip==1" (click)="requestVip()" class="btn btn-warning btn-sm">
+                                <i class="icon-feather-user"></i> Up Account VIP </button>
+                            <button *ngIf="account?.statusVip==2" class="btn btn-danger btn-sm">
+                                <i class="icon-feather-user"></i> Account VIP </button>
+                            <button  *ngIf="account?.statusVip==3" class="btn btn-success btn-sm">
+                                <i class="icon-feather-user"></i> Request Sended </button>
                         </div>
                     </div>
                 </div>
@@ -376,7 +378,7 @@
                 <div class="nav-profile" k-sticky="offset:61;media : @s">
                     <nav class="responsive-tab">
                         <ul>
-                            <li class="uk-active"><a class="active" href="#0">Your Profile</a></li>
+                            <li class="uk-active"><a class="active" href="#0">Your Avatar</a></li>
                         </ul>
                     </nav>
                     <form class="nav-profile-saerchbox">
@@ -396,24 +398,25 @@
                 <div class="col-lg-9 col-12">
 
                     <div class="card mt-4">
-                        <div class="card-header bg-light">
-                            <h4> Avatar </h4>
                         </div>
                         <form class="uk-child-width-1-2@s uk-grid-small p-4 uk-grid" uk-grid="">
-
-
-
-
-
-<!--                            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+                            <div class="form-group">
+                                <h1>Update Avatar</h1>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="avatar" formcontrolname="avatar" #fileUploader       (change)="showPreview($event)">
+                                        (change)="showProview($event)"
+                                        <label class="custom-file-label" for="avatar"></label>
+                                    </div>
+                                </div>
+                                <img [src]="imgSrc"  style="width: 100%"  (click)="fileUploader.click()">
+                            </div>
                         </form>
                         <hr class="mb-0">
                         <div class="uk-flex uk-flex-right p-3">
                             <a (click)="goToProfile()" class="btn btn-soft-dark btn-sm mr-2">Cancle</a>
-                            <a href="#"  class="btn btn-primary btn-sm">Save Changes</a>
+                            <a (click)="summit()"  class="btn btn-primary btn-sm">Save Avatar</a>
                         </div>
-                    </div>
-
                 </div>
 
                 <div class="col-lg-3 col-12">

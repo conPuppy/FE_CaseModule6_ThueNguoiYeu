@@ -25,6 +25,17 @@
                 </div>
                 <div class="uk-form-group">
                     <div class="uk-position-relative w-100">
+                        <input class="uk-input" type="text"  placeholder="Your Full Name" formControlName="fullName">
+                    </div>
+                    <div class="uk-position-relative w-100" *ngFor="let validation of validation_messages.fullName">
+                        <div class="error-message"
+                             *ngIf="formRegister?.get('fullName')?.hasError(validation.type) && (formRegister?.get('fullName')?.dirty || formRegister?.get('fullName')?.touched)">
+                            {{validation.message}}</div>
+                    </div>
+
+                </div>
+                <div class="uk-form-group">
+                    <div class="uk-position-relative w-100">
                         <input class="uk-input" type="email" (ngModelChange)="funcCheckDuplicateEmail(formRegister.get('email')?.value)" placeholder="Your email " formControlName="email">
                     </div>
                     <div class="uk-position-relative w-100" *ngFor="let validation of validation_messages.email">
@@ -37,6 +48,17 @@
                             Email already exists!
                         </div>
                     </div>
+                </div>
+                <div class="uk-form-group">
+                    <div class="uk-position-relative w-100">
+                        <input class="uk-input" type="text"  placeholder="Phone Number" formControlName="phoneNumber">
+                    </div>
+                    <div class="uk-position-relative w-100" *ngFor="let validation of validation_messages.phoneNumber">
+                        <div class="error-message"
+                             *ngIf="formRegister?.get('phoneNumber')?.hasError(validation.type) && (formRegister?.get('phoneNumber')?.dirty || formRegister?.get('phoneNumber')?.touched)">
+                            {{validation.message}}</div>
+                    </div>
+
                 </div>
                 <div class="uk-form-group">
                     <div class="uk-position-relative w-100">
@@ -74,6 +96,16 @@
                         <div class="error-message"
                              *ngIf="formRegister?.get('birthday')?.hasError(validation.type) && (formRegister?.get('birthday')?.dirty || formRegister?.get('birthday')?.touched)">
                             {{validation.message}}</div>
+                    </div>
+                    <div class="uk-grid-margin uk-first-column">
+                        <h5 class="uk-text-bold mb-2"> Gender </h5>
+                        <fieldset formGroupName="genderObj">
+                            <select class="selectpicker"  formControlName="gender">
+                                <option value="Orther">Orther</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </fieldset>
                     </div>
                 </div>
                 <button type="submit" [disabled]="!formRegister.valid" class="btn btn-primary btn-block mb-4">Register</button>

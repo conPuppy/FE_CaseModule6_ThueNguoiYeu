@@ -1,9 +1,8 @@
-<div id="wrapper">
+<div id="wrapper" xmlns:text-align="http://www.w3.org/1999/xhtml">
 
 
     <!-- header -->
-    <div id="main_header" class="header-transparent bg-dark"
-         uk-sticky="top:10; cls-inactive :header-transparent bg-dark">
+    <div id="main_header" class="header-transparent" uk-sticky="top:10; cls-inactive :header-transparent">
         <header>
 
             <!-- Logo-->
@@ -28,18 +27,19 @@
 
 
                 <!-- browse apps  -->
-                <a href="#" class="opts_icon uk-visible@s"> <i class="uil-apps"></i> </a>
+                <a href="#" class="opts_icon uk-visible@s"> <i class="uil-shop"></i></a>
+                <a href="#" class="opts_icon uk-visible@s"> <i class="uil-shopping-basket"></i></a>
 
                 <!-- browse apps dropdown -->
                 <div uk-dropdown="pos: top;mode:click ; animation: uk-animation-scale-up" class="icon-browse">
 
-                    <a href="#" class="icon-menu-item"> <i class="uil-shop"></i> Dashboard </a>
-                    <a href="#" class="icon-menu-item"> <i class="uil-envelope-alt"></i> Messages </a>
-                    <a href="#" class="icon-menu-item"> <i class="uil-bookmark"></i> Bookmark </a>
-                    <a href="#" class="icon-menu-item"> <i class="uil-shopping-basket"></i> Cart </a>
-                    <a href="#" class="icon-menu-item"> <i class="uil-shield-check"></i> Privacy </a>
-                    <a href="#" class="icon-menu-item"> <i class="uil-bolt-alt"></i> Upgrade </a>
-                    <a href="#" class="more-app"> More Features</a>
+                    <!--          <a href="#" class="icon-menu-item"> <i class="uil-shop"></i> Dashboard </a>-->
+                    <!--          <a href="#" class="icon-menu-item"> <i class="uil-envelope-alt"></i> Messages </a>-->
+                    <!--          <a href="#" class="icon-menu-item"> <i class="uil-bookmark"></i> Bookmark </a>-->
+                    <!--          <a href="#" class="icon-menu-item"> <i class="uil-shopping-basket"></i> Cart </a>-->
+                    <!--          <a href="#" class="icon-menu-item"> <i class="uil-shield-check"></i> Privacy </a>-->
+                    <!--          <a href="#" class="icon-menu-item"> <i class="uil-bolt-alt"></i> Upgrade </a>-->
+                    <!--          <a href="#" class="more-app"> More Features</a>-->
                 </div>
 
 
@@ -221,7 +221,7 @@
                     <!-- User menu -->
 
                     <ul class="dropdown-user-menu">
-                        <li><a (click)="goToProvider()"> <i class="uil-bolt"></i> Become Provider </a></li>
+                        <li><a href="#"> <i class="uil-bolt"></i> Go PRO</a></li>
                         <li><a (click)="goToProfile()"> <i class="uil-user"></i> My Profile </a></li>
                         <li><a > <i class="uil-envelope"></i> My Inbox </a></li>
                         <li><a (click)="goToEditProfile()"> <i class="uil-edit"></i> Edit Profile </a></li>
@@ -238,6 +238,7 @@
 
         </header>
 
+
     </div>
 
     <!-- menu -->
@@ -248,17 +249,17 @@
         <span class="btn-menu-trigger" uk-toggle="target: #wrapper ; cls: menu-collapsed"></span>
 
         <!-- logo -->
-        <div class="logo uk-visible@s bg-dark">
+        <div class="logo uk-visible@s">
             <a href="dashboard.html"> <img src="assets/images/logo.svg" alt=""> <span> Bootstro</span> </a>
         </div>
         <div class="page-menu-inner" data-simplebar>
             <ul>
-                <li><a href="dashboard.html"><i class="uil-home-alt"></i> <span> Dashboard </span></a></li>
+                <li><a href="dashboard.html"><i class="uil-home-alt"></i> <span> Dashboard </span></a> </li>
             </ul>
 
 
             <ul data-submenu-title="Apps">
-                <li><a href="app-calender.html"><i class="uil-calendar-alt"></i> <span> Calendar</span></a></li>
+                <li><a href="app-calender.html"><i class="uil-calendar-alt"></i> <span> Calendar</span></a> </li>
                 <li><a href="chat.html"><i class="uil-comment-alt-dots"></i> <span>Chat</span> </a></li>
                 <li><a href="#"><i class="uil-envelope-alt"></i> <span>Email</span> </a>
                     <ul>
@@ -271,57 +272,47 @@
                 </li>
                 <li><a href="#"><i class="uil-shopping-basket"></i> <span>E-commerce</span> </a>
                     <ul>
-                        <li><a href="shop-card.html"> Products Grid </a></li>
-                        <li><a href="shop-listing.html"> Products List </a></li>
-                        <li><a href="shop-product.html"> Product </a></li>
-                        <li><a href="shop-cart.html"> Products Cart </a></li>
-                        <li><a href="shop-checkout.html"> Products Checkout </a></li>
-                    </ul>
-                </li>
-                <li><a href="#"><i class="uil-users-alt"></i> <span>Users</span> </a>
-                    <ul>
-                        <li><a href="user-card.html"> Users Grid </a></li>
-                        <li><a href="user-listing.html"> Users List </a></li>
-                        <li><a href="user-view.html"> User view </a></li>
+                        <li> <a href="shop-card.html"> Products Grid </a> </li>
+                        <li> <a href="shop-listing.html"> Products List </a> </li>
+                        <li> <a href="shop-product.html"> Product </a> </li>
+                        <li> <a href="shop-cart.html"> Products Cart </a> </li>
+                        <li> <a href="shop-checkout.html"> Products Checkout </a> </li>
                     </ul>
                 </li>
             </ul>
 
             <ul data-submenu-title="Pages">
-                <li><a href="profile.html"><i class="uil-user-square"></i> <span> Profile </span> </a></li>
-                <li><a href="profile-setting.html"><i class="uil-cog"></i> <span> Setting </span> </a></li>
-                <li><a href="page-invoice.html"><i class="uil-invoice"></i> <span> Invoice </span> </a></li>
-                <li><a href="page-gallery.html"><i class="uil-images"></i> <span> Gallery </span> </a></li>
-                <li><a href="page-faqs.html"><i class="uil-equal-circle"></i> <span> FAQ </span> </a></li>
-                <li><a href="page-pricing.html"><i class="uil-dollar-sign-alt"></i> <span> pricing </span> </a></li>
-                <li><a href="error.html"><i class="uil-minus-circle"></i> <span> Error </span> </a></li>
-                <li><a href="page-maintanence.html"><i class="uil-sync-exclamation"></i> <span> Maintence </span> </a>
-                </li>
-                <li><a href="page-comming-soon.html"><i class="uil-stopwatch"></i> <span> Comming soon </span> </a></li>
+                <li><a href="profile.html"><i class="uil-user-square"></i> <span> Profile </span> </a> </li>
+                <li><a href="profile-setting.html"><i class="uil-cog"></i> <span> Setting </span> </a> </li>
+                <li><a href="page-invoice.html"><i class="uil-invoice"></i> <span> Invoice </span> </a> </li>
+                <li><a href="page-gallery.html"><i class="uil-images"></i> <span> Gallery </span> </a> </li>
+                <li><a href="page-faqs.html"><i class="uil-equal-circle"></i> <span> FAQ </span> </a> </li>
+                <li><a href="page-pricing.html"><i class="uil-dollar-sign-alt"></i> <span> pricing </span> </a> </li>
+                <li><a href="error.html"><i class="uil-minus-circle"></i> <span> Error </span> </a> </li>
+                <li><a href="page-maintanence.html"><i class="uil-sync-exclamation"></i> <span> Maintence </span> </a> </li>
+                <li><a href="page-comming-soon.html"><i class="uil-stopwatch"></i> <span> Comming soon </span> </a> </li>
             </ul>
 
             <ul data-submenu-title="Development">
-                <li><a href="development-elements.html"><i class="uil-layers"></i> <span> UI Elements </span> </a></li>
-                <li><a href="development-components.html"><i class="uil-code"></i> <span> UI Components </span> </a>
-                </li>
-                <li><a href="development-icons.html"><i class="icon-feather-flag"></i> <span> Icon Pack </span> </a>
-                </li>
+                <li><a href="development-elements.html"><i class="uil-layers"></i> <span> UI Elements </span> </a> </li>
+                <li><a href="development-components.html"><i class="uil-code"></i> <span> UI Components </span> </a> </li>
+                <li><a href="development-icons.html"><i class="icon-feather-flag"></i> <span> Icon Pack </span> </a> </li>
 
                 <li><a href="#"><i class="uil-check-circle"></i> <span> Forms </span> </a>
                     <ul>
-                        <li><a href="form-element.html"> Form Elements </a></li>
-                        <li><a href="form-layouts.html"> Form Layouts </a></li>
-                        <li><a href="form-validation.html"> Form Validation </a></li>
+                        <li> <a href="form-element.html"> Form Elements </a> </li>
+                        <li> <a href="form-layouts.html"> Form Layouts </a> </li>
+                        <li> <a href="form-validation.html"> Form Validation </a> </li>
                     </ul>
                 </li>
                 <li><a href="#"><i class="uil-list-ul"></i> <span> Tables </span> </a>
                     <ul>
-                        <li><a href="table-basic.html"> Basic Table </a></li>
-                        <li><a href="table-database.html"> Data Table </a></li>
+                        <li> <a href="table-basic.html"> Basic Table </a> </li>
+                        <li> <a href="table-database.html"> Data Table </a> </li>
                     </ul>
                 </li>
 
-                <li><a href="charts.html"><i class="uil-chart"></i> <span> Charts </span> </a></li>
+                <li><a href="charts.html"><i class="uil-chart"></i> <span> Charts </span> </a> </li>
 
             </ul>
 
@@ -340,153 +331,191 @@
         </div>
     </div>
 
+    <div class="box-gradient-home"></div>
+
     <!-- content -->
     <div class="page-content">
         <div class="page-content-inner">
 
+            <h2 class="text-white"> Users </h2>
+
+            <nav id="breadcrumbs" class="text-white">
+                <ul>
+                    <li><a href="#"> Dashboard </a></li>
+                    <li> <a href="#">Users</a> </li>
+                    <li> user-vew </li>
+                </ul>
+            </nav>
+
 
             <div class="row">
-
-                <div class="col-lg-3 col-12">
-                    <img src="" class="rounded" alt="Cinque Terre">
-                    <h2>Profile:</h2>
+                <div class="col-12">
                     <div class="card">
+                        <div class="card-header">
+                            <h4>Account</h4>
+                        </div>
                         <div class="card-body">
-
-                            <div class="mt-1">
-                                <h6 class="mb-0">Joined:</h6>
-                                <p></p>
-                            </div>
-                            <div class="mt-1">
-                                <h6 class="mb-0">Lives:</h6>
-                                <p></p>
-                            </div>
-                            <div class="mt-1">
-                                <h6 class="mb-0">Email:</h6>
-                                <p></p>
-                            </div>
-                            <div class="mt-1">
-                                <h6 class="mb-0">Birthday:</h6>
-                                <p></p>
-                            </div>
-                            <div class="mt-1">
-                                <h6 class="mb-0">Gender:</h6>
-                                <p></p>
-                            </div>
-                            <div class="mt-1">
-                                <h6 class="mb-0">Heigth and Weight:</h6>
-                                <p></p>
-                            </div>
-                            <div class="mt-1">
-                                <a class="btn btn-icon btn-facebook btn-circle">
-                                    <i class="uil-facebook-f"></i> </a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-lg-6 col-12">
-
-                    <div>
-                        <h2></h2>
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    <div>
-                        <div class="row">
-                            <div class="col">
-                                <p>View:</p>
-                                <p></p>
-                            </div>
-                            <div class="col">
-                                <p>Time of ordered</p>
-                                <p> hours</p>
-                            </div>
-
-                        </div>
-                        <hr>
-                        <div >
-                            <p class="h4" >Service:</p>
-                            <div class="d-flex flex-wrap bg-light">
-                                <div class="p-2 border; btn btn-outline-secondary">
-
+                            <button (click)="goToEditProfile()"
+                               class="btn btn-primary mr-1 waves-effect waves-light"><i
+                                    class="feather icon-edit-1"></i> Edit</button>
+                            <img src="{{account.avatar}}"
+                                 class="users-avatar-shadow w-100 rounded mb-2 pr-2 ml-1" alt="avatar">
+                            <div class="row">
+                                <div class="users-view-image ml-lg-2">
                                 </div>
 
-                            </div>
-                            <hr>
-                        </div>
-                        <div>
-                            <p class="h4" >Description:</p>
-                            <p style='word-wrap:break-word; ' ></p>
-                        </div>
-                        <hr>
-                        <p class="h4">Evaluate</p>
-                    </div>
 
+
+
+
+
+
+
+                                <div class="col-12 col-sm-9 col-md-6 col-lg-5">
+                                    <table class="table table-borderless table-sm">
+                                        <tbody>
+                                        <tr>
+                                            <td class="font-weight-bold">Full Name</td>
+                                            <td>{{account.fullName}} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">Username</td>
+                                            <td>{{account.username}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">Email</td>
+                                            <td>{{account.email}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+                                <div class="col-12 col-md-12 col-lg-5">
+                                    <table class="table table-borderless table-sm ml-0 ml-sm-0 ml-lg-0">
+                                        <tbody>
+                                        <tr>
+                                            <td class="font-weight-bold" >Status</td>
+                                            <td>active</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">Role</td>
+                                            <td>{{roleString}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">Gender</td>
+                                            <td>{{account.gender}} </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
 
-                <div class="col-lg-3 col-12">
-
+                <div class="col-md-12 col-12 ">
                     <div class="card">
                         <div class="card-header bg-light">
-                            <h5>Latest Photos</h5>
+                            <h4>Information</h4>
                         </div>
-                        <div class="card-body pb-0">
-                            <div class="row">
-                                <div class="col-md-4 col-6 animate-this mb-2 px-lg-2">
-                                    <img src="assets/images/team/team-1.jpg" class="img-fluid mb-1 rounded"
-                                         alt="avtar img holder">
-                                </div>
-                                <div class="col-md-4 col-6 animate-this mb-2 px-lg-2">
-                                    <img src="assets/images/team/team-2.jpg" class="img-fluid mb-1 rounded"
-                                         alt="avtar img holder">
-                                </div>
-                                <div class="col-md-4 col-6 animate-this mb-2 px-lg-2">
-                                    <img src="assets/images/team/team-6.jpg" class="img-fluid mb-1 rounded"
-                                         alt="avtar img holder">
-                                </div>
-                                <div class="col-md-4 col-6 animate-this mb-2 px-lg-2">
-                                    <img src="assets/images/team/team-7.jpg" class="img-fluid mb-1 rounded"
-                                         alt="avtar img holder">
-                                </div>
-                                <div class="col-md-4 col-6 animate-this mb-2 px-lg-2">
-                                    <img src="assets/images/team/team-1.jpg" class="img-fluid mb-1 rounded"
-                                         alt="avtar img holder">
-                                </div>
-                                <div class="col-md-4 col-6 animate-this mb-2 px-lg-2">
-                                    <img src="assets/images/team/team-2.jpg" class="img-fluid mb-1 rounded"
-                                         alt="avtar img holder">
-                                </div>
-                                <div class="col-md-4 col-6 animate-this mb-2 px-lg-2">
-                                    <img src="assets/images/team/team-6.jpg" class="img-fluid mb-1 rounded"
-                                         alt="avtar img holder">
-                                </div>
-                                <div class="col-md-4 col-6 animate-this mb-2 px-lg-2">
-                                    <img src="assets/images/team/team-7.jpg" class="img-fluid mb-1 rounded"
-                                         alt="avtar img holder">
-                                </div>
-                                <div class="col-md-4 col-6 animate-this mb-2 px-lg-2">
-                                    <img src="assets/images/team/team-7.jpg" class="img-fluid mb-1 rounded"
-                                         alt="avtar img holder">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="text-center"><a href="#"> Veiw more </a></div>
+                        <div class="card-body">
+                            <table class="table table-borderless table-sm">
+                                <tbody><tr>
+                                    <td class="font-weight-bold text-dark">Birth Date </td>
+                                    <td>{{account.birthday}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bold text-dark">Mobile</td>
+                                    <td>+{{account.phoneNumber}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bold text-dark">Height</td>
+                                    <td>{{account.height}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bold text-dark">Weight</td>
+                                    <td>{{account.weight}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bold text-dark">City</td>
+                                    <td>{{account.city}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bold text-dark">Country</td>
+                                    <td>{{account.country}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bold text-dark">Hobby</td>
+                                    <td>{{account.hobby}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bold text-dark">Description</td>
+                                    <td>{{account.description}}</td>
+                                </tr>
+                                </tbody></table>
                         </div>
                     </div>
-
-
                 </div>
 
             </div>
 
+
+        </div>
+
+
+        <!-- footer
+           ================================================== -->
+        <div class="footer">
+            <div class="uk-grid-collapse" uk-grid>
+                <div class="uk-width-expand@s uk-first-column">
+                    <p>© 2020 <strong>Bootstro</strong>. All Rights Reserved. </p>
+                </div>
+                <div class="uk-width-auto@s">
+                    <nav class="footer-nav-icon">
+                        <ul>
+                            <li><a href="#"><i class="icon-brand-facebook"></i></a></li>
+                            <li><a href="#"><i class="icon-brand-dribbble"></i></a></li>
+                            <li><a href="#"><i class="icon-brand-youtube"></i></a></li>
+                            <li><a href="#"><i class="icon-brand-twitter"></i></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
         </div>
 
 
     </div>
 
 </div>
+
+
+
+<!-- javaScripts
+================================================== -->
+<script src="assets/js/uikit.js"></script>
+<script src="assets/js/simplebar.js"></script>
+<script src="assets/js/jquery-3.3.1.min.js"></script>
+<script src="assets/js/bootstrap-select.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/main.js"></script>
