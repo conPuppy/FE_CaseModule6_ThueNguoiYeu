@@ -28,11 +28,11 @@ import { HomeboyComponent } from './homeboy/homeboy.component';
 import { HomegirlComponent } from './homegirl/homegirl.component';
 
 import { ShowAllBillComponent } from './admin/show-all-bill/show-all-bill.component';
+import { ProviderShowBillComponent } from './User/provider-show-bill/provider-show-bill.component';
 
 import { CreateProviderComponent } from './create-provider/create-provider.component';
 
 
-// @ts-ignore
 @NgModule({
     declarations: [
         AppComponent,
@@ -51,10 +51,10 @@ import { CreateProviderComponent } from './create-provider/create-provider.compo
         ChangePasswordComponent,
         HomeboyComponent,
         HomegirlComponent,
-
         ShowAllBillComponent,
-
         CreateProviderComponent,
+        ShowAllBillComponent,
+        ProviderShowBillComponent
 
     ],
     imports: [

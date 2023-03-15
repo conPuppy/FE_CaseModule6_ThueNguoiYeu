@@ -9,16 +9,13 @@ import {ChangeAppearanceComponent} from "./change-appearance/change-appearance.c
 import {ChangePasswordComponent} from "./change-password/change-password.component";
 import {ShowComponent} from "./show/show.component";
 import {ShowtopviewComponent} from "./showtopview/showtopview.component";
-
 import {SupplierComponent} from "./User/supplier/supplier.component";
 import { HomeComponent } from './User/home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { ShowProfileComponent } from './User/show-profile/show-profile.component';
-
 import { HomeboyComponent } from './homeboy/homeboy.component';
 import { HomegirlComponent } from './homegirl/homegirl.component';
-
 import { ShowAllBillComponent } from './admin/show-all-bill/show-all-bill.component';
 import { ProviderShowBillComponent } from './User/provider-show-bill/provider-show-bill.component';
 

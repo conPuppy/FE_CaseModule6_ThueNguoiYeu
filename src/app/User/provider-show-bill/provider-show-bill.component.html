@@ -1,8 +1,5 @@
 
-
-
 <div id="wrapper">
-
 
     <!-- header -->
     <div id="main_header" class="header-transparent" uk-sticky="top:10; cls-inactive :header-transparent">
@@ -399,52 +396,57 @@
                         <thead>
                         <tr>
                             <th scope="col">Customer</th>
-                            <th scope="col">Created at</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Start at</th>
                             <th scope="col">Total Time</th>
                             <th scope="col">Total sales</th>
                             <th scope="col">Status</th>
                             <th scope="col"> </th>
                         </tr>
                         </thead>
-<!--                        <tbody class="list" *ngFor="let b of listBillOfProvider">-->
-<!--                            <th scope="row">-->
-<!--                                <div class="media align-items-center">-->
-<!--                                    <div>-->
-<!--                                        <div class="avatar-parent-child" style="width: max-content">-->
-<!--                                            <img alt="Image placeholder" src="{{b?.account?.avatar}}"-->
-<!--                                                 class="avatar  rounded-circle">-->
-<!--                                            <span class="avatar-child avatar-badge bg-success"></span>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    <div class="media-body ml-4">-->
-<!--                                        <a href="#" class="name h6 mb-0 text-sm">{{o?.account?.fullName}}</a>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </th>-->
-<!--                            <td> {{o?.dateOfOrder}} </td>-->
-<!--                            <td> {{o?.orderTime}} </td>-->
-<!--                            <td> ${{o?.total}} </td>-->
-<!--                            <td  *ngIf="o.statusOrder == 5"><span class="badge badge-success rounded-pill">Completed</span></td>-->
-<!--                            <td  *ngIf="o.statusOrder == 4"><span class="badge badge-dark rounded-pill">Rejected</span></td>-->
-<!--                            <td  *ngIf="o.statusOrder == 3"><span class="badge badge-success rounded-pill">Confirmed</span></td>-->
-<!--                            <td  *ngIf="o.statusOrder == 2"><span class="badge badge-danger rounded-pill">Pending</span></td>-->
-<!--                            <td  *ngIf="o.statusOrder == 1"><span class="badge badge-warning rounded-pill">UnShipped</span></td>-->
-<!--                            <td class="text-right">-->
-<!--                                &lt;!&ndash; Actions &ndash;&gt;-->
-<!--                                <div class="actions ml-3">-->
-<!--                                    <a href="#" class="btn btn-icon btn-hover btn-sm btn-circle"-->
-<!--                                       uk-tooltip="Quick view">-->
-<!--                                        <i class="uil-external-link-alt "></i> </a>-->
-<!--                                    <a href="#" class="btn btn-icon btn-hover btn-sm btn-circle"-->
-<!--                                       uk-tooltip="Edit">-->
-<!--                                        <i class="uil-pen "></i> </a>-->
-<!--                                    <a href="#" class="btn btn-icon btn-hover btn-sm btn-circle"-->
-<!--                                       uk-tooltip="Delete user">-->
-<!--                                        <i class="uil-trash-alt text-danger"></i> </a>-->
-<!--                                </div>-->
-<!--                            </td>-->
-<!--                        </tr>-->
-<!--                        </tbody>-->
+                        <tbody class="list" *ngFor="let b of listBillOfProvider">
+                        <tr>
+                            <th scope="row">
+                                <div class="media align-items-center">
+                                    <div>
+                                        <div class="avatar-parent-child" style="width: max-content">
+                                            <img alt="Image placeholder" src="{{b?.account?.avatar}}"
+                                                 class="avatar  rounded-circle">
+                                            <span class="avatar-child avatar-badge bg-success"></span>
+                                        </div>
+                                    </div>
+                                    <div class="media-body ml-4">
+                                        <a href="#" class="name h6 mb-0 text-sm">{{b?.account?.fullName}}</a>
+                                    </div>
+                                </div>
+                            </th>
+                            <td> {{b?.account?.city}} </td>
+                            <td> {{b?.dateOfOrder}} </td>
+                            <td> ${{b?.orderTime}} </td>
+                            <td> ${{b?.total}} </td>
+                            <td  *ngIf="b.statusOrder == 5"><span class="badge badge-success rounded-pill">Completed</span></td>
+                            <td  *ngIf="b.statusOrder == 4"><span class="badge badge-dark rounded-pill">Rejected</span></td>
+                            <td  *ngIf="b.statusOrder == 3"><span class="badge badge-success rounded-pill">Confirmed</span></td>
+                            <td  *ngIf="b.statusOrder == 2"><span class="badge badge-danger rounded-pill">Pending</span></td>
+                            <td class="text-right">
+                                <!-- Actions -->
+                                <div class="actions ml-3">
+                                    <a *ngIf="b.statusOrder == 2" href="#" class="btn btn-icon btn-hover btn-sm btn-circle"
+                                       uk-tooltip="Confirmed" (click)="changeToConfirmed(b.id)">
+                                        <i class="icon-feather-check-square"></i> </a>
+                                    <a *ngIf="b.statusOrder == 2" href="#" class="btn btn-icon btn-hover btn-sm btn-circle"
+                                       uk-tooltip="Rejected" (click)="changeToRejected(b.id)">
+                                        <i class="icon-feather-x-square"></i> </a>
+                                    <a href="#" class="btn btn-icon btn-hover btn-sm btn-circle"
+                                       uk-tooltip="Quick view">
+                                        <i class="uil-external-link-alt "></i> </a>
+                                    <a href="#" class="btn btn-icon btn-hover btn-sm btn-circle"
+                                       uk-tooltip="Delete">
+                                        <i class="uil-trash-alt text-danger"></i> </a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>

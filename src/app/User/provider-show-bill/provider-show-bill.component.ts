@@ -3,6 +3,9 @@ import { OrderLover } from 'src/app/model/OrderLover';
 import { Provider } from 'src/app/model/Provider';
 import { AccountService } from 'src/app/service/account/account.service';
 import { ProviderService } from 'src/app/service/provider/provider.service';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { OrderLoverService } from 'src/app/service/Order/order-lover.service';
 
 @Component({
   selector: 'app-provider-show-bill',
@@ -18,10 +21,10 @@ export class ProviderShowBillComponent implements OnInit{
   provider!: Provider;
   id!:number;
 
-  constructor(private providerService: ProviderService, private accountService: AccountService) {
+  constructor(private providerService: ProviderService, private accountService: AccountService, private orderService: OrderLoverService) {
   }
     ngOnInit(): void {
-    this.provider = this.findProviderByAccountUsername();
+    this.findProviderByAccountUsername();
     }
 
   getBillByIdProvider(idProvider: number) {
@@ -36,6 +39,19 @@ export class ProviderShowBillComponent implements OnInit{
     this.providerService.findProviderByAccountUsername(this.usernameAccount).subscribe((data) => {
       this.provider = data;
       console.log(data);
+      this.getBillByIdProvider(this.provider.id);
+    })
+  }
+
+  changeToConfirmed(idOrder: number) {
+    this.orderService.changeToConfirmed(idOrder).subscribe(() => {
+      this.findProviderByAccountUsername();
+    })
+  }
+
+  changeToRejected(idOrder: number) {
+    this.orderService.changeToRejected(idOrder).subscribe(() => {
+      this.findProviderByAccountUsername();
     })
   }
 }
