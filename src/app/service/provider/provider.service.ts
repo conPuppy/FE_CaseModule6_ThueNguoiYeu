@@ -4,6 +4,7 @@ import {Account} from "../../model/Account";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Provider} from "../../model/Provider";
+import { OrderLover } from 'src/app/model/OrderLover';
 
 @Injectable({
     providedIn: 'root'
@@ -34,5 +35,13 @@ export class ProviderService {
 
     getAllProviderAcc(page: number): Observable<Provider[]> {
         return this.http.get<Provider[]>(this.url + "?page" + page);
+    }
+
+    getBillByIdProvider(idProvider: number): Observable<OrderLover[]> {
+        return this.http.get<OrderLover[]>(this.url + "/orders/" + idProvider);
+    }
+
+    findProviderByAccountUsername(accountUsername: string): Observable<Provider> {
+        return this.http.get<Provider>(this.url + "/" + accountUsername);
     }
 }
