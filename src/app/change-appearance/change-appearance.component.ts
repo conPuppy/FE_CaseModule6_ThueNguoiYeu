@@ -82,7 +82,8 @@ export class ChangeAppearanceComponent implements OnInit {
         this.accountChange.roles=this.account.roles;
         this.accountChange.wallet=this.account.wallet;
         this.accountsService.changeInfo(this.accountChange).subscribe(res=> Swal.fire('Done!', 'Change Appearance', 'success'))
-    }
+    };
+    
     requestVip(){
         this.account.statusVip=3
         this.accountsService.changeInfo(this.account).subscribe((res)=>{
@@ -92,17 +93,18 @@ export class ChangeAppearanceComponent implements OnInit {
             })
         })
     }
+
     logout(){
         localStorage.clear();
         this.router.navigate([''])
-    }
+    };
     goToProfile(){
         this.router.navigate(['/showProfile'])
-    }
+    };
     goToEditProfile(){
         this.router.navigate(['/changeInfo'])
     }
     goToProvider(){
         this.router.navigate(['/supplier'])
-    }
+    };
 }

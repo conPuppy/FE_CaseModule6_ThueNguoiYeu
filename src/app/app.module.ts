@@ -24,6 +24,8 @@ import { SupplierComponent } from './User/supplier/supplier.component';
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import {environment} from "../environments/environment";
+import { HomeboyComponent } from './homeboy/homeboy.component';
+import { HomegirlComponent } from './homegirl/homegirl.component';
 
 import { ShowAllBillComponent } from './admin/show-all-bill/show-all-bill.component';
 
@@ -47,6 +49,8 @@ import { CreateProviderComponent } from './create-provider/create-provider.compo
         ChangeAvatarComponent,
         ChangeAppearanceComponent,
         ChangePasswordComponent,
+        HomeboyComponent,
+        HomegirlComponent,
 
         ShowAllBillComponent,
 

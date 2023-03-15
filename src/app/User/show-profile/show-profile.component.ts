@@ -24,21 +24,18 @@ export class ShowProfileComponent implements OnInit {
         })
     }
 
+  logout(){
+    localStorage.clear();
+    this.router.navigate([''])
+  }
+  goToProfile(){
+    this.router.navigate(['/showProfile'])
+  }
+  goToEditProfile(){
+    this.router.navigate(['/changeInfo'])
+  }
+  goToProvider(){
+    this.router.navigate(['/supplier'])
+  }
 
-    logout() {
-        localStorage.clear();
-        this.router.navigate(['/login'])
-    }
-
-    goToProfile() {
-        this.router.navigate(['/showProfile'])
-    }
-
-    goToEditProfile() {
-        this.router.navigate(['/changeInfo'])
-    }
-
-    goToProvider() {
-        this.router.navigate(['/supplier'])
-    }
 }

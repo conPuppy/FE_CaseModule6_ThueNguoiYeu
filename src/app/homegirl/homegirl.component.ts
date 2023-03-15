@@ -1,18 +1,17 @@
-import {Component, OnInit} from '@angular/core';
-import {ProvisionProvider} from "../model/ProvisionProvider";
-import {AccountService} from "../service/account/account.service";
-import {Router} from "@angular/router";
-import {ProviderService} from "../service/provider/provider.service";
-import {ProvisionProviderService} from "../service/provisionprovider/provisionprovider.service";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Provider } from '../model/Provider';
-import { Account } from '../model/Account';
+import { ProvisionProvider } from '../model/ProvisionProvider';
+import { AccountService } from '../service/account/account.service';
+import { ProviderService } from '../service/provider/provider.service';
+import { ProvisionProviderService } from '../service/provisionprovider/provisionprovider.service';
 
 @Component({
-  selector: 'app-showtopview',
-  templateUrl: './showtopview.component.html',
-  styleUrls: ['./showtopview.component.css']
+  selector: 'app-homegirl',
+  templateUrl: './homegirl.component.html',
+  styleUrls: ['./homegirl.component.css']
 })
-export class ShowtopviewComponent implements OnInit{
+export class HomegirlComponent implements OnInit{
   providers: Provider[] = [];
   provider= new Provider;
   provisionproviders: ProvisionProvider[] = [];
@@ -24,7 +23,7 @@ export class ShowtopviewComponent implements OnInit{
               private provisionproviderService: ProvisionProviderService) {
   }
   ngOnInit(): void {
-    this.providerService.getProviderTopView().subscribe(data=>{
+    this.providerService.getBoyProviderTopView().subscribe(data=>{
       this.providers = data;
       this.provisionproviderService.getAllProvisionProvider().subscribe(data=>{
         this.provisionproviders = data;
@@ -43,5 +42,14 @@ export class ShowtopviewComponent implements OnInit{
       this.ngOnInit();
     })
   }
-
+  logout(){
+    localStorage.clear();
+    this.router.navigate([''])
+  }
+  goToProfile(){
+    this.router.navigate(['/showProfile'])
+  }
+  goToEditProfile(){
+    this.router.navigate(['/changeInfo'])
+  }
 }

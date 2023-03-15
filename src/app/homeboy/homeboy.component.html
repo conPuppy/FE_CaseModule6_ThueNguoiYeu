@@ -224,12 +224,13 @@
 
                     <ul class="dropdown-user-menu">
                         <li><a href="#"> <i class="uil-bolt"></i> Go PRO</a></li>
-                        <li><a href="profile.html"> <i class="uil-user"></i> My Profile </a></li>
-                        <li><a href="email-inbox.html"> <i class="uil-envelope"></i> My Inbox </a></li>
-                        <li><a href="profile-setting.html"> <i class="uil-edit"></i> Edit Profile </a></li>
+                        <li><a (click)="goToProfile()"> <i class="uil-user"></i> My Profile </a></li>
+                        <li><a > <i class="uil-envelope"></i> My Inbox </a></li>
+                        <li><a (click)="goToEditProfile()"> <i class="uil-edit"></i> Edit Profile </a></li>
                         <li><a href="profile-setting.html"> <i class="uil-cog"></i> Account Settings</a></li>
                         <li class="menu-divider"></li>
-                        <li><a href="form-modern-login.html"> <i class="icon-feather-log-out"></i> Sing Out</a></li>
+                        <li><a (click)="logout()"> <i class="icon-feather-log-out"></i> Sing Out</a>
+                        </li>
                     </ul>
 
 
@@ -353,7 +354,7 @@
                 <ul>
                     <li><a href="#"> Dashboard </a></li>
                     <li><a href="#">Providers</a></li>
-                    <li> Top 8 View Providers</li>
+                    <li> Top 4 View Girl Providers</li>
                 </ul>
             </nav>
 
@@ -376,7 +377,59 @@
                                     </tbody>
                                 </table>
                                 <p class="text-muted uk-text-bold my-0"
-                                   >{{pr.price}} $/ giờ</p>
+                                >{{pr.price}} $/ giờ</p>
+                            </div>
+
+                            <div class="text-warning">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+<!--            <nav aria-label="Page navigation example" class="my-lg-4">-->
+<!--                <ul class="pagination justify-content-center">-->
+<!--                    &lt;!&ndash;                    <li class="page-item disabled">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <li class="page-item"><a class="page-link" href="#">1</a></li>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <li class="page-item"><a class="page-link" href="#">2</a></li>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <li class="page-item"><a class="page-link" href="#">3</a></li>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <li class="page-item">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <a class="page-link" href="#">Next</a>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--                </ul>-->
+<!--            </nav>-->
+
+
+        </div>
+        <div class="page-content-inner">
+            <h5 class="title-header-left" style="font-weight: 700; font-size: 20px; color: #2d82f7;">Top 12 Seller Providers</h5>
+            <br>
+
+            <div class="row">
+
+                <div class="col-md-3 col-sm-6" *ngFor="let provider of providers1 | paginate: { itemsPerPage: 12, currentPage: page, totalItems: total} ">
+                    <div class="card uk-inline-clip text-center animate-this">
+                        <img src="{{provider.account.avatar}}" alt="" style="height: 320px; width: 300px">
+                        <div class="p-3">
+                            <h4 class="mb-2">{{provider.account.fullName}}</h4>
+                            <div >
+                                <table style="width: 100%">
+                                    <tbody *ngFor="let pp of provisionproviders1">
+                                    <tr *ngIf="pp.provider.id== provider.id && provider.account.id==provider.account.id &&pp.provision.category.id==1">
+                                        <td style="text-align: left">{{pp.provision.name}}</td>
+                                        <td style="text-align: right">Free</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p class="text-muted uk-text-bold my-0"
+                                   *ngIf="provider.account.id==provider.account.id">{{provider.price}} $/ giờ</p>
                             </div>
 
                             <div class="text-warning">
@@ -393,6 +446,7 @@
 
             <nav aria-label="Page navigation example" class="my-lg-4">
                 <ul class="pagination justify-content-center">
+                    <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
                     <!--                    <li class="page-item disabled">-->
                     <!--                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>-->
                     <!--                    </li>-->
@@ -406,7 +460,33 @@
             </nav>
 
 
+
         </div>
+
+        <!-- footer
+           ================================================== -->
+        <div class="footer">
+            <div class="uk-grid-collapse" uk-grid>
+                <div class="uk-width-expand@s uk-first-column">
+                    <p>© 2020 <strong>Bootstro</strong>. All Rights Reserved. </p>
+                </div>
+                <div class="uk-width-auto@s">
+                    <nav class="footer-nav-icon">
+                        <ul>
+                            <li><a href="#"><i class="icon-brand-facebook"></i></a></li>
+                            <li><a href="#"><i class="icon-brand-dribbble"></i></a></li>
+                            <li><a href="#"><i class="icon-brand-youtube"></i></a></li>
+                            <li><a href="#"><i class="icon-brand-twitter"></i></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- content 12 provider hot-->
+
 
 
         <!-- footer
@@ -431,14 +511,13 @@
 
     </div>
 
-</div>
 
 <!-- The Modal-->
 <div class="modal" id="myModal">
     <div class="modal-dialog">
         <div class="modal-content">
 
-<!--             Modal body-->
+            <!--             Modal body-->
             <div class="modal-body">
                 <section style="background-color: #eee;">
                     <div class="container py-5">
