@@ -3,7 +3,9 @@ import {Account} from "../../model/Account";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Provider} from "../../model/Provider";
-import {OrderLover} from 'src/app/model/OrderLover';
+import { OrderLover } from 'src/app/model/OrderLover';
+import { CreateProvider } from 'src/app/model/CreateProvider';
+
 
 @Injectable({
     providedIn: 'root'
@@ -55,9 +57,15 @@ export class ProviderService {
         return this.http.get<Provider>(this.url + "/" + accountUsername);
     }
 
+    findProviderByAccount_Id(accountId: number): Observable<Provider> {
+        return this.http.get<Provider>(this.url + `/a/getProviderByAccountId/${accountId}` );
+    }
+    createProvider(provider:CreateProvider):Observable<CreateProvider>{
+        return this.http.post<CreateProvider>(this.url + "/a/createProviderAndService",provider);
+    }
+
     getAllBillOfProviderAndStartOrder(idProvider: number, statusOrder: number): Observable<OrderLover[]> {
         return this.http.get<OrderLover[]>(this.url + `/user/getOrdersByStatus/${idProvider}/${statusOrder}`)
     }
-    
 
 }

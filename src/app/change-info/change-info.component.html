@@ -198,7 +198,7 @@
 
 
                 <!-- profile -image -->
-                <a class="opts_account"> <img src="assets/images/team/team-1.jpg" alt=""></a>
+                <a class="opts_account"> <img src="{{accountChange?.avatar}}" alt=""></a>
 
                 <!-- profile dropdown-->
                 <div uk-dropdown="pos: top-right;mode:click ; animation: uk-animation-slide-bottom-small"
@@ -209,10 +209,11 @@
 
                         <div class="dropdown-user-details">
                             <div class="dropdown-user-avatar">
-                                <img src="assets/images/team/team-1.jpg" alt="">
+                                <a class="opts_account">
+                                    <img src="{{accountChange?.avatar}}" alt=""></a>
                             </div>
                             <div class="dropdown-user-name">
-                                Richard Ali <span> verified <i class="uil-check"></i> </span>
+                                {{accountChange?.username}} <span> {{accountChange?.wallet}} <i class="icon-feather-dollar-sign"></i> </span>
                             </div>
                         </div>
 
@@ -221,7 +222,10 @@
                     <!-- User menu -->
 
                     <ul class="dropdown-user-menu">
-                        <li><a href="#"> <i class="uil-bolt"></i> Go PRO</a></li>
+                        <li><a class="btn-warning"  *ngIf="statusProvider==3"> <i class="uil-user"></i> Wait admin accept!</a></li>
+                        <li><a class="btn-success"  *ngIf="statusProvider==1"> <i class="uil-user" ></i> Ready</a></li>
+                        <li><a class="btn-danger"  *ngIf="statusProvider==2"> <i class="uil-user" ></i> Busy</a></li>
+                        <li><a class="btn-success" (click)="createProvider()" *ngIf="statusProvider!=1&&statusProvider!=2&&statusProvider!=3"> <i class="uil-bolt" ></i> Become Provider</a></li>
                         <li><a (click)="goToProfile()"> <i class="uil-user"></i> My Profile </a></li>
                         <li><a > <i class="uil-envelope"></i> My Inbox </a></li>
                         <li><a (click)="goToEditProfile()"> <i class="uil-edit"></i> Edit Profile </a></li>
@@ -354,12 +358,12 @@
                 <div class="profile-details">
                     <div class="left-side">
                         <div class="profile-image">
-                            <a href="#">
-                                <img src="{{accountChange.avatar}}" alt="">
+                            <a class="opts_account" href="#">
+                                <img  src="{{accountChange?.avatar}}" alt="">
                             </a>
                         </div>
                         <div class="profile-details-info">
-                            <h3> {{accountChange.fullName}} </h3>
+                            <h3> {{accountChange?.fullName}} </h3>
                         </div>
                     </div>
                     <div class="right-side uk-visible@m">

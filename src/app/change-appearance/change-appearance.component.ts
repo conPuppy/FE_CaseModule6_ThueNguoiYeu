@@ -4,6 +4,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AccountService} from "../service/account/account.service";
 import Swal from "sweetalert2";
 import { Router } from '@angular/router';
+import { ProviderService } from '../service/provider/provider.service';
+import { CreateProvider } from '../model/CreateProvider';
 
 @Component({
     selector: 'app-change-appearance',
@@ -11,15 +13,22 @@ import { Router } from '@angular/router';
     styleUrls: ['./change-appearance.component.css']
 })
 export class ChangeAppearanceComponent implements OnInit {
-    constructor(private accountsService: AccountService,private router:Router) {
+    constructor(private accountsService: AccountService,private router:Router,private providerService:ProviderService) {
     }
 
     account!: AccountForChange;
     accountChange!: AccountForChange
     id!: number;
     formChangeAppearance: any;
+    statusProvider!:number;
+    provider!:CreateProvider
 
     ngOnInit() {
+        this.providerService.findProviderByAccount_Id(this.accountsService.getAccountToken().id).subscribe(res=>{
+            if (res!=null){
+                this.statusProvider=res.statusProvider;
+            }
+        })
         this.formChangeAppearance = new FormGroup({
             id: new FormControl(),
             height: new FormControl('', [Validators.required, Validators.maxLength(3)]),
@@ -36,6 +45,18 @@ export class ChangeAppearanceComponent implements OnInit {
             this.formChangeAppearance.get('hobby').setValue(res.hobby)
             this.formChangeAppearance.get('description').setValue(res.description)
         })
+    }
+    createProvider(){
+        const providerCreate= new CreateProvider("",0,0,3,this.account)
+        this.providerService.createProvider(providerCreate).subscribe(res=>{
+            Swal.fire('Done!', 'Sended!', 'success');
+            this.providerService.findProviderByAccount_Id(this.accountsService.getAccountToken().id).subscribe(res=>{
+                if (res!=null){
+                    this.statusProvider=res.statusProvider;
+                }
+            })
+        })
+
     }
 
     validation_messages = {

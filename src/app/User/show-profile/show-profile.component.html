@@ -198,7 +198,7 @@
 
 
                 <!-- profile -image -->
-                <a class="opts_account"> <img src="assets/images/team/team-1.jpg" alt=""></a>
+                <a class="opts_account"> <img src="{{account?.avatar}}" alt=""></a>
 
                 <!-- profile dropdown-->
                 <div uk-dropdown="pos: top-right;mode:click ; animation: uk-animation-slide-bottom-small"
@@ -209,10 +209,11 @@
 
                         <div class="dropdown-user-details">
                             <div class="dropdown-user-avatar">
-                                <img src="assets/images/team/team-1.jpg" alt="">
+                                <a class="opts_account">
+                                    <img src="{{account?.avatar}}" alt=""></a>
                             </div>
                             <div class="dropdown-user-name">
-                                Richard Ali <span> verified <i class="uil-check"></i> </span>
+                                {{account?.username}} <span> {{account?.wallet}} <i class="icon-feather-dollar-sign"></i> </span>
                             </div>
                         </div>
 
@@ -221,7 +222,10 @@
                     <!-- User menu -->
 
                     <ul class="dropdown-user-menu">
-                        <li><a href="#"> <i class="uil-bolt"></i> Go PRO</a></li>
+                        <li><a class="btn-warning"  *ngIf="statusProvider==3"> <i class="uil-user"></i> Wait admin accept!</a></li>
+                        <li><a class="btn-success"  *ngIf="statusProvider==1"> <i class="uil-user" ></i> Ready</a></li>
+                        <li><a class="btn-danger"  *ngIf="statusProvider==2"> <i class="uil-user" ></i> Busy</a></li>
+                        <li><a class="btn-success" (click)="createProvider()" *ngIf="statusProvider!=1&&statusProvider!=2&&statusProvider!=3"> <i class="uil-bolt" ></i> Become Provider</a></li>
                         <li><a (click)="goToProfile()"> <i class="uil-user"></i> My Profile </a></li>
                         <li><a > <i class="uil-envelope"></i> My Inbox </a></li>
                         <li><a (click)="goToEditProfile()"> <i class="uil-edit"></i> Edit Profile </a></li>
@@ -355,11 +359,6 @@
                             <h4>Account</h4>
                         </div>
                         <div class="card-body">
-                            <button (click)="goToEditProfile()"
-                               class="btn btn-primary mr-1 waves-effect waves-light"><i
-                                    class="feather icon-edit-1"></i> Edit</button>
-                            <img src="{{account.avatar}}"
-                                 class="users-avatar-shadow w-100 rounded mb-2 pr-2 ml-1" alt="avatar">
                             <div class="row">
                                 <div class="users-view-image ml-lg-2">
                                 </div>
@@ -374,18 +373,13 @@
                                 <div class="col-12 col-sm-9 col-md-6 col-lg-5">
                                     <table class="table table-borderless table-sm">
                                         <tbody>
-                                        <tr>
-                                            <td class="font-weight-bold">Full Name</td>
-                                            <td>{{account.fullName}} </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="font-weight-bold">Username</td>
-                                            <td>{{account.username}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="font-weight-bold">Email</td>
-                                            <td>{{account.email}}</td>
-                                        </tr>
+                                        <div>
+                                            <img src="{{account?.avatar}}"
+                                                 style="width: 250px;height: 250px" alt="avatar" >
+                                        </div>
+                                        <button (click)="goToEditProfile()"
+                                                class="btn btn-primary mr-1 waves-effect waves-light"><i
+                                                class="feather icon-edit-1"></i> Edit</button>
                                         </tbody>
                                     </table>
                                 </div>
@@ -402,6 +396,18 @@
                                 <div class="col-12 col-md-12 col-lg-5">
                                     <table class="table table-borderless table-sm ml-0 ml-sm-0 ml-lg-0">
                                         <tbody>
+                                        <tr>
+                                            <td class="font-weight-bold">Full Name</td>
+                                            <td>{{account.fullName}} </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">Username</td>
+                                            <td>{{account.username}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">Email</td>
+                                            <td>{{account.email}}</td>
+                                        </tr>
                                         <tr>
                                             <td class="font-weight-bold" >Status</td>
                                             <td>active</td>

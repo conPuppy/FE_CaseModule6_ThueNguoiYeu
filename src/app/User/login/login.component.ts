@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
                     return;
                 }
             }
-            if(this.account.gender=="Nam"){
+            if(this.account.gender=="Male"){
                 this.router.navigate(["/homeBoy"])
             } else this.router.navigate(["/homeGirl"])
             
