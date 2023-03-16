@@ -5,6 +5,8 @@ import {AccountForChange} from "../model/AccountForChange";
 import {Account} from "../model/Account";
 import Swal from "sweetalert2";
 import { Router } from '@angular/router';
+import { CreateProvider } from '../model/CreateProvider';
+import { ProviderService } from '../service/provider/provider.service';
 
 @Component({
     selector: 'app-change-password',
@@ -21,11 +23,18 @@ export class ChangePasswordComponent implements OnInit {
     summit1:boolean=true
     summit2:boolean=true
     public checkConfirmPassword: boolean = false;
-    constructor(private accountService: AccountService,private router:Router) {
+    statusProvider!:number;
+    provider!:CreateProvider
+    constructor(private accountService: AccountService,private router:Router,private providerService:ProviderService) {
     }
 
 
     ngOnInit() {
+        this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res=>{
+            if (res!=null){
+                this.statusProvider=res.statusProvider;
+            }
+        })
         this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res=>this.accountChange=res)
         this.formChangePassword = new FormGroup({
             password: new FormControl('', [Validators.required]),
@@ -72,6 +81,18 @@ export class ChangePasswordComponent implements OnInit {
 
             }
         )
+    }
+    createProvider(){
+        const providerCreate= new CreateProvider("",0,0,3,this.accountChange)
+        this.providerService.createProvider(providerCreate).subscribe(res=>{
+            Swal.fire('Done!', 'Sended!', 'success');
+            this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res=>{
+                if (res!=null){
+                    this.statusProvider=res.statusProvider;
+                }
+            })
+        })
+
     }
     public funcCheckConfirmPassword(): boolean {
         if (this.formChangePassword.get("newPassword")?.value != this.formChangePassword.get("reCheckNewPassword")?.value) {

@@ -4,14 +4,15 @@ import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/form
 import {AccountForChange} from "../model/AccountForChange";
 import Swal from "sweetalert2";
 import { Router } from '@angular/router';
-
+import { CreateProvider } from '../model/CreateProvider';
+import { ProviderService } from '../service/provider/provider.service';
 @Component({
     selector: 'app-change-info',
     templateUrl: './change-info.component.html',
     styleUrls: ['./change-info.component.css']
 })
 export class ChangeInfoComponent implements OnInit {
-    constructor(private accountService: AccountService, private router:Router) {
+    constructor(private accountService: AccountService, private router:Router,private providerService:ProviderService) {
     }
     public checkDuplicateEmail: boolean = false;
     public checkDuplicateUsername: boolean = false;
@@ -19,7 +20,14 @@ export class ChangeInfoComponent implements OnInit {
     accountChangeTemp!:AccountForChange
     id!: number;
     formChangeInfo:any;
+    statusProvider!:number;
+    provider!:CreateProvider
     ngOnInit() {
+        this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res=>{
+            if (res!=null){
+                this.statusProvider=res.statusProvider;
+            }
+        })
         this.formChangeInfo= new FormGroup({
             id: new FormControl(),
             fullName: new FormControl(),
@@ -72,6 +80,18 @@ export class ChangeInfoComponent implements OnInit {
                 this.checkDuplicateUsername = false
             }
         })
+    }
+    createProvider(){
+        const providerCreate= new CreateProvider("",0,0,3,this.accountChange)
+        this.providerService.createProvider(providerCreate).subscribe(res=>{
+            Swal.fire('Done!', 'Sended!', 'success');
+            this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res=>{
+                if (res!=null){
+                    this.statusProvider=res.statusProvider;
+                }
+            })
+        })
+
     }
     funcCheckDuplicateEmail(email: String) {
         this.accountService.findAccountByEmail(email).subscribe(res => {

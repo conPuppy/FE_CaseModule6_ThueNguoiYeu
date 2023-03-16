@@ -1,7 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AccountForChange} from 'src/app/model/AccountForChange';
+import { CreateProvider } from 'src/app/model/CreateProvider';
+import { Provider } from 'src/app/model/Provider';
 import {AccountService} from 'src/app/service/account/account.service';
+import { ProviderService } from 'src/app/service/provider/provider.service';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-show-profile',
@@ -9,19 +13,37 @@ import {AccountService} from 'src/app/service/account/account.service';
     styleUrls: ['./show-profile.component.css']
 })
 export class ShowProfileComponent implements OnInit {
-    constructor(private router: Router, private accountService: AccountService) {
+    constructor(private router: Router, private accountService: AccountService,private providerService:ProviderService) {
     }
 
     account!: AccountForChange;
     roleString: string = '';
-
+    statusProvider!:number;
+    provider!:CreateProvider
     ngOnInit(): void {
+        this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res=>{
+            if (res!=null){
+                this.statusProvider=res.statusProvider;
+            }
+        })
         this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res => {
             this.account = res;
             for (let i = 0; i < res.roles.length; i++) {
                 this.roleString += res.roles[i].name + ","
             }
         })
+    }
+    createProvider(){
+        const providerCreate= new CreateProvider("",0,0,3,this.account)
+        this.providerService.createProvider(providerCreate).subscribe(res=>{
+            Swal.fire('Done!', 'Sended!', 'success');
+            this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res=>{
+                if (res!=null){
+                    this.statusProvider=res.statusProvider;
+                }
+            })
+        })
+
     }
 
   logout(){

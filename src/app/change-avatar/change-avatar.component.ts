@@ -4,7 +4,9 @@ import {Router} from '@angular/router';
 import { finalize } from 'rxjs';
 import Swal from 'sweetalert2';
 import { AccountForChange } from '../model/AccountForChange';
+import { CreateProvider } from '../model/CreateProvider';
 import { AccountService } from '../service/account/account.service';
+import { ProviderService } from '../service/provider/provider.service';
 
 @Component({
     selector: 'app-change-avatar',
@@ -15,9 +17,16 @@ export class ChangeAvatarComponent implements OnInit {
     account!:AccountForChange;
     selectImage!: any;
     imgSrc!:String
-    constructor(private router: Router,private storage:AngularFireStorage,private accountService:AccountService) {
+    statusProvider!:number;
+    provider!:CreateProvider
+    constructor(private router: Router,private storage:AngularFireStorage,private accountService:AccountService,private providerService:ProviderService) {
     }
     ngOnInit() {
+        this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res=>{
+            if (res!=null){
+                this.statusProvider=res.statusProvider;
+            }
+        })
         this.accountService.findById(this.accountService.getAccountToken().id).subscribe((res)=>{this.account=res;
         this.imgSrc=this.account.avatar})
     }
@@ -48,6 +57,19 @@ export class ChangeAvatarComponent implements OnInit {
             this.selectImage=null;
         }
     }
+    createProvider(){
+        console.log(this.account)
+        const providerCreate= new CreateProvider("",0,0,3,this.account)
+        this.providerService.createProvider(providerCreate).subscribe(res=>{
+            Swal.fire('Done!', 'Sended!', 'success');
+            this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res=>{
+                if (res!=null){
+                    this.statusProvider=res.statusProvider;
+                }
+            })
+        })
+
+    }
     requestVip(){
         this.account.statusVip=3
         this.accountService.changeInfo(this.account).subscribe((res)=>{
@@ -57,6 +79,7 @@ export class ChangeAvatarComponent implements OnInit {
             })
         })
     }
+
 
     logout() {
         localStorage.clear();
