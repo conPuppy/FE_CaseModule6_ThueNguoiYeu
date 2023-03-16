@@ -39,8 +39,8 @@
 <!--          <a href="#" class="more-app"> More Features</a>-->
         </div>
 
-        <a (click)="login()" class="opts_account"> <i class="uil-sign-in-alt"></i> <span>log In</span> </a>
-        <a (click)="register()" class="opts_account"> <i class="uil-registered"></i> <span>Register</span> </a>
+        <a (click)="login()" class="opts_account"><span>Login</span> </a>
+        <a (click)="register()" class="opts_account"><span>Register</span> </a>
       </div>
 
     </header>
@@ -150,149 +150,63 @@
   <div class="page-content">
     <div class="page-content-inner">
 
-      <h2 class="text-white"> Product</h2>
+      <p class="text-white"> Providers</p>
 
       <nav id="breadcrumbs" class="text-white">
         <ul>
           <li><a href="#"> Dashboard </a></li>
-          <li> <a href="#">Shop</a> </li>
-          <li> Product-grid </li>
+          <li><a href="#">Shop</a></li>
+          <li> Providers-grid</li>
         </ul>
       </nav>
 
 
       <div class="row">
 
-        <div class="col-md-3 col-sm-6">
+        <div class="col-md-3 col-sm-6" *ngFor="let provider of providers | paginate: { itemsPerPage: 12, currentPage: page, totalItems: total} ">
           <div class="card uk-inline-clip text-center animate-this">
-            <img src="../../../assets/images/product/1.jpg" alt="">
+            <img src="{{provider.account.avatar}}" alt="" style="height: 320px; width: 300px">
             <div class="p-3">
-              <h4 class="mb-2"> Backpack Blue   </h4>
-              <p class="text-muted uk-text-bold my-0">$199 USD</p>
+              <h4 class="mb-2">{{provider.account.fullName}}</h4>
+              <div >
+                <table style="width: 100%">
+                  <tbody *ngFor="let pp of provisionproviders">
+                  <tr *ngIf="pp.provider.id== provider.id && provider.account.id==provider.account.id &&pp.provision.category.id==1">
+                    <td style="text-align: left">{{pp.provision.name}}</td>
+                    <td style="text-align: right">Free</td>
+                  </tr>
+                  </tbody>
+                </table>
+                <p class="text-muted uk-text-bold my-0"
+                   *ngIf="provider.account.id==provider.account.id">{{provider.price}} $/ giờ</p>
+              </div>
+
               <div class="text-warning">
                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                 <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="col-md-3 col-sm-6">
-          <div class="card uk-inline-clip text-center animate-this">
-            <img src="../../../assets/images/product/2.jpg" alt="">
-            <div class="p-3">
-              <h4 class="mb-2"> Apple   Series 4 </h4>
-              <p class="text-muted uk-text-bold my-0">$199 USD</p>
-              <div class="text-warning">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6">
-          <div class="card uk-inline-clip text-center animate-this">
-            <img src="../../../assets/images/product/3.jpg" alt="">
-            <div class="p-3">
-              <h4 class="mb-2">  Swivel Chair </h4>
-              <p class="text-muted uk-text-bold my-0">$199 USD</p>
-              <div class="text-warning">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6">
-          <div class="card uk-inline-clip text-center animate-this">
-            <img src="../../../assets/images/product/4.jpg" alt="">
-            <div class="p-3">
-              <h4 class="mb-2">  Apple pods 2  </h4>
-              <p class="text-muted uk-text-bold my-0">$199 USD</p>
-              <div class="text-warning">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6">
-          <div class="card uk-inline-clip text-center animate-this">
-            <img src="../../../assets/images/product/5.jpg" alt="">
-            <div class="p-3">
-              <h4 class="mb-2"> Bose Headphones </h4>
-              <p class="text-muted uk-text-bold my-0">$199 USD</p>
-              <div class="text-warning">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6">
-          <div class="card uk-inline-clip text-center animate-this">
-            <img src="../../../assets/images/product/6.jpg" alt="">
-            <div class="p-3">
-              <h4 class="mb-2"> Apple Homkit </h4>
-              <p class="text-muted uk-text-bold my-0">$199 USD</p>
-              <div class="text-warning">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-        <div class="col-md-3 col-sm-6">
-          <div class="card uk-inline-clip text-center animate-this">
-            <img src="../../../assets/images/product/1.jpg" alt="">
-            <div class="p-3">
-              <h4 class="mb-2"> Backpack Blue </h4>
-              <p class="text-muted uk-text-bold my-0">$199 USD</p>
-              <div class="text-warning">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6">
-          <div class="card uk-inline-clip text-center animate-this">
-            <img src="../../../assets/images/product/2.jpg" alt="">
-            <div class="p-3">
-              <h4 class="mb-2"> Apple Series 4 </h4>
-              <p class="text-muted uk-text-bold my-0">$199 USD</p>
-              <div class="text-warning">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-              </div>
-            </div>
-          </div>
         </div>
 
       </div>
 
+
       <nav aria-label="Page navigation example" class="my-lg-4">
         <ul class="pagination justify-content-center">
-          <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-          </li>
+          <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+          <!--                    <li class="page-item disabled">-->
+          <!--                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>-->
+          <!--                    </li>-->
+          <!--                    <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+          <!--                    <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+          <!--                    <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+          <!--                    <li class="page-item">-->
+          <!--                        <a class="page-link" href="#">Next</a>-->
+          <!--                    </li>-->
         </ul>
       </nav>
-
 
 
     </div>
@@ -317,7 +231,6 @@
         </div>
       </div>
     </div>
-
 
   </div>
 

@@ -65,6 +65,10 @@ export class HomeboyComponent implements OnInit{
     localStorage.clear();
     this.router.navigate([''])
   }
+  goToProvider(id: number) {
+    this.router.navigate(['/bill/'+id])
+    this.increaseViewProviderById(id);
+  }
   goToProfile(){
     this.router.navigate(['/showProfile'])
   }

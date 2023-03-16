@@ -233,7 +233,6 @@
                         </li>
                     </ul>
 
-
                 </div>
 
             </div>
@@ -527,7 +526,7 @@
                             <div class="col-lg-4">
                                 <div class="card mb-4">
                                     <div class="card-body text-center">
-                                        <img src="{{provider.account.avatar}}" class="rounded-circle img-fluid" style="width: 150px;">
+                                        <img src="{{provider?.account?.avatar}}" class="rounded-circle img-fluid" style="width: 150px;">
                                         <h5 class="my-3"><i class="uil-eye"></i> {{provider.view}}</h5>
                                         <p class="text-muted mb-4">Start at: {{provider?.account?.dateOfRegister}}</p>
                                         <div class="d-flex justify-content-center mb-2">
@@ -594,6 +593,7 @@
             <!-- Modal footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="increaseViewProviderById(provider.id)">Close</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="goToProvider(provider.id)">View More</button>
             </div>
 
         </div>
