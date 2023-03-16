@@ -12,11 +12,14 @@ export class OrderLoverService {
 
   
   getAllOrder(): Observable<OrderLover[]> {
-    return this.http.get<OrderLover[]>("http://localhost:8080/orders")
+    return this.http.get<OrderLover[]>("http://localhost:8080/orders");
   }
 
   getOrderByStatus(statusOrder: number): Observable<OrderLover[]> {
-    return this.http.get<OrderLover[]>(`http://localhost:8080/orders/${statusOrder}`)
+    return this.http.get<OrderLover[]>(`http://localhost:8080/orders/${statusOrder}`);
+  }
+  createOrder(orderLover: OrderLover):Observable<OrderLover>{
+    return this.http.post<OrderLover>('http://localhost:8080/orders/create',orderLover);
   }
 
   changeToRejected(idOrder: number): Observable<OrderLover> {

@@ -1,11 +1,9 @@
-<!--nhánh dev-->
-
-
-<div id="wrapper" xmlns:text-align="http://www.w3.org/1999/xhtml">
+<div id="wrapper">
 
 
     <!-- header -->
-    <div id="main_header" class="header-transparent" uk-sticky="top:10; cls-inactive :header-transparent">
+    <div id="main_header" class="header-transparent bg-dark"
+         uk-sticky="top:10; cls-inactive :header-transparent bg-dark">
         <header>
 
             <!-- Logo-->
@@ -225,7 +223,7 @@
                     <ul class="dropdown-user-menu">
                         <li><a href="#"> <i class="uil-bolt"></i> Go PRO</a></li>
                         <li><a (click)="goToProfile()"> <i class="uil-user"></i> My Profile </a></li>
-                        <li><a (click)="goToMyOrder()" > <i class="uil-envelope"></i> My Order </a></li>
+                        <li><a> <i class="uil-envelope"></i> My Inbox </a></li>
                         <li><a (click)="goToEditProfile()"> <i class="uil-edit"></i> Edit Profile </a></li>
                         <li><a href="profile-setting.html"> <i class="uil-cog"></i> Account Settings</a></li>
                         <li class="menu-divider"></li>
@@ -250,7 +248,7 @@
         <span class="btn-menu-trigger" uk-toggle="target: #wrapper ; cls: menu-collapsed"></span>
 
         <!-- logo -->
-        <div class="logo uk-visible@s">
+        <div class="logo uk-visible@s bg-dark">
             <a href="dashboard.html"> <img src="assets/images/logo.svg" alt=""> <span> Bootstro</span> </a>
         </div>
         <div class="page-menu-inner" data-simplebar>
@@ -342,262 +340,266 @@
         </div>
     </div>
 
-    <div class="box-gradient-home"></div>
-
     <!-- content -->
     <div class="page-content">
         <div class="page-content-inner">
 
-            <p class="text-white"> Providers</p>
-
-            <nav id="breadcrumbs" class="text-white">
-                <ul>
-                    <li><a href="#"> Dashboard </a></li>
-                    <li><a href="#">Providers</a></li>
-                    <li> Top 4 View Boy Providers</li>
-                </ul>
-            </nav>
-
 
             <div class="row">
 
-                <div class="col-md-3 col-sm-6" *ngFor="let pr of providers">
-                    <div class="card uk-inline-clip text-center animate-this">
-                        <img src="{{pr?.account?.avatar}}" alt="" style="height: 320px; width: 300px">
-                        <div class="p-3">
-                            <h4 class="mb-2" data-bs-toggle="modal" data-bs-target="#myModal" (click)="findProviderById(pr.id)">{{pr.account.fullName}}</h4>
-                            <div >
-                                <p><i class="uil-eye"></i> {{pr.view}}</p>
-                                <table style="width: 100%">
-                                    <tbody *ngFor="let pp of provisionproviders">
-                                    <tr *ngIf="pp.provider.id== pr.id &&pp.provision.category.id==1">
-                                        <td style="text-align: left">{{pp.provision.name}}</td>
-                                        <td style="text-align: right">Free</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <p class="text-muted uk-text-bold my-0"
-                                >{{pr.price}} $/ giờ</p>
+                <div class="col-lg-3 col-12">
+                    <!--                    -->
+                    <!--                    anh aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+                    <img src="{{provider.account.avatar}}" class="rounded" alt="Cinque Terre">
+                    <h2>Profile:</h2>
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="mt-1">
+                                <h6 class="mb-0">Joined:</h6>
+                                <p>{{provider.account.dateOfRegister}}</p>
                             </div>
-
-                            <div class="text-warning">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <div class="mt-1">
+                                <h6 class="mb-0">Lives:</h6>
+                                <p>{{provider.account.city}}, {{provider.account.country}} </p>
                             </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!--            <nav aria-label="Page navigation example" class="my-lg-4">-->
-            <!--                <ul class="pagination justify-content-center">-->
-            <!--                    &lt;!&ndash;                    <li class="page-item disabled">&ndash;&gt;-->
-            <!--                    &lt;!&ndash;                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>&ndash;&gt;-->
-            <!--                    &lt;!&ndash;                    </li>&ndash;&gt;-->
-            <!--                    &lt;!&ndash;                    <li class="page-item"><a class="page-link" href="#">1</a></li>&ndash;&gt;-->
-            <!--                    &lt;!&ndash;                    <li class="page-item"><a class="page-link" href="#">2</a></li>&ndash;&gt;-->
-            <!--                    &lt;!&ndash;                    <li class="page-item"><a class="page-link" href="#">3</a></li>&ndash;&gt;-->
-            <!--                    &lt;!&ndash;                    <li class="page-item">&ndash;&gt;-->
-            <!--                    &lt;!&ndash;                        <a class="page-link" href="#">Next</a>&ndash;&gt;-->
-            <!--                    &lt;!&ndash;                    </li>&ndash;&gt;-->
-            <!--                </ul>-->
-            <!--            </nav>-->
-
-
-        </div>
-        <div class="page-content-inner">
-            <h5 class="title-header-left" style="font-weight: 700; font-size: 20px; color: #2d82f7;">Top 12 Seller Providers</h5>
-            <br>
-
-            <div class="row">
-
-                <div class="col-md-3 col-sm-6" *ngFor="let provider of providers1 | paginate: { itemsPerPage: 12, currentPage: page, totalItems: total} ">
-                    <div class="card uk-inline-clip text-center animate-this">
-                        <img src="{{provider.account.avatar}}" alt="" style="height: 320px; width: 300px">
-                        <div class="p-3">
-                            <h4 class="mb-2">{{provider.account.fullName}}</h4>
-                            <div >
-                                <table style="width: 100%">
-                                    <tbody *ngFor="let pp of provisionproviders1">
-                                    <tr *ngIf="pp.provider.id== provider.id && provider.account.id==provider.account.id &&pp.provision.category.id==1">
-                                        <td style="text-align: left">{{pp.provision.name}}</td>
-                                        <td style="text-align: right">Free</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <p class="text-muted uk-text-bold my-0"
-                                   *ngIf="provider.account.id==provider.account.id">{{provider.price}} $/ giờ</p>
+                            <div class="mt-1">
+                                <h6 class="mb-0">Email:</h6>
+                                <p>{{provider.account.email}}</p>
                             </div>
-
-                            <div class="text-warning">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <div class="mt-1">
+                                <h6 class="mb-0">Birthday:</h6>
+                                <p>{{provider.account.birthday}}</p>
+                            </div>
+                            <div class="mt-1">
+                                <h6 class="mb-0">Gender:</h6>
+                                <p>{{provider.account.gender}}</p>
+                            </div>
+                            <div class="mt-1">
+                                <h6 class="mb-0">Heigth and Weight:</h6>
+                                <p> {{provider.account.height}}cm, {{provider.account.weight}} kg</p>
+                            </div>
+                            <div class="mt-1">
+                                <a class="btn btn-icon btn-facebook btn-circle">
+                                    <i class="uil-facebook-f"></i> {{provider.linkFB}} </a>
                             </div>
                         </div>
                     </div>
+                    <h3 *ngIf="provider.statusProvider==1" style="text-align: center; color: red"> Ready </h3>
+                    <h3 *ngIf="provider.statusProvider==2" style="text-align: center; color: red">Busy</h3>
+
 
                 </div>
 
-            </div>
+                <div class="col-lg-6 col-12">
 
-
-            <nav aria-label="Page navigation example" class="my-lg-4">
-                <ul class="pagination justify-content-center">
-                    <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
-                    <!--                    <li class="page-item disabled">-->
-                    <!--                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>-->
-                    <!--                    </li>-->
-                    <!--                    <li class="page-item"><a class="page-link" href="#">1</a></li>-->
-                    <!--                    <li class="page-item"><a class="page-link" href="#">2</a></li>-->
-                    <!--                    <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-                    <!--                    <li class="page-item">-->
-                    <!--                        <a class="page-link" href="#">Next</a>-->
-                    <!--                    </li>-->
-                </ul>
-            </nav>
-
-
-
-        </div>
-
-        <!-- footer
-           ================================================== -->
-        <div class="footer">
-            <div class="uk-grid-collapse" uk-grid>
-                <div class="uk-width-expand@s uk-first-column">
-                    <p>© 2020 <strong>Bootstro</strong>. All Rights Reserved. </p>
-                </div>
-                <div class="uk-width-auto@s">
-                    <nav class="footer-nav-icon">
-                        <ul>
-                            <li><a href="#"><i class="icon-brand-facebook"></i></a></li>
-                            <li><a href="#"><i class="icon-brand-dribbble"></i></a></li>
-                            <li><a href="#"><i class="icon-brand-youtube"></i></a></li>
-                            <li><a href="#"><i class="icon-brand-twitter"></i></a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- content 12 provider hot-->
-
-
-
-    <!-- footer
-       ================================================== -->
-    <div class="footer">
-        <div class="uk-grid-collapse" uk-grid>
-            <div class="uk-width-expand@s uk-first-column">
-                <p>© 2020 <strong>Bootstro</strong>. All Rights Reserved. </p>
-            </div>
-            <div class="uk-width-auto@s">
-                <nav class="footer-nav-icon">
-                    <ul>
-                        <li><a href="#"><i class="icon-brand-facebook"></i></a></li>
-                        <li><a href="#"><i class="icon-brand-dribbble"></i></a></li>
-                        <li><a href="#"><i class="icon-brand-youtube"></i></a></li>
-                        <li><a href="#"><i class="icon-brand-twitter"></i></a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-
-<!-- The Modal-->
-<div class="modal" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <!--             Modal body-->
-            <div class="modal-body">
-                <section style="background-color: #eee;">
-                    <div class="container py-5">
-
+                    <div>
+                        <h2>{{provider.account.fullName}} {{provider.account.username}}</h2>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <div>
                         <div class="row">
-                            <div class="col-lg-4">
-                                <div class="card mb-4">
-                                    <div class="card-body text-center">
-                                        <img src="{{provider?.account?.avatar}}" class="rounded-circle img-fluid" style="width: 150px;">
-                                        <h5 class="my-3"><i class="uil-eye"></i> {{provider.view}}</h5>
-                                        <p class="text-muted mb-4">Start at: {{provider?.account?.dateOfRegister}}</p>
-                                        <div class="d-flex justify-content-center mb-2">
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="col">
+                                <p>View:</p>
+                                <p>{{provider.view}} views</p>
                             </div>
-                            <div class="col-lg-8">
-                                <div class="card mb-4">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-sm-5">
-                                                <p class="mb-0">Full Name</p>
-                                            </div>
-                                            <div class="col-sm-7">
-                                                <p class="text-muted mb-0">{{provider?.account?.fullName}}</p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-5">
-                                                <p class="mb-0">Height</p>
-                                            </div>
-                                            <div class="col-sm-7">
-                                                <p class="text-muted mb-0">{{provider?.account?.height}} cm</p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-5">
-                                                <p class="mb-0">Weight</p>
-                                            </div>
-                                            <div class="col-sm-7">
-                                                <p class="text-muted mb-0">{{provider?.account?.weight}} kg</p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-5">
-                                                <p class="mb-0">Date of Birth</p>
-                                            </div>
-                                            <div class="col-sm-7">
-                                                <p class="text-muted mb-0">{{provider?.account?.birthday}}</p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-5">
-                                                <p class="mb-0">Address</p>
-                                            </div>
-                                            <div class="col-sm-7">
-                                                <p class="text-muted mb-0">{{provider?.account?.country}}</p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                    </div>
+                            <div class="col">
+                                <p>Time of ordered</p>
+                                <p> hours</p>
+                            </div>
+
+                        </div>
+                        <hr>
+                        <div>
+                            <p class="h4">Service:</p>
+                            <div class="d-flex flex-wrap bg-light">
+                                <div class="p-2 border; btn btn-outline-secondary" *ngFor="let pp of providerProvisions">
+                                    {{pp.provision.name}}
+                                </div>
+
+                            </div>
+                            <hr>
+                        </div>
+                        <div>
+                            <p class="h4">Description:</p>
+                            <p style='word-wrap:break-word; '>{{provider.account.description}}</p>
+                        </div>
+                        <hr>
+                        <p class="h4">Evaluate</p>
+                    </div>
+
+                </div>
+
+
+                <div class="col-lg-3 col-12">
+
+
+                    <div class="card">
+                        <h3><strong>{{provider.price}} $/h</strong></h3>
+                        <br>
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#myModal"
+                                class="btn btn-outline-danger" style="width: 90%;margin-left: 5%">Order
+                        </button>
+                        <br>
+                        <button type="button" class="btn btn-outline-dark" style="width: 90%;margin-left: 5%">Chat
+                        </button>
+                        <br>
+
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header bg-light">
+                            <h5>Latest Photos</h5>
+                        </div>
+                        <div class="card-body pb-0">
+                            <div class="row">
+                                <div class="col-md-4 col-6 animate-this mb-2 px-lg-2">
+                                    <img src="assets/images/team/team-1.jpg" class="img-fluid mb-1 rounded"
+                                         alt="avtar img holder">
+                                </div>
+                                <div class="col-md-4 col-6 animate-this mb-2 px-lg-2">
+                                    <img src="assets/images/team/team-2.jpg" class="img-fluid mb-1 rounded"
+                                         alt="avtar img holder">
+                                </div>
+                                <div class="col-md-4 col-6 animate-this mb-2 px-lg-2">
+                                    <img src="assets/images/team/team-6.jpg" class="img-fluid mb-1 rounded"
+                                         alt="avtar img holder">
+                                </div>
+                                <div class="col-md-4 col-6 animate-this mb-2 px-lg-2">
+                                    <img src="assets/images/team/team-7.jpg" class="img-fluid mb-1 rounded"
+                                         alt="avtar img holder">
+                                </div>
+                                <div class="col-md-4 col-6 animate-this mb-2 px-lg-2">
+                                    <img src="assets/images/team/team-1.jpg" class="img-fluid mb-1 rounded"
+                                         alt="avtar img holder">
+                                </div>
+                                <div class="col-md-4 col-6 animate-this mb-2 px-lg-2">
+                                    <img src="assets/images/team/team-2.jpg" class="img-fluid mb-1 rounded"
+                                         alt="avtar img holder">
+                                </div>
+                                <div class="col-md-4 col-6 animate-this mb-2 px-lg-2">
+                                    <img src="assets/images/team/team-6.jpg" class="img-fluid mb-1 rounded"
+                                         alt="avtar img holder">
+                                </div>
+                                <div class="col-md-4 col-6 animate-this mb-2 px-lg-2">
+                                    <img src="assets/images/team/team-7.jpg" class="img-fluid mb-1 rounded"
+                                         alt="avtar img holder">
+                                </div>
+                                <div class="col-md-4 col-6 animate-this mb-2 px-lg-2">
+                                    <img src="assets/images/team/team-7.jpg" class="img-fluid mb-1 rounded"
+                                         alt="avtar img holder">
                                 </div>
                             </div>
                         </div>
+                        <div class="card-footer">
+                            <div class="text-center"><a href="#"> Veiw more </a></div>
+                        </div>
                     </div>
-                </section>
+
+
+                </div>
+
             </div>
 
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="increaseViewProviderById(provider.id)">Close</button>
+        </div>
+
+
+    </div>
+
+</div>
+<form [formGroup]="formOrder" (submit)="createOrderLover()">
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title" style="margin-left: 36%">Order Lover</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div>
+                        <div class="row">
+                            <div class="col">Homie:</div>
+                            <div class="col" style="margin-left: 20%">{{provider.account.fullName}}</div>
+                            <div class="col">
+
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col">Start day:</div>
+                            <div class="col">
+                                <input type="datetime-local" formcontrolname="startOrder" id="startOrder">
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                            <div class="row">
+                                <div class="col">Order Time:</div>
+                                <div class="col">
+                                    <fieldset formGroupName="selectTime">
+                                        <select class="form-select form-select-sm" (change)="caculatorTotal()"
+                                                formControlName="orderTime">
+                                            <option value="1">1 hour</option>
+                                            <option value="2">2 hours</option>
+                                            <option value="3">3 hours</option>
+                                            <option value="4">4 hours</option>
+                                            <option value="5">5 hours</option>
+                                            <option value="6">6 hours</option>
+                                            <option value="7">7 hours</option>
+                                            <option value="8">8 hours</option>
+                                            <option value="9">9 hours</option>
+                                            <option value="10">10 hours</option>
+                                            <option value="11">11 hours</option>
+                                            <option value="12">12 hours</option>
+                                            <option value="12">13 hours</option>
+                                            <option value="14">14 hours</option>
+                                            <option value="15">15 hours</option>
+                                            <option value="16">16 hours</option>
+                                            <option value="17">17 hours</option>
+                                            <option value="18">18 hours</option>
+                                            <option value="19">19 hours</option>
+                                            <option value="20">20 hours</option>
+                                            <option value="21">21 hours</option>
+                                            <option value="22">22 hours</option>
+                                            <option value="23">23 hours</option>
+                                            <option value="24">24 hours</option>
+
+                                        </select>
+                                    </fieldset>
+                                </div>
+
+                            </div>
+                            <br>
+                            <br>
+
+
+                            <div class="row">
+                                <div class="col">Total:</div>
+                                <div class="col">
+                                    <input formControlName="total" >
+                                </div>
+                                $
+                            </div>
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Order</button>
+                    <button type="button" (click)="closeOrderLover()" class="btn btn-outline-light text-dark" data-bs-dismiss="modal">Close</button>
+                </div>
+
             </div>
 
         </div>
     </div>
-</div>
 
-
+</form>
 

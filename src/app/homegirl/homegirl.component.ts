@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Account } from '../model/Account';
 import { Provider } from '../model/Provider';
 import { ProvisionProvider } from '../model/ProvisionProvider';
 import { AccountService } from '../service/account/account.service';
@@ -28,7 +29,8 @@ export class HomegirlComponent implements OnInit{
       this.provisionproviderService.getAllProvisionProvider().subscribe(data=>{
         this.provisionproviders = data;
       })
-    })
+    });
+    this.getTopSellProviderAcc();
   }
   findProviderById(id: number) {
     this.providerService.findProviderById(id).subscribe(data=>{
@@ -41,6 +43,23 @@ export class HomegirlComponent implements OnInit{
       this.provider = data;
       this.ngOnInit();
     })
+  }
+  accounts1: Account[] = [];
+  providers1: Provider[] = [];
+  provisionproviders1: ProvisionProvider[] = [];
+
+  getTopSellProviderAcc() {
+    this.providerService.getProviderTopSell().subscribe(data=>{
+      this.providers1 = data;
+      this.total = this.providers1.length;
+      this.provisionproviderService.getAllProvisionProvider().subscribe(data=>{
+        this.provisionproviders1 = data;
+      })
+    })
+  }
+  pageChangeEvent(event: number){
+    this.page = event;
+    this.getTopSellProviderAcc();
   }
   logout(){
     localStorage.clear();

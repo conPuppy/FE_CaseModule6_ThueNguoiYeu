@@ -8,7 +8,7 @@ import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
 import { CommonModule } from "@angular/common";
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+
 import { ChangeAppearanceComponent } from './change-appearance/change-appearance.component';
 import { ChangeAvatarComponent } from './change-avatar/change-avatar.component';
 import { ChangeInfoComponent } from './change-info/change-info.component';
@@ -31,7 +31,12 @@ import { ShowAllBillComponent } from './admin/show-all-bill/show-all-bill.compon
 import { ProviderShowBillComponent } from './User/provider-show-bill/provider-show-bill.component';
 
 import { CreateProviderComponent } from './create-provider/create-provider.component';
+
 import { UserShowBillComponent } from './User/user-show-bill/user-show-bill.component';
+
+import { ProfileProviderComponent } from './profile-provider/profile-provider.component';
+import { AppComponent } from './app.component';
+
 
 
 @NgModule({
@@ -54,7 +59,9 @@ import { UserShowBillComponent } from './User/user-show-bill/user-show-bill.comp
         HomegirlComponent,
         ShowAllBillComponent,
         CreateProviderComponent,
+          ProfileProviderComponent,
         ShowAllBillComponent,
+
         ProviderShowBillComponent,
         UserShowBillComponent
 

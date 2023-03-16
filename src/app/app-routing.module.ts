@@ -17,8 +17,12 @@ import { ShowProfileComponent } from './User/show-profile/show-profile.component
 import { HomeboyComponent } from './homeboy/homeboy.component';
 import { HomegirlComponent } from './homegirl/homegirl.component';
 import { ShowAllBillComponent } from './admin/show-all-bill/show-all-bill.component';
+
+import { ProfileProviderComponent } from './profile-provider/profile-provider.component';
+
 import { ProviderShowBillComponent } from './User/provider-show-bill/provider-show-bill.component';
 import { UserShowBillComponent } from './User/user-show-bill/user-show-bill.component';
+
 
 const routes: Routes = [
   {path:"admin", component: HomeAdminComponent},
@@ -37,8 +41,12 @@ const routes: Routes = [
   {path:"homeBoy", component: HomeboyComponent},
   {path:"homeGirl", component: HomegirlComponent},
   {path:"showAllBill", component: ShowAllBillComponent},
+
+  {path:"bill/:id", component: ProfileProviderComponent},
+
   {path:"providerShowBill", component: ProviderShowBillComponent},
   {path:"userShowBill", component: UserShowBillComponent},
+
 
 ];
 
