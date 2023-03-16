@@ -21,4 +21,14 @@ export class OrderLoverService {
   createOrder(orderLover: OrderLover):Observable<OrderLover>{
     return this.http.post<OrderLover>('http://localhost:8080/orders/create',orderLover);
   }
+
+  changeToRejected(idOrder: number): Observable<OrderLover> {
+    // @ts-ignore
+    return this.http.post<OrderLover>(`http://localhost:8080/orders/changeToRejected/${idOrder}`)
+  }
+
+  changeToConfirmed(idOrder: number): Observable<OrderLover> {
+    // @ts-ignore
+    return this.http.post<OrderLover>(`http://localhost:8080/orders/changeToConfirmed/${idOrder}`)
+  }
 }

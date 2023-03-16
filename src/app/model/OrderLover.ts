@@ -2,6 +2,7 @@ import { Account } from "./Account";
 import { Provider } from "./Provider";
 
 export class OrderLover{
+
     statusOrder!: number;
     orderTime!: number;
     total!: number;
@@ -10,4 +11,5 @@ export class OrderLover{
     account!:Account;
     endOrder!:String
     provider!: Provider;
+
 }

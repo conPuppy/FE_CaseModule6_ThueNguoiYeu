@@ -28,13 +28,13 @@ import { HomeboyComponent } from './homeboy/homeboy.component';
 import { HomegirlComponent } from './homegirl/homegirl.component';
 
 import { ShowAllBillComponent } from './admin/show-all-bill/show-all-bill.component';
+import { ProviderShowBillComponent } from './User/provider-show-bill/provider-show-bill.component';
 
 import { CreateProviderComponent } from './create-provider/create-provider.component';
 import { ProfileProviderComponent } from './profile-provider/profile-provider.component';
 import { AppComponent } from './app.component';
 
 
-// @ts-ignore
 @NgModule({
     declarations: [
         AppComponent,
@@ -53,12 +53,11 @@ import { AppComponent } from './app.component';
         ChangePasswordComponent,
         HomeboyComponent,
         HomegirlComponent,
-
         ShowAllBillComponent,
-
         CreateProviderComponent,
           ProfileProviderComponent,
-
+        ShowAllBillComponent,
+        ProviderShowBillComponent
     ],
     imports: [
         BrowserModule,
