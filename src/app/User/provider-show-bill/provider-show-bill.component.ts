@@ -6,6 +6,7 @@ import { ProviderService } from 'src/app/service/provider/provider.service';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { OrderLoverService } from 'src/app/service/Order/order-lover.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-provider-show-bill',
@@ -20,7 +21,7 @@ export class ProviderShowBillComponent implements OnInit{
   
   provider: Provider | any;
 
-  constructor(private providerService: ProviderService, private accountService: AccountService, private orderLoverService: OrderLoverService) {
+  constructor(private providerService: ProviderService, private accountService: AccountService, private orderLoverService: OrderLoverService, private router: Router) {
   }
     ngOnInit(): void {
     this.findProviderByAccountUsername();
@@ -58,5 +59,24 @@ export class ProviderShowBillComponent implements OnInit{
     this.providerService.getAllBillOfProviderAndStartOrder(idProvider, statusOrder).subscribe((data) => {
       this.listBillOfProvider = data;
     })
+  }
+
+  logout(){
+    localStorage.clear();
+    this.router.navigate([''])
+  }
+  goToProfile(){
+    this.router.navigate(['/showProfile'])
+  }
+  goToEditProfile(){
+    this.router.navigate(['/changeInfo'])
+  }
+
+  goToUserBill() {
+    this.router.navigate(['/userShowBill'])
+  }
+
+  goToProviderBill() {
+    this.router.navigate(['/providerShowBill'])
   }
 }

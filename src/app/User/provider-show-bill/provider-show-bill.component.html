@@ -222,12 +222,13 @@
 
                     <ul class="dropdown-user-menu">
                         <li><a href="#"> <i class="uil-bolt"></i> Go PRO</a> </li>
-                        <li><a href="profile.html"> <i class="uil-user"></i> My Profile </a> </li>
-                        <li><a href="email-inbox.html"> <i class="uil-envelope"></i> My Inbox </a></li>
-                        <li><a href="profile-setting.html"> <i class="uil-edit"></i> Edit Profile </a></li>
+                        <li><a (click)="goToProfile()"> <i class="uil-user"></i> My Profile </a></li>
+                        <li><a *ngIf="provider.account.statusAccount==1" (click)="goToUserBill()" > <i class="icon-feather-dollar-sign"></i > User Bill </a></li>
+                        <li><a *ngIf="provider.statusProvider==1||provider.statusProvider==2" (click)="goToProviderBill()"> <i class="icon-feather-credit-card"></i> Provider Bill </a></li>
+                        <li><a (click)="goToEditProfile()"> <i class="uil-edit"></i> Edit Profile </a></li>
                         <li><a href="profile-setting.html"> <i class="uil-cog"></i> Account Settings</a></li>
-                        <li class="menu-divider">  </li>
-                        <li><a href="form-modern-login.html"> <i class="icon-feather-log-out"></i> Sing Out</a> </li>
+                        <li class="menu-divider"></li>
+                        <li><a (click)="logout()"> <i class="icon-feather-log-out"></i> Sing Out</a>
                     </ul>
 
 
