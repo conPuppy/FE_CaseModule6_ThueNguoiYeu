@@ -44,5 +44,9 @@ export class ProviderService {
     findProviderByAccountUsername(accountUsername: string): Observable<Provider> {
         return this.http.get<Provider>(this.url + "/" + accountUsername);
     }
+
+    getAllBillOfProviderAndStartOrder(idProvider: number, statusOrder: number): Observable<OrderLover[]> {
+        return this.http.get<OrderLover[]>(this.url + `/user/getOrdersByStatus/${idProvider}/${statusOrder}`)
+    }
     
 }

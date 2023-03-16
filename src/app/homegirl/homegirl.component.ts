@@ -52,4 +52,7 @@ export class HomegirlComponent implements OnInit{
   goToEditProfile(){
     this.router.navigate(['/changeInfo'])
   }
+  goToMyOrder() {
+    this.router.navigate(["/userShowBill"])
+  }
 }

@@ -11,7 +11,7 @@ export class ShowAllBillComponent implements OnInit{
   
   listOrderLover: OrderLover[] = []
   
-  constructor(private orderService: OrderLoverService) {
+  constructor(private orderLoverService: OrderLoverService) {
   }
   
     ngOnInit(): void {
@@ -20,13 +20,13 @@ export class ShowAllBillComponent implements OnInit{
     
     
     getAllOrder() {
-    this.orderService.getAllOrder().subscribe((data) => {
+    this.orderLoverService.getAllOrder().subscribe((data) => {
       this.listOrderLover = data;
     })
     }
 
   getOrderByStatus(statusOrder: number) {
-    this.orderService.getOrderByStatus(statusOrder).subscribe((data) =>{
+    this.orderLoverService.getOrderByStatus(statusOrder).subscribe((data) =>{
       this.listOrderLover = data;
     })
   }

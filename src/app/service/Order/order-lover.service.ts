@@ -28,4 +28,17 @@ export class OrderLoverService {
     // @ts-ignore
     return this.http.post<OrderLover>(`http://localhost:8080/orders/changeToConfirmed/${idOrder}`)
   }
+
+  getAllBillOfAccountById(idAccount: number): Observable<OrderLover[]> {
+    return this.http.get<OrderLover[]>(`http://localhost:8080/user/getOrders/${idAccount}`)
+  }
+
+  changeToCompleted(idOrder: number): Observable<OrderLover> {
+    // @ts-ignore
+    return this.http.post<OrderLover>(`http://localhost:8080/orders/changeToCompleted/${idOrder}`)
+  }
+
+  getAllBillOfAccountByIdAndStartOrder(idAccount: number, statusOrder: number): Observable<OrderLover[]> {
+    return this.http.get<OrderLover[]>(`http://localhost:8080/user/getOrdersByStatus/${idAccount}/${statusOrder}`)
+  }
 }

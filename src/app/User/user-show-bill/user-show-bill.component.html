@@ -1,8 +1,4 @@
-<!--nhánh dev-->
-
-
-<div id="wrapper" xmlns:text-align="http://www.w3.org/1999/xhtml">
-
+<div id="wrapper">
 
     <!-- header -->
     <div id="main_header" class="header-transparent" uk-sticky="top:10; cls-inactive :header-transparent">
@@ -224,13 +220,12 @@
 
                     <ul class="dropdown-user-menu">
                         <li><a href="#"> <i class="uil-bolt"></i> Go PRO</a></li>
-                        <li><a (click)="goToProfile()"> <i class="uil-user"></i> My Profile </a></li>
-                        <li><a (click)="goToMyOrder()" > <i class="uil-envelope"></i> My Order </a></li>
-                        <li><a (click)="goToEditProfile()"> <i class="uil-edit"></i> Edit Profile </a></li>
+                        <li><a href="profile.html"> <i class="uil-user"></i> My Profile </a></li>
+                        <li><a href="email-inbox.html"> <i class="uil-envelope"></i> My Inbox </a></li>
+                        <li><a href="profile-setting.html"> <i class="uil-edit"></i> Edit Profile </a></li>
                         <li><a href="profile-setting.html"> <i class="uil-cog"></i> Account Settings</a></li>
                         <li class="menu-divider"></li>
-                        <li><a (click)="logout()"> <i class="icon-feather-log-out"></i> Sing Out</a>
-                        </li>
+                        <li><a href="form-modern-login.html"> <i class="icon-feather-log-out"></i> Sing Out</a></li>
                     </ul>
 
 
@@ -348,215 +343,119 @@
     <div class="page-content">
         <div class="page-content-inner">
 
-            <p class="text-white"> Providers</p>
-
+            <h2 class="text-white"> All Orders</h2>
             <nav id="breadcrumbs" class="text-white">
-                <ul>
-                    <li><a href="#"> Dashboard </a></li>
-                    <li><a href="#">Providers</a></li>
-                    <li> Top 4 View Boy Providers</li>
-                </ul>
             </nav>
 
 
-            <div class="row">
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header actions-toolbar border-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4 class="d-inline-block mb-0">List</h4>
+                        <div class="d-flex">
 
-                <div class="col-md-3 col-sm-6" *ngFor="let pr of providers">
-                    <div class="card uk-inline-clip text-center animate-this">
-                        <img src="{{pr?.account?.avatar}}" alt="" style="height: 320px; width: 300px">
-                        <div class="p-3">
-                            <h4 class="mb-2" data-bs-toggle="modal" data-bs-target="#myModal" (click)="findProviderById(pr.id)">{{pr.account.fullName}}</h4>
-                            <div >
-                                <p><i class="uil-eye"></i> {{pr.view}}</p>
-                                <table style="width: 100%">
-                                    <tbody *ngFor="let pp of provisionproviders">
-                                    <tr *ngIf="pp.provider.id== pr.id &&pp.provision.category.id==1">
-                                        <td style="text-align: left">{{pp.provision.name}}</td>
-                                        <td style="text-align: right">Free</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <p class="text-muted uk-text-bold my-0"
-                                >{{pr.price}} $/ giờ</p>
+                            <a href="#" class="btn btn-icon btn-hover  btn-circle" uk-tooltip="Search product">
+                                <i class="uil-search"></i>
+                            </a>
+                            <div class="uk-drop" uk-drop="mode: click; pos: left-center; offset: 0">
+                                <form class="uk-search uk-search-navbar uk-width-1-1">
+                                    <input class="uk-search-input shadow-0" type="search" placeholder="Search..."
+                                           autofocus>
+                                </form>
                             </div>
 
-                            <div class="text-warning">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <a href="#" class="btn btn-icon btn-hover  btn-circle" uk-tooltip="filter">
+                                <i class="uil-filter"></i>
+                            </a>
+                            <div uk-dropdown="pos: bottom-right ; mode: click ;animation: uk-animation-scale-up">
+                                <ul class="uk-nav uk-dropdown-nav">
+                                    <li class="uk-active"><a (click)="getAllBillOfAccountByIdAndStartOrder(idAccount, 5)"> Completed </a></li>
+                                    <li class="uk-active"><a (click)="getAllBillOfAccountByIdAndStartOrder(idAccount,4)"> Rejected </a></li>
+                                    <li class="uk-active"><a (click)="getAllBillOfAccountByIdAndStartOrder(idAccount,3)"> Confirmed </a></li>
+                                    <li class="uk-active"><a (click)="getAllBillOfAccountByIdAndStartOrder(idAccount,2)"> Pending </a></li>
+                                </ul>
+                            </div>
+
+
+                            <a href="#" class="btn btn-icon btn-hover  btn-circle" uk-tooltip="More">
+                                <i class="uil-ellipsis-h"></i>
+                            </a>
+                            <div uk-dropdown="pos: bottom-right ; mode: click ;animation: uk-animation-scale-up">
+                                <ul class="uk-nav uk-dropdown-nav">
+                                    <li><a (click)="getAllBillOfAccountById()"> Refresh </a></li>
+                                    <li><a href="#">Manage</a></li>
+                                    <li><a href="#">Setting</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-
                 </div>
-
+                <!-- Table -->
+                <div class="table-responsive">
+                    <table class="table align-items-center">
+                        <thead>
+                        <tr>
+                            <th scope="col">Provider</th>
+                            <th scope="col">Start At</th>
+                            <th scope="col">End At</th>
+                            <th scope="col">Total Time</th>
+                            <th scope="col">Total sales</th>
+                            <th scope="col">Status</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody class="list" *ngFor="let ba of listBillOfAccount">
+                        <tr>
+                            <th scope="row">
+                                <div class="media align-items-center">
+                                    <div>
+                                        <div class="avatar-parent-child" style="width: max-content">
+                                            <img alt="Image placeholder" src="{{ba.provider.account.avatar}}"
+                                                 class="avatar  rounded-circle">
+                                            <span class="avatar-child avatar-badge bg-success"></span>
+                                        </div>
+                                    </div>
+                                    <div class="media-body ml-4">
+                                        <a href="#" class="name h6 mb-0 text-sm">{{ba.provider.account.fullName}}</a>
+                                    </div>
+                                </div>
+                            </th>
+                            <td> {{ba.startOrder}} </td>
+                            <td> {{ba.endOrder}} </td>
+                            <td> {{ba.orderTime}} </td>
+                            <td> ${{ba.total}} </td>
+                            <td *ngIf="ba.statusOrder == 5"><span
+                                    class="badge badge-success rounded-pill">Completed</span></td>
+                            <td *ngIf="ba.statusOrder == 4"><span class="badge badge-dark rounded-pill">Rejected</span>
+                            </td>
+                            <td *ngIf="ba.statusOrder == 3"><span
+                                    class="badge badge-success rounded-pill">Confirmed</span></td>
+                            <td *ngIf="ba.statusOrder == 2"><span class="badge badge-danger rounded-pill">Pending</span>
+                            </td>
+                            <td class="text-right">
+                                <!-- Actions -->
+                                <div class="actions ml-3">
+                                    <a *ngIf="ba.statusOrder == 3" class="btn btn-icon btn-hover btn-sm btn-circle"
+                                       uk-tooltip="Completed" (click)="changeToCompleted(ba.id)">
+                                        <i class="icon-feather-check-square"></i> </a>
+                                    <!--                                    <a *ngIf="ba.statusOrder == 3" class="btn btn-icon btn-hover btn-sm btn-circle"-->
+                                    <!--                                       uk-tooltip="Rejected" (click)="changeToRejected(ba.id)">-->
+                                    <!--                                        <i class="icon-feather-x-square"></i> </a>-->
+                                    <a class="btn btn-icon btn-hover btn-sm btn-circle"
+                                       uk-tooltip="Delete">
+                                        <i class="uil-trash-alt text-danger"></i> </a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
 
-            <!--            <nav aria-label="Page navigation example" class="my-lg-4">-->
-            <!--                <ul class="pagination justify-content-center">-->
-            <!--                    &lt;!&ndash;                    <li class="page-item disabled">&ndash;&gt;-->
-            <!--                    &lt;!&ndash;                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>&ndash;&gt;-->
-            <!--                    &lt;!&ndash;                    </li>&ndash;&gt;-->
-            <!--                    &lt;!&ndash;                    <li class="page-item"><a class="page-link" href="#">1</a></li>&ndash;&gt;-->
-            <!--                    &lt;!&ndash;                    <li class="page-item"><a class="page-link" href="#">2</a></li>&ndash;&gt;-->
-            <!--                    &lt;!&ndash;                    <li class="page-item"><a class="page-link" href="#">3</a></li>&ndash;&gt;-->
-            <!--                    &lt;!&ndash;                    <li class="page-item">&ndash;&gt;-->
-            <!--                    &lt;!&ndash;                        <a class="page-link" href="#">Next</a>&ndash;&gt;-->
-            <!--                    &lt;!&ndash;                    </li>&ndash;&gt;-->
-            <!--                </ul>-->
-            <!--            </nav>-->
-
-
         </div>
-        <div class="page-content-inner">
-            <h5 class="title-header-left" style="font-weight: 700; font-size: 20px; color: #2d82f7;">Top 12 Seller Providers</h5>
-            <br>
-            <!--            <h2 class="text-white"> Product</h2>-->
 
-            <!--            <nav id="breadcrumbss" class="text-white">-->
-            <!--                <ul>-->
-            <!--                    <li><a href="#"> Dashboard </a></li>-->
-            <!--                    <li> <a href="#">Shop</a> </li>-->
-            <!--                    <li> Product-grid </li>-->
-            <!--                </ul>-->
-            <!--            </nav>-->
-
-
-            <div class="row">
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="card uk-inline-clip text-center animate-this">
-                        <img src="assets/images/product/1.jpg" alt="">
-                        <div class="p-3">
-                            <h4 class="mb-2"> Backpack Blue   </h4>
-                            <p class="text-muted uk-text-bold my-0">$199 USD</p>
-                            <div class="text-warning">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="card uk-inline-clip text-center animate-this">
-                        <img src="assets/images/product/2.jpg" alt="">
-                        <div class="p-3">
-                            <h4 class="mb-2"> Apple   Series 4 </h4>
-                            <p class="text-muted uk-text-bold my-0">$199 USD</p>
-                            <div class="text-warning">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="card uk-inline-clip text-center animate-this">
-                        <img src="assets/images/product/3.jpg" alt="">
-                        <div class="p-3">
-                            <h4 class="mb-2">  Swivel Chair </h4>
-                            <p class="text-muted uk-text-bold my-0">$199 USD</p>
-                            <div class="text-warning">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="card uk-inline-clip text-center animate-this">
-                        <img src="assets/images/product/4.jpg" alt="">
-                        <div class="p-3">
-                            <h4 class="mb-2">  Apple pods 2  </h4>
-                            <p class="text-muted uk-text-bold my-0">$199 USD</p>
-                            <div class="text-warning">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="card uk-inline-clip text-center animate-this">
-                        <img src="assets/images/product/5.jpg" alt="">
-                        <div class="p-3">
-                            <h4 class="mb-2"> Bose Headphones </h4>
-                            <p class="text-muted uk-text-bold my-0">$199 USD</p>
-                            <div class="text-warning">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="card uk-inline-clip text-center animate-this">
-                        <img src="assets/images/product/6.jpg" alt="">
-                        <div class="p-3">
-                            <h4 class="mb-2"> Apple Homkit </h4>
-                            <p class="text-muted uk-text-bold my-0">$199 USD</p>
-                            <div class="text-warning">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="card uk-inline-clip text-center animate-this">
-                        <img src="assets/images/product/1.jpg" alt="">
-                        <div class="p-3">
-                            <h4 class="mb-2"> Backpack Blue </h4>
-                            <p class="text-muted uk-text-bold my-0">$199 USD</p>
-                            <div class="text-warning">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="card uk-inline-clip text-center animate-this">
-                        <img src="assets/images/product/2.jpg" alt="">
-                        <div class="p-3">
-                            <h4 class="mb-2"> Apple Series 4 </h4>
-                            <p class="text-muted uk-text-bold my-0">$199 USD</p>
-                            <div class="text-warning">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <nav aria-label="Page navigation example" class="my-lg-4">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
-                    </li>
-                </ul>
-            </nav>
-
-
-
-        </div>
 
         <!-- footer
            ================================================== -->
@@ -578,121 +477,9 @@
             </div>
         </div>
 
-    </div>
 
-    <!-- content 12 provider hot-->
-
-
-
-    <!-- footer
-       ================================================== -->
-    <div class="footer">
-        <div class="uk-grid-collapse" uk-grid>
-            <div class="uk-width-expand@s uk-first-column">
-                <p>© 2020 <strong>Bootstro</strong>. All Rights Reserved. </p>
-            </div>
-            <div class="uk-width-auto@s">
-                <nav class="footer-nav-icon">
-                    <ul>
-                        <li><a href="#"><i class="icon-brand-facebook"></i></a></li>
-                        <li><a href="#"><i class="icon-brand-dribbble"></i></a></li>
-                        <li><a href="#"><i class="icon-brand-youtube"></i></a></li>
-                        <li><a href="#"><i class="icon-brand-twitter"></i></a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
     </div>
 
 </div>
-
-
-<!-- The Modal-->
-<div class="modal" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <!--             Modal body-->
-            <div class="modal-body">
-                <section style="background-color: #eee;">
-                    <div class="container py-5">
-
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <div class="card mb-4">
-                                    <div class="card-body text-center">
-                                        <img src="{{provider?.account?.avatar}}" class="rounded-circle img-fluid" style="width: 150px;">
-                                        <h5 class="my-3"><i class="uil-eye"></i> {{provider.view}}</h5>
-                                        <p class="text-muted mb-4">Start at: {{provider?.account?.dateOfRegister}}</p>
-                                        <div class="d-flex justify-content-center mb-2">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-8">
-                                <div class="card mb-4">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-sm-5">
-                                                <p class="mb-0">Full Name</p>
-                                            </div>
-                                            <div class="col-sm-7">
-                                                <p class="text-muted mb-0">{{provider?.account?.fullName}}</p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-5">
-                                                <p class="mb-0">Height</p>
-                                            </div>
-                                            <div class="col-sm-7">
-                                                <p class="text-muted mb-0">{{provider?.account?.height}} cm</p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-5">
-                                                <p class="mb-0">Weight</p>
-                                            </div>
-                                            <div class="col-sm-7">
-                                                <p class="text-muted mb-0">{{provider?.account?.weight}} kg</p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-5">
-                                                <p class="mb-0">Date of Birth</p>
-                                            </div>
-                                            <div class="col-sm-7">
-                                                <p class="text-muted mb-0">{{provider?.account?.birthday}}</p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-5">
-                                                <p class="mb-0">Address</p>
-                                            </div>
-                                            <div class="col-sm-7">
-                                                <p class="text-muted mb-0">{{provider?.account?.country}}</p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="increaseViewProviderById(provider.id)">Close</button>
-            </div>
-
-        </div>
-    </div>
-</div>
-
 
 
