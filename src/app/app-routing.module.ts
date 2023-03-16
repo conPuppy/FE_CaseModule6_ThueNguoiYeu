@@ -21,6 +21,7 @@ import { ShowAllBillComponent } from './admin/show-all-bill/show-all-bill.compon
 import { ProfileProviderComponent } from './profile-provider/profile-provider.component';
 
 import { ProviderShowBillComponent } from './User/provider-show-bill/provider-show-bill.component';
+import { UserShowBillComponent } from './User/user-show-bill/user-show-bill.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,7 @@ const routes: Routes = [
   {path:"bill/:id", component: ProfileProviderComponent},
 
   {path:"providerShowBill", component: ProviderShowBillComponent},
+  {path:"userShowBill", component: UserShowBillComponent},
 
 
 ];

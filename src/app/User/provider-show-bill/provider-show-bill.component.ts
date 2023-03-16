@@ -18,10 +18,9 @@ export class ProviderShowBillComponent implements OnInit{
 
   usernameAccount!: string;
   
-  provider!: Provider;
-  id!:number;
+  provider: Provider | any;
 
-  constructor(private providerService: ProviderService, private accountService: AccountService, private orderService: OrderLoverService) {
+  constructor(private providerService: ProviderService, private accountService: AccountService, private orderLoverService: OrderLoverService) {
   }
     ngOnInit(): void {
     this.findProviderByAccountUsername();
@@ -44,14 +43,20 @@ export class ProviderShowBillComponent implements OnInit{
   }
 
   changeToConfirmed(idOrder: number) {
-    this.orderService.changeToConfirmed(idOrder).subscribe(() => {
+    this.orderLoverService.changeToConfirmed(idOrder).subscribe(() => {
       this.findProviderByAccountUsername();
     })
   }
 
   changeToRejected(idOrder: number) {
-    this.orderService.changeToRejected(idOrder).subscribe(() => {
+    this.orderLoverService.changeToRejected(idOrder).subscribe(() => {
       this.findProviderByAccountUsername();
+    })
+  }
+
+  getAllBillOfProviderAndStartOrder(idProvider: number, statusOrder: number) {
+    this.providerService.getAllBillOfProviderAndStartOrder(idProvider, statusOrder).subscribe((data) => {
+      this.listBillOfProvider = data;
     })
   }
 }
