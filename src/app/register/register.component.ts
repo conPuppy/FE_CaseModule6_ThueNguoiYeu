@@ -13,11 +13,13 @@ import {AccountService} from "../service/account/account.service";
 export class RegisterComponent implements OnInit {
     constructor(private accountService: AccountService, private router: Router) {
     }
-
+    changeType: String = "password";
+    check: number = 1;
     formRegister!: FormGroup;
     public checkDuplicateUsername: boolean = false;
     public checkDuplicateEmail: boolean = false;
     public checkConfirmPassword: boolean = false;
+    public checkConfirmPhoneNumber: boolean = false;
     today!: any
     accountCreate!:AccountCreate;
 
@@ -93,13 +95,30 @@ export class RegisterComponent implements OnInit {
         }
         return null;
     }
-
+    funcShowPassword() {
+        if (this.check == 1) {
+            this.changeType = "text";
+            this.check = 2;
+        } else {
+            this.changeType = "password";
+            this.check = 1;
+        }
+    }
     funcCheckDuplicateUsername(username: String) {
         this.accountService.findAccountByUsername(username).subscribe(res => {
             if (res != null) {
                 this.checkDuplicateUsername = true;
             } else {
                 this.checkDuplicateUsername = false
+            }
+        })
+    }
+    funcCheckDuplicatephoneNumber(phoneNumber: String) {
+        this.accountService.findAccountByPhoneNumber(phoneNumber).subscribe(res => {
+            if (res != null) {
+                this.checkConfirmPhoneNumber = true;
+            } else {
+                this.checkConfirmPhoneNumber = false
             }
         })
     }
@@ -116,7 +135,6 @@ export class RegisterComponent implements OnInit {
 
     createAccount() {
         this.accountCreate=new AccountCreate(this.formRegister.value.username,this.formRegister.value.fullName,this.formRegister.value.email,this.formRegister.value.phoneNumber,this.formRegister.value.password,this.formRegister.value.birthday,this.formRegister.value.genderObj.gender)
-        console.log(this.accountCreate)
         this.accountService.createAccount(this.accountCreate).subscribe(
             (res) => {
                 Swal.fire('Done!', 'Congratulations on your successful registration', 'success');

@@ -80,4 +80,7 @@ export class LoginComponent implements OnInit {
         localStorage.clear();
         this.router.navigate(['/login'])
     }
+    forgotPass(){
+        this.router.navigate(['/forget'])
+    }
 }
