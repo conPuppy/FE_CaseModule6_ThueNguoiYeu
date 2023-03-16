@@ -1,4 +1,3 @@
-
 import {Injectable} from '@angular/core';
 import {Account} from "../../model/Account";
 import {HttpClient} from "@angular/common/http";
@@ -6,6 +5,7 @@ import {Observable} from "rxjs";
 import {Provider} from "../../model/Provider";
 import { OrderLover } from 'src/app/model/OrderLover';
 import { CreateProvider } from 'src/app/model/CreateProvider';
+
 
 @Injectable({
     providedIn: 'root'
@@ -17,21 +17,32 @@ export class ProviderService {
     constructor(private http: HttpClient) {
     }
 
+    getProviderTopSell(): Observable<Provider[]> {
+        return this.http.get<Provider[]>(this.url + "/top/sell/provider");
+    }
+
+    getProviderTopSellandLuotThue(): Observable<any> {
+        return this.http.get<any>(this.url+"/top/sell/provider/luotthue");
+    }
+
     getProviderTopView(): Observable<Provider[]> {
         return this.http.get<Provider[]>(this.url + "/top/view");
     }
+
     getBoyProviderTopView(): Observable<Provider[]> {
-        return this.http.get<Provider[]>(this.url+ "/top/view/boy");
+        return this.http.get<Provider[]>(this.url + "/top/view/boy");
     }
+
     getGirlProviderTopView(): Observable<Provider[]> {
-        return this.http.get<Provider[]>(this.url+ "/top/view/girl");
+        return this.http.get<Provider[]>(this.url + "/top/view/girl");
     }
 
     findProviderById(id: number): Observable<Provider> {
         return this.http.get<Provider>(this.url + "/viewer/" + id);
     }
+
     increaseViewProviderById(id: number): Observable<Provider> {
-        return this.http.post<Provider>(this.url+"/view/"+id,this.findProviderById(id));
+        return this.http.post<Provider>(this.url + "/view/" + id, this.findProviderById(id));
     }
 
     getAllProviderAcc(page: number): Observable<Provider[]> {
@@ -45,10 +56,16 @@ export class ProviderService {
     findProviderByAccountUsername(accountUsername: string): Observable<Provider> {
         return this.http.get<Provider>(this.url + "/" + accountUsername);
     }
+
     findProviderByAccount_Id(accountId: number): Observable<Provider> {
         return this.http.get<Provider>(this.url + `/a/getProviderByAccountId/${accountId}` );
     }
     createProvider(provider:CreateProvider):Observable<CreateProvider>{
         return this.http.post<CreateProvider>(this.url + "/a/createProviderAndService",provider);
     }
+
+    getAllBillOfProviderAndStartOrder(idProvider: number, statusOrder: number): Observable<OrderLover[]> {
+        return this.http.get<OrderLover[]>(this.url + `/user/getOrdersByStatus/${idProvider}/${statusOrder}`)
+    }
+
 }

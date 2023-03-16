@@ -33,6 +33,10 @@ import {ProviderShowBillComponent} from './User/provider-show-bill/provider-show
 import {CreateProviderComponent} from './create-provider/create-provider.component';
 import {ProfileProviderComponent} from './profile-provider/profile-provider.component';
 import {AppComponent} from './app.component';
+import { UserShowBillComponent } from './User/user-show-bill/user-show-bill.component';
+
+
+
 
 
 @NgModule({
@@ -57,7 +61,10 @@ import {AppComponent} from './app.component';
         CreateProviderComponent,
         ProfileProviderComponent,
         ShowAllBillComponent,
-        ProviderShowBillComponent
+
+        ProviderShowBillComponent,
+        UserShowBillComponent
+
     ],
     imports: [
         BrowserModule,
