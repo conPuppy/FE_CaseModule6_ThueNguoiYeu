@@ -200,7 +200,7 @@
 
 
                 <!-- profile -image -->
-                <a class="opts_account"> <img src="assets/images/team/team-1.jpg" alt=""></a>
+                <a class="opts_account"> <img src="{{account?.avatar}}" alt=""></a>
 
                 <!-- profile dropdown-->
                 <div uk-dropdown="pos: top-right;mode:click ; animation: uk-animation-slide-bottom-small"
@@ -211,21 +211,25 @@
 
                         <div class="dropdown-user-details">
                             <div class="dropdown-user-avatar">
-                                <img src="assets/images/team/team-1.jpg" alt="">
+                                <a class="opts_account">
+                                    <img src="{{account?.avatar}}" alt=""></a>
                             </div>
                             <div class="dropdown-user-name">
-                                Richard Ali <span> verified <i class="uil-check"></i> </span>
+                                {{account?.username}} <span> {{account?.wallet}} <i class="icon-feather-dollar-sign"></i> </span>
                             </div>
                         </div>
 
                     </a>
-
                     <!-- User menu -->
 
                     <ul class="dropdown-user-menu">
                         <li><a href="#"> <i class="uil-bolt"></i> Become a Provider</a></li>
                         <li><a (click)="goToProfile()"> <i class="uil-user"></i> My Profile </a></li>
-                        <li><a > <i class="uil-invoice"></i>My Bill</a></li>
+
+                        //<li><a > <i class="uil-invoice"></i>My Bill</a></li>
+
+                        <li><a (click)="goToUserShowBill()" > <i class="uil-invoice"></i> My Order </a></li>
+
                         <li><a (click)="goToEditProfile()"> <i class="uil-edit"></i> Edit Profile </a></li>
                         <li><a href="profile-setting.html"> <i class="uil-cog"></i> Account Settings</a></li>
                         <li class="menu-divider"></li>

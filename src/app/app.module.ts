@@ -34,6 +34,7 @@ import {CreateProviderComponent} from './create-provider/create-provider.compone
 import {ProfileProviderComponent} from './profile-provider/profile-provider.component';
 import {AppComponent} from './app.component';
 import { UserShowBillComponent } from './User/user-show-bill/user-show-bill.component';
+import { ShowAllProviderComponent } from './admin/show-all-provider/show-all-provider.component';
 
 
 
@@ -63,7 +64,8 @@ import { UserShowBillComponent } from './User/user-show-bill/user-show-bill.comp
         ShowAllBillComponent,
 
         ProviderShowBillComponent,
-        UserShowBillComponent
+        UserShowBillComponent,
+        ShowAllProviderComponent
 
     ],
     imports: [

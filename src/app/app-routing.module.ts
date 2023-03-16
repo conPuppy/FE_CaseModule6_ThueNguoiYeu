@@ -17,11 +17,10 @@ import { ShowProfileComponent } from './User/show-profile/show-profile.component
 import { HomeboyComponent } from './homeboy/homeboy.component';
 import { HomegirlComponent } from './homegirl/homegirl.component';
 import { ShowAllBillComponent } from './admin/show-all-bill/show-all-bill.component';
+import { ShowAllProviderComponent } from './admin/show-all-provider/show-all-provider.component';
 import { ProfileProviderComponent } from './profile-provider/profile-provider.component';
 import { ProviderShowBillComponent } from './User/provider-show-bill/provider-show-bill.component';
-
 import { CreateProviderComponent } from './create-provider/create-provider.component';
-
 import { UserShowBillComponent } from './User/user-show-bill/user-show-bill.component';
 
 
@@ -45,11 +44,9 @@ const routes: Routes = [
   {path:"showAllBill", component: ShowAllBillComponent},
   {path:"bill/:id", component: ProfileProviderComponent},
   {path:"providerShowBill", component: ProviderShowBillComponent},
-
   {path:"createProvider", component: CreateProviderComponent},
-
-
   {path:"userShowBill", component: UserShowBillComponent},
+  {path:"showAllProvider", component: ShowAllProviderComponent},
 
 
 
