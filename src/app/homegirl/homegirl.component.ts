@@ -25,6 +25,7 @@ export class HomegirlComponent implements OnInit{
   }
   ngOnInit(): void {
     this.providerService.getBoyProviderTopView().subscribe(data=>{
+      console.log(data)
       this.providers = data;
       this.provisionproviderService.getAllProvisionProvider().subscribe(data=>{
         this.provisionproviders = data;
