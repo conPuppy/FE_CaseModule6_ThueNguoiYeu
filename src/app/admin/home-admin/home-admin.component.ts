@@ -27,6 +27,8 @@ export class HomeAdminComponent implements OnInit{
   }
   ngOnInit(): void {
     this.getAllAccount();
+    this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res => {
+      this.account = res})
   }
 
   getAllAccount() {
@@ -75,11 +77,11 @@ export class HomeAdminComponent implements OnInit{
     localStorage.clear();
     this.router.navigate([''])
   }
-  goToProfile(){
-    this.router.navigate(['/showProfile'])
+  goToShowAllAccount(){
+    this.router.navigate(['/admin'])
   }
-  goToEditProfile(){
-    this.router.navigate(['/changeInfo'])
+  goToShowAllProvider(){
+    this.router.navigate(['/showAllProvider'])
   }
   goToShowAllBill() {
     this.router.navigate(['/showAllBill'])
