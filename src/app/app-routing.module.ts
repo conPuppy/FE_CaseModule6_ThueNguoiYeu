@@ -20,6 +20,7 @@ import { HomeboyComponent } from './homeboy/homeboy.component';
 import { HomegirlComponent } from './homegirl/homegirl.component';
 
 import { ShowAllBillComponent } from './admin/show-all-bill/show-all-bill.component';
+import { ProfileProviderComponent } from './profile-provider/profile-provider.component';
 
 const routes: Routes = [
   {path:"admin", component: HomeAdminComponent},
@@ -40,6 +41,7 @@ const routes: Routes = [
   {path:"homeGirl", component: HomegirlComponent},
 
   {path:"showAllBill", component: ShowAllBillComponent},
+  {path:"bill/:id", component: ProfileProviderComponent},
 
 ];
 
