@@ -397,7 +397,8 @@
                         <tr>
                             <th scope="col">Customer</th>
                             <th scope="col">Address</th>
-                            <th scope="col">Start at</th>
+                            <th scope="col">Start At</th>
+                            <th scope="col">End At</th>
                             <th scope="col">Total Time</th>
                             <th scope="col">Total sales</th>
                             <th scope="col">Status</th>
@@ -421,7 +422,8 @@
                                 </div>
                             </th>
                             <td> {{b?.account?.city}} </td>
-                            <td> {{b?.dateOfOrder}} </td>
+                            <td> {{b?.startOrder}} </td>
+                            <td> ${{b?.endOrder}} </td>
                             <td> ${{b?.orderTime}} </td>
                             <td> ${{b?.total}} </td>
                             <td  *ngIf="b.statusOrder == 5"><span class="badge badge-success rounded-pill">Completed</span></td>
@@ -431,16 +433,13 @@
                             <td class="text-right">
                                 <!-- Actions -->
                                 <div class="actions ml-3">
-                                    <a *ngIf="b.statusOrder == 2" href="#" class="btn btn-icon btn-hover btn-sm btn-circle"
+                                    <a *ngIf="b.statusOrder == 2" class="btn btn-icon btn-hover btn-sm btn-circle"
                                        uk-tooltip="Confirmed" (click)="changeToConfirmed(b.id)">
                                         <i class="icon-feather-check-square"></i> </a>
-                                    <a *ngIf="b.statusOrder == 2" href="#" class="btn btn-icon btn-hover btn-sm btn-circle"
+                                    <a *ngIf="b.statusOrder == 2" class="btn btn-icon btn-hover btn-sm btn-circle"
                                        uk-tooltip="Rejected" (click)="changeToRejected(b.id)">
                                         <i class="icon-feather-x-square"></i> </a>
-                                    <a href="#" class="btn btn-icon btn-hover btn-sm btn-circle"
-                                       uk-tooltip="Quick view">
-                                        <i class="uil-external-link-alt "></i> </a>
-                                    <a href="#" class="btn btn-icon btn-hover btn-sm btn-circle"
+                                    <a class="btn btn-icon btn-hover btn-sm btn-circle"
                                        uk-tooltip="Delete">
                                         <i class="uil-trash-alt text-danger"></i> </a>
                                 </div>
