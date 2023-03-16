@@ -15,7 +15,10 @@ export class ProviderService {
 
     constructor(private http: HttpClient) {
     }
-
+    getProviderTopSell(): Observable<Provider[]> {
+        return this.http.get<Provider[]>(this.url+"/top/sell/provider");
+    }
+    
     getProviderTopView(): Observable<Provider[]> {
         return this.http.get<Provider[]>(this.url + "/top/view");
     }
