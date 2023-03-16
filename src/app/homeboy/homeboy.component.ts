@@ -30,7 +30,7 @@ export class HomeboyComponent implements OnInit{
         this.provisionproviders = data;
       })
     });
-    this.getProviderAcc();
+    this.getTopSellProviderAcc();
   }
   findProviderById(id: number) {
     this.providerService.findProviderById(id).subscribe(data=>{
@@ -48,8 +48,8 @@ export class HomeboyComponent implements OnInit{
   providers1: Provider[] = [];
   provisionproviders1: ProvisionProvider[] = [];
   
-  getProviderAcc() {
-    this.providerService.getAllProviderAcc(this.page).subscribe(data=>{
+  getTopSellProviderAcc() {
+    this.providerService.getProviderTopSell().subscribe(data=>{
       this.providers1 = data;
       this.total = this.providers1.length;
       this.provisionproviderService.getAllProvisionProvider().subscribe(data=>{
@@ -59,7 +59,7 @@ export class HomeboyComponent implements OnInit{
   }
   pageChangeEvent(event: number){
     this.page = event;
-    this.getProviderAcc();
+    this.getTopSellProviderAcc();
   }
   logout(){
     localStorage.clear();
@@ -70,5 +70,11 @@ export class HomeboyComponent implements OnInit{
   }
   goToEditProfile(){
     this.router.navigate(['/changeInfo'])
+  }
+  luotthue!: number[]
+  getLuotThue() {
+    this.providerService.getProviderTopSellandLuotThue().subscribe(data=>{
+      this.luotthue = data;
+    })
   }
 }

@@ -411,146 +411,51 @@
         <div class="page-content-inner">
             <h5 class="title-header-left" style="font-weight: 700; font-size: 20px; color: #2d82f7;">Top 12 Seller Providers</h5>
             <br>
-            <!--            <h2 class="text-white"> Product</h2>-->
-
-            <!--            <nav id="breadcrumbss" class="text-white">-->
-            <!--                <ul>-->
-            <!--                    <li><a href="#"> Dashboard </a></li>-->
-            <!--                    <li> <a href="#">Shop</a> </li>-->
-            <!--                    <li> Product-grid </li>-->
-            <!--                </ul>-->
-            <!--            </nav>-->
-
 
             <div class="row">
 
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-3 col-sm-6" *ngFor="let provider of providers1 | paginate: { itemsPerPage: 12, currentPage: page, totalItems: total} ">
                     <div class="card uk-inline-clip text-center animate-this">
-                        <img src="assets/images/product/1.jpg" alt="">
+                        <img src="{{provider.account.avatar}}" alt="" style="height: 320px; width: 300px">
                         <div class="p-3">
-                            <h4 class="mb-2"> Backpack Blue   </h4>
-                            <p class="text-muted uk-text-bold my-0">$199 USD</p>
+                            <h4 class="mb-2">{{provider.account.fullName}}</h4>
+                            <div >
+                                <table style="width: 100%">
+                                    <tbody *ngFor="let pp of provisionproviders1">
+                                    <tr *ngIf="pp.provider.id== provider.id && provider.account.id==provider.account.id &&pp.provision.category.id==1">
+                                        <td style="text-align: left">{{pp.provision.name}}</td>
+                                        <td style="text-align: right">Free</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p class="text-muted uk-text-bold my-0"
+                                   *ngIf="provider.account.id==provider.account.id">{{provider.price}} $/ giờ</p>
+                            </div>
+
                             <div class="text-warning">
                                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-md-3 col-sm-6">
-                    <div class="card uk-inline-clip text-center animate-this">
-                        <img src="assets/images/product/2.jpg" alt="">
-                        <div class="p-3">
-                            <h4 class="mb-2"> Apple   Series 4 </h4>
-                            <p class="text-muted uk-text-bold my-0">$199 USD</p>
-                            <div class="text-warning">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="card uk-inline-clip text-center animate-this">
-                        <img src="assets/images/product/3.jpg" alt="">
-                        <div class="p-3">
-                            <h4 class="mb-2">  Swivel Chair </h4>
-                            <p class="text-muted uk-text-bold my-0">$199 USD</p>
-                            <div class="text-warning">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="card uk-inline-clip text-center animate-this">
-                        <img src="assets/images/product/4.jpg" alt="">
-                        <div class="p-3">
-                            <h4 class="mb-2">  Apple pods 2  </h4>
-                            <p class="text-muted uk-text-bold my-0">$199 USD</p>
-                            <div class="text-warning">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="card uk-inline-clip text-center animate-this">
-                        <img src="assets/images/product/5.jpg" alt="">
-                        <div class="p-3">
-                            <h4 class="mb-2"> Bose Headphones </h4>
-                            <p class="text-muted uk-text-bold my-0">$199 USD</p>
-                            <div class="text-warning">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="card uk-inline-clip text-center animate-this">
-                        <img src="assets/images/product/6.jpg" alt="">
-                        <div class="p-3">
-                            <h4 class="mb-2"> Apple Homkit </h4>
-                            <p class="text-muted uk-text-bold my-0">$199 USD</p>
-                            <div class="text-warning">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="card uk-inline-clip text-center animate-this">
-                        <img src="assets/images/product/1.jpg" alt="">
-                        <div class="p-3">
-                            <h4 class="mb-2"> Backpack Blue </h4>
-                            <p class="text-muted uk-text-bold my-0">$199 USD</p>
-                            <div class="text-warning">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="card uk-inline-clip text-center animate-this">
-                        <img src="assets/images/product/2.jpg" alt="">
-                        <div class="p-3">
-                            <h4 class="mb-2"> Apple Series 4 </h4>
-                            <p class="text-muted uk-text-bold my-0">$199 USD</p>
-                            <div class="text-warning">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
             </div>
 
+
             <nav aria-label="Page navigation example" class="my-lg-4">
                 <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
-                    </li>
+                    <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+                    <!--                    <li class="page-item disabled">-->
+                    <!--                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>-->
+                    <!--                    </li>-->
+                    <!--                    <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+                    <!--                    <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+                    <!--                    <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+                    <!--                    <li class="page-item">-->
+                    <!--                        <a class="page-link" href="#">Next</a>-->
+                    <!--                    </li>-->
                 </ul>
             </nav>
 
