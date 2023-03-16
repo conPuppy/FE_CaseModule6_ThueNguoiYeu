@@ -29,6 +29,7 @@ export class HomegirlComponent implements OnInit{
   }
   ngOnInit(): void {
     this.providerService.getBoyProviderTopView().subscribe(data=>{
+      console.log(data)
       this.providers = data;
       this.provisionproviderService.getAllProvisionProvider().subscribe(data=>{
         this.provisionproviders = data;
@@ -70,6 +71,10 @@ export class HomegirlComponent implements OnInit{
   logout(){
     localStorage.clear();
     this.router.navigate([''])
+  }
+  goToProvider(id: number) {
+    this.router.navigate(['/bill/'+id])
+    this.increaseViewProviderById(id);
   }
   goToProfile(){
     this.router.navigate(['/showProfile'])

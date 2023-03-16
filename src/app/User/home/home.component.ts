@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { Account } from 'src/app/model/Account';
+import { Provider } from 'src/app/model/Provider';
+import { ProvisionProvider } from 'src/app/model/ProvisionProvider';
+import { ProviderService } from 'src/app/service/provider/provider.service';
+import { ProvisionProviderService } from 'src/app/service/provisionprovider/provisionprovider.service';
 
 import {AccountService} from "../../service/account/account.service";
 
@@ -10,15 +14,32 @@ import {AccountService} from "../../service/account/account.service";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit{
-  account!: Account;
+  accounts: Account[] = [];
+  providers: Provider[] = [];
+  provisionproviders: ProvisionProvider[] = [];
+  page: number = 1;
+  total: number =0;
 
-  constructor(private accountService: AccountService,private router:Router) {
+
+  constructor(private accountService: AccountService, private router: Router, private providerService: ProviderService,
+              private provisionproviderService: ProvisionProviderService) {
   }
-
-
+  
   ngOnInit(): void {
-    this.account = this.accountService.getAccountToken();
-    console.log(this.account)
+    this.getProviderAcc();
+  }
+  getProviderAcc() {
+    this.providerService.getAllProviderAcc(this.page).subscribe(data=>{
+      this.providers = data;
+      this.total = this.providers.length;
+      this.provisionproviderService.getAllProvisionProvider().subscribe(data=>{
+        this.provisionproviders = data;
+      })
+    })
+  }
+  pageChangeEvent(event: number){
+    this.page = event;
+    this.getProviderAcc();
   }
   login(){
     this.router.navigate(['/login']);

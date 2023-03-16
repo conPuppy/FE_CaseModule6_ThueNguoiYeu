@@ -418,8 +418,9 @@
                     <div class="card uk-inline-clip text-center animate-this">
                         <img src="{{provider.account.avatar}}" alt="" style="height: 320px; width: 300px">
                         <div class="p-3">
-                            <h4 class="mb-2">{{provider.account.fullName}}</h4>
+                            <h4 class="mb-2" data-bs-toggle="modal" data-bs-target="#myModal" (click)="findProviderById(provider.id)">{{provider.account.fullName}}</h4>
                             <div >
+                                <p><i class="uil-eye"></i> {{provider.view}}</p>
                                 <table style="width: 100%">
                                     <tbody *ngFor="let pp of provisionproviders1">
                                     <tr *ngIf="pp.provider.id== provider.id && provider.account.id==provider.account.id &&pp.provision.category.id==1">
@@ -593,6 +594,7 @@
             <!-- Modal footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="increaseViewProviderById(provider.id)">Close</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="goToProvider(provider.id)">View More</button>
             </div>
 
         </div>
