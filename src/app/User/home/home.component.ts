@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit{
       this.total = this.providers.length;
       this.provisionproviderService.getAllProvisionProvider().subscribe(data=>{
         this.provisionproviders = data;
+        console.log(data);
       })
     })
   }
