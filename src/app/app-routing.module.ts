@@ -9,17 +9,15 @@ import {ChangeAppearanceComponent} from "./change-appearance/change-appearance.c
 import {ChangePasswordComponent} from "./change-password/change-password.component";
 import {ShowComponent} from "./show/show.component";
 import {ShowtopviewComponent} from "./showtopview/showtopview.component";
-
 import {SupplierComponent} from "./User/supplier/supplier.component";
 import { HomeComponent } from './User/home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { ShowProfileComponent } from './User/show-profile/show-profile.component';
-
 import { HomeboyComponent } from './homeboy/homeboy.component';
 import { HomegirlComponent } from './homegirl/homegirl.component';
-
 import { ShowAllBillComponent } from './admin/show-all-bill/show-all-bill.component';
+import { ProviderShowBillComponent } from './User/provider-show-bill/provider-show-bill.component';
 
 const routes: Routes = [
   {path:"admin", component: HomeAdminComponent},
@@ -35,11 +33,10 @@ const routes: Routes = [
   {path:"changeAppearance", component: ChangeAppearanceComponent},
   {path:"changePassword", component: ChangePasswordComponent},
   {path:"showProfile", component: ShowProfileComponent},
-
   {path:"homeBoy", component: HomeboyComponent},
   {path:"homeGirl", component: HomegirlComponent},
-
   {path:"showAllBill", component: ShowAllBillComponent},
+  {path:"providerShowBill", component: ProviderShowBillComponent},
 
 ];
 
