@@ -28,4 +28,13 @@ export class OrderLoverService {
     // @ts-ignore
     return this.http.post<OrderLover>(`http://localhost:8080/orders/changeToConfirmed/${idOrder}`)
   }
+  createOrder(order: any ): Observable<OrderLover>{
+    // @ts-ignore
+    return this.http.post<OrderLover>("http://localhost:8080/orders/m/oder", order)
+  }
+
+  waitingOrder(order: any ): Observable<OrderLover>{
+    // @ts-ignore
+    return this.http.post<OrderLover>("http://localhost:8080/orders/m/waitingorder", order)
+  }
 }

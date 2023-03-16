@@ -15,4 +15,7 @@ export class ProvisionProviderService {
   getAllProvisionProvider(): Observable<ProvisionProvider[]> {
     return this.http.get<ProvisionProvider[]>("http://localhost:8080/provisionproviders");
   }
+  getAllProvisionProviderById(id: number): Observable<ProvisionProvider[]>{
+    return this.http.get<ProvisionProvider[]>("http://localhost:8080/provisionproviders/" +id)
+  }
 }

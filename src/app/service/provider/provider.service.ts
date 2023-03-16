@@ -44,5 +44,8 @@ export class ProviderService {
     findProviderByAccountUsername(accountUsername: string): Observable<Provider> {
         return this.http.get<Provider>(this.url + "/" + accountUsername);
     }
+    getProfife(username: string ): Observable<Provider>{
+        return this.http.get<Provider>("http://localhost:8080/providers/user/" + username)
+    }
     
 }

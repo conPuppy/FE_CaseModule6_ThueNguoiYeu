@@ -5,5 +5,6 @@ export class Provider {
     linkFB!: string;
     price!: number;
     view!: number;
+    statusProvider!: number;
     account!: Account;
 }

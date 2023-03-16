@@ -18,6 +18,7 @@ export class ShowProfileComponent implements OnInit {
     ngOnInit(): void {
         this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res => {
             this.account = res;
+            console.log(res)
             for (let i = 0; i < res.roles.length; i++) {
                 this.roleString += res.roles[i].name + ","
             }

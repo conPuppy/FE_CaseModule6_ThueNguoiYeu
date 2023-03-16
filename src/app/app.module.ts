@@ -31,6 +31,7 @@ import { ShowAllBillComponent } from './admin/show-all-bill/show-all-bill.compon
 import { ProviderShowBillComponent } from './User/provider-show-bill/provider-show-bill.component';
 
 import { CreateProviderComponent } from './create-provider/create-provider.component';
+import { ProfileOfProviderComponent } from './Provider/profile-of-provider/profile-of-provider.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { CreateProviderComponent } from './create-provider/create-provider.compo
         ShowAllBillComponent,
         CreateProviderComponent,
         ShowAllBillComponent,
-        ProviderShowBillComponent
+        ProviderShowBillComponent,
+        ProfileOfProviderComponent
 
     ],
     imports: [
