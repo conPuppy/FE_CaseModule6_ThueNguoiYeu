@@ -44,19 +44,19 @@
                                     <thead>
                                     <tr>
                                         <th></th>
-                                        <th scope="col">Provider</th>
-                                        <th scope="col">Order Time (giờ)</th>
-                                        <th scope="col">Total ($/giờ)</th>
+                                        <th scope="col" style="vertical-align: text-top; text-align: left; font: 0.875rem / 1.5 Consolas, monaco, monospace;">Provider</th>
+                                        <th scope="col" style="vertical-align: text-top; text-align: left; font: 0.875rem / 1.5 Consolas, monaco, monospace;">Order Time (giờ)</th>
+                                        <th scope="col" style="vertical-align: text-top; text-align: left; font: 0.875rem / 1.5 Consolas, monaco, monospace;">Total ($/giờ)</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr *ngFor="let o of orderLovers">
-                                        <td><span class="notification-avatar">
+                                        <td><span class="notification-avatar" style="width: 26px; height: 26px">
                                             <img src="{{o?.provider?.account?.avatar}}" alt="">
                                         </span></td>
-                                        <td>{{o?.provider?.account?.fullName}}</td>
-                                        <td>{{o.orderTime}}</td>
-                                        <td>{{o.total}} </td>
+                                        <td style="text-align: center; font: 0.875rem / 1.5 Consolas, monaco, monospace;color: #666;">{{o?.provider?.account?.fullName}}</td>
+                                        <td style="text-align: center;font: 0.875rem / 1.5 Consolas, monaco, monospace;color: #666;">{{o.orderTime}}</td>
+                                        <td style="text-align: center;font: 0.875rem / 1.5 Consolas, monaco, monospace;color: #666;">{{o.total}} </td>
                                     </tr>
                                     </tbody>
                                 </table>
