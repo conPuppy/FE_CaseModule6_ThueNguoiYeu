@@ -114,6 +114,7 @@ export class RegisterComponent implements OnInit {
         })
     }
     funcCheckDuplicatephoneNumber(phoneNumber: String) {
+        console.log(phoneNumber)
         this.accountService.findAccountByPhoneNumber(phoneNumber).subscribe(res => {
             if (res != null) {
                 this.checkConfirmPhoneNumber = true;

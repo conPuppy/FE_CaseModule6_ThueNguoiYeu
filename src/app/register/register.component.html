@@ -51,7 +51,7 @@
                 </div>
                 <div class="uk-form-group">
                     <div class="uk-position-relative w-100">
-                        <input class="uk-input" type="text" (ngModelChange)="funcCheckDuplicateEmail(formRegister.get('phoneNumber')?.value)" placeholder="Phone Number" formControlName="phoneNumber">
+                        <input class="uk-input" type="text" (ngModelChange)="funcCheckDuplicatephoneNumber(formRegister.get('phoneNumber')?.value)" placeholder="Phone Number" formControlName="phoneNumber">
                     </div>
                     <div class="uk-position-relative w-100" *ngFor="let validation of validation_messages.phoneNumber">
                         <div class="error-message"

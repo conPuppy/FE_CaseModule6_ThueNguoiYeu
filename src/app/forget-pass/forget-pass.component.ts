@@ -32,7 +32,7 @@ export class ForgetPassComponent implements OnInit {
 
     sendEmailForgetPass() {
         console.log(this.formForgetPass.value.email)
-        this.accountService.findAccountBgityEmail(this.formForgetPass.value.email).subscribe((res) => {
+        this.accountService.findAccountByEmail(this.formForgetPass.value.email).subscribe((res) => {
             if(res!=null){
                 this.accountService.forgotPass(res).subscribe(data => Swal.fire('Done!', 'Check your email', 'success'))
             }else {
