@@ -6,6 +6,9 @@ import { ProviderService } from 'src/app/service/provider/provider.service';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { OrderLoverService } from 'src/app/service/Order/order-lover.service';
+import { CreateProvider } from 'src/app/model/CreateProvider';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-provider-show-bill',
@@ -19,12 +22,62 @@ export class ProviderShowBillComponent implements OnInit{
   usernameAccount!: string;
   
   provider: Provider | any;
+  
+  account: any;
+  statusProvider!: number;
+  provider1!: CreateProvider;
 
-  constructor(private providerService: ProviderService, private accountService: AccountService, private orderLoverService: OrderLoverService) {
+
+  orderLovers: OrderLover[] = [];
+
+  showCart(id: number, statusOrder: number) {
+    this.orderLoverService.getAllBillOfAccountByIdAndStartOrder(id, statusOrder).subscribe(data => {
+      this.orderLovers = data;
+    })
+  }
+
+  constructor(private providerService: ProviderService, private accountService: AccountService, private orderLoverService: OrderLoverService, private router: Router) {
   }
     ngOnInit(): void {
     this.findProviderByAccountUsername();
+      this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res => {
+        if (res != null) {
+          this.statusProvider = res.statusProvider;
+          this.showCart(this.accountService.getAccountToken().id,1);
+        }
+      })
     }
+  createProvider(){
+    const providerCreate= new CreateProvider("",0,0,3,this.account)
+    this.providerService.createProvider(providerCreate).subscribe(res=>{
+      Swal.fire('Done!', 'Sended!', 'success');
+      this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res=>{
+        if (res!=null){
+          this.statusProvider=res.statusProvider;
+        }
+      })
+    })
+
+  }
+  logout() {
+    localStorage.clear();
+    this.router.navigate([''])
+  };
+
+  goToProfile() {
+    this.router.navigate(['/showProfile'])
+  };
+
+  goToEditProfile() {
+    this.router.navigate(['/changeInfo'])
+  }
+
+  goToProvider() {
+    this.router.navigate(['/supplier'])
+  };
+  goToMyOrder() {
+    this.router.navigate(["/userShowBill"])
+  }
 
   getBillByIdProvider(idProvider: number) {
     this.providerService.getBillByIdProvider(idProvider).subscribe((data) => {
@@ -59,4 +112,5 @@ export class ProviderShowBillComponent implements OnInit{
       this.listBillOfProvider = data;
     })
   }
+  
 }

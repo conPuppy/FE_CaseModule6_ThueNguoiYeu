@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Account } from '../model/Account';
+import { CreateProvider } from '../model/CreateProvider';
+import { OrderLover } from '../model/OrderLover';
 import { Provider } from '../model/Provider';
 import { ProvisionProvider } from '../model/ProvisionProvider';
 import { AccountService } from '../service/account/account.service';
+import { OrderLoverService } from '../service/Order/order-lover.service';
 import { ProviderService } from '../service/provider/provider.service';
 import { ProvisionProviderService } from '../service/provisionprovider/provisionprovider.service';
 
@@ -20,12 +24,13 @@ export class HomegirlComponent implements OnInit{
   total: number =0;
 
   account!: Account;
+  statusProvider!:number;
 
   
 
 
   constructor(private accountService: AccountService, private router: Router, private providerService: ProviderService,
-              private provisionproviderService: ProvisionProviderService) {
+              private provisionproviderService: ProvisionProviderService, private orderLoverService: OrderLoverService ) {
   }
   ngOnInit(): void {
     this.providerService.getBoyProviderTopView().subscribe(data=>{
@@ -33,11 +38,18 @@ export class HomegirlComponent implements OnInit{
       this.providers = data;
       this.provisionproviderService.getAllProvisionProvider().subscribe(data=>{
         this.provisionproviders = data;
+        this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res=>{
+          if (res!=null){
+            this.statusProvider=res.statusProvider;
+          }
+        })
+
       })
     });
     this.getTopSellProviderAcc();
     this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res => {
-      this.account = res})
+      this.account = res;
+    this.showCart(this.account.id,1)})
   }
   findProviderById(id: number) {
     this.providerService.findProviderById(id).subscribe(data=>{
@@ -54,7 +66,7 @@ export class HomegirlComponent implements OnInit{
   accounts1: Account[] = [];
   providers1: Provider[] = [];
   provisionproviders1: ProvisionProvider[] = [];
-
+  provider1!:CreateProvider;
   getTopSellProviderAcc() {
     this.providerService.getProviderTopSell().subscribe(data=>{
       this.providers1 = data;
@@ -84,6 +96,25 @@ export class HomegirlComponent implements OnInit{
   }
   goToMyOrder() {
     this.router.navigate(["/userShowBill"])
+  }
+  orderLovers: OrderLover[]=[];
+  showCart(id: number, statusOrder: number) {
+    this.orderLoverService.getAllBillOfAccountByIdAndStartOrder(id,statusOrder).subscribe(data=> {
+      this.orderLovers = data;
+    })
+  }
+  createProvider(){
+    // @ts-ignore
+    const providerCreate= new CreateProvider("",0,0,3,this.account)
+    this.providerService.createProvider(providerCreate).subscribe(res=>{
+      Swal.fire('Done!', 'Sended!', 'success');
+      this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res=>{
+        if (res!=null){
+          this.statusProvider=res.statusProvider;
+        }
+      })
+    })
+
   }
   
   

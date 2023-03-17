@@ -11,6 +11,8 @@ import { OrderLoverService } from '../service/Order/order-lover.service';
 import Swal from 'sweetalert2';
 import { ProvisionProviderService } from '../service/provisionprovider/provisionprovider.service';
 import { ProvisionProvider } from '../model/ProvisionProvider';
+import { CreateProvider } from '../model/CreateProvider';
+import { AccountForChange } from '../model/AccountForChange';
 @Component({
     selector: 'app-profile-provider',
     templateUrl: './profile-provider.component.html',
@@ -22,9 +24,11 @@ export class ProfileProviderComponent implements OnInit {
     orderLovers: OrderLover[]=[];
     formOrder!: any;
     account!:Account;
+    account1!: AccountForChange;
     startTimeConvert!:String;
     endTimeConvert!:String;
     providerProvisions:ProvisionProvider[]=[];
+    statusProvider!: number;
     constructor(private providerService: ProviderService,
                 private route: ActivatedRoute,
                 private router: Router,
@@ -36,7 +40,12 @@ export class ProfileProviderComponent implements OnInit {
     ngOnInit() {
         this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res=> {
             this.account = res;
-            this.showCart(this.account.id,1);
+            this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res => {
+                if (res != null) {
+                    this.statusProvider = res.statusProvider;
+                    this.showCart(this.account.id,1);
+                }
+            })
         })
         this.provisionProviderService.findProvisionProviderByProviderIdAndStatusServiceProvider(+this.route.snapshot.params['id']).subscribe(data=>this.providerProvisions=data)
         this.providerService.findProviderById(+this.route.snapshot.params['id']).subscribe(res => this.provider = res)
@@ -55,6 +64,21 @@ export class ProfileProviderComponent implements OnInit {
     }
     caculatorTotal(){
         this.formOrder.get('total').setValue(this.formOrder.value.selectTime.orderTime * this.provider.price)
+    }
+    goToMyOrder() {
+        this.router.navigate(["/userShowBill"])
+    }
+    createProvider(){
+        const providerCreate= new CreateProvider("",0,0,3,this.account1)
+        this.providerService.createProvider(providerCreate).subscribe(res=>{
+            Swal.fire('Done!', 'Sended!', 'success');
+            this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res=>{
+                if (res!=null){
+                    this.statusProvider=res.statusProvider;
+                }
+            })
+        })
+
     }
 
 
