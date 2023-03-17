@@ -32,7 +32,7 @@ import {AppComponent} from './app.component';
 import { UserShowBillComponent } from './User/user-show-bill/user-show-bill.component';
 import { AdproviderComponent } from './admin/adprovider/adprovider.component';
 import { ForgetPassComponent } from './forget-pass/forget-pass.component';
-
+import { ShowAllProviderComponent } from './admin/show-all-provider/show-all-provider.component';
 
 
 
@@ -64,7 +64,8 @@ import { ForgetPassComponent } from './forget-pass/forget-pass.component';
         ProviderShowBillComponent,
         UserShowBillComponent,
         AdproviderComponent,
-        ForgetPassComponent
+        ForgetPassComponent,
+        ShowAllProviderComponent
 
     ],
     imports: [

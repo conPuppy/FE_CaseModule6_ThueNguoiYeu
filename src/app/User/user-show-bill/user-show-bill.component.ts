@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { OrderLover } from 'src/app/model/OrderLover';
 import { AccountService } from 'src/app/service/account/account.service';
 import { OrderLoverService } from 'src/app/service/Order/order-lover.service';
@@ -14,10 +15,14 @@ export class UserShowBillComponent implements OnInit{
 
     idAccount: number = -1;
 
-    constructor(private orderLoverService: OrderLoverService, private accountService: AccountService) {
+    account: any;
+
+    constructor(private orderLoverService: OrderLoverService, private accountService: AccountService, private router:Router) {
     }
     ngOnInit(): void {
         this.getAllBillOfAccountById();
+        this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res => {
+            this.account = res})
     }
 
     getAllBillOfAccountById() {
@@ -37,5 +42,20 @@ export class UserShowBillComponent implements OnInit{
         this.orderLoverService.getAllBillOfAccountByIdAndStartOrder(idAccount,statusOrder).subscribe((data) => {
             this.listBillOfAccount = data;
         })
+    }
+
+    goToUserShowBill(){
+        this.router.navigate(['/userShowBill'])
+    }
+
+    logout(){
+        localStorage.clear();
+        this.router.navigate([''])
+    }
+    goToProfile(){
+        this.router.navigate(['/showProfile'])
+    }
+    goToEditProfile(){
+        this.router.navigate(['/changeInfo'])
     }
 }

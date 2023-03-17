@@ -42,7 +42,7 @@ export class ProviderService {
     }
 
     increaseViewProviderById(id: number): Observable<Provider> {
-        return this.http.post<Provider>(this.url + "/view/" + id, this.findProviderById(id));
+        return this.http.post<Provider>(this.url + "/viewer/" + id, this.findProviderById(id));
     }
 
     getAllProviderAcc(page: number): Observable<Provider[]> {

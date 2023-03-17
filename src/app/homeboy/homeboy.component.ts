@@ -18,6 +18,7 @@ export class HomeboyComponent implements OnInit{
   provisionproviders: ProvisionProvider[] = [];
   page: number = 1;
   total: number =0;
+  account: any;
 
 
   constructor(private accountService: AccountService, private router: Router, private providerService: ProviderService,
@@ -31,6 +32,8 @@ export class HomeboyComponent implements OnInit{
       })
     });
     this.getTopSellProviderAcc();
+    this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res => {
+      this.account = res})
   }
   findProviderById(id: number) {
     this.providerService.findProviderById(id).subscribe(data=>{
@@ -61,20 +64,29 @@ export class HomeboyComponent implements OnInit{
     this.page = event;
     this.getTopSellProviderAcc();
   }
+  luotthue!: number[]
+  getLuotThue() {
+    this.providerService.getProviderTopSellandLuotThue().subscribe(data=>{
+      this.luotthue = data;
+    })
+  }
+
+  goToUserShowBill(){
+    this.router.navigate(['/userShowBill'])
+  }
+
   logout(){
     localStorage.clear();
     this.router.navigate([''])
+  }
+  goToProvider(id: number) {
+    this.router.navigate(['/bill/'+id])
+    this.increaseViewProviderById(id);
   }
   goToProfile(){
     this.router.navigate(['/showProfile'])
   }
   goToEditProfile(){
     this.router.navigate(['/changeInfo'])
-  }
-  luotthue!: number[]
-  getLuotThue() {
-    this.providerService.getProviderTopSellandLuotThue().subscribe(data=>{
-      this.luotthue = data;
-    })
   }
 }

@@ -19,18 +19,25 @@ export class HomegirlComponent implements OnInit{
   page: number = 1;
   total: number =0;
 
+  account!: Account;
+
+  
+
 
   constructor(private accountService: AccountService, private router: Router, private providerService: ProviderService,
               private provisionproviderService: ProvisionProviderService) {
   }
   ngOnInit(): void {
     this.providerService.getBoyProviderTopView().subscribe(data=>{
+      console.log(data)
       this.providers = data;
       this.provisionproviderService.getAllProvisionProvider().subscribe(data=>{
         this.provisionproviders = data;
       })
     });
     this.getTopSellProviderAcc();
+    this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res => {
+      this.account = res})
   }
   findProviderById(id: number) {
     this.providerService.findProviderById(id).subscribe(data=>{
@@ -65,6 +72,10 @@ export class HomegirlComponent implements OnInit{
     localStorage.clear();
     this.router.navigate([''])
   }
+  goToProvider(id: number) {
+    this.router.navigate(['/bill/'+id])
+    this.increaseViewProviderById(id);
+  }
   goToProfile(){
     this.router.navigate(['/showProfile'])
   }
@@ -74,4 +85,6 @@ export class HomegirlComponent implements OnInit{
   goToMyOrder() {
     this.router.navigate(["/userShowBill"])
   }
+  
+  
 }
