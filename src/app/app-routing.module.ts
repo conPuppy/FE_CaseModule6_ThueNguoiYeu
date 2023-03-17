@@ -22,6 +22,9 @@ import { ProfileProviderComponent } from './profile-provider/profile-provider.co
 import { ProviderShowBillComponent } from './User/provider-show-bill/provider-show-bill.component';
 import { CreateProviderComponent } from './create-provider/create-provider.component';
 import { UserShowBillComponent } from './User/user-show-bill/user-show-bill.component';
+import { AdproviderComponent } from './admin/adprovider/adprovider.component';
+import { ForgetPassComponent } from './forget-pass/forget-pass.component';
+
 
 
 
@@ -46,10 +49,9 @@ const routes: Routes = [
   {path:"providerShowBill", component: ProviderShowBillComponent},
   {path:"createProvider", component: CreateProviderComponent},
   {path:"userShowBill", component: UserShowBillComponent},
+  {path:"adProvider", component: AdproviderComponent},
+  {path:"forget", component: ForgetPassComponent},
   {path:"showAllProvider", component: ShowAllProviderComponent},
-
-
-
 ];
 
 @NgModule({

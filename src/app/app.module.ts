@@ -6,9 +6,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {HomeAdminComponent} from './admin/home-admin/home-admin.component';
 import {CommonModule} from "@angular/common";
-
 import {AppRoutingModule} from './app-routing.module';
-
 import {ChangeAppearanceComponent} from './change-appearance/change-appearance.component';
 import {ChangeAvatarComponent} from './change-avatar/change-avatar.component';
 import {ChangeInfoComponent} from './change-info/change-info.component';
@@ -26,14 +24,14 @@ import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import {environment} from "../environments/environment";
 import {HomeboyComponent} from './homeboy/homeboy.component';
 import {HomegirlComponent} from './homegirl/homegirl.component';
-
 import {ShowAllBillComponent} from './admin/show-all-bill/show-all-bill.component';
 import {ProviderShowBillComponent} from './User/provider-show-bill/provider-show-bill.component';
-
 import {CreateProviderComponent} from './create-provider/create-provider.component';
 import {ProfileProviderComponent} from './profile-provider/profile-provider.component';
 import {AppComponent} from './app.component';
 import { UserShowBillComponent } from './User/user-show-bill/user-show-bill.component';
+import { AdproviderComponent } from './admin/adprovider/adprovider.component';
+import { ForgetPassComponent } from './forget-pass/forget-pass.component';
 import { ShowAllProviderComponent } from './admin/show-all-provider/show-all-provider.component';
 
 
@@ -65,6 +63,8 @@ import { ShowAllProviderComponent } from './admin/show-all-provider/show-all-pro
 
         ProviderShowBillComponent,
         UserShowBillComponent,
+        AdproviderComponent,
+        ForgetPassComponent,
         ShowAllProviderComponent
 
     ],
