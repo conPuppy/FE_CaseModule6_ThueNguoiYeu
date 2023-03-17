@@ -56,31 +56,33 @@ export class LoginComponent implements OnInit {
                     '<h2 style="color: red; font-size: 32px">The account has been banned</h2>',
                     'error'
                 )
+                this.router.navigate(['/login']);
             } else {
                 Swal.fire(
                     ' ',
                     '<h2 style="color: green; font-size: 32px">Đăng nhập thành công!!!</h2>',
                     'success'
                 )
-            }
-            for (let i = 0; i < accountToken?.roles.length; i++) {
-                if (accountToken?.roles[i].id == 1) {
-                    this.router.navigate(["/admin"]);
-                    return;
+                for (let i = 0; i < accountToken?.roles.length; i++) {
+                    if (accountToken?.roles[i].id == 1) {
+                        this.router.navigate(["/admin"]);
+                        return;
+                    }
                 }
+                if (this.account.gender == "Male") {
+                    this.router.navigate(["/homeBoy"])
+                } else this.router.navigate(["/homeGirl"])
             }
-            if(this.account.gender=="Male"){
-                this.router.navigate(["/homeBoy"])
-            } else this.router.navigate(["/homeGirl"])
-            
         });
 
     }
-    logout(){
+
+    logout() {
         localStorage.clear();
         this.router.navigate(['/login'])
     }
-    forgotPass(){
+
+    forgotPass() {
         this.router.navigate(['/forget'])
     }
 }

@@ -65,8 +65,11 @@ export class ShowProfileComponent implements OnInit {
         this.router.navigate([''])
     }
 
-    goToUserShowBill() {
+    goToMyOrder() {
         this.router.navigate(['/userShowBill'])
+    }
+    goToMyBill() {
+        this.router.navigate(['/providerShowBill']);
     }
 
     goToProfile() {

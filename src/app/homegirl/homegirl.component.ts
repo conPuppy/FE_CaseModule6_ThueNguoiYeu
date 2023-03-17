@@ -97,6 +97,9 @@ export class HomegirlComponent implements OnInit{
   goToMyOrder() {
     this.router.navigate(["/userShowBill"])
   }
+  goToMyBill() {
+    this.router.navigate(["/providerShowBill"])
+  }
   orderLovers: OrderLover[]=[];
   showCart(id: number, statusOrder: number) {
     this.orderLoverService.getAllBillOfAccountByIdAndStartOrder(id,statusOrder).subscribe(data=> {

@@ -72,8 +72,11 @@ export class UserShowBillComponent implements OnInit {
         })
     }
 
-    goToUserShowBill() {
+    goToMyOrder() {
         this.router.navigate(['/userShowBill'])
+    }
+    goToMyBill() {
+        this.router.navigate(['/providerShowBill'])
     }
 
     logout() {

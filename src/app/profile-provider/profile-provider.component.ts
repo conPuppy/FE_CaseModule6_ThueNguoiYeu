@@ -72,6 +72,9 @@ export class ProfileProviderComponent implements OnInit {
     goToMyOrder() {
         this.router.navigate(["/userShowBill"])
     }
+    goToMyBill() {
+        this.router.navigate(["/providerShowBill"])
+    }
     createProvider(){
         const providerCreate= new CreateProvider("",0,0,3,this.account1)
         this.providerService.createProvider(providerCreate).subscribe(res=>{
@@ -87,8 +90,7 @@ export class ProfileProviderComponent implements OnInit {
 
 
     createOrderLover() {
-
-
+        alert("vao")
         // @ts-ignore
         this.startTimeConvert = document.getElementById('startOrder').value;
         this.orderLover.startOrder = this.startTimeConvert;

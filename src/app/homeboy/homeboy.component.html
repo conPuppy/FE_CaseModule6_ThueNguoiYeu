@@ -258,6 +258,7 @@
                         <li><a class="btn-success" (click)="createProvider()" *ngIf="statusProvider!=1&&statusProvider!=2&&statusProvider!=3"> <i class="uil-bolt" ></i> Become Provider</a></li>
                         <li><a (click)="goToProfile()"> <i class="uil-user"></i> My Profile </a></li>
                         <li><a (click)="goToMyOrder()" > <i class="uil-invoice"></i> My Order </a></li>
+                        <li><a (click)="goToMyBill()" > <i class="uil-invoice"></i> My Bill </a></li>
                         <li><a (click)="goToEditProfile()"> <i class="uil-edit"></i> Edit Profile </a></li>
                         <li><a href="profile-setting.html"> <i class="uil-cog"></i> Account Settings</a></li>
                         <li class="menu-divider"></li>
@@ -397,7 +398,7 @@
                     <div class="card uk-inline-clip text-center animate-this">
                         <img src="{{pr?.account?.avatar}}" alt="" style="height: 320px; width: 300px">
                         <div class="p-3">
-                            <h4 class="mb-2" data-bs-toggle="modal" data-bs-target="#myModal" (click)="findProviderById(pr.id)">{{pr.account.fullName}}</h4>
+                            <h4 class="mb-2" data-bs-toggle="modal" data-bs-target="#myModal" (click)="findProviderById(pr.id)">{{pr?.account?.fullName}}</h4>
                             <div >
                                 <p><i class="uil-eye"></i> {{pr.view}}</p>
                                 <table style="width: 100%">

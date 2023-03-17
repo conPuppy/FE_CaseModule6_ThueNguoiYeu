@@ -56,6 +56,9 @@ export class ShowprofileproviderComponent implements OnInit {
     goToMyOrder() {
         this.router.navigate(["/userShowBill"])
     }
+    goToMyBill() {
+        this.router.navigate(["/providerShowBill"])
+    }
     createProvider(){
         const providerCreate= new CreateProvider("",0,0,3,this.account)
         this.providerService.createProvider(providerCreate).subscribe(res=>{

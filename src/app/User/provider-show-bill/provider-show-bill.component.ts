@@ -40,10 +40,14 @@ export class ProviderShowBillComponent implements OnInit{
   }
     ngOnInit(): void {
     this.findProviderByAccountUsername();
+      this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res=> {
+        this.account = res;
+        this.showCart(this.account.id,1);
+      })
       this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res => {
         if (res != null) {
           this.statusProvider = res.statusProvider;
-          this.showCart(this.accountService.getAccountToken().id,1);
+          
         }
       })
     }
@@ -78,6 +82,10 @@ export class ProviderShowBillComponent implements OnInit{
   goToMyOrder() {
     this.router.navigate(["/userShowBill"])
   }
+  goToMyBill() {
+    this.router.navigate(["/providerShowBill"])
+  }
+  
 
   getBillByIdProvider(idProvider: number) {
     this.providerService.getBillByIdProvider(idProvider).subscribe((data) => {
