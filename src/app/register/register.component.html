@@ -51,18 +51,22 @@
                 </div>
                 <div class="uk-form-group">
                     <div class="uk-position-relative w-100">
-                        <input class="uk-input" type="text"  placeholder="Phone Number" formControlName="phoneNumber">
+                        <input class="uk-input" type="text" (ngModelChange)="funcCheckDuplicatephoneNumber(formRegister.get('phoneNumber')?.value)" placeholder="Phone Number" formControlName="phoneNumber">
                     </div>
                     <div class="uk-position-relative w-100" *ngFor="let validation of validation_messages.phoneNumber">
                         <div class="error-message"
                              *ngIf="formRegister?.get('phoneNumber')?.hasError(validation.type) && (formRegister?.get('phoneNumber')?.dirty || formRegister?.get('phoneNumber')?.touched)">
                             {{validation.message}}</div>
                     </div>
-
+                    <div class="uk-position-relative w-100" *ngIf="checkConfirmPhoneNumber">
+                        <div class="error-message">
+                            PhoneNumber already exists!
+                        </div>
+                    </div>
                 </div>
                 <div class="uk-form-group">
                     <div class="uk-position-relative w-100">
-                        <input class="uk-input" type="password"  placeholder="Your password" formControlName="password">
+                        <input  [type]="changeType" class="uk-input"   placeholder="Your password" formControlName="password">
                     </div>
                     <div class="uk-position-relative w-100" *ngFor="let validation of validation_messages.password">
                         <div class="error-message"
@@ -72,7 +76,7 @@
                 </div>
                 <div class="uk-form-group">
                     <div class="uk-position-relative w-100">
-                        <input class="uk-input" type="password" (ngModelChange)="funcCheckConfirmPassword()"  placeholder="Confirm password" formControlName="confirmPassword">
+                        <input  [type]="changeType" class="uk-input"  (ngModelChange)="funcCheckConfirmPassword()"  placeholder="Confirm password" formControlName="confirmPassword">
                     </div>
                     <div class="uk-position-relative w-100" *ngFor="let validation of validation_messages.confirmPassword">
                         <div class="error-message"
@@ -107,6 +111,8 @@
                             </select>
                         </fieldset>
                     </div>
+                    <a (click)="funcShowPassword()" *ngIf="changeType=='text'" class="opts_account"> <i class="uil-eye-slash" ></i> <span> Hidden password</span> </a>
+                    <a (click)="funcShowPassword()" *ngIf="changeType=='password'" class="opts_account"> <i class="uil-eye"></i> <span>Show password</span> </a>
                 </div>
                 <button type="submit" [disabled]="!formRegister.valid" class="btn btn-primary btn-block mb-4">Register</button>
             </form>

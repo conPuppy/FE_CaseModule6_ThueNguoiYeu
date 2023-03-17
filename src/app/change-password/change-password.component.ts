@@ -7,6 +7,8 @@ import Swal from "sweetalert2";
 import { Router } from '@angular/router';
 import { CreateProvider } from '../model/CreateProvider';
 import { ProviderService } from '../service/provider/provider.service';
+import { OrderLoverService } from '../service/Order/order-lover.service';
+import { OrderLover } from '../model/OrderLover';
 
 @Component({
     selector: 'app-change-password',
@@ -24,8 +26,10 @@ export class ChangePasswordComponent implements OnInit {
     summit2:boolean=true
     public checkConfirmPassword: boolean = false;
     statusProvider!:number;
-    provider!:CreateProvider
-    constructor(private accountService: AccountService,private router:Router,private providerService:ProviderService) {
+    provider!:CreateProvider;
+    orderLovers: OrderLover[] = [];
+    account : any;
+    constructor(private accountService: AccountService,private router:Router,private providerService:ProviderService, private orderLoverService: OrderLoverService) {
     }
 
 
@@ -35,7 +39,11 @@ export class ChangePasswordComponent implements OnInit {
                 this.statusProvider=res.statusProvider;
             }
         })
-        this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res=>this.accountChange=res)
+        this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res=> {
+            this.accountChange = res;
+            this.account = res;
+            this.showCart(this.account.id,1);
+        })
         this.formChangePassword = new FormGroup({
             password: new FormControl('', [Validators.required]),
             newPassword: new FormControl('', [Validators.required, Validators.maxLength(16), Validators.minLength(6)]),
@@ -118,7 +126,8 @@ export class ChangePasswordComponent implements OnInit {
             this.accountChange.password=this.formChangePassword.value.newPassword;
             this.accountService.changeInfo(this.accountChange).subscribe(res=> Swal.fire('Done!', 'Change Password', 'success'))
         })
-    }requestVip(){
+    }
+    requestVip(){
         this.accountChange.statusVip=3
         this.accountService.changeInfo(this.accountChange).subscribe((res)=>{
             this.accountService.findById(this.accountService.getAccountToken().id).subscribe((data)=>{
@@ -140,6 +149,15 @@ export class ChangePasswordComponent implements OnInit {
     }
     goToProvider(){
         this.router.navigate(['/supplier'])
+    }
+    showCart(id: number, statusOrder: number) {
+        this.orderLoverService.getAllBillOfAccountByIdAndStartOrder(id, statusOrder).subscribe(data => {
+            this.orderLovers = data;
+        })
+    }
+
+    goToMyOrder() {
+        this.router.navigate(["/userShowBill"])
     }
 
 }

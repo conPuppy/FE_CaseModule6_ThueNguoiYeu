@@ -1,5 +1,6 @@
 <div id="wrapper">
 
+
     <!-- header -->
     <div id="main_header" class="header-transparent" uk-sticky="top:10; cls-inactive :header-transparent">
         <header>
@@ -11,13 +12,12 @@
             <div class="h5 uk-hidden@m mr-3 mb-0"> Bootstro</div>
             <!-- form search-->
             <div class="head_search uk-visible@m">
-                <form>
+                <form [formGroup]="formSearch" (change)="search()">
                     <div class="head_search_cont">
                         <input value="" type="text" class="form-control"
-                               placeholder="Search for Customers, Products, Files and more.." autocomplete="off">
+                               placeholder="Search for User" autocomplete="off" formControlName="search">
                         <i class="s_icon uil-search-alt"></i>
                     </div>
-
                 </form>
             </div>
 
@@ -26,47 +26,18 @@
 
 
                 <!-- browse apps  -->
-                <a href="#" class="opts_icon uk-visible@s"> <i class="uil-shop"></i></a>
-                <a href="#" class="opts_icon uk-visible@s"> <i class="uil-shopping-basket"></i> <span>1</span></a>
-                <!-- cart apps dropdown -->
-                <div uk-dropdown="pos: top-right;mode:click ; animation: uk-animation-slide-bottom-small"
-                     class="dropdown-notifications large">
+                <a href="#" class="opts_icon uk-visible@s"> <i class="uil-apps"></i> </a>
 
-                    <!-- notification contents -->
-                    <div class="dropdown-notifications-content" data-simplebar>
+                <!-- browse apps dropdown -->
+                <div uk-dropdown="pos: top;mode:click ; animation: uk-animation-scale-up" class="icon-browse">
 
-                        <!-- notiviation list -->
-                        <ul>
-                            <li class="notifications-not-read" >
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th scope="col" style="vertical-align: text-top; text-align: left; font: 0.875rem / 1.5 Consolas, monaco, monospace;">Provider</th>
-                                        <th scope="col" style="vertical-align: text-top; text-align: left; font: 0.875rem / 1.5 Consolas, monaco, monospace;">Order Time (giờ)</th>
-                                        <th scope="col" style="vertical-align: text-top; text-align: left; font: 0.875rem / 1.5 Consolas, monaco, monospace;">Total ($/giờ)</th>
-                                        <th scope="col" style="vertical-align: text-top; text-align: left; font: 0.875rem / 1.5 Consolas, monaco, monospace;"></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr *ngFor="let o of orderLovers">
-                                        <td><span class="notification-avatar" style="width: 26px; height: 26px">
-                                            <img src="{{o?.provider?.account?.avatar}}" alt="">
-                                        </span></td>
-                                        <td style="text-align: center; font: 0.875rem / 1.5 Consolas, monaco, monospace;color: #666;">{{o?.provider?.account?.fullName}}</td>
-                                        <td style="text-align: center;font: 0.875rem / 1.5 Consolas, monaco, monospace;color: #666;">{{o.orderTime}}</td>
-                                        <td style="text-align: center;font: 0.875rem / 1.5 Consolas, monaco, monospace;color: #666;">{{o.total}} </td>
-                                        <!--                                        <td><button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)="createOrderLover()">Order</button></td>-->
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </li>
-                        </ul>
-
-                    </div>
-                    <div class="dropdown-notifications-footer">
-                        <a href="#"> sell all <i class="icon-line-awesome-long-arrow-right"></i> </a>
-                    </div>
+                    <a href="#" class="icon-menu-item"> <i class="uil-shop"></i> Dashboard </a>
+                    <a href="#" class="icon-menu-item"> <i class="uil-envelope-alt"></i> Messages </a>
+                    <a href="#" class="icon-menu-item"> <i class="uil-bookmark"></i> Bookmark </a>
+                    <a href="#" class="icon-menu-item"> <i class="uil-shopping-basket"></i> Cart </a>
+                    <a href="#" class="icon-menu-item"> <i class="uil-shield-check"></i> Privacy </a>
+                    <a href="#" class="icon-menu-item"> <i class="uil-bolt-alt"></i> Upgrade </a>
+                    <a href="#" class="more-app"> More Features</a>
                 </div>
 
 
@@ -192,7 +163,7 @@
                                 <a href="#">
                                         <span class="notification-icon bg-soft-danger">
                                             <i class="icon-feather-database text-danger"></i></span>
-                                    <span class="notification-text">  Server Limit Reached!
+                                    <span class="notification-text"> Server Limit Reached!
                                             <br> <span class="time-ago"> 12 hours ago </span>
                                         </span>
                                 </a>
@@ -202,7 +173,7 @@
                                         <span class="notification-icon bg-soft-primary">
                                             <i class="uil-apps text-primary"></i></span>
                                     <span class="notification-text">
-                                            <strong>10+</strong>  Apps ready for update
+                                            <strong>10+</strong> Apps ready for update
                                             <br> <span class="time-ago"> Yesterday </span>
                                         </span>
                                 </a>
@@ -223,8 +194,9 @@
 
                 </div>
 
+
                 <!-- profile -image -->
-                <a class="opts_account"> <img src="{{account?.avatar}}" alt=""></a>
+                <a class="opts_account"> <img src="assets/images/team/team-1.jpg" alt=""></a>
 
                 <!-- profile dropdown-->
                 <div uk-dropdown="pos: top-right;mode:click ; animation: uk-animation-slide-bottom-small"
@@ -235,11 +207,10 @@
 
                         <div class="dropdown-user-details">
                             <div class="dropdown-user-avatar">
-                                <a class="opts_account">
-                                    <img src="{{account?.avatar}}" alt=""></a>
+                                <img src="assets/images/team/team-1.jpg" alt="">
                             </div>
                             <div class="dropdown-user-name">
-                                {{account?.username}} <span> {{account?.wallet}} <i class="icon-feather-dollar-sign"></i> </span>
+                                Richard Ali <span> verified <i class="uil-check"></i> </span>
                             </div>
                         </div>
 
@@ -248,12 +219,9 @@
                     <!-- User menu -->
 
                     <ul class="dropdown-user-menu">
-                        <li><a class="btn-warning"  *ngIf="statusProvider==3"> <i class="uil-user"></i> Wait admin accept!</a></li>
-                        <li><a class="btn-success"  *ngIf="statusProvider==1"> <i class="uil-user" ></i> Ready</a></li>
-                        <li><a class="btn-danger"  *ngIf="statusProvider==2"> <i class="uil-user" ></i> Busy</a></li>
-                        <li><a class="btn-success" (click)="createProvider()" *ngIf="statusProvider!=1&&statusProvider!=2&&statusProvider!=3"> <i class="uil-bolt" ></i> Become Provider</a></li>
+                        <li><a href="#"> <i class="uil-bolt"></i> Go PRO</a></li>
                         <li><a (click)="goToProfile()"> <i class="uil-user"></i> My Profile </a></li>
-                        <li><a (click)="goToUserShowBill()" > <i class="uil-invoice"></i> My Order </a></li>
+                        <li><a (click)="goToShowAllBill()"> <i class="uil-envelope"></i> All Bill </a></li>
                         <li><a (click)="goToEditProfile()"> <i class="uil-edit"></i> Edit Profile </a></li>
                         <li><a href="profile-setting.html"> <i class="uil-cog"></i> Account Settings</a></li>
                         <li class="menu-divider"></li>
@@ -279,7 +247,7 @@
 
         <!-- logo -->
         <div class="logo uk-visible@s">
-            <a href="dashboard.html"> <img src="assets/images/logo.svg" alt=""> <span> Bootstro</span> </a>
+            <a href="dashboard.html"> <img src="assets/images/logo.svg" alt=""> <span> Dating Web</span> </a>
         </div>
         <div class="page-menu-inner" data-simplebar>
             <ul>
@@ -310,9 +278,9 @@
                 </li>
                 <li><a href="#"><i class="uil-users-alt"></i> <span>Users</span> </a>
                     <ul>
-                        <li><a href="user-card.html"> Users Grid </a></li>
-                        <li><a href="user-listing.html"> Users List </a></li>
-                        <li><a href="user-view.html"> User view </a></li>
+                        <li><a routerLink="admin/account/vip"> VIP Users </a></li>
+                        <li><a routerLink="admin/account/normal"> Normal Users </a></li>
+                        <li><a routerLink="admin/account/block"> Block User </a></li>
                     </ul>
                 </li>
             </ul>
@@ -323,15 +291,18 @@
                 <li><a href="page-invoice.html"><i class="uil-invoice"></i> <span> Invoice </span> </a></li>
                 <li><a href="page-gallery.html"><i class="uil-images"></i> <span> Gallery </span> </a></li>
                 <li><a href="page-faqs.html"><i class="uil-equal-circle"></i> <span> FAQ </span> </a></li>
-                <li><a href="page-pricing.html"><i class="uil-dollar-sign-alt"></i> <span> pricing </span> </a></li>
-                <li><a href="error.html"><i class="uil-minus-circle"></i> <span> Error </span> </a></li>
-                <li><a href="page-maintanence.html"><i class="uil-sync-exclamation"></i> <span> Maintence </span> </a>
+                <li><a href="page-pricing.html"><i class="uil-dollar-sign-alt"></i> <span> pricing </span> </a>
                 </li>
-                <li><a href="page-comming-soon.html"><i class="uil-stopwatch"></i> <span> Comming soon </span> </a></li>
+                <li><a href="error.html"><i class="uil-minus-circle"></i> <span> Error </span> </a></li>
+                <li><a href="page-maintanence.html"><i class="uil-sync-exclamation"></i> <span> Maintence </span>
+                </a></li>
+                <li><a href="page-comming-soon.html"><i class="uil-stopwatch"></i> <span> Comming soon </span> </a>
+                </li>
             </ul>
 
             <ul data-submenu-title="Development">
-                <li><a href="development-elements.html"><i class="uil-layers"></i> <span> UI Elements </span> </a></li>
+                <li><a href="development-elements.html"><i class="uil-layers"></i> <span> UI Elements </span> </a>
+                </li>
                 <li><a href="development-components.html"><i class="uil-code"></i> <span> UI Components </span> </a>
                 </li>
                 <li><a href="development-icons.html"><i class="icon-feather-flag"></i> <span> Icon Pack </span> </a>
@@ -376,8 +347,14 @@
     <div class="page-content">
         <div class="page-content-inner">
 
-            <h2 class="text-white"> All Orders</h2>
+            <h2 class="text-white"> Provider</h2>
+
             <nav id="breadcrumbs" class="text-white">
+                <ul>
+                    <li><a href="#"> Dashboard </a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li> listing</li>
+                </ul>
             </nav>
 
 
@@ -385,10 +362,11 @@
                 <!-- Card header -->
                 <div class="card-header actions-toolbar border-0">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h4 class="d-inline-block mb-0">List</h4>
+                        <h4 class="d-inline-block mb-0">Provider</h4>
                         <div class="d-flex">
 
-                            <a href="#" class="btn btn-icon btn-hover  btn-circle" uk-tooltip="Search product">
+                            <a href="#" class="btn btn-icon btn-hover  btn-circle" uk-tooltip="Search product"
+                               title="" aria-expanded="false">
                                 <i class="uil-search"></i>
                             </a>
                             <div class="uk-drop" uk-drop="mode: click; pos: left-center; offset: 0">
@@ -398,29 +376,32 @@
                                 </form>
                             </div>
 
-                            <a href="#" class="btn btn-icon btn-hover  btn-circle" uk-tooltip="filter">
+                            <a href="#" class="btn btn-icon btn-hover btn-circle">
                                 <i class="uil-filter"></i>
                             </a>
-                            <div uk-dropdown="pos: bottom-right ; mode: click ;animation: uk-animation-scale-up">
-                                <ul class="uk-nav uk-dropdown-nav">
-                                    <li class="uk-active"><a (click)="getAllBillOfAccountByIdAndStartOrder(idAccount, 5)"> Completed </a></li>
-                                    <li class="uk-active"><a (click)="getAllBillOfAccountByIdAndStartOrder(idAccount,4)"> Rejected </a></li>
-                                    <li class="uk-active"><a (click)="getAllBillOfAccountByIdAndStartOrder(idAccount,3)"> Confirmed </a></li>
-                                    <li class="uk-active"><a (click)="getAllBillOfAccountByIdAndStartOrder(idAccount,2)"> Pending </a></li>
+                            <div uk-dropdown="mode: click ; pos: bottom-right ; animation:uk-animation-scale-up"
+                                 class="p-0 dropdown-menu">
+                                <ul>
+                                    <li class="uk-active"><a href="#"> Newest </a></li>
+                                    <li><a href="#">From A-Z</a></li>
+                                    <li><a href="#">From Z-A</a></li>
                                 </ul>
                             </div>
 
 
-                            <a href="#" class="btn btn-icon btn-hover  btn-circle" uk-tooltip="More">
+                            <a href="#" class="btn btn-icon btn-hover btn-circle">
                                 <i class="uil-ellipsis-h"></i>
                             </a>
-                            <div uk-dropdown="pos: bottom-right ; mode: click ;animation: uk-animation-scale-up">
-                                <ul class="uk-nav uk-dropdown-nav">
-                                    <li><a (click)="getAllBillOfAccountById()"> Refresh </a></li>
+                            <div uk-dropdown="mode: click ; pos: bottom-right ; animation:uk-animation-scale-up"
+                                 class="p-0 dropdown-menu">
+                                <ul>
+                                    <li><a href="#"> Refresh </a></li>
                                     <li><a href="#">Manage</a></li>
                                     <li><a href="#">Setting</a></li>
                                 </ul>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -429,68 +410,58 @@
                     <table class="table align-items-center">
                         <thead>
                         <tr>
-                            <th scope="col">Provider</th>
-                            <th scope="col">Start At</th>
-                            <th scope="col">End At</th>
-                            <th scope="col">Total Time</th>
-                            <th scope="col">Total sales</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">View</th>
+                            <th scope="col">Status Provider</th>
+                            <th scope="col">Accept Request</th>
+
+
                             <th scope="col"></th>
                         </tr>
                         </thead>
-                        <tbody class="list" *ngFor="let ba of listBillOfAccount">
+                        <tbody class="list"
+                               *ngFor="let a of providers | paginate: { itemsPerPage: 4, currentPage: page, totalItems: total}">
                         <tr>
                             <th scope="row">
                                 <div class="media align-items-center">
                                     <div>
-                                        <div class="avatar-parent-child" style="width: max-content">
-                                            <img alt="Image placeholder" src="{{ba.provider.account.avatar}}"
-                                                 class="avatar  rounded-circle">
-                                            <span class="avatar-child avatar-badge bg-success"></span>
-                                        </div>
+                                        <img alt="Image placeholder" src="{{a.account.avatar}}"
+                                             style="height: 120px; width: 100px;">
                                     </div>
-                                    <div class="media-body ml-4">
-                                        <a href="#" class="name h6 mb-0 text-sm">{{ba.provider.account.fullName}}</a>
+                                    <div class="media-body ml-2">
+                                        <a href="shop-product.html"
+                                           class="name h6 mb-2 text-sm">{{a.account.fullName}}</a>
+                                        <span class="d-block text-warning">
+                                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                                class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                                </span>
                                     </div>
                                 </div>
                             </th>
-                            <td> {{ba.startOrder}} </td>
-                            <td> {{ba.endOrder}} </td>
-                            <td> {{ba.orderTime}} </td>
-                            <td> ${{ba.total}} </td>
-                            <td *ngIf="ba.statusOrder == 5"><span
-                                    class="badge badge-success rounded-pill">Completed</span></td>
-                            <td *ngIf="ba.statusOrder == 4"><span class="badge badge-dark rounded-pill">Rejected</span>
+                            <td> {{a.view}} USD</td>
+                            <td> {{a.price}} </td>
+                            <td *ngIf="a.statusProvider == 1"><span
+                                    class="badge badge-success rounded-pill">Active</span></td>
+                            <td *ngIf="a.statusProvider == 2"><span class="badge badge-danger rounded-pill">Busy</span>
                             </td>
-                            <td *ngIf="ba.statusOrder == 3"><span
-                                    class="badge badge-success rounded-pill">Confirmed</span></td>
-                            <td *ngIf="ba.statusOrder == 2"><span class="badge badge-danger rounded-pill">Pending</span>
+                            <td *ngIf="a.statusProvider == 3"><span class="badge badge-warning rounded-pill">!Request Become Provider </span>
                             </td>
-                            <td class="text-right">
+                            <td class="text-center">
                                 <!-- Actions -->
                                 <div class="actions ml-3">
-                                    <a *ngIf="ba.statusOrder == 3" class="btn btn-icon btn-hover btn-sm btn-circle"
-                                       uk-tooltip="Completed" (click)="changeToCompleted(ba.id)">
-                                        <i class="icon-feather-check-square"></i> </a>
-                                    <!--                                    <a *ngIf="ba.statusOrder == 3" class="btn btn-icon btn-hover btn-sm btn-circle"-->
-                                    <!--                                       uk-tooltip="Rejected" (click)="changeToRejected(ba.id)">-->
-                                    <!--                                        <i class="icon-feather-x-square"></i> </a>-->
-                                    <a class="btn btn-icon btn-hover btn-sm btn-circle"
-                                       uk-tooltip="Delete">
-                                        <i class="uil-trash-alt text-danger"></i> </a>
+                                    <a *ngIf="a.statusProvider == 3" class="opts_account" (click)="acceptProvider(a.id)"> <i class=""></i> <span class="badge badge-success rounded-pill">Accept</span> </a>
+                                    <a *ngIf="a.statusProvider == 1||a.statusProvider==2" class="opts_account"> <i></i> <span class="badge badge-dark rounded-pill">Nothing</span> </a>
                                 </div>
                             </td>
                         </tr>
-
                         </tbody>
+                        <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
                     </table>
                 </div>
             </div>
-
-
         </div>
-
-
         <!-- footer
            ================================================== -->
         <div class="footer">
@@ -510,10 +481,93 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 
+    <!--    &lt;!&ndash; The Modal &ndash;&gt;-->
+    <!--    <div class="modal" id="myModal">-->
+    <!--        <div class="modal-dialog">-->
+    <!--            <div class="modal-content">-->
+
+    <!--                &lt;!&ndash; Modal body &ndash;&gt;-->
+    <!--                <div class="modal-body">-->
+    <!--                    <section style="background-color: #eee;">-->
+    <!--                        <div class="container py-5">-->
+
+    <!--                            <div class="row">-->
+    <!--                                <div class="col-lg-4">-->
+    <!--                                    <div class="card mb-4">-->
+    <!--                                        <div class="card-body text-center">-->
+    <!--                                            <img src="{{account?.avatar}}"-->
+    <!--                                                 class="rounded-circle img-fluid" style="width: 150px;">-->
+    <!--                                            <h5 class="my-3">Total : {{account?.view}}</h5>-->
+    <!--                                            <p class="text-muted mb-4">Start at: {{account?.dateOfRegister}}</p>-->
+    <!--                                            <div class="d-flex justify-content-center mb-2">-->
+    <!--                                            </div>-->
+    <!--                                        </div>-->
+    <!--                                    </div>-->
+    <!--                                </div>-->
+    <!--                                <div class="col-lg-8">-->
+    <!--                                    <div class="card mb-4">-->
+    <!--                                        <div class="card-body">-->
+    <!--                                            <div class="row">-->
+    <!--                                                <div class="col-sm-5">-->
+    <!--                                                    <p class="mb-0">Full Name</p>-->
+    <!--                                                </div>-->
+    <!--                                                <div class="col-sm-7">-->
+    <!--                                                    <p class="text-muted mb-0">{{account?.fullName}}</p>-->
+    <!--                                                </div>-->
+    <!--                                            </div>-->
+    <!--                                            <hr>-->
+    <!--                                            <div class="row">-->
+    <!--                                                <div class="col-sm-5">-->
+    <!--                                                    <p class="mb-0">Height</p>-->
+    <!--                                                </div>-->
+    <!--                                                <div class="col-sm-7">-->
+    <!--                                                    <p class="text-muted mb-0">{{account?.height}}</p>-->
+    <!--                                                </div>-->
+    <!--                                            </div>-->
+    <!--                                            <hr>-->
+    <!--                                            <div class="row">-->
+    <!--                                                <div class="col-sm-5">-->
+    <!--                                                    <p class="mb-0">Weight</p>-->
+    <!--                                                </div>-->
+    <!--                                                <div class="col-sm-7">-->
+    <!--                                                    <p class="text-muted mb-0">{{account?.weight}}</p>-->
+    <!--                                                </div>-->
+    <!--                                            </div>-->
+    <!--                                            <hr>-->
+    <!--                                            <div class="row">-->
+    <!--                                                <div class="col-sm-5">-->
+    <!--                                                    <p class="mb-0">Date of Birth</p>-->
+    <!--                                                </div>-->
+    <!--                                                <div class="col-sm-7">-->
+    <!--                                                    <p class="text-muted mb-0">{{account?.birthday}}</p>-->
+    <!--                                                </div>-->
+    <!--                                            </div>-->
+    <!--                                            <hr>-->
+    <!--                                            <div class="row">-->
+    <!--                                                <div class="col-sm-5">-->
+    <!--                                                    <p class="mb-0">Address</p>-->
+    <!--                                                </div>-->
+    <!--                                                <div class="col-sm-7">-->
+    <!--                                                    <p class="text-muted mb-0">{{account?.country}}</p>-->
+    <!--                                                </div>-->
+    <!--                                            </div>-->
+    <!--                                            <hr>-->
+    <!--                                        </div>-->
+    <!--                                    </div>-->
+    <!--                                </div>-->
+    <!--                            </div>-->
+    <!--                        </div>-->
+    <!--                    </section>-->
+    <!--                </div>-->
+
+    <!--                &lt;!&ndash; Modal footer &ndash;&gt;-->
+    <!--                <div class="modal-footer">-->
+    <!--                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>-->
+    <!--                </div>-->
+
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
 </div>
-
-

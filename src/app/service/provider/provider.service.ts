@@ -48,7 +48,9 @@ export class ProviderService {
     getAllProviderAcc(page: number): Observable<Provider[]> {
         return this.http.get<Provider[]>(this.url + "?page" + page);
     }
-
+    getAllProvider(page:number):Observable<Provider[]>{
+        return this.http.get<Provider[]>(this.url+"/t/gatAllProviders"+ "?page" + page)
+    }
     getBillByIdProvider(idProvider: number): Observable<OrderLover[]> {
         return this.http.get<OrderLover[]>(this.url + "/orders/" + idProvider);
     }
@@ -62,6 +64,9 @@ export class ProviderService {
     }
     createProvider(provider:CreateProvider):Observable<CreateProvider>{
         return this.http.post<CreateProvider>(this.url + "/a/createProviderAndService",provider);
+    }
+    acceptProvider(provider:Provider):Observable<Provider>{
+        return this.http.post<Provider>(this.url + "/a/acceptProvider/sendEmail",provider);
     }
 
     getAllBillOfProviderAndStartOrder(idProvider: number, statusOrder: number): Observable<OrderLover[]> {
