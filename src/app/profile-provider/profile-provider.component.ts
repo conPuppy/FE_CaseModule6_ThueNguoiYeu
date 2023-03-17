@@ -1,18 +1,19 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import { Account } from '../model/Account';
+import {Account} from '../model/Account';
 import {OrderLover} from '../model/OrderLover';
 import {Provider} from '../model/Provider';
-import { AccountService } from '../service/account/account.service';
+import {AccountService} from '../service/account/account.service';
 import {ProviderService} from '../service/provider/provider.service';
 import * as moment from 'moment';
-import { OrderLoverService } from '../service/Order/order-lover.service';
+import {OrderLoverService} from '../service/Order/order-lover.service';
 import Swal from 'sweetalert2';
 import { ProvisionProviderService } from '../service/provisionprovider/provisionprovider.service';
 import { ProvisionProvider } from '../model/ProvisionProvider';
 import { CreateProvider } from '../model/CreateProvider';
 import { AccountForChange } from '../model/AccountForChange';
+
 @Component({
     selector: 'app-profile-provider',
     templateUrl: './profile-provider.component.html',
@@ -29,15 +30,17 @@ export class ProfileProviderComponent implements OnInit {
     endTimeConvert!:String;
     providerProvisions:ProvisionProvider[]=[];
     statusProvider!: number;
+
     constructor(private providerService: ProviderService,
                 private route: ActivatedRoute,
                 private router: Router,
-                private accountService:AccountService,
-                private orderLoverService:OrderLoverService,
+                private accountService: AccountService,
+                private orderLoverService: OrderLoverService,
                 private provisionProviderService: ProvisionProviderService) {
     }
 
     ngOnInit() {
+
         this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res=> {
             this.account = res;
             this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res => {
@@ -57,6 +60,7 @@ export class ProfileProviderComponent implements OnInit {
             total: new FormControl()
         })
     }
+
     showCart(id: number, statusOrder: number) {
         this.orderLoverService.getAllBillOfAccountByIdAndStartOrder(id,statusOrder).subscribe(data=> {
             this.orderLovers = data;
@@ -82,45 +86,51 @@ export class ProfileProviderComponent implements OnInit {
     }
 
 
+    createOrderLover() {
 
-    createOrderLover(){
 
         // @ts-ignore
-        this.startTimeConvert=document.getElementById('startOrder').value;
-        this.orderLover.startOrder= this.startTimeConvert;
-        this.orderLover.orderTime= this.formOrder.value.selectTime.orderTime;
-        this.orderLover.total= this.formOrder.value.total;
+        this.startTimeConvert = document.getElementById('startOrder').value;
+        this.orderLover.startOrder = this.startTimeConvert;
+        this.orderLover.orderTime = this.formOrder.value.selectTime.orderTime;
+        this.orderLover.total = this.formOrder.value.total;
         // @ts-ignore
-        this.startTimeConvert=moment(this.startTimeConvert).format('x');
-        this.orderLover.endOrder=moment.unix(+this.startTimeConvert+this.orderLover.orderTime*3600).format(" DD MM YYYY, h:mm A")
-        this.orderLover.statusOrder=2;
-        this.orderLover.account=this.account
-        this.orderLover.provider=this.provider
-        this.orderLoverService.createOrder(this.orderLover).subscribe((res)=> {Swal.fire('Done!', 'Sended!', 'success')});
+        this.startTimeConvert = moment(this.startTimeConvert).format('x');
+        this.orderLover.endOrder = moment.unix(+this.startTimeConvert + this.orderLover.orderTime * 3600).format(" DD MM YYYY, h:mm A")
+        this.orderLover.statusOrder = 2;
+        this.orderLover.account = this.account
+        this.orderLover.provider = this.provider
+        if (this.account.wallet > this.orderLover.total) {
+            this.orderLoverService.createOrder(this.orderLover).subscribe((res) => {
+                Swal.fire('Done!', 'Sended!', 'success')
+                this.router.navigate(["/userShowBill"])
+            });
+        } else {
+            Swal.fire('Your balance is not enough! please refill')
+        }
     }
-    closeOrderLover(){
+
+    closeOrderLover() {
 
         // @ts-ignore
-        this.startTimeConvert=document.getElementById('startOrder').value;
-        this.orderLover.startOrder= this.startTimeConvert;
-        this.orderLover.orderTime= this.formOrder.value.selectTime.orderTime;
-        this.orderLover.total= this.formOrder.value.total;
+        this.startTimeConvert = document.getElementById('startOrder').value;
+        this.orderLover.startOrder = this.startTimeConvert;
+        this.orderLover.orderTime = this.formOrder.value.selectTime.orderTime;
+        this.orderLover.total = this.formOrder.value.total;
         // @ts-ignore
-        this.startTimeConvert=moment(this.startTimeConvert).format('x');
-        this.orderLover.endOrder=moment.unix(+this.startTimeConvert+this.orderLover.orderTime*3600).format(" DD MM YYYY, h:mm A")
-        this.orderLover.statusOrder=1;
-        this.orderLover.account=this.account
-        this.orderLover.provider=this.provider
-        this.orderLoverService.createOrder(this.orderLover);
-        this.orderLoverService.createOrder(this.orderLover).subscribe((res)=> {Swal.fire({icon: 'error',
+        this.startTimeConvert = moment(this.startTimeConvert).format('x');
+        this.orderLover.endOrder = moment.unix(+this.startTimeConvert + this.orderLover.orderTime * 3600).format(" DD MM YYYY, h:mm A")
+        this.orderLover.statusOrder = 1;
+        this.orderLover.account = this.account
+        this.orderLover.provider = this.provider
+
+        this.orderLoverService.createOrder(this.orderLover).subscribe((res)=> {
+        Swal.fire({icon: 'error',
             title: 'Cancel...',
             text: 'See you again',}),
             this.showCart(this.account.id,1);
         });
-        
     }
-
-
 
 
     logout() {

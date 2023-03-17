@@ -676,12 +676,13 @@ align-content: center">
                         </div>
                         <br>
                         <br>
+                            <div class="row">
+                                <div class="col">Total:</div>
+                                <div class="col">
+                                    <input formControlName="total" readonly >
+                                </div>
+                                $
 
-
-                        <div class="row">
-                            <div class="col">Total:</div>
-                            <div class="col">
-                                <input formControlName="total">
                             </div>
                             $
                         </div>
@@ -691,9 +692,8 @@ align-content: center">
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Order</button>
-                    <button type="button" (click)="closeOrderLover()" class="btn btn-outline-light text-dark"
-                            data-bs-dismiss="modal">Close
-                    </button>
+                    <button type="button" (click)="closeOrderLover()" class="btn btn-outline-light text-dark" data-bs-dismiss="modal">Close</button>
+
                 </div>
 
             </div>

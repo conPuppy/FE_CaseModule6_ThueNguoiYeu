@@ -98,6 +98,7 @@ export class ProviderShowBillComponent implements OnInit{
   changeToConfirmed(idOrder: number) {
     this.orderLoverService.changeToConfirmed(idOrder).subscribe(() => {
       this.findProviderByAccountUsername();
+      this.router.navigate(["/providerShowBill"])
     })
   }
 
