@@ -2168,6 +2168,7 @@ ul.dropdown-user-menu .menu-divider {
     height: 260px;
     -webkit-transition: .3s ease all;
     transition: .3s ease all;
+    /*background-image: url("https://tinhayvip.com/wp-content/uploads/2022/06/vsbg-7.jpg") !important;*/
     background: -webkit-linear-gradient(45deg, #303f9f, #7b1fa2) !important;
     background: linear-gradient(45deg, #303f9f, #7b1fa2) !important;
 }
