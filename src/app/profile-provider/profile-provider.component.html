@@ -30,7 +30,7 @@
                 <!-- browse apps  -->
                 <a href="#" class="opts_icon uk-visible@s"> <i class="uil-shop"></i></a>
                 <a href="#" class="opts_icon uk-visible@s"> <i class="uil-shopping-basket"></i> <span>1</span></a>
-                <!-- browse apps dropdown -->
+                <!-- cart apps dropdown -->
                 <div uk-dropdown="pos: top-right;mode:click ; animation: uk-animation-slide-bottom-small"
                      class="dropdown-notifications large">
 
@@ -40,16 +40,26 @@
                         <!-- notiviation list -->
                         <ul>
                             <li class="notifications-not-read" >
-                                <a href="#" *ngFor="let o of orderLovers">
-                                        <span class="notification-avatar">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th scope="col">Provider</th>
+                                        <th scope="col">Order Time (giờ)</th>
+                                        <th scope="col">Total ($/giờ)</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let o of orderLovers">
+                                        <td><span class="notification-avatar">
                                             <img src="{{o?.provider?.account?.avatar}}" alt="">
-                                        </span>
-                                    <div class="notification-text notification-msg-text">
-                                        <strong>{{o?.provider?.account?.fullName}}</strong>
-                                        <p>{{o.total}}</p>
-                                        <span class="time-ago"> {{o.orderTime}} </span>
-                                    </div>
-                                </a>
+                                        </span></td>
+                                        <td>{{o?.provider?.account?.fullName}}</td>
+                                        <td>{{o.orderTime}}</td>
+                                        <td>{{o.total}} </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </li>
                         </ul>
 

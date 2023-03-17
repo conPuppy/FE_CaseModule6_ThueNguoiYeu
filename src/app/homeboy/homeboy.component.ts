@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Account } from '../model/Account';
+import { AccountForChange } from '../model/AccountForChange';
+import { CreateProvider } from '../model/CreateProvider';
 import { Provider } from '../model/Provider';
 import { ProvisionProvider } from '../model/ProvisionProvider';
 import { AccountService } from '../service/account/account.service';
@@ -15,10 +18,13 @@ import { ProvisionProviderService } from '../service/provisionprovider/provision
 export class HomeboyComponent implements OnInit{
   providers: Provider[] = [];
   provider= new Provider;
+  provider1!:CreateProvider
   provisionproviders: ProvisionProvider[] = [];
   page: number = 1;
   total: number =0;
   account: any;
+  account1!: AccountForChange;
+  statusProvider!:number;
 
 
   constructor(private accountService: AccountService, private router: Router, private providerService: ProviderService,
@@ -29,11 +35,28 @@ export class HomeboyComponent implements OnInit{
       this.providers = data;
       this.provisionproviderService.getAllProvisionProvider().subscribe(data=>{
         this.provisionproviders = data;
+        this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res=>{
+          if (res!=null){
+            this.statusProvider=res.statusProvider;
+          }
+        })
       })
     });
     this.getTopSellProviderAcc();
     this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res => {
       this.account = res})
+  }
+  createProvider(){
+    const providerCreate= new CreateProvider("",0,0,3,this.account)
+    this.providerService.createProvider(providerCreate).subscribe(res=>{
+      Swal.fire('Done!', 'Sended!', 'success');
+      this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res=>{
+        if (res!=null){
+          this.statusProvider=res.statusProvider;
+        }
+      })
+    })
+
   }
   findProviderById(id: number) {
     this.providerService.findProviderById(id).subscribe(data=>{
