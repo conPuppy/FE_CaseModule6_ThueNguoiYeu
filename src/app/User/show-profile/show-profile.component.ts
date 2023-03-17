@@ -50,6 +50,9 @@ export class ShowProfileComponent implements OnInit {
     localStorage.clear();
     this.router.navigate([''])
   }
+    goToUserShowBill(){
+        this.router.navigate(['/userShowBill'])
+    }
   goToProfile(){
     this.router.navigate(['/showProfile'])
   }

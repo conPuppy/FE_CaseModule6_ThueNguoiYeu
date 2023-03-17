@@ -19,6 +19,7 @@ import { ProvisionProvider } from '../model/ProvisionProvider';
 export class ProfileProviderComponent implements OnInit {
     provider!: Provider;
     orderLover: OrderLover = new OrderLover();
+    orderLovers: OrderLover[]=[];
     formOrder!: any;
     account!:Account;
     startTimeConvert!:String;
@@ -33,7 +34,10 @@ export class ProfileProviderComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res=>this.account=res)
+        this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res=> {
+            this.account = res;
+            this.showCart(this.account.id,1);
+        })
         this.provisionProviderService.findProvisionProviderByProviderIdAndStatusServiceProvider(+this.route.snapshot.params['id']).subscribe(data=>this.providerProvisions=data)
         this.providerService.findProviderById(+this.route.snapshot.params['id']).subscribe(res => this.provider = res)
         this.formOrder = new FormGroup({
@@ -42,6 +46,11 @@ export class ProfileProviderComponent implements OnInit {
                 orderTime: new FormControl(),
             }),
             total: new FormControl()
+        })
+    }
+    showCart(id: number, statusOrder: number) {
+        this.orderLoverService.getAllBillOfAccountByIdAndStartOrder(id,statusOrder).subscribe(data=> {
+            this.orderLovers = data;
         })
     }
     caculatorTotal(){
@@ -81,7 +90,10 @@ export class ProfileProviderComponent implements OnInit {
         this.orderLoverService.createOrder(this.orderLover);
         this.orderLoverService.createOrder(this.orderLover).subscribe((res)=> {Swal.fire({icon: 'error',
             title: 'Cancel...',
-            text: 'See you again',})});
+            text: 'See you again',}),
+            this.showCart(this.account.id,1);
+        });
+        
     }
 
 
