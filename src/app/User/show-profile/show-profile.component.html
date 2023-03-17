@@ -227,7 +227,8 @@
                         <li><a class="btn-danger"  *ngIf="statusProvider==2"> <i class="uil-user" ></i> Busy</a></li>
                         <li><a class="btn-success" (click)="createProvider()" *ngIf="statusProvider!=1&&statusProvider!=2&&statusProvider!=3"> <i class="uil-bolt" ></i> Become Provider</a></li>
                         <li><a (click)="goToProfile()"> <i class="uil-user"></i> My Profile </a></li>
-                        <li><a *ngIf="account.statusAccount==1"> <i class="icon-feather-dollar-sign"></i > User Bill </a></li>
+
+                        <li><a *ngIf="account.statusAccount==1" (click)="goToUserShowBill()" > <i class="uil-envelope"></i > My Order </a></li>
                         <li><a *ngIf="statusProvider==1||statusProvider==2"> <i class="icon-feather-credit-card"></i> Provider Bill </a></li>
                         <li><a (click)="goToEditProfile()"> <i class="uil-edit"></i> Edit Profile </a></li>
                         <li><a href="profile-setting.html"> <i class="uil-cog"></i> Account Settings</a></li>
