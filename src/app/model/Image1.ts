@@ -1,13 +1,12 @@
 import { Account } from "./Account";
+import { AccountForChange } from "./AccountForChange";
 
-export class Image{
-    id!:number;
+export class Image1{
     url!:String;
-    account!:Account;
+    account!:AccountForChange;
     statusImg!:number;
 
-    constructor(id: number, url: String, account:Account, statusImg: number) {
-        this.id = id;
+    constructor(url: String, account:AccountForChange, statusImg: number) {
         this.url = url;
         this.account = account;
         this.statusImg = statusImg;

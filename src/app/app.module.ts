@@ -18,7 +18,6 @@ import {ShowtopviewComponent} from './showtopview/showtopview.component';
 import {HomeComponent} from './User/home/home.component';
 import {LoginComponent} from './User/login/login.component';
 import {ShowProfileComponent} from './User/show-profile/show-profile.component';
-import {SupplierComponent} from './User/supplier/supplier.component';
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import {environment} from "../environments/environment";
@@ -51,7 +50,6 @@ import { ImageComponent } from './image/image.component';
         HomeAdminComponent,
         ShowProfileComponent,
         LoginComponent,
-        SupplierComponent,
         ChangeInfoComponent,
         ChangeAvatarComponent,
         ChangeAppearanceComponent,

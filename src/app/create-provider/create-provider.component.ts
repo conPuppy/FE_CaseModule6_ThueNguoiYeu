@@ -4,10 +4,11 @@ import {FormControl, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
 import Swal from "sweetalert2";
 import { AccountForChange } from "../model/AccountForChange";
+import { ImageUrlDTO } from "../model/ImageUrlDTO/ImageUrlDTO";
 import { Provider } from "../model/Provider";
-import { Provision } from "../model/Provision";
 import { ProvisionProvider } from "../model/ProvisionProvider";
 import { AccountService } from "../service/account/account.service";
+import { ImageService } from "../service/image/image.service";
 import { ProviderService } from "../service/provider/provider.service";
 import { ProvisionService } from "../service/provision/provision.service";
 import { ProvisionProviderService } from "../service/provisionprovider/provisionprovider.service";
@@ -23,25 +24,31 @@ export class CreateProviderComponent implements OnInit {
     statusProvider!: number;
     provider!: Provider;
     allServicesOfProvider!: ProvisionProvider[];
-    formEditPrice  = new FormGroup({
-        price: new FormControl(""),
 
-    })
+    showImgActive:ImageUrlDTO[]=[];
+    id!:number;
+    formChangePrice!:any;
+
     constructor(private router: Router,
                 private storage: AngularFireStorage,
                 private accountService: AccountService,
                 private providerService: ProviderService,
                 private provisionProviderService: ProvisionProviderService,
                 private provisionService: ProvisionService,
+                private imageService:ImageService
     ) {
     }
-
     ngOnInit() {
-        this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res=>this.account=res)
+        this.formChangePrice= new FormGroup({
+            price: new FormControl()
+        })
+        this.id=this.accountService.getAccountToken().id
+        this.imageService.findByAccount_IdAAndStatusImg1(this.id).subscribe(res=>{this.showImgActive=res})
+        this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res=>{this.account=res;})
         this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res => {
             if (res != null) {
-                console.log(res)
-                this.provider=res
+                this.provider=res;
+                this.formChangePrice.get('price').setValue(this.provider.price);
                 this.statusProvider = res.statusProvider;
             }
         })
@@ -49,7 +56,9 @@ export class CreateProviderComponent implements OnInit {
 
     }
     changePrice(){
-        alert('vao')
+        this.provider.price=this.formChangePrice.value.price
+        console.log(this.formChangePrice.value.price)
+        this.providerService.editProvider(this.provider).subscribe()
     }
     changeFreeAndExtend(id:number){
         this.provisionProviderService.findById(id).subscribe(res=>{
@@ -57,8 +66,7 @@ export class CreateProviderComponent implements OnInit {
                 res.statusServiceProvider=2
             }else {
                 res.statusServiceProvider=1
-            }
-            this.provisionProviderService.saveProvisionProvider(res).subscribe(res=>this.getAllService());
+            }this.provisionProviderService.saveProvisionProvider(res).subscribe(res=>this.getAllService());
         });
     }
 
@@ -107,7 +115,9 @@ export class CreateProviderComponent implements OnInit {
         this.router.navigate(["/providerShowBill"])
     }
 
-    setPrice() {
-        this.formEditPrice.controls['price'].value;
+    goToEditImages() {
+        this.router.navigate([`/image/${this.account.id}`])
     }
+
 }
+

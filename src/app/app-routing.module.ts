@@ -9,7 +9,6 @@ import {ChangeAppearanceComponent} from "./change-appearance/change-appearance.c
 import {ChangePasswordComponent} from "./change-password/change-password.component";
 import {ShowComponent} from "./show/show.component";
 import {ShowtopviewComponent} from "./showtopview/showtopview.component";
-import {SupplierComponent} from "./User/supplier/supplier.component";
 import { HomeComponent } from './User/home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -38,7 +37,6 @@ const routes: Routes = [
   {path:"admin", component: HomeAdminComponent},
   {path:"login", component: LoginComponent},
   {path:"", component: HomeComponent},
-  {path:"supplier", component: SupplierComponent},
   {path:"changeInfo", component: ChangeInfoComponent},
   {path:"changeAvatar", component: ChangeAvatarComponent},
   {path:"changeAppearance", component: ChangeAppearanceComponent},
