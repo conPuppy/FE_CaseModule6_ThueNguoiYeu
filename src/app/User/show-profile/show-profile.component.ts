@@ -31,6 +31,9 @@ export class ShowProfileComponent implements OnInit {
             this.orderLovers = data;
         })
     }
+    goToProviderSetting() {
+        this.router.navigate(["/profileProvider"])
+    }
 
     ngOnInit(): void {
         this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res => {

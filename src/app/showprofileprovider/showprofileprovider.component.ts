@@ -36,7 +36,9 @@ export class ShowprofileproviderComponent implements OnInit {
             this.orderLovers = data;
         })
     }
-
+    goToProviderSetting() {
+        this.router.navigate(["/profileProvider"])
+    }
     logout() {
         localStorage.clear();
         this.router.navigate([''])

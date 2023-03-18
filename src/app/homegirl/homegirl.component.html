@@ -250,7 +250,6 @@
                     </a>
 
                     <!-- User menu -->
-
                     <ul class="dropdown-user-menu">
                         <li><a class="btn-warning"  *ngIf="statusProvider==3"> <i class="uil-user"></i> Wait admin accept!</a></li>
                         <li><a class="btn-success"  *ngIf="statusProvider==1"> <i class="uil-user" ></i> Ready</a></li>
@@ -260,12 +259,11 @@
                         <li><a (click)="goToMyOrder()" > <i class="uil-invoice"></i> My Order </a></li>
                         <li><a (click)="goToMyBill()" > <i class="uil-invoice"></i> My Bill </a></li>
                         <li><a (click)="goToEditProfile()"> <i class="uil-edit"></i> Edit Profile </a></li>
-                        <li><a href="profile-setting.html"> <i class="uil-cog"></i> Account Settings</a></li>
+                        <li><a (click)="goToProviderSetting()"> <i class="uil-cog"></i> Provider Settings</a></li>
                         <li class="menu-divider"></li>
                         <li><a (click)="logout()"> <i class="icon-feather-log-out"></i> Sing Out</a>
                         </li>
                     </ul>
-
 
                 </div>
 
@@ -299,14 +297,14 @@
                             <h4 class="mb-2" data-bs-toggle="modal" data-bs-target="#myModal" (click)="findProviderById(pr.id)">{{pr.account.fullName}}</h4>
                             <div >
                                 <p><i class="uil-eye"></i> {{pr.view}}</p>
-                                <table style="width: 100%">
-                                    <tbody *ngFor="let pp of provisionproviders">
-                                    <tr *ngIf="pp.provider.id== pr.id &&pp.provision.category.id==1">
-                                        <td style="text-align: left">{{pp.provision.name}}</td>
-                                        <td style="text-align: right">Free</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+<!--                                <table style="width: 100%">-->
+<!--                                    <tbody *ngFor="let pp of provisionproviders">-->
+<!--                                    <tr *ngIf="pp.provider.id== pr.id &&pp.provision.category.id==1">-->
+<!--                                        <td style="text-align: left">{{pp.provision.name}}</td>-->
+<!--                                        <td style="text-align: right">Free</td>-->
+<!--                                    </tr>-->
+<!--                                    </tbody>-->
+<!--                                </table>-->
                                 <p class="text-muted uk-text-bold my-0"
                                 >{{pr.price}} $/ giờ</p>
                             </div>
@@ -391,55 +389,9 @@
                 </ul>
             </nav>
 
-
-
-        </div>
-
-        <!-- footer
-           ================================================== -->
-        <div class="footer">
-            <div class="uk-grid-collapse" uk-grid>
-                <div class="uk-width-expand@s uk-first-column">
-                    <p>© 2020 <strong>Bootstro</strong>. All Rights Reserved. </p>
-                </div>
-                <div class="uk-width-auto@s">
-                    <nav class="footer-nav-icon">
-                        <ul>
-                            <li><a href="#"><i class="icon-brand-facebook"></i></a></li>
-                            <li><a href="#"><i class="icon-brand-dribbble"></i></a></li>
-                            <li><a href="#"><i class="icon-brand-youtube"></i></a></li>
-                            <li><a href="#"><i class="icon-brand-twitter"></i></a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- content 12 provider hot-->
-
-
-
-    <!-- footer
-       ================================================== -->
-    <div class="footer">
-        <div class="uk-grid-collapse" uk-grid>
-            <div class="uk-width-expand@s uk-first-column">
-                <p>© 2020 <strong>Bootstro</strong>. All Rights Reserved. </p>
-            </div>
-            <div class="uk-width-auto@s">
-                <nav class="footer-nav-icon">
-                    <ul>
-                        <li><a href="#"><i class="icon-brand-facebook"></i></a></li>
-                        <li><a href="#"><i class="icon-brand-dribbble"></i></a></li>
-                        <li><a href="#"><i class="icon-brand-youtube"></i></a></li>
-                        <li><a href="#"><i class="icon-brand-twitter"></i></a></li>
-                    </ul>
-                </nav>
-            </div>
         </div>
     </div>
+
 
 </div>
 
@@ -449,7 +401,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
 
-            <!--             Modal body-->
+            <!-- Modal body-->
             <div class="modal-body">
                 <section style="background-color: #eee;">
                     <div class="container py-5">

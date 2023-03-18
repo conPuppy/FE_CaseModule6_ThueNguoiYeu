@@ -2,6 +2,7 @@ import {Component, OnInit } from "@angular/core";
 import { AngularFireStorage } from "@angular/fire/compat/storage";
 import {FormControl, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
+import Swal from "sweetalert2";
 import { AccountForChange } from "../model/AccountForChange";
 import { ImageUrlDTO } from "../model/ImageUrlDTO/ImageUrlDTO";
 import { Provider } from "../model/Provider";
@@ -23,9 +24,11 @@ export class CreateProviderComponent implements OnInit {
     statusProvider!: number;
     provider!: Provider;
     allServicesOfProvider!: ProvisionProvider[];
+
     showImgActive:ImageUrlDTO[]=[];
     id!:number;
     formChangePrice!:any;
+
     constructor(private router: Router,
                 private storage: AngularFireStorage,
                 private accountService: AccountService,
@@ -73,10 +76,22 @@ export class CreateProviderComponent implements OnInit {
         })
 
     }
+    requestVip() {
+        this.account.statusVip = 3
+        this.accountService.changeInfo(this.account).subscribe((res) => {
+            this.accountService.findById(this.accountService.getAccountToken().id).subscribe((data) => {
+                this.account = res;
+                Swal.fire('Done!', 'Request sent successfully!', 'success')
+            })
+        })
+    }
 
     logout() {
         localStorage.clear();
         this.router.navigate([''])
+    }
+    goToProviderSetting() {
+        this.router.navigate(["/profileProvider"])
     }
 
     goToProfile() {
@@ -99,8 +114,10 @@ export class CreateProviderComponent implements OnInit {
     goToMyBill() {
         this.router.navigate(["/providerShowBill"])
     }
+
     goToEditImages() {
         this.router.navigate([`/image/${this.account.id}`])
     }
 
 }
+

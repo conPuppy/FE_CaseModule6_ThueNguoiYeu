@@ -182,4 +182,7 @@ export class ChangeInfoComponent implements OnInit {
     goToProvider() {
         this.router.navigate(['/supplier'])
     }
+    goToProviderSetting() {
+        this.router.navigate(["/profileProvider"])
+    }
 }

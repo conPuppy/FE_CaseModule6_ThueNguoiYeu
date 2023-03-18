@@ -222,7 +222,7 @@
                         <li><a (click)="goToMyOrder()"> <i class="uil-invoice"></i> My Order </a></li>
                         <li><a (click)="goToMyBill()"> <i class="uil-invoice"></i> My Bill </a></li>
                         <li><a (click)="goToEditProfile()"> <i class="uil-edit"></i> Edit Profile </a></li>
-                        <li><a (click)="goToEditProvider()"> <i class="uil-cog"></i> Provider Settings</a></li>
+                        <li><a (click)="goToProviderSetting()"> <i class="uil-cog"></i> Provider Settings</a></li>
                         <li class="menu-divider"></li>
                         <li><a (click)="logout()"> <i class="icon-feather-log-out"></i> Sing Out</a>
                         </li>
@@ -236,9 +236,57 @@
         </header>
 
     </div>
+    <div class="box-gradient-home"></div>
 
     <!-- content -->
     <div class="page-content">
+        <div class="profile">
+            <div class="profile-cover">
+
+                <!-- profile cover -->
+                <img src="assets/images/team/user-cover.jpg" alt="">
+
+            </div>
+
+            <div class="page-content-inner">
+                <div class="profile-details">
+                    <div class="left-side">
+                        <div class="profile-image">
+                            <a class="opts_account" href="#">
+                                <img  src="{{account?.avatar}}" alt="">
+                            </a>
+                        </div>
+                        <div class="profile-details-info">
+                            <h3> {{account?.fullName}} </h3>
+                        </div>
+                    </div>
+                    <div class="right-side uk-visible@m">
+                        <div class="btn-subscribe">
+                            <button *ngIf="account?.statusVip==1" (click)="requestVip()" class="btn btn-warning btn-sm">
+                                <i class="icon-feather-user"></i> Up Account VIP </button>
+                            <button *ngIf="account?.statusVip==2" class="btn btn-danger btn-sm">
+                                <i class="icon-feather-user"></i> Account VIP </button>
+                            <button  *ngIf="account?.statusVip==3" class="btn btn-success btn-sm">
+                                <i class="icon-feather-user"></i> Request Sended </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-profile" k-sticky="offset:61;media : @s">
+                    <nav class="responsive-tab">
+                        <ul>
+                            <li class="uk-active"><a class="active" href="#0">Your Profile</a></li>
+                        </ul>
+                    </nav>
+                    <form class="nav-profile-saerchbox">
+                        <i class="uil-search"></i>
+                        <input class="uk-input" type="text" value="Search Post...">
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
         <div class="page-content-inner">
             <div class="row">
                 <div class="col-lg-3 col-12">
@@ -326,6 +374,7 @@ align-content: center">
                             <button  type="submit" class="btn btn-danger">Set Price</button>
                             <br>
                         </form>
+
                     </div>
                     <div>
                         <div class="card">

@@ -33,22 +33,26 @@ export class HomeboyComponent implements OnInit{
               private provisionproviderService: ProvisionProviderService, private orderLoverService:OrderLoverService) {
   }
   ngOnInit(): void {
-    this.providerService.getGirlProviderTopView().subscribe(data=>{
-      this.providers = data;
-      this.provisionproviderService.getAllProvisionProvider().subscribe(data=>{
-        this.provisionproviders = data;
-        
-        this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res=>{
-          if (res!=null){
-            this.statusProvider=res.statusProvider;
-          }
-        })
-      })
-    });
-    this.getTopSellProviderAcc();
     this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res => {
       this.account = res;
-      this.showCart(this.account.id,1)})
+      this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res=>{
+        if (res!=null){
+          this.statusProvider=res.statusProvider;
+        }
+      })
+      this.providerService.getGirlProviderTopView().subscribe(data=>{
+        this.providers = data;
+        this.provisionproviderService.getAllProvisionProvider().subscribe(data=>{
+          this.provisionproviders = data;
+        })
+      });
+      this.getTopSellProviderAcc();
+      this.showCart(this.account.id,1);
+    })
+    
+  }
+  goToProviderSetting() {
+    this.router.navigate(["/profileProvider"])
   }
   createProvider(){
     const providerCreate= new CreateProvider("",0,0,3,this.account)

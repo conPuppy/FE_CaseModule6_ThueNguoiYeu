@@ -85,6 +85,9 @@ export class ProviderShowBillComponent implements OnInit{
   goToMyBill() {
     this.router.navigate(["/providerShowBill"])
   }
+  goToProviderSetting() {
+    this.router.navigate(["/profileProvider"])
+  }
   
 
   getBillByIdProvider(idProvider: number) {

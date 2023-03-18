@@ -36,6 +36,9 @@ export class ViewProviderComponent implements OnInit{
     })
     this.getAllService()
   }
+  goToProviderSetting() {
+    this.router.navigate(["/profileProvider"])
+  }
   getAllService() {
     this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res=>{
       this.provisionProviderService.findProvisionProviderByProviderId(res.id).subscribe(res1=>this.allServicesOfProvider=res1);

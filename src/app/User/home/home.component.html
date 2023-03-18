@@ -112,7 +112,7 @@
     <!-- content -->
     <div class="page-content">
       <div class="page-content-inner">
-        <h5 class="title-header-left" style="font-weight: 700; font-size: 20px; color: #4b35a0">All Providers</h5>
+        <h5 class="title-header-left" style="font-weight: 700; font-size: 20px; color: #4b35a0">New Providers</h5>
         <br>
         <div class="row">
 
@@ -122,6 +122,8 @@
               <div class="p-3">
                 <h4 class="mb-2">{{provider.account.fullName}}</h4>
                 <div >
+
+                  <p><i class="uil-eye"></i> {{provider.view}}</p>
 <!--                  <table style="width: 100%">-->
 <!--                    <tbody *ngFor="let pp of provisionproviders">-->
 <!--                    <tr *ngIf="pp.provider.id== provider.id && provider.account.id==provider.account.id &&pp.provision.category.id==1">-->
@@ -146,43 +148,13 @@
         </div>
 
 
-<!--        <nav aria-label="Page navigation example" class="my-lg-4">-->
-<!--          <ul class="pagination justify-content-center">-->
-<!--            <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>-->
-
-<!--          </ul>-->
-<!--        </nav>-->
-
 
       </div>
 
     </div>
 
-
-    <!-- footer
-       ================================================== -->
-    <div class="footer">
-      <div class="uk-grid-collapse" uk-grid>
-        <div class="uk-width-expand@s uk-first-column">
-          <p>© 2020 <strong>Bootstro</strong>. All Rights Reserved. </p>
-        </div>
-        <div class="uk-width-auto@s">
-          <nav class="footer-nav-icon">
-            <ul>
-              <li><a href="#"><i class="icon-brand-facebook"></i></a></li>
-              <li><a href="#"><i class="icon-brand-dribbble"></i></a></li>
-              <li><a href="#"><i class="icon-brand-youtube"></i></a></li>
-              <li><a href="#"><i class="icon-brand-twitter"></i></a></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </div>
 
   </div>
-
-
-
 
 
 </div>
