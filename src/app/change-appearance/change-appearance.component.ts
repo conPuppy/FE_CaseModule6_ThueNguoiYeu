@@ -50,6 +50,9 @@ export class ChangeAppearanceComponent implements OnInit {
             this.formChangeAppearance.get('description').setValue(res.description)
         })
     }
+    goToProviderSetting() {
+        this.router.navigate(["/profileProvider"])
+    }
     showCart(id: number, statusOrder: number) {
         this.orderLoverService.getAllBillOfAccountByIdAndStartOrder(id, statusOrder).subscribe(data => {
             this.orderLovers = data;

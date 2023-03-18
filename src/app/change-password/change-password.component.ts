@@ -144,6 +144,9 @@ export class ChangePasswordComponent implements OnInit {
     goToProfile(){
         this.router.navigate(['/showProfile'])
     }
+    goToProviderSetting() {
+        this.router.navigate(["/profileProvider"])
+    }
     goToEditProfile(){
         this.router.navigate(['/changeInfo'])
     }

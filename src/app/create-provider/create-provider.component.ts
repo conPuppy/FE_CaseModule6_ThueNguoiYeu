@@ -1,6 +1,8 @@
 import {Component, OnInit } from "@angular/core";
 import { AngularFireStorage } from "@angular/fire/compat/storage";
+import {FormControl, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
+import Swal from "sweetalert2";
 import { AccountForChange } from "../model/AccountForChange";
 import { Provider } from "../model/Provider";
 import { Provision } from "../model/Provision";
@@ -21,6 +23,10 @@ export class CreateProviderComponent implements OnInit {
     statusProvider!: number;
     provider!: Provider;
     allServicesOfProvider!: ProvisionProvider[];
+    formEditPrice  = new FormGroup({
+        price: new FormControl(""),
+
+    })
     constructor(private router: Router,
                 private storage: AngularFireStorage,
                 private accountService: AccountService,
@@ -62,10 +68,22 @@ export class CreateProviderComponent implements OnInit {
         })
 
     }
+    requestVip() {
+        this.account.statusVip = 3
+        this.accountService.changeInfo(this.account).subscribe((res) => {
+            this.accountService.findById(this.accountService.getAccountToken().id).subscribe((data) => {
+                this.account = res;
+                Swal.fire('Done!', 'Request sent successfully!', 'success')
+            })
+        })
+    }
 
     logout() {
         localStorage.clear();
         this.router.navigate([''])
+    }
+    goToProviderSetting() {
+        this.router.navigate(["/profileProvider"])
     }
 
     goToProfile() {
@@ -87,5 +105,9 @@ export class CreateProviderComponent implements OnInit {
     }
     goToMyBill() {
         this.router.navigate(["/providerShowBill"])
+    }
+
+    setPrice() {
+        this.formEditPrice.controls['price'].value;
     }
 }

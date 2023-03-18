@@ -37,8 +37,16 @@ export class UserShowBillComponent implements OnInit {
         this.getAllBillOfAccountById();
         this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res => {
             this.account = res;
-            this.showCart(this.account.id, 1)
+            this.showCart(this.account.id, 1);
+            this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res => {
+                if (res != null) {
+                    this.statusProvider = res.statusProvider;
+                }
+            })
         });
+    }
+    goToProviderSetting() {
+        this.router.navigate(["/profileProvider"])
     }
     createProvider() {
         const providerCreate = new CreateProvider("", 0, 0, 3, this.account)

@@ -38,6 +38,9 @@ export class ChangeAvatarComponent implements OnInit {
             this.imgSrc = this.account.avatar
         })
     }
+    goToProviderSetting() {
+        this.router.navigate(["/profileProvider"])
+    }
 
     showCart(id: number, statusOrder: number) {
         this.orderLoverService.getAllBillOfAccountByIdAndStartOrder(id, statusOrder).subscribe(data => {

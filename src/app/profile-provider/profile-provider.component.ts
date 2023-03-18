@@ -60,6 +60,9 @@ export class ProfileProviderComponent implements OnInit {
             total: new FormControl()
         })
     }
+    goToProviderSetting() {
+        this.router.navigate(["/profileProvider"])
+    }
     showCart(id: number, statusOrder: number) {
         this.orderLoverService.getAllBillOfAccountByIdAndStartOrder(id,statusOrder).subscribe(data=> {
             this.orderLovers = data;

@@ -250,7 +250,6 @@
                     </a>
 
                     <!-- User menu -->
-
                     <ul class="dropdown-user-menu">
                         <li><a class="btn-warning"  *ngIf="statusProvider==3"> <i class="uil-user"></i> Wait admin accept!</a></li>
                         <li><a class="btn-success"  *ngIf="statusProvider==1"> <i class="uil-user" ></i> Ready</a></li>
@@ -260,12 +259,11 @@
                         <li><a (click)="goToMyOrder()" > <i class="uil-invoice"></i> My Order </a></li>
                         <li><a (click)="goToMyBill()" > <i class="uil-invoice"></i> My Bill </a></li>
                         <li><a (click)="goToEditProfile()"> <i class="uil-edit"></i> Edit Profile </a></li>
-                        <li><a href="profile-setting.html"> <i class="uil-cog"></i> Account Settings</a></li>
+                        <li><a (click)="goToProviderSetting()"> <i class="uil-cog"></i> Provider Settings</a></li>
                         <li class="menu-divider"></li>
                         <li><a (click)="logout()"> <i class="icon-feather-log-out"></i> Sing Out</a>
                         </li>
                     </ul>
-
 
                 </div>
 
