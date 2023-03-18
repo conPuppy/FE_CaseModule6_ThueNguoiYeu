@@ -71,14 +71,14 @@
               <h4 class="mb-2" data-bs-toggle="modal" data-bs-target="#myModal">{{pr.account.fullName}}</h4>
               <div >
                 <p><i class="uil-eye"></i> {{pr.view}}</p>
-                <table style="width: 100%">
-                  <tbody *ngFor="let pp of provisionprovidersView">
-                  <tr *ngIf="pp.provider.id== pr.id &&pp.provision.category.id==1">
-                    <td style="text-align: left">{{pp.provision.name}}</td>
-                    <td style="text-align: right">Free</td>
-                  </tr>
-                  </tbody>
-                </table>
+<!--                <table style="width: 100%">-->
+<!--                  <tbody *ngFor="let pp of provisionprovidersView">-->
+<!--                  <tr *ngIf="pp.provider.id== pr.id &&pp.provision.category.id==1">-->
+<!--                    <td style="text-align: left">{{pp.provision.name}}</td>-->
+<!--                    <td style="text-align: right">Free</td>-->
+<!--                  </tr>-->
+<!--                  </tbody>-->
+<!--                </table>-->
                 <p class="text-muted uk-text-bold my-0"
                 >{{pr.price}} $/ giờ</p>
               </div>
@@ -122,14 +122,14 @@
               <div class="p-3">
                 <h4 class="mb-2">{{provider.account.fullName}}</h4>
                 <div >
-                  <table style="width: 100%">
-                    <tbody *ngFor="let pp of provisionproviders">
-                    <tr *ngIf="pp.provider.id== provider.id && provider.account.id==provider.account.id &&pp.provision.category.id==1">
-                      <td style="text-align: left">{{pp.provision.name}}</td>
-                      <td style="text-align: right">Free</td>
-                    </tr>
-                    </tbody>
-                  </table>
+<!--                  <table style="width: 100%">-->
+<!--                    <tbody *ngFor="let pp of provisionproviders">-->
+<!--                    <tr *ngIf="pp.provider.id== provider.id && provider.account.id==provider.account.id &&pp.provision.category.id==1">-->
+<!--                      <td style="text-align: left">{{pp.provision.name}}</td>-->
+<!--                      <td style="text-align: right">Free</td>-->
+<!--                    </tr>-->
+<!--                    </tbody>-->
+<!--                  </table>-->
                   <p class="text-muted uk-text-bold my-0"
                      *ngIf="provider.account.id==provider.account.id">{{provider.price}} $/ giờ</p>
                 </div>
