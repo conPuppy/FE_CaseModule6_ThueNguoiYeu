@@ -272,12 +272,12 @@
                     </div>
                     <div class="right-side uk-visible@m">
                         <div class="btn-subscribe">
-                                <button class="btn btn-danger btn-sm">
-                                    <i class="icon-feather-user"></i> Active
-                                </button>
-                                <button class="btn btn-success btn-sm">
-                                    <i class="icon-feather-user"></i> Busy
-                                </button>
+                            <button class="btn btn-danger btn-sm">
+                                <i class="icon-feather-user"></i> Active
+                            </button>
+                            <button class="btn btn-success btn-sm">
+                                <i class="icon-feather-user"></i> Busy
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -286,7 +286,6 @@
                     <nav class="responsive-tab">
                         <ul>
                             <li class="uk-active"><a class="active">Your Profile</a></li>
-                            <li class="uk-active"><a class="active">Update Images</a></li>
                         </ul>
                     </nav>
                     <form class="nav-profile-saerchbox">
@@ -367,14 +366,13 @@
                                         <h5 class="uk-text-bold mb-2"> Extends </h5>
                                         <div class="uk-grid-margin" *ngFor="let service of allServicesOfProvider">
                                             <div class="form-check" *ngIf="service.statusServiceProvider==1&&service.provision.category.id==2">
-                                                <input class="form-check-input" type="checkbox" (click)="changeFreeAndExtend(service.id)" value=""
-                                                       checked >
+                                                <input class="form-check-input" type="checkbox" checked >
                                                 <label class="form-check-label">
                                                     {{service.provision.name}}
                                                 </label>
                                             </div>
                                             <div class="form-check" *ngIf="service.statusServiceProvider==2&&service.provision.category.id==2">
-                                                <input class="form-check-input" type="checkbox" value="" (click)="changeFreeAndExtend(service.id)">
+                                                <input class="form-check-input" type="checkbox" value="" >
                                                 <label class="form-check-label">
                                                     {{service.provision.name}}
                                                 </label>
@@ -385,14 +383,14 @@
                                         <h5 class="uk-text-bold mb-2"> Extends </h5>
                                         <div class="uk-grid-margin" *ngFor="let service of allServicesOfProvider">
                                             <div class="form-check" *ngIf="service.statusServiceProvider==1&&service.provision.category.id==3">
-                                                <input class="form-check-input" type="checkbox" value="" (click)="changeFreeAndExtend(service.id)"
+                                                <input class="form-check-input" type="checkbox" value=""
                                                        checked >
                                                 <label class="form-check-label">
                                                     {{service.provision.name}}
                                                 </label>
                                             </div>
                                             <div class="form-check" *ngIf="service.statusServiceProvider==2&&service.provision.category.id==3">
-                                                <input class="form-check-input" type="checkbox" value="" (click)="changeFreeAndExtend(service.id)">
+                                                <input class="form-check-input" type="checkbox" value="" >
                                                 <label class="form-check-label">
                                                     {{service.provision.name}}
                                                 </label>

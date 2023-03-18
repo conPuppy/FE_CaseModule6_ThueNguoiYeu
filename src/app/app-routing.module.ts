@@ -24,6 +24,7 @@ import { CreateProviderComponent } from './create-provider/create-provider.compo
 import { UserShowBillComponent } from './User/user-show-bill/user-show-bill.component';
 import { AdproviderComponent } from './admin/adprovider/adprovider.component';
 import { ForgetPassComponent } from './forget-pass/forget-pass.component';
+import { ViewProviderComponent } from './view-provider/view-provider.component';
 
 
 
@@ -47,13 +48,13 @@ const routes: Routes = [
   {path:"showAllBill", component: ShowAllBillComponent},
   {path:"bill/:id", component: ProfileProviderComponent},
   {path:"providerShowBill", component: ProviderShowBillComponent},
-  {path:"createProvider", component: CreateProviderComponent},
+  {path:"profileProvider", component: CreateProviderComponent},
   {path:"userShowBill", component: UserShowBillComponent},
   {path:"adProvider", component: AdproviderComponent},
   {path:"forget", component: ForgetPassComponent},
   {path:"showAllProvider", component: ShowAllProviderComponent},
+  {path:"viewProvider/:id", component: ViewProviderComponent},
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
