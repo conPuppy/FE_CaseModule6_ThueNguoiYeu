@@ -38,6 +38,7 @@ export class HomeboyComponent implements OnInit{
       this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res=>{
         if (res!=null){
           this.statusProvider=res.statusProvider;
+          console.log(this.statusProvider);
         }
       })
       this.providerService.getGirlProviderTopView().subscribe(data=>{
