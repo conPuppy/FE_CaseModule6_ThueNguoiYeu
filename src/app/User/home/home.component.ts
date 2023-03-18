@@ -20,6 +20,9 @@ export class HomeComponent implements OnInit{
   page: number = 1;
   total: number =0;
 
+  providersView: Provider[] = [];
+  provider = new Provider;
+  provisionprovidersView: ProvisionProvider[] = [];
 
   constructor(private accountService: AccountService, private router: Router, private providerService: ProviderService,
               private provisionproviderService: ProvisionProviderService) {
@@ -27,9 +30,18 @@ export class HomeComponent implements OnInit{
   
   ngOnInit(): void {
     this.getProviderAcc();
+    this.getTopViewProviders();
+  }
+  getTopViewProviders() {
+    this.providerService.getProviderTopView().subscribe(data => {
+      this.providersView = data;
+      this.provisionproviderService.getAllProvisionProvider().subscribe(data => {
+        this.provisionprovidersView = data;
+      })
+    })
   }
   getProviderAcc() {
-    this.providerService.getAllProviderAcc(this.page).subscribe(data=>{
+    this.providerService.getNewProviders().subscribe(data=>{
       this.providers = data;
       this.total = this.providers.length;
       this.provisionproviderService.getAllProvisionProvider().subscribe(data=>{

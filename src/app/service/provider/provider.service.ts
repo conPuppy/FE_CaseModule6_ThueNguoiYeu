@@ -16,6 +16,9 @@ export class ProviderService {
 
     constructor(private http: HttpClient) {
     }
+    getNewProviders(): Observable<Provider[]> {
+        return this.http.get<Provider[]>(this.url+"/newProviders");
+    }
 
     getProviderTopSell(): Observable<Provider[]> {
         return this.http.get<Provider[]>(this.url + "/top/sell/provider");
