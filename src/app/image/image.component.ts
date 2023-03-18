@@ -34,17 +34,13 @@ export class ImageComponent implements OnInit{
     this.router.navigate([''])
   }
   showPreview(event: any) {
-    if (event.target.files && event.target.files[0]) {
-      for (let i = 0;i<event.target.files;i++){
+    for (let i=0;i<event.target.files.length;i++){
+      if (event.target.files && event.target.files[0]) {
         const reader = new FileReader();
-        reader.onload = (e: any) => this.imgSrc = e.target.result[i];
+        reader.onload = (e: any) => this.imgSrc[i] = e.target.result;
         reader.readAsDataURL(event.target.files[i])
-        console.log(this.imgSrc)
         this.selectImage = event.target.files[i]
       }
-
-    } else {
-      this.selectImage = null;
     }
   }
 
