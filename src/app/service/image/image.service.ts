@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Image1 } from 'src/app/model/Image1';
-import { ImageUrlDTO } from 'src/app/model/ImageUrlDTO';
+import { ImageUrlDTO } from 'src/app/model/ImageUrlDTO/ImageUrlDTO';
+
 
 @Injectable({
   providedIn: 'root'
