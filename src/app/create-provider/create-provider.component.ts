@@ -31,6 +31,7 @@ export class CreateProviderComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res=>this.account=res)
         this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res => {
             if (res != null) {
                 console.log(res)
@@ -80,5 +81,11 @@ export class CreateProviderComponent implements OnInit {
     }
     goToEditProvider(){
         this.router.navigate(['/profileProvider'])
+    }
+    goToMyOrder() {
+        this.router.navigate(["/userShowBill"])
+    }
+    goToMyBill() {
+        this.router.navigate(["/providerShowBill"])
     }
 }
