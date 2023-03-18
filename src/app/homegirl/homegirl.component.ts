@@ -37,17 +37,17 @@ export class HomegirlComponent implements OnInit {
             this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res => {
                 if (res != null) {
                     this.statusProvider = res.statusProvider;
-                    this.showCart(this.account.id, 1);
-                    this.providerService.getBoyProviderTopView().subscribe(data => {
-                        console.log(data)
-                        this.providers = data;
-                        this.provisionproviderService.getAllProvisionProvider().subscribe(data => {
-                            this.provisionproviders = data;
-                        })
-                    });
-                    this.getTopSellProviderAcc();
                 }
             })
+            this.showCart(this.account.id, 1);
+            this.providerService.getBoyProviderTopView().subscribe(data => {
+                console.log(data)
+                this.providers = data;
+                this.provisionproviderService.getAllProvisionProvider().subscribe(data => {
+                    this.provisionproviders = data;
+                })
+            });
+            this.getTopSellProviderAcc();
         })
     }
     goToProviderSetting() {
