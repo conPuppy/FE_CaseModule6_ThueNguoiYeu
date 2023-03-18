@@ -33,6 +33,7 @@ import { UserShowBillComponent } from './User/user-show-bill/user-show-bill.comp
 import { AdproviderComponent } from './admin/adprovider/adprovider.component';
 import { ForgetPassComponent } from './forget-pass/forget-pass.component';
 import { ShowAllProviderComponent } from './admin/show-all-provider/show-all-provider.component';
+import { ViewProviderComponent } from './view-provider/view-provider.component';
 
 
 
@@ -60,12 +61,12 @@ import { ShowAllProviderComponent } from './admin/show-all-provider/show-all-pro
         CreateProviderComponent,
         ProfileProviderComponent,
         ShowAllBillComponent,
-
         ProviderShowBillComponent,
         UserShowBillComponent,
         AdproviderComponent,
         ForgetPassComponent,
-        ShowAllProviderComponent
+        ShowAllProviderComponent,
+        ViewProviderComponent
 
     ],
     imports: [

@@ -38,7 +38,7 @@ export class ProfileProviderComponent implements OnInit {
             this.account = res;
             this.showCart(this.account.id,1);
         })
-        this.provisionProviderService.findProvisionProviderByProviderIdAndStatusServiceProvider(+this.route.snapshot.params['id']).subscribe(data=>this.providerProvisions=data)
+        this.provisionProviderService.findProvisionProviderByProviderId(+this.route.snapshot.params['id']).subscribe(data=>this.providerProvisions=data)
         this.providerService.findProviderById(+this.route.snapshot.params['id']).subscribe(res => this.provider = res)
         this.formOrder = new FormGroup({
             startOrder: new FormControl(),
