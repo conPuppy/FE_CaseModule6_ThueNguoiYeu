@@ -28,7 +28,7 @@ export class ProfileProviderComponent implements OnInit {
     account1!: AccountForChange;
     startTimeConvert!:String;
     endTimeConvert!:String;
-    providerProvisions:ProvisionProvider[]=[];
+    allServicesOfProvider:ProvisionProvider[]=[];
     statusProvider!: number;
 
     constructor(private providerService: ProviderService,
@@ -50,7 +50,7 @@ export class ProfileProviderComponent implements OnInit {
                 }
             })
         })
-        this.provisionProviderService.findProvisionProviderByProviderId(+this.route.snapshot.params['id']).subscribe(data=>this.providerProvisions=data)
+        this.provisionProviderService.findProvisionProviderByProviderIdStatus1(+this.route.snapshot.params['id']).subscribe(data=>this.allServicesOfProvider=data)
         this.providerService.findProviderById(+this.route.snapshot.params['id']).subscribe(res => this.provider = res)
         this.formOrder = new FormGroup({
             startOrder: new FormControl(),
@@ -60,7 +60,6 @@ export class ProfileProviderComponent implements OnInit {
             total: new FormControl()
         })
     }
-
     showCart(id: number, statusOrder: number) {
         this.orderLoverService.getAllBillOfAccountByIdAndStartOrder(id,statusOrder).subscribe(data=> {
             this.orderLovers = data;

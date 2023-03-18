@@ -25,6 +25,7 @@ import { UserShowBillComponent } from './User/user-show-bill/user-show-bill.comp
 import { AdproviderComponent } from './admin/adprovider/adprovider.component';
 import { ForgetPassComponent } from './forget-pass/forget-pass.component';
 import { ViewProviderComponent } from './view-provider/view-provider.component';
+import { ImageComponent } from './image/image.component';
 
 
 
@@ -54,6 +55,7 @@ const routes: Routes = [
   {path:"forget", component: ForgetPassComponent},
   {path:"showAllProvider", component: ShowAllProviderComponent},
   {path:"viewProvider/:id", component: ViewProviderComponent},
+  {path:"image/:id", component: ImageComponent},
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
