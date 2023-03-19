@@ -355,14 +355,14 @@
                             <h4 class="mb-2" data-bs-toggle="modal" data-bs-target="#myModal" (click)="findProviderById(provider.id)">{{provider.account.fullName}}</h4>
                             <div >
                                 <p><i class="uil-eye"></i> {{provider.view}}</p>
-                                <table style="width: 100%">
-                                    <tbody *ngFor="let pp of provisionproviders1">
-                                    <tr *ngIf="pp.provider.id== provider.id && provider.account.id==provider.account.id &&pp.provision.category.id==1">
-                                        <td style="text-align: left">{{pp.provision.name}}</td>
-                                        <td style="text-align: right">Free</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+<!--                                <table style="width: 100%">-->
+<!--                                    <tbody *ngFor="let pp of provisionproviders1">-->
+<!--                                    <tr *ngIf="pp.provider.id== provider.id && provider.account.id==provider.account.id &&pp.provision.category.id==1">-->
+<!--                                        <td style="text-align: left">{{pp.provision.name}}</td>-->
+<!--                                        <td style="text-align: right">Free</td>-->
+<!--                                    </tr>-->
+<!--                                    </tbody>-->
+<!--                                </table>-->
                                 <p class="text-muted uk-text-bold my-0"
                                    *ngIf="provider.account.id==provider.account.id">{{provider.price}} $/ giờ</p>
                             </div>
