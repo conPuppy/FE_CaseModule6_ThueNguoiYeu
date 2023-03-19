@@ -198,7 +198,7 @@
 
 
                 <!-- profile -image -->
-                <a class="opts_account"> <img src="{{account?.avatar}}" alt=""></a>
+                <a class="opts_account"> <img src="{{accountLogin?.avatar}}" alt=""></a>
 
                 <!-- profile dropdown-->
                 <div uk-dropdown="pos: top-right;mode:click ; animation: uk-animation-slide-bottom-small"
@@ -210,10 +210,10 @@
                         <div class="dropdown-user-details">
                             <div class="dropdown-user-avatar">
                                 <a class="opts_account">
-                                    <img src="{{account?.avatar}}" alt=""></a>
+                                    <img src="{{accountLogin?.avatar}}" alt=""></a>
                             </div>
                             <div class="dropdown-user-name">
-                               Hello Admin {{account?.username}} <span> {{account?.wallet}} <i class="icon-feather-dollar-sign"></i> </span>
+                               Hello Admin ({{accountLogin?.username}})
                             </div>
                         </div>
 
@@ -237,109 +237,6 @@
 
         </header>
 
-    </div>
-
-    <!-- menu -->
-    <div class="page-menu">
-        <!-- btn close on small devices -->
-        <span class="btn-menu-close" uk-toggle="target: #wrapper ; cls: mobile-active"></span>
-        <!-- traiger btn -->
-        <span class="btn-menu-trigger" uk-toggle="target: #wrapper ; cls: menu-collapsed"></span>
-
-        <!-- logo -->
-        <div class="logo uk-visible@s">
-            <a href="dashboard.html"> <img src="assets/images/logo.svg" alt=""> <span> Dating Web</span> </a>
-        </div>
-        <div class="page-menu-inner" data-simplebar>
-            <ul>
-                <li><a href="dashboard.html"><i class="uil-home-alt"></i> <span> Dashboard </span></a></li>
-            </ul>
-
-
-            <ul data-submenu-title="Apps">
-                <li><a href="app-calender.html"><i class="uil-calendar-alt"></i> <span> Calendar</span></a></li>
-                <li><a href="chat.html"><i class="uil-comment-alt-dots"></i> <span>Chat</span> </a></li>
-                <li><a href="#"><i class="uil-envelope-alt"></i> <span>Email</span> </a>
-                    <ul>
-                        <li>
-                            <a href="email-inbox.html"> Inbox </a>
-                            <a href="email-inbox-read.html"> Email Read </a>
-                            <a href="email-compose.html"> Email Compose </a>
-                        </li>
-                    </ul>
-                </li>
-                <li><a href="#"><i class="uil-shopping-basket"></i> <span>E-commerce</span> </a>
-                    <ul>
-                        <li><a href="shop-card.html"> Products Grid </a></li>
-                        <li><a href="shop-listing.html"> Products List </a></li>
-                        <li><a href="shop-product.html"> Product </a></li>
-                        <li><a href="shop-cart.html"> Products Cart </a></li>
-                        <li><a href="shop-checkout.html"> Products Checkout </a></li>
-                    </ul>
-                </li>
-                <li><a href="#"><i class="uil-users-alt"></i> <span>Users</span> </a>
-                    <ul>
-                        <li><a routerLink="admin/account/vip"> VIP Users </a></li>
-                        <li><a routerLink="admin/account/normal"> Normal Users </a></li>
-                        <li><a routerLink="admin/account/block"> Block User </a></li>
-                    </ul>
-                </li>
-            </ul>
-
-            <ul data-submenu-title="Pages">
-                <li><a href="profile.html"><i class="uil-user-square"></i> <span> Profile </span> </a></li>
-                <li><a href="profile-setting.html"><i class="uil-cog"></i> <span> Setting </span> </a></li>
-                <li><a href="page-invoice.html"><i class="uil-invoice"></i> <span> Invoice </span> </a></li>
-                <li><a href="page-gallery.html"><i class="uil-images"></i> <span> Gallery </span> </a></li>
-                <li><a href="page-faqs.html"><i class="uil-equal-circle"></i> <span> FAQ </span> </a></li>
-                <li><a href="page-pricing.html"><i class="uil-dollar-sign-alt"></i> <span> pricing </span> </a>
-                </li>
-                <li><a href="error.html"><i class="uil-minus-circle"></i> <span> Error </span> </a></li>
-                <li><a href="page-maintanence.html"><i class="uil-sync-exclamation"></i> <span> Maintence </span>
-                </a></li>
-                <li><a href="page-comming-soon.html"><i class="uil-stopwatch"></i> <span> Comming soon </span> </a>
-                </li>
-            </ul>
-
-            <ul data-submenu-title="Development">
-                <li><a href="development-elements.html"><i class="uil-layers"></i> <span> UI Elements </span> </a>
-                </li>
-                <li><a href="development-components.html"><i class="uil-code"></i> <span> UI Components </span> </a>
-                </li>
-                <li><a href="development-icons.html"><i class="icon-feather-flag"></i> <span> Icon Pack </span> </a>
-                </li>
-
-                <li><a href="#"><i class="uil-check-circle"></i> <span> Forms </span> </a>
-                    <ul>
-                        <li><a href="form-element.html"> Form Elements </a></li>
-                        <li><a href="form-layouts.html"> Form Layouts </a></li>
-                        <li><a href="form-validation.html"> Form Validation </a></li>
-                    </ul>
-                </li>
-                <li><a href="#"><i class="uil-list-ul"></i> <span> Tables </span> </a>
-                    <ul>
-                        <li><a href="table-basic.html"> Basic Table </a></li>
-                        <li><a href="table-database.html"> Data Table </a></li>
-                    </ul>
-                </li>
-
-                <li><a href="charts.html"><i class="uil-chart"></i> <span> Charts </span> </a></li>
-
-            </ul>
-
-            <ul data-submenu-title="Extras" class="mb-4">
-                <li><a href="#"><i class="uil-spin"></i> <span> Authentication </span>
-                </a>
-                    <ul>
-                        <li><a href="form-login.html">Login 1</a></li>
-                        <li><a href="form-modern-login.html">Login 2</a></li>
-                        <li><a href="form-register.html">Register 1</a></li>
-                        <li><a href="form-modern-singup.html">Register 2</a></li>
-                    </ul>
-                </li>
-            </ul>
-
-        </div>
     </div>
 
     <div class="box-gradient-home"></div>
@@ -379,14 +276,14 @@
                             <a href="#" class="btn btn-icon btn-hover btn-circle">
                                 <i class="uil-filter"></i>
                             </a>
-                            <div uk-dropdown="mode: click ; pos: bottom-right ; animation:uk-animation-scale-up"
-                                 class="p-0 dropdown-menu">
-                                <ul>
-                                    <li class="uk-active"><a href="#"> Newest </a></li>
-                                    <li><a href="#">From A-Z</a></li>
-                                    <li><a href="#">From Z-A</a></li>
-                                </ul>
-                            </div>
+<!--                            <div uk-dropdown="mode: click ; pos: bottom-right ; animation:uk-animation-scale-up"-->
+<!--                                 class="p-0 dropdown-menu">-->
+<!--                                <ul>-->
+<!--                                    <li class="uk-active"><a href="#"> Newest </a></li>-->
+<!--                                    <li><a href="#">From A-Z</a></li>-->
+<!--                                    <li><a href="#">From Z-A</a></li>-->
+<!--                                </ul>-->
+<!--                            </div>-->
 
 
                             <a href="#" class="btn btn-icon btn-hover btn-circle">
@@ -521,8 +418,9 @@
                                         <div class="card-body text-center">
                                             <img src="{{account?.avatar}}"
                                                  class="rounded-circle img-fluid" style="width: 150px;">
-                                            <h5 class="my-3">Total : {{account?.view}}</h5>
-                                            <p class="text-muted mb-4">Start at: {{account?.dateOfRegister}}</p>
+                                            <br>
+<!--                                            <h5 class="my-3">Total : {{account?.view}}</h5>-->
+                                            <p class="text-muted mb-4"><b>Start at:</b> {{account?.dateOfRegister}}</p>
                                             <div class="d-flex justify-content-center mb-2">
                                             </div>
                                         </div>

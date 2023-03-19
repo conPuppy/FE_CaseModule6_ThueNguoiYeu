@@ -7,7 +7,7 @@
         <header>
 
             <!-- Logo-->
-            <i class="header-traiger uil-bars" uk-toggle="target: #wrapper ; cls: mobile-active"></i>
+            <i class="header-traiger uil-bars" uk-toggle="target: #wrapper ; cls: mobile-active" (click)="goToTheHome()"></i>
 
 
             <div class="h5 uk-hidden@m mr-3 mb-0"> Date Web</div>
@@ -370,7 +370,7 @@ align-content: center">
                     </div>
                     <h3 *ngIf="provider?.statusProvider==1">
                         <button type="button" class="btn btn-success">
-                            Sẵn sàng cung cấp dịch vụ
+                            Active
                         </button>
                     </h3>
                     <h3 *ngIf="provider?.statusProvider==2">
@@ -382,17 +382,9 @@ align-content: center">
                     <br>
 
                     <div>
-                        <div class="row">
-                            <div class="col">
-                                <p>View:</p>
-                                <p>{{provider?.view}} views</p>
+                            <div >
+                                <p><i class="uil-eye"> </i> {{provider?.view}} views</p>
                             </div>
-                            <div class="col">
-                                <p>Time of ordered</p>
-                                <p> hours</p>
-                            </div>
-
-                        </div>
                         <hr>
                         <div>
                             <p class="h4">Service:</p>
@@ -612,7 +604,7 @@ align-content: center">
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger">Order</button>
+                    <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Order</button>
                     <button type="button" (click)="closeOrderLover()" class="btn btn-outline-light text-dark"
                             data-bs-dismiss="modal">Close
                     </button>

@@ -6,7 +6,7 @@
         <header>
 
             <!-- Logo-->
-            <i class="header-traiger uil-bars" uk-toggle="target: #wrapper ; cls: mobile-active"></i>
+            <i class="header-traiger uil-bars" uk-toggle="target: #wrapper ; cls: mobile-active" (click)="goToTheHome()"></i>
 
 
             <div class="h5 uk-hidden@m mr-3 mb-0"> Bootstro</div>
@@ -38,15 +38,25 @@
 
                         <!-- notiviation list -->
                         <ul>
-                            <li class="notifications-not-read" >
+                            <li class="notifications-not-read">
                                 <table class="table">
                                     <thead>
                                     <tr>
                                         <th></th>
-                                        <th scope="col" style="vertical-align: text-top; text-align: left; font: 0.875rem / 1.5 Consolas, monaco, monospace;">Provider</th>
-                                        <th scope="col" style="vertical-align: text-top; text-align: left; font: 0.875rem / 1.5 Consolas, monaco, monospace;">Order Time (giờ)</th>
-                                        <th scope="col" style="vertical-align: text-top; text-align: left; font: 0.875rem / 1.5 Consolas, monaco, monospace;">Total ($/giờ)</th>
-                                        <th scope="col" style="vertical-align: text-top; text-align: left; font: 0.875rem / 1.5 Consolas, monaco, monospace;"></th>
+                                        <th scope="col"
+                                            style="vertical-align: text-top; text-align: left; font: 0.875rem / 1.5 Consolas, monaco, monospace;">
+                                            Provider
+                                        </th>
+                                        <th scope="col"
+                                            style="vertical-align: text-top; text-align: left; font: 0.875rem / 1.5 Consolas, monaco, monospace;">
+                                            Order Time (giờ)
+                                        </th>
+                                        <th scope="col"
+                                            style="vertical-align: text-top; text-align: left; font: 0.875rem / 1.5 Consolas, monaco, monospace;">
+                                            Total ($/giờ)
+                                        </th>
+                                        <th scope="col"
+                                            style="vertical-align: text-top; text-align: left; font: 0.875rem / 1.5 Consolas, monaco, monospace;"></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -240,7 +250,8 @@
                                     <img src="{{account?.avatar}}" alt=""></a>
                             </div>
                             <div class="dropdown-user-name">
-                                {{account?.username}} <span> {{account?.wallet}} <i class="icon-feather-dollar-sign"></i> </span>
+                                {{account?.username}} <span> {{account?.wallet}} <i
+                                    class="icon-feather-dollar-sign"></i> </span>
                             </div>
                         </div>
 
@@ -249,13 +260,16 @@
                     <!-- User menu -->
 
                     <ul class="dropdown-user-menu">
-                        <li><a class="btn-warning"  *ngIf="statusProvider==3"> <i class="uil-user"></i> Wait admin accept!</a></li>
-                        <li><a class="btn-success"  *ngIf="statusProvider==1"> <i class="uil-user" ></i> Ready</a></li>
-                        <li><a class="btn-danger"  *ngIf="statusProvider==2"> <i class="uil-user" ></i> Busy</a></li>
-                        <li><a class="btn-success" (click)="createProvider()" *ngIf="statusProvider!=1&&statusProvider!=2&&statusProvider!=3"> <i class="uil-bolt" ></i> Become Provider</a></li>
+                        <li><a class="btn-warning" *ngIf="statusProvider==3"> <i class="uil-user"></i> Wait admin
+                            accept!</a></li>
+                        <li><a class="btn-success" *ngIf="statusProvider==1"> <i class="uil-user"></i> Ready</a></li>
+                        <li><a class="btn-danger" *ngIf="statusProvider==2"> <i class="uil-user"></i> Busy</a></li>
+                        <li><a class="btn-success" (click)="createProvider()"
+                               *ngIf="statusProvider!=1&&statusProvider!=2&&statusProvider!=3"> <i class="uil-bolt"></i>
+                            Become Provider</a></li>
                         <li><a (click)="goToProfile()"> <i class="uil-user"></i> My Profile </a></li>
-                        <li><a (click)="goToMyOrder()" > <i class="uil-invoice"></i> My Order </a></li>
-                        <li><a (click)="goToMyBill()" > <i class="uil-invoice"></i> My Bill </a></li>
+                        <li><a (click)="goToMyOrder()"> <i class="uil-invoice"></i> My Order </a></li>
+                        <li><a (click)="goToMyBill()"> <i class="uil-invoice"></i> My Bill </a></li>
                         <li><a (click)="goToEditProfile()"> <i class="uil-edit"></i> Edit Profile </a></li>
                         <li><a (click)="goToProviderSetting()"> <i class="uil-cog"></i> Provider Settings</a></li>
                         <li class="menu-divider"></li>
@@ -279,17 +293,11 @@
     <!-- content -->
     <div class="page-content">
         <div class="page-content-inner">
+            <br>
+            <br>
+            <h2 class="text-white">My Profile </h2>
 
-            <h2 class="text-white"> Users </h2>
-
-            <nav id="breadcrumbs" class="text-white">
-                <ul>
-                    <li><a href="#"> Dashboard </a></li>
-                    <li> <a href="#">Users</a> </li>
-                    <li> user-vew </li>
-                </ul>
-            </nav>
-
+            <br>
 
             <div class="row">
                 <div class="col-12">
@@ -303,33 +311,20 @@
                                 </div>
 
 
-
-
-
-
-
-
                                 <div class="col-12 col-sm-9 col-md-6 col-lg-5">
                                     <table class="table table-borderless table-sm">
                                         <tbody>
                                         <div>
                                             <img src="{{account?.avatar}}"
-                                                 style="width: 250px;height: 250px" alt="avatar" >
+                                                 style="width: 250px;height: 250px" alt="avatar">
                                         </div>
                                         <button (click)="goToEditProfile()"
                                                 class="btn btn-primary mr-1 waves-effect waves-light"><i
-                                                class="feather icon-edit-1"></i> Edit</button>
+                                                class="feather icon-edit-1"></i> Edit
+                                        </button>
                                         </tbody>
                                     </table>
                                 </div>
-
-
-
-
-
-
-
-
 
 
                                 <div class="col-12 col-md-12 col-lg-5">
@@ -348,14 +343,14 @@
                                             <td>{{account.email}}</td>
                                         </tr>
                                         <tr>
-                                            <td class="font-weight-bold" >Status</td>
+                                            <td class="font-weight-bold">Status</td>
                                             <td>active</td>
 
                                         </tr>
-                                        <tr>
-                                            <td class="font-weight-bold">Role</td>
-                                            <td>{{roleString}}</td>
-                                        </tr>
+<!--                                        <tr>-->
+<!--                                            <td class="font-weight-bold">Role</td>-->
+<!--                                            <td>{{roleString}}</td>-->
+<!--                                        </tr>Role-->
                                         <tr>
                                             <td class="font-weight-bold">Gender</td>
                                             <td>{{account.gender}} </td>
@@ -363,10 +358,6 @@
                                         </tbody>
                                     </table>
                                 </div>
-
-
-
-
 
 
                             </div>
@@ -382,8 +373,9 @@
                         </div>
                         <div class="card-body">
                             <table class="table table-borderless table-sm">
-                                <tbody><tr>
-                                    <td class="font-weight-bold text-dark">Birth Date </td>
+                                <tbody>
+                                <tr>
+                                    <td class="font-weight-bold text-dark">Birth Date</td>
                                     <td>{{account.birthday}}
                                     </td>
                                 </tr>
@@ -418,7 +410,8 @@
                                     <td class="font-weight-bold text-dark">Description</td>
                                     <td>{{account.description}}</td>
                                 </tr>
-                                </tbody></table>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -453,7 +446,6 @@
     </div>
 
 </div>
-
 
 
 <!-- javaScripts

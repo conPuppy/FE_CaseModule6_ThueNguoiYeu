@@ -67,6 +67,11 @@ export class ProviderShowBillComponent implements OnInit{
     localStorage.clear();
     this.router.navigate([''])
   };
+  goToTheHome() {
+    if(this.account.gender=="Male") {
+      this.router.navigate(["/homeBoy"]);
+    } else this.router.navigate(["/homeGirl"]);
+  }
 
   goToProfile() {
     this.router.navigate(['/showProfile'])

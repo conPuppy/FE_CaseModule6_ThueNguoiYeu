@@ -36,6 +36,11 @@ export class ViewProviderComponent implements OnInit{
     })
     this.getAllService()
   }
+  goToTheHome() {
+    if(this.account.gender=="Male") {
+      this.router.navigate(["/homeBoy"]);
+    } else this.router.navigate(["/homeGirl"]);
+  }
   goToProviderSetting() {
     this.router.navigate(["/profileProvider"])
   }

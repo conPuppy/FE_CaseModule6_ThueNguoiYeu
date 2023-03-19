@@ -50,6 +50,11 @@ export class ChangeAppearanceComponent implements OnInit {
             this.formChangeAppearance.get('description').setValue(res.description)
         })
     }
+    goToTheHome() {
+        if(this.account.gender=="Male") {
+            this.router.navigate(["/homeBoy"]);
+        } else this.router.navigate(["/homeGirl"]);
+    }
     goToProviderSetting() {
         this.router.navigate(["/profileProvider"])
     }

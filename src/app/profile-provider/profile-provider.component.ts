@@ -60,6 +60,11 @@ export class ProfileProviderComponent implements OnInit {
             total: new FormControl()
         })
     }
+    goToTheHome() {
+        if(this.account.gender=="Male") {
+            this.router.navigate(["/homeBoy"]);
+        } else this.router.navigate(["/homeGirl"]);
+    }
     goToProviderSetting() {
         this.router.navigate(["/profileProvider"])
     }
@@ -92,7 +97,6 @@ export class ProfileProviderComponent implements OnInit {
 
 
     createOrderLover() {
-        alert("vao")
         // @ts-ignore
         this.startTimeConvert = document.getElementById('startOrder').value;
         this.orderLover.startOrder = this.startTimeConvert;

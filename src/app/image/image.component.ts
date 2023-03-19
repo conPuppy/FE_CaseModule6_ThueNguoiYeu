@@ -40,6 +40,11 @@ export class ImageComponent implements OnInit{
       }
     })
   }
+  goToTheHome() {
+    if(this.account.gender=="Male") {
+      this.router.navigate(["/homeBoy"]);
+    } else this.router.navigate(["/homeGirl"]);
+  }
 
   logout() {
     localStorage.clear();
