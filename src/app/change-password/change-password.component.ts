@@ -22,8 +22,6 @@ export class ChangePasswordComponent implements OnInit {
     accountChange!:AccountForChange;
     formChangePassword!: any;
     checkPassword: boolean = false;
-    summit1:boolean=true
-    summit2:boolean=true
     public checkConfirmPassword: boolean = false;
     statusProvider!:number;
     provider!:CreateProvider;
@@ -84,7 +82,6 @@ export class ChangePasswordComponent implements OnInit {
                     this.checkPassword = true;
                 } else {
                     this.checkPassword = false;
-                    this.summit1=false
                 }
 
             }
@@ -106,26 +103,22 @@ export class ChangePasswordComponent implements OnInit {
         if (this.formChangePassword.get("newPassword")?.value != this.formChangePassword.get("reCheckNewPassword")?.value) {
             return this.checkConfirmPassword = true;
         } else {
-            this.summit2=false;
             return this.checkConfirmPassword = false;
         }
     }
-    checkSummit():boolean{
-        if(this.summit1==true&&this.summit2==true){
-            return true;
-        }
-        if(this.summit1==false&&this.summit2==false){
-            return false
-        }
-        return true;
-    }
     funcChangePassword(){
         this.id = this.accountService.getAccountToken().id;
-        this.accountService.findById(this.id).subscribe((res) => {
-            this.accountChange=res
-            this.accountChange.password=this.formChangePassword.value.newPassword;
-            this.accountService.changeInfo(this.accountChange).subscribe(res=> Swal.fire('Done!', 'Change Password', 'success'))
-        })
+        this.funcChangePassword();
+        if (this.checkPassword==false){
+            Swal.fire('Cancel!', 'Password Wrong!', 'error')
+        }else {
+            this.accountService.findById(this.id).subscribe((res) => {
+                this.accountChange=res
+                this.accountChange.password=this.formChangePassword.value.newPassword;
+                this.accountService.changeInfo(this.accountChange).subscribe(res=> Swal.fire('Done!', 'Change Password', 'success'))
+            })
+        }
+
     }
     requestVip(){
         this.accountChange.statusVip=3
