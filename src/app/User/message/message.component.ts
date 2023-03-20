@@ -15,6 +15,7 @@ export class MessageComponent {
   disabled = true;
   name: string | undefined;
   private stompClient: any;
+  id: number | any;
 
   constructor() {
   }
@@ -37,7 +38,7 @@ export class MessageComponent {
       console.log('Connected: ' + frame);
 
       // là chờ xèm thằng server gửi về.
-      _this.stompClient.subscribe('/topic/public', function (hello: any) {
+      _this.stompClient.subscribe('/topic/public/'+ _this.id, function (hello: any) {
         _this.showGreeting(JSON.parse(hello.body).greeting);
       });
 
@@ -57,7 +58,7 @@ export class MessageComponent {
         '/gkz/hello',
         {},
         // Dữ liệu được gửi đi
-        JSON.stringify({'name': this.name, 'message': this.message})
+        JSON.stringify({'id': this.id ,'name': this.name, 'message': this.message})
     );
   }
 

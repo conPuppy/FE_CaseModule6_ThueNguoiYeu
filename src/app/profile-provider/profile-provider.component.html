@@ -458,7 +458,7 @@ align-content: center">
     border: 0;
     text-transform: uppercase; color: #354052;
     background-color: #fff;
-    border: 1px solid #e2e6ea;">Chat
+    border: 1px solid #e2e6ea;"  data-bs-toggle="modal" data-bs-target="#myModalChat" >Chat
                         </button>
                         <br>
 
@@ -524,6 +524,35 @@ align-content: center">
     </div>
 
 </div>
+
+<!-- The Modal -->
+<div class="modal" id="myModalChat">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Box Chat</h4>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-outline">
+                    <textarea class="form-control" id="textAreaExample" rows="4" placeholder="Type your message"></textarea>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" (click)="connect()" >Send</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
 <form [formGroup]="formOrder" (submit)="createOrderLover()">
     <div class="modal fade" id="myModal">
         <div class="modal-dialog">
@@ -617,4 +646,7 @@ align-content: center">
     </div>
 
 </form>
+
+
+
 

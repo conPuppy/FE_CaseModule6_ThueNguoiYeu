@@ -13,6 +13,7 @@ import { ProvisionProviderService } from '../service/provisionprovider/provision
 import { ProvisionProvider } from '../model/ProvisionProvider';
 import { CreateProvider } from '../model/CreateProvider';
 import { AccountForChange } from '../model/AccountForChange';
+import { Stomp } from '@stomp/stompjs';
 
 @Component({
     selector: 'app-profile-provider',
@@ -157,4 +158,61 @@ export class ProfileProviderComponent implements OnInit {
     goToProvider() {
         this.router.navigate(['/supplier'])
     };
+
+    // chat cá nhân
+    title = 'grokonez';
+    description = 'Angular-WebSocket Demo';
+    message: string = "";
+
+    greetings: string[] = [];
+    disabled = true;
+    name: string | undefined;
+    private stompClient: any;
+    id: number | any;
+
+    setConnected(connected: boolean) {
+        this.disabled = !connected;
+
+        if (connected) {
+            this.greetings = [];
+        }
+    }
+
+    connect() {
+        // đường dẫn đến server
+        const socket = new WebSocket('ws://localhost:8080/gkz-stomp-endpoint/websocket');
+        this.stompClient = Stomp.over(socket);
+        const _this = this;
+        this.stompClient.connect({}, function (frame: any) {
+            _this.setConnected(true);
+            console.log('Connected: ' + frame);
+
+            // là chờ xèm thằng server gửi về.
+            _this.stompClient.subscribe('/topic/public/'+ _this.id, function (hello: any) {
+                _this.showGreeting(JSON.parse(hello.body).greeting);
+            });
+
+        });
+    }
+
+    disconnect() {
+        if (this.stompClient != null) {
+            this.stompClient.disconnect();
+        }
+        this.setConnected(false);
+        console.log('Disconnected!');
+    }
+
+    sendName() {
+        this.stompClient.send(
+            '/gkz/hello',
+            {},
+            // Dữ liệu được gửi đi
+            JSON.stringify({'id': this.id ,'name': this.name, 'message': this.message})
+        );
+    }
+
+    showGreeting(message: any) {
+        this.greetings.push(message);
+    }
 }
