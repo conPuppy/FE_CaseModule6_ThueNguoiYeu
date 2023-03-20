@@ -50,7 +50,6 @@ const routes: Routes = [
   {path:"profileProvider", component: CreateProviderComponent},
   {path:"userShowBill", component: UserShowBillComponent},
   {path:"adProvider", component: AdproviderComponent},
-  {path:"forget", component: ForgetPassComponent},
   {path:"showAllProvider", component: ShowAllProviderComponent},
   {path:"viewProvider/:id", component: ViewProviderComponent},
   {path:"image/:id", component: ImageComponent},

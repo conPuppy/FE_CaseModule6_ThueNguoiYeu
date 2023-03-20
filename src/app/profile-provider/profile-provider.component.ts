@@ -30,7 +30,8 @@ export class ProfileProviderComponent implements OnInit {
     endTimeConvert!:String;
     allServicesOfProvider:ProvisionProvider[]=[];
     statusProvider!: number;
-
+    startTimeDB!:number
+    endTimeDB!:number
     constructor(private providerService: ProviderService,
                 private route: ActivatedRoute,
                 private router: Router,
@@ -97,6 +98,7 @@ export class ProfileProviderComponent implements OnInit {
 
 
     createOrderLover() {
+
         // @ts-ignore
         this.startTimeConvert = document.getElementById('startOrder').value;
         this.orderLover.startOrder = this.startTimeConvert;
@@ -108,14 +110,31 @@ export class ProfileProviderComponent implements OnInit {
         this.orderLover.statusOrder = 2;
         this.orderLover.account = this.account
         this.orderLover.provider = this.provider
-        if (this.account.wallet > this.orderLover.total) {
-            this.orderLoverService.createOrder(this.orderLover).subscribe((res) => {
-                Swal.fire('Done!', 'Sended!', 'success')
-                this.router.navigate(["/userShowBill"])
-            });
-        } else {
-            Swal.fire('Your balance is not enough! please refill')
-        }
+        this.orderLoverService.getAllBillOfProviderIdAndStatus3(+this.route.snapshot.params['id']).subscribe(res=>{
+            let checkTime=true;
+            for (let i=0;i<res.length;i++){
+                // @ts-ignore
+                this.startTimeDB=+moment(res[i].startOrder).format('x');
+                // @ts-ignore
+                 this.endTimeDB=+moment(res[i].endOrder).format('x');
+                    if(+this.startTimeConvert>this.startTimeDB && +this.startTimeConvert<this.endTimeDB){
+                        checkTime=false
+                        Swal.fire('Oops!','Your Provider has a oder'+ "<br>" + ' from ' + res[i].startOrder+ ' to '+ res[i].endOrder, 'error');
+                        break;
+                }
+            }
+            if (checkTime=true){
+                if (this.account.wallet > this.orderLover.total) {
+                    this.orderLoverService.createOrder(this.orderLover).subscribe((res) => {
+                        Swal.fire('Done!', 'Sended!', 'success')
+                        this.router.navigate(["/userShowBill"])
+                    });
+                } else {
+                    Swal.fire('Your balance is not enough! please refill')
+                }
+            }
+        })
+
     }
 
     closeOrderLover() {
