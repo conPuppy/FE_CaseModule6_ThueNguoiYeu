@@ -5,22 +5,12 @@
         <header>
 
             <!-- Logo-->
-            <i class="header-traiger uil-bars" uk-toggle="target: #wrapper ; cls: mobile-active" (click)="goToTheHome()"></i>
+<!--            <i class="header-traiger uil-bars" uk-toggle="target: #wrapper ; cls: mobile-active" (click)="goToTheHome()"></i>-->
+            <i class="header-traiger uil-bars icon-feather-home" uk-toggle="target: #wrapper ; cls: mobile-active" (click)="goToTheHome()">
+                <img src="assets/bg-removebg-preview.png" style="width: 110px;height: 70px"></i>
 
 
             <div class="h5 uk-hidden@m mr-3 mb-0"> Bootstro</div>
-            <!-- form search-->
-            <div class="head_search uk-visible@m">
-                <form>
-                    <div class="head_search_cont">
-                        <input value="" type="text" class="form-control"
-                               placeholder="Search for Customers, Products, Files and more.." autocomplete="off">
-                        <i class="s_icon uil-search-alt"></i>
-                    </div>
-
-                </form>
-            </div>
-
             <!-- user icons -->
             <div class="head_user">
 
@@ -277,8 +267,10 @@
     <!-- content -->
     <div class="page-content">
         <div class="page-content-inner">
+            <br>
+            <br>
 
-            <h2 class="text-white"> All Orders</h2>
+            <h2 style="color: #f2999f"> All Orders</h2>
             <nav id="breadcrumbs" class="text-white">
             </nav>
 
@@ -294,10 +286,7 @@
                                 <i class="uil-search"></i>
                             </a>
                             <div class="uk-drop" uk-drop="mode: click; pos: left-center; offset: 0">
-                                <form class="uk-search uk-search-navbar uk-width-1-1">
-                                    <input class="uk-search-input shadow-0" type="search" placeholder="Search..."
-                                           autofocus>
-                                </form>
+
                             </div>
 
                             <a href="#" class="btn btn-icon btn-hover  btn-circle" uk-tooltip="filter">
