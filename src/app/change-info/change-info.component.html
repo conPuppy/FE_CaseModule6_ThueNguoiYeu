@@ -6,21 +6,12 @@
         <header>
 
             <!-- Logo-->
-            <i class="header-traiger uil-bars" uk-toggle="target: #wrapper ; cls: mobile-active" (click)="goToTheHome()"></i>
+            <i class="header-traiger uil-bars icon-feather-home" uk-toggle="target: #wrapper ; cls: mobile-active" (click)="goToTheHome()">
+                <img src="assets/bg-removebg-preview.png" style="width: 110px;height: 70px"></i>
 
 
             <div class="h5 uk-hidden@m mr-3 mb-0"> Bootstro</div>
-            <!-- form search-->
-            <div class="head_search uk-visible@m">
-                <form>
-                    <div class="head_search_cont">
-                        <input value="" type="text" class="form-control"
-                               placeholder="Search for Customers, Products, Files and more.." autocomplete="off">
-                        <i class="s_icon uil-search-alt"></i>
-                    </div>
 
-                </form>
-            </div>
 
             <!-- user icons -->
             <div class="head_user">
@@ -277,12 +268,12 @@
     <div class="page-content">
 
         <div class="profile">
-            <div class="profile-cover">
-
-                <!-- profile cover -->
-                <img src="assets/images/team/user-cover.jpg" alt="">
-
-            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
 
             <div class="page-content-inner">
                 <div class="profile-details">
@@ -293,7 +284,7 @@
                             </a>
                         </div>
                         <div class="profile-details-info">
-                            <h3> {{accountChange?.fullName}} </h3>
+                            <h3 style="color: #f2999f"> {{accountChange?.fullName}} </h3>
                         </div>
                     </div>
                     <div class="right-side uk-visible@m">
@@ -314,10 +305,7 @@
                             <li class="uk-active"><a class="active" href="#0">Your Profile</a></li>
                         </ul>
                     </nav>
-                    <form class="nav-profile-saerchbox">
-                        <i class="uil-search"></i>
-                        <input class="uk-input" type="text" value="Search Post...">
-                    </form>
+
                 </div>
             </div>
 
@@ -381,11 +369,12 @@
                                 <h5 class="uk-text-bold mb-2"> Country </h5>
                                 <input type="text" class="uk-input" placeholder="Your Country" formControlName="country">
                             </div>
-                            <div class="uk-grid-margin uk-first-column">
+<!--                            <div class="uk-grid-margin uk-first-column">-->
+                            <div class="uk-grid-margin">
                                 <h5 class="uk-text-bold mb-2"> Gender </h5>
                                 <fieldset formGroupName="genderObj">
                                     <select class="selectpicker"  formControlName="gender">
-                                        <option value="Orther">Orther</option>
+                                        <option value="Orther">Other</option>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
                                     </select>
@@ -393,10 +382,10 @@
                             </div>
 
 
-                        <hr class="mb-0">
+                        <div class="mb-0"></div>
                         <div class="uk-flex uk-flex-right p-3">
                             <a (click)="goToProfile()" class="btn btn-soft-dark btn-sm mr-2">Cancle</a>
-                            <button [disabled]="!formChangeInfo.valid" type="submit"  class="btn btn-primary btn-sm">Save Changes</button>
+                            <button [disabled]="!formChangeInfo.valid" type="submit"  class="btn" style="background-color: #f2999f; color: white">Save Changes</button>
                         </div>
                         </form>
                     </div>

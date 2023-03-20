@@ -9,8 +9,9 @@
         <header>
 
             <!-- Logo-->
-            <i class="header-traiger uil-bars" uk-toggle="target: #wrapper ; cls: mobile-active"></i>
-
+<!--            <i class="header-traiger uil-bars" uk-toggle="target: #wrapper ; cls: mobile-active"></i>-->
+            <i class="header-traiger uil-bars icon-feather-home" uk-toggle="target: #wrapper ; cls: mobile-active">
+                <img src="assets/bg-removebg-preview.png" style="width: 110px;height: 70px"></i>
 
 <!--            <div class="h5 uk-hidden@m mr-3 mb-0" ><i class="icon-feather-home"></i></div>-->
             <!-- form search-->
@@ -278,16 +279,18 @@
 
 
     <div class="box-gradient-home"></div>
+    <br>
+    <br>
+
 
     <!-- content -->
     <div class="page-content">
         <div class="page-content-inner">
 <!--            <p class="text-white"> Providers</p>-->
-            <br>
-            <br>
+
             <nav id="breadcrumbs" class="text-white">
                 <ul>
-                    <li style="font-weight: 700; font-size: 20px;"> Top 4 View Girl Providers</li>
+                    <li style="font-weight: 700; font-size: 20px; color: #f2999f"> Top 4 View Girl Providers</li>
                 </ul>
             </nav>
 
@@ -297,7 +300,7 @@
 
                 <div class="col-md-3 col-sm-6" *ngFor="let pr of providers">
                     <div class="card uk-inline-clip text-center animate-this">
-                        <img src="{{pr?.account?.avatar}}" alt="" style="height: 320px; width: 300px">
+                        <img src="{{pr?.account?.avatar}}" alt="" style="height: 320px; width: 290px">
                         <div class="p-3">
                             <h4 class="mb-2" data-bs-toggle="modal" data-bs-target="#myModal" (click)="findProviderById(pr.id)">{{pr?.account?.fullName}}</h4>
                             <div >
@@ -343,7 +346,7 @@
 
         </div>
         <div class="page-content-inner">
-            <h5 class="title-header-left" style="font-weight: 700; font-size: 20px; color: #4b35a0">Top 12 Seller Providers</h5>
+            <h5 class="title-header-left" style="font-weight: 700; font-size: 20px; color:#f2999f">Top 12 Seller Providers</h5>
             <br>
 
             <div class="row">
@@ -410,7 +413,7 @@
         <div class="footer">
             <div class="uk-grid-collapse" uk-grid>
                 <div class="uk-width-expand@s uk-first-column">
-                    <p>© 2020 <strong>Bootstro</strong>. All Rights Reserved. </p>
+                    <p>© 2023 <strong>Lover</strong>. All Rights Reserved. </p>
                 </div>
                 <div class="uk-width-auto@s">
                     <nav class="footer-nav-icon">
