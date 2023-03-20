@@ -34,6 +34,7 @@ import { ForgetPassComponent } from './forget-pass/forget-pass.component';
 import { ShowAllProviderComponent } from './admin/show-all-provider/show-all-provider.component';
 import { ViewProviderComponent } from './view-provider/view-provider.component';
 import { ImageComponent } from './image/image.component';
+import { MessageComponent } from './User/message/message.component';
 
 
 
@@ -66,7 +67,8 @@ import { ImageComponent } from './image/image.component';
         ForgetPassComponent,
         ShowAllProviderComponent,
         ViewProviderComponent,
-        ImageComponent
+        ImageComponent,
+        MessageComponent
 
     ],
     imports: [
