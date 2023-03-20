@@ -13,6 +13,8 @@ import { ProvisionProviderService } from '../service/provisionprovider/provision
 import { ProvisionProvider } from '../model/ProvisionProvider';
 import { CreateProvider } from '../model/CreateProvider';
 import { AccountForChange } from '../model/AccountForChange';
+import { ImageUrlDTO } from '../model/ImageUrlDTO/ImageUrlDTO';
+import { ImageService } from '../service/image/image.service';
 
 @Component({
     selector: 'app-profile-provider',
@@ -32,17 +34,21 @@ export class ProfileProviderComponent implements OnInit {
     statusProvider!: number;
     startTimeDB!:number
     endTimeDB!:number
+    showImgActive:ImageUrlDTO[]=[];
+    id!:number;
     constructor(private providerService: ProviderService,
                 private route: ActivatedRoute,
                 private router: Router,
                 private accountService: AccountService,
                 private orderLoverService: OrderLoverService,
-                private provisionProviderService: ProvisionProviderService) {
+                private provisionProviderService: ProvisionProviderService,
+                private imageService:ImageService) {
     }
 
     ngOnInit() {
-
-        this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res=> {
+        this.id=this.accountService.getAccountToken().id;
+        this.imageService.findByAccount_IdAAndStatusImg1(this.id).subscribe(res=>this.showImgActive=res)
+        this.accountService.findById(this.id).subscribe(res=> {
             this.account = res;
             this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res => {
                 if (res != null) {
