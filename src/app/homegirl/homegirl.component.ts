@@ -147,11 +147,12 @@ export class HomegirlComponent implements OnInit {
         search: new FormControl()
     });
 
+    providersSearch: Provider[] = [];
     searchProvider() {
-        this.stringSearch = this.formSearch.controls["searchProvider"].value
+        this.stringSearch = this.formSearch.controls["search"].value
         if (this.stringSearch != "") {
             this.accountService.searchProvider(this.stringSearch).subscribe((data) => {
-                this.providers = data;
+                this.providersSearch = data;
             })
         } else {
             this.ngOnInit();

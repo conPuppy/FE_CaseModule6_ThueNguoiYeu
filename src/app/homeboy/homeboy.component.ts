@@ -152,7 +152,7 @@ export class HomeboyComponent implements OnInit{
 
   providersSearch: Provider[] = []
   searchProvider() {
-    this.stringSearch = this.formSearch.controls["search"].value
+    this.stringSearch = this.formSearch.controls["search"].value;
     if (this.stringSearch != "") {
       this.accountService.searchProvider(this.stringSearch).subscribe((data) => {
         this.providersSearch = data;
