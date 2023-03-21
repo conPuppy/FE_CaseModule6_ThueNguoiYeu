@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Account } from '../model/Account';
@@ -27,6 +28,7 @@ export class HomeboyComponent implements OnInit{
   account: any;
   statusProvider!:number;
   provider1!:CreateProvider
+
 
 
   constructor(private accountService: AccountService, private router: Router, private providerService: ProviderService,
@@ -142,5 +144,22 @@ export class HomeboyComponent implements OnInit{
       this.orderLovers = data;
     })
   }
-  
+
+  stringSearch: any;
+  formSearch: FormGroup = new FormGroup({
+    search: new FormControl()
+  });
+
+  providersSearch: Provider[] = []
+  searchProvider() {
+    this.stringSearch = this.formSearch.controls["searchProvider"].value
+    alert(this.stringSearch)
+    if (this.stringSearch != "") {
+      this.accountService.searchProvider(this.stringSearch).subscribe((data) => {
+        this.providersSearch = data;
+      })
+    } else {
+      this.ngOnInit();
+    }
+  }
 }

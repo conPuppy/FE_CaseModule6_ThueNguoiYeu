@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup } from '@angular/forms';
 import {Router} from '@angular/router';
 import Swal from 'sweetalert2';
 import {Account} from '../model/Account';
@@ -141,5 +142,20 @@ export class HomegirlComponent implements OnInit {
 
     }
 
+    stringSearch: any;
+    formSearch: FormGroup = new FormGroup({
+        search: new FormControl()
+    });
+
+    searchProvider() {
+        this.stringSearch = this.formSearch.controls["searchProvider"].value
+        if (this.stringSearch != "") {
+            this.accountService.searchProvider(this.stringSearch).subscribe((data) => {
+                this.providers = data;
+            })
+        } else {
+            this.ngOnInit();
+        }
+    }
 
 }
