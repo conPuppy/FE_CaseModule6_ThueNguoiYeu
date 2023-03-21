@@ -294,11 +294,11 @@
                         </div></h3>
                     </div>
                     <h3 *ngIf="provider?.statusProvider==1">
-                        <button type="button" class="btn btn-success">
+                        <button type="button" class="btn btn-success" (click)="setStatusProvider(provider.id)">
                             Active
                         </button>
                     </h3>
-                    <h3 *ngIf="provider?.statusProvider==2">
+                    <h3 *ngIf="provider?.statusProvider==2" (click)="setStatusProvider(provider.id)">
                         <button type="button" class="btn btn-danger">
                             Busy
                         </button>

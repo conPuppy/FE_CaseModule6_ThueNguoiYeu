@@ -38,16 +38,16 @@ export class HomeboyComponent implements OnInit{
       this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res=>{
         if (res!=null){
           this.statusProvider=res.statusProvider;
+          this.providerService.getGirlProviderTopView().subscribe(data=>{
+            this.providers = data;
+            this.getTopSellProviderAcc();
+            this.provisionproviderService.getAllProvisionProvider().subscribe(data=>{
+              this.provisionproviders = data;
+            })
+          });
           console.log(this.statusProvider);
         }
       })
-      this.providerService.getGirlProviderTopView().subscribe(data=>{
-        this.providers = data;
-        this.provisionproviderService.getAllProvisionProvider().subscribe(data=>{
-          this.provisionproviders = data;
-        })
-      });
-      this.getTopSellProviderAcc();
       this.showCart(this.account.id,1);
     })
     
@@ -90,13 +90,13 @@ export class HomeboyComponent implements OnInit{
     this.providerService.getProviderTopSell().subscribe(data=>{
       this.providers1 = data;
       for (let i = 0; i < this.providers1.length; i++) {
-        if(this.providers1[i].account.id==this.account.id) {
-          this.index = i;
-          this.providers1.splice(this.index,1);
-          console.log(this.index)
+        if(this.providers1[i].account.id==this.account.id ) {
+          this.providers1.splice(i,1);
+        }
+        if(this.providers1[i].statusProvider==2) {
+          this.providers1.splice(i,1);
         }
       }
-      
       console.log(this.providers1.length)
       this.total = this.providers1.length;
       this.provisionproviderService.getAllProvisionProvider().subscribe(data=>{
