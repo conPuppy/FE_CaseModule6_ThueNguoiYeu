@@ -241,7 +241,7 @@ export class ProfileProviderComponent implements OnInit {
     }
 
     goToProvider() {
-        this.router.navigate(['/supplier'])
+        this.router.navigate(['/supplier']);
     };
     
     sendComment(){
