@@ -9,12 +9,17 @@ import {ProviderService} from '../service/provider/provider.service';
 import * as moment from 'moment';
 import {OrderLoverService} from '../service/Order/order-lover.service';
 import Swal from 'sweetalert2';
+
+import { CommentService } from '../service/comment/comment.service';
+import {Comment} from '../model/Comment';
+
 import { ProvisionProviderService } from '../service/provisionprovider/provisionprovider.service';
 import { ProvisionProvider } from '../model/ProvisionProvider';
 import { CreateProvider } from '../model/CreateProvider';
 import { AccountForChange } from '../model/AccountForChange';
 import { ImageService } from '../service/image/image.service';
 import { Image1 } from '../model/Image1';
+
 
 @Component({
     selector: 'app-profile-provider',
@@ -26,6 +31,16 @@ export class ProfileProviderComponent implements OnInit {
     orderLover: OrderLover = new OrderLover();
     orderLovers: OrderLover[]=[];
     formOrder!: any;
+
+    
+    providerProvisions: ProvisionProvider[] = [];
+    listComment : Comment[] = [];
+    listOrderDone : OrderLover[] = [];
+    orderDone !: OrderLover
+    averageScore !: number
+    starsScore !: number
+    countComment !: number
+
     account!:Account;
     account1!: AccountForChange;
     startTimeConvert!:String;
@@ -36,16 +51,37 @@ export class ProfileProviderComponent implements OnInit {
     endTimeDB!:number
     showImgActive:Image1[]=[];
     id!:number;
+
     constructor(private providerService: ProviderService,
                 private route: ActivatedRoute,
                 private router: Router,
                 private accountService: AccountService,
                 private orderLoverService: OrderLoverService,
                 private provisionProviderService: ProvisionProviderService,
+                private commentService: CommentService,
                 private imageService:ImageService) {
+
     }
 
+    rateForm = new FormGroup({
+        rate: new FormControl(),
+        comment : new FormControl(),
+        account : new FormControl(),
+        provider : new FormControl()
+    })
+
     ngOnInit() {
+        this.commentService.averageScore(+this.route.snapshot.params['id']).subscribe((data)=>{
+            this.averageScore = data;
+            
+        })
+        this.commentService.starsScore(+this.route.snapshot.params['id']).subscribe((data)=>{
+            this.starsScore = data;
+
+        })
+        this.commentService.countComment(+this.route.snapshot.params['id']).subscribe((data)=>{
+            this.countComment = data;
+        })
         this.id=this.accountService.getAccountToken().id;
         this.accountService.findById(this.id).subscribe(res=> {
             this.account = res;
@@ -63,6 +99,7 @@ export class ProfileProviderComponent implements OnInit {
                 console.log(res);
                 this.showImgActive=res})
         })
+
         this.formOrder = new FormGroup({
             startOrder: new FormControl(),
             selectTime: new FormGroup({
@@ -70,6 +107,26 @@ export class ProfileProviderComponent implements OnInit {
             }),
             total: new FormControl()
         })
+        this.commentService.findCommentById(+this.route.snapshot.params['id']).subscribe((res)=>{
+            // @ts-ignore
+            this.listComment = res;
+            
+        })
+
+        this.orderLoverService.findOrderByAccountIdAndProviderId(this.accountService.getAccountToken().id, +this.route.snapshot.params['id']).subscribe((data)=>{
+            // @ts-ignore
+            this.listOrderDone = data;
+            
+        })
+
+        // @ts-ignore
+        this.rateForm.get("account").setValue(this.accountService.getAccountToken())
+        this.providerService.findProviderById(+this.route.snapshot.params['id']).subscribe((res) => {
+            this.provider = res;
+            // @ts-ignore
+        this.rateForm.get("provider").setValue(this.provider)
+    }
+        )
     }
     goToTheHome() {
         if(this.account.gender=="Male") {
@@ -186,4 +243,38 @@ export class ProfileProviderComponent implements OnInit {
     goToProvider() {
         this.router.navigate(['/supplier'])
     };
+    
+    sendComment(){
+        console.log(this.rateForm.value)
+    }
+
+    rate5(){
+        // @ts-ignore
+        this.rateForm.get("rate").setValue(5)
+    }
+    rate4(){
+        // @ts-ignore
+        this.rateForm.get("rate").setValue(4)
+    }
+    rate3(){
+        // @ts-ignore
+        this.rateForm.get("rate").setValue(3)
+    }
+    rate2(){
+        // @ts-ignore
+        this.rateForm.get("rate").setValue(2)
+    }
+    rate1(){
+        // @ts-ignore
+        this.rateForm.get("rate").setValue(1)
+    }
+
+    send(){
+
+        this.commentService.saveComment(this.rateForm.value).subscribe((data)=>{
+            location.reload();
+        })
+
+    }
+    
 }

@@ -229,7 +229,8 @@
                                     <img src="{{account?.avatar}}" alt=""></a>
                             </div>
                             <div class="dropdown-user-name">
-                                {{account?.username}} <span> {{account?.wallet}} <i class="icon-feather-dollar-sign"></i> </span>
+                                {{account?.username}} <span> {{account?.wallet}} <i
+                                    class="icon-feather-dollar-sign"></i> </span>
                             </div>
                         </div>
 
@@ -243,8 +244,10 @@
                         <li><a class="btn-danger"  *ngIf="statusProvider==2"> <i class="uil-user" ></i> Busy</a></li>
                         <li><a class="btn-success" (click)="createProvider()" *ngIf="statusProvider!=1&&statusProvider!=2&&statusProvider!=3"> <i class="uil-bolt" ></i> Become Provider</a></li>
                         <li><a (click)="goToProfile()"> <i class="uil-user"></i> My Profile </a></li>
+
                         <li><a (click)="goToMyOrder()" > <i class="uil-invoice"></i> My Order </a></li>
                         <li><a (click)="goToMyBill()" > <i class="uil-invoice"></i> My Bill </a></li>
+
                         <li><a (click)="goToEditProfile()"> <i class="uil-edit"></i> Edit Profile </a></li>
                         <li><a (click)="goToProviderSetting()"> <i class="uil-cog"></i> Provider Settings</a></li>
                         <li class="menu-divider"></li>
@@ -294,10 +297,18 @@
                             </a>
                             <div uk-dropdown="pos: bottom-right ; mode: click ;animation: uk-animation-scale-up">
                                 <ul class="uk-nav uk-dropdown-nav">
-                                    <li class="uk-active"><a (click)="getAllBillOfAccountByIdAndStartOrder(idAccount, 5)"> Completed </a></li>
-                                    <li class="uk-active"><a (click)="getAllBillOfAccountByIdAndStartOrder(idAccount,4)"> Rejected </a></li>
-                                    <li class="uk-active"><a (click)="getAllBillOfAccountByIdAndStartOrder(idAccount,3)"> Confirmed </a></li>
-                                    <li class="uk-active"><a (click)="getAllBillOfAccountByIdAndStartOrder(idAccount,2)"> Pending </a></li>
+                                    <li class="uk-active"><a
+                                            (click)="getAllBillOfAccountByIdAndStartOrder(idAccount, 5)"> Completed </a>
+                                    </li>
+                                    <li class="uk-active"><a
+                                            (click)="getAllBillOfAccountByIdAndStartOrder(idAccount,4)"> Rejected </a>
+                                    </li>
+                                    <li class="uk-active"><a
+                                            (click)="getAllBillOfAccountByIdAndStartOrder(idAccount,3)"> Confirmed </a>
+                                    </li>
+                                    <li class="uk-active"><a
+                                            (click)="getAllBillOfAccountByIdAndStartOrder(idAccount,2)"> Pending </a>
+                                    </li>
                                 </ul>
                             </div>
 
@@ -361,7 +372,8 @@
                                 <!-- Actions -->
                                 <div class="actions ml-3">
                                     <a *ngIf="ba.statusOrder == 3" class="btn btn-icon btn-hover btn-sm btn-circle"
-                                       uk-tooltip="Completed" (click)="changeToCompleted(ba.id)">
+                                       uk-tooltip="Completed" (click)="changeToCompleted(ba.id)"
+                                       uk-toggle="target: #modal-example">
                                         <i class="icon-feather-check-square"></i> </a>
                                     <!--                                    <a *ngIf="ba.statusOrder == 3" class="btn btn-icon btn-hover btn-sm btn-circle"-->
                                     <!--                                       uk-tooltip="Rejected" (click)="changeToRejected(ba.id)">-->
@@ -385,6 +397,40 @@
 
     </div>
 
+</div>
+
+<!--Rate and Comment-->
+
+<div id="modal-example" uk-modal style="text-align: center">
+    <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">Rate And Comment</h2>
+
+        <form [formGroup]="rateForm" (submit)="sendComment()">
+            <div class="stars">
+                <input class="star star-5" id="star-5" type="radio" name="star" (click)="rate5()"/>
+                <label class="star star-5" for="star-5"></label>
+                <input class="star star-4" id="star-4" type="radio" name="star" (click)="rate4()"/>
+                <label class="star star-4" for="star-4"></label>
+                <input class="star star-3" id="star-3" type="radio" name="star" (click)="rate3()"/>
+                <label class="star star-3" for="star-3"></label>
+                <input class="star star-2" id="star-2" type="radio" name="star" (click)="rate2()"/>
+                <label class="star star-2" for="star-2"></label>
+                <input class="star star-1" id="star-1" type="radio" name="star" (click)="rate1()"/>
+                <label class="star star-1" for="star-1"></label>
+            </div>
+            <textarea formControlName="comment">
+            </textarea>
+            <br>
+            <br>
+            <p class="uk-text-right">
+                <button class="btn btn-outline-light text-dark uk-modal-close" type="button">Do it later</button>
+                <button class="btn btn-info " type="submit">Send</button>
+            </p>
+
+        </form>
+
+
+    </div>
 </div>
 
 

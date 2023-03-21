@@ -377,6 +377,7 @@ align-content: center">
                         <hr>
                         <div>
                             <p class="h4">Service:</p>
+
                             <div style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
     font-size: 14px;
     line-height: 1.42857143;
@@ -390,6 +391,7 @@ align-content: center">
 "
                                      *ngFor="let pp of allServicesOfProvider" >
                                     {{pp?.provision?.name}}
+
                                 </div>
 
                             </div>
@@ -400,7 +402,116 @@ align-content: center">
                             <p style='word-wrap:break-word; '>{{provider?.account?.description}}</p>
                         </div>
                         <hr>
-                        <p class="h4">Evaluate</p>
+                        <div>
+                            <p class="h4">Evaluate </p>
+                            <p>({{countComment}} reviews)</p>
+                            <br>
+                            <a data-bs-toggle="collapse" data-bs-target="#demo" >
+                                <span class="icon-line-awesome-pencil">
+
+                                    </span>
+                                Write your comment</a>
+                            <div *ngFor="let o of listOrderDone; index as i">
+                            <span *ngIf="i == 1">
+                            <div *ngIf="o.statusOrder == 5">
+                                <div id="demo" class="collapse">
+                                 <form [formGroup]="rateForm" (submit)="send()">
+                                        <div class="stars">
+                                            <input class="star star-5" id="star-5" type="radio" name="star"
+                                                   (click)="rate5()"/>
+                                            <label style="width: 20%" class="star star-5" for="star-5"></label>
+                                            <input class="star star-4" id="star-4" type="radio" name="star"
+                                                   (click)="rate4()"/>
+                                            <label class="star star-4" for="star-4"></label>
+                                            <input class="star star-3" id="star-3" type="radio" name="star"
+                                                   (click)="rate3()"/>
+                                            <label class="star star-3" for="star-3"></label>
+                                            <input class="star star-2" id="star-2" type="radio" name="star"
+                                                   (click)="rate2()"/>
+                                            <label class="star star-2" for="star-2"></label>
+                                            <input class="star star-1" id="star-1" type="radio" name="star"
+                                                   (click)="rate1()"/>
+                                            <label class="star star-1" for="star-1"></label>
+                                        </div>
+                                     <textarea formControlName="comment">
+                                     </textarea>
+                                    <br>
+
+                                     <button class="btn btn-primary" type="submit" style="margin-left: 90%"> Send</button>
+
+                                 </form>
+                            </div>
+                                </div>
+                            <br>
+                                </span>
+                            </div>
+
+
+                            <div class="top-container" *ngFor="let l of listComment">
+
+                                <img src="{{l.account.avatar}}" class="img-fluid profile-image" width="45">
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+
+                                <div class="ml-3">
+                                    <div class="card" style="height: 50%; width: 500px">
+                                        <div class="card-body">
+
+
+                                            <h5 class="name">{{l.account.fullName}}</h5>
+
+                                            <div *ngIf="l.rate == 5">
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                            </div>
+                                            <div *ngIf="l.rate == 4">
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star "></span>
+                                            </div>
+                                            <div *ngIf="l.rate == 3">
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star "></span>
+                                                <span class="fa fa-star "></span>
+                                            </div>
+                                            <div *ngIf="l.rate == 2">
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star "></span>
+                                                <span class="fa fa-star "></span>
+                                                <span class="fa fa-star "></span>
+                                            </div>
+                                            <div *ngIf="l.rate == 1">
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star "></span>
+                                                <span class="fa fa-star "></span>
+                                                <span class="fa fa-star "></span>
+                                                <span class="fa fa-star "></span>
+                                            </div>
+                                            <div class="card-footer">
+                                                <p>{{l.comment}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
                     </div>
 
                 </div>
@@ -409,17 +520,63 @@ align-content: center">
                 <div class="col-lg-3 col-12">
 
 
-                    <div class="card" style="    width: 100%;
-    height: auto;
-    border-radius: 15px;
-    padding: 10px;
-    border: 1px solid #e2e6ea;">
-                        <h4><b>{{provider?.price}} $/h</b></h4>
-                        <div class="text-warning">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+
+                    <div class="card">
+                        <h3><strong>{{provider.price}} $/h</strong></h3>
+
+
+                        <div *ngIf="starsScore == 5">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span>   ({{averageScore}} points)</span>
                         </div>
-                        <br>
+                        <div *ngIf="starsScore == 4">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star "></span>
+                            <span>   ({{averageScore}} points)</span>
+                        </div>
+                        <div *ngIf="starsScore == 3">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star "></span>
+                            <span>   ({{averageScore}} points)</span>
+                        </div>
+                        <div *ngIf="starsScore == 2">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                            <span>   ({{averageScore}} points)</span>
+                        </div>
+                        <div *ngIf="starsScore == 1">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                            <span>   ({{averageScore}} points)</span>
+                        </div>
+
+                    <!-- <div class="card" style="    width: 100%;-->
+    <!-- height: auto;-->
+    <!-- border-radius: 15px;-->
+    <!-- padding: 10px;-->
+   <!--  border: 1px solid #e2e6ea;">-->
+                       <!--  <h4><b>{{provider?.price}} $/h</b></h4>-->
+                       <!--  <div class="text-warning">-->
+                        <!--     <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>-->
+                        <!--     <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>-->
+                       <!--  </div>-->
+                      <!--   <br>-->
+
                         <button type="button" data-bs-toggle="modal" data-bs-target="#myModal"
                                 class="btn btn-danger" style="width: 100%;
     height: 54px;
@@ -483,6 +640,7 @@ align-content: center">
     </div>
 
 </div>
+
 <form [formGroup]="formOrder" (submit)="createOrderLover()">
     <div class="modal fade" id="myModal">
         <div class="modal-dialog">
@@ -552,6 +710,9 @@ align-content: center">
                         </div>
                         <br>
                         <br>
+
+
+
                         <div class="row">
                             <div class="col">Total:</div>
                             <div class="col">
@@ -567,6 +728,8 @@ align-content: center">
                     <button type="button" (click)="closeOrderLover()" class="btn btn-outline-light text-dark"
                             data-bs-dismiss="modal">Close
                     </button>
+                </div>
+
 
                 </div>
             </div>
@@ -576,4 +739,8 @@ align-content: center">
     </div>
 
 </form>
+
+
+
+
 

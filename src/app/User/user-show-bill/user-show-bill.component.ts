@@ -1,3 +1,4 @@
+import {FormControl, FormGroup } from '@angular/forms';
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {CreateProvider} from 'src/app/model/CreateProvider';
@@ -19,6 +20,21 @@ export class UserShowBillComponent implements OnInit {
     idAccount: number = -1;
 
     account: any;
+
+    
+    rateForm = new FormGroup({
+        rate: new FormControl(),
+        comment : new FormControl(),
+        account : new FormControl(),
+        provider : new FormControl()
+    })
+
+    constructor(private orderLoverService: OrderLoverService,
+                private accountService: AccountService,
+                private router:Router,
+                private commentService:CommentService,
+                 private providerService: ProviderService  ) {
+
     roleString: string = '';
     statusProvider!: number;
     provider!: CreateProvider;
@@ -30,8 +46,6 @@ export class UserShowBillComponent implements OnInit {
         })
     }
 
-    constructor(private orderLoverService: OrderLoverService, private accountService: AccountService, private router: Router,private providerService: ProviderService) {
-    }
 
     ngOnInit(): void {
         this.getAllBillOfAccountById();
@@ -74,6 +88,12 @@ export class UserShowBillComponent implements OnInit {
     }
 
     changeToCompleted(idOrder: number) {
+        this.orderLoverService.findOrderById(idOrder).subscribe((res)=>{
+            // @ts-ignore
+            this.rateForm.get("account").setValue(res.account)
+            // @ts-ignore
+            this.rateForm.get("provider").setValue(res.provider)
+        })
         this.orderLoverService.changeToCompleted(idOrder).subscribe(() => {
             this.getAllBillOfAccountById();
         })
@@ -103,5 +123,31 @@ export class UserShowBillComponent implements OnInit {
 
     goToEditProfile() {
         this.router.navigate(['/changeInfo'])
+    }
+    rate5(){
+        // @ts-ignore
+        this.rateForm.get("rate").setValue(5)
+    }
+    rate4(){
+        // @ts-ignore
+        this.rateForm.get("rate").setValue(4)
+    }
+    rate3(){
+        // @ts-ignore
+        this.rateForm.get("rate").setValue(3)
+    }
+    rate2(){
+        // @ts-ignore
+        this.rateForm.get("rate").setValue(2)
+    }
+    rate1(){
+        // @ts-ignore
+        this.rateForm.get("rate").setValue(1)
+    }
+
+    sendComment(){
+        this.commentService.saveComment(this.rateForm.value).subscribe((data)=>{
+        })
+
     }
 }

@@ -44,7 +44,18 @@ export class OrderLoverService {
   getAllBillOfAccountByIdAndStartOrder(idAccount: number, statusOrder: number): Observable<OrderLover[]> {
     return this.http.get<OrderLover[]>(`http://localhost:8080/user/getOrdersByStatus/${idAccount}/${statusOrder}`)
   }
+
+  findOrderById(idOrder: number): Observable<OrderLover> {
+    // @ts-ignore
+    return this.http.get<OrderLover>(`http://localhost:8080/orders/m/findOrderById/${idOrder}`)
+  }
+
+  findOrderByAccountIdAndProviderId(idAccount:number , idProvider: number): Observable<OrderLover>{
+    return this.http.get<OrderLover>("http://localhost:8080/orders/m/findOrderByAccountId/" + idAccount + "/ProviderId/" + idProvider)
+  }
+
   getAllBillOfProviderIdAndStatus3(providerId:number):Observable<OrderLover[]>{
     return this.http.get<OrderLover[]>(`http://localhost:8080/orders/getOrdersByStatus3/${providerId}`)
+
   }
 }
