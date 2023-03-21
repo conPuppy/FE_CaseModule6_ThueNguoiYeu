@@ -281,13 +281,23 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="card-body pb-0" >
+                            <div class="row">
+                                <div class="col-md-4 col-6 animate-this mb-2 px-lg-2"
+                                     *ngFor="let image1 of listMoreImages">
+                                    <img style="width: 100%;height: 100%;" src="{{image1.url}}"
+                                         class="img-fluid mb-1 rounded"
+                                         alt="avtar img holder" *ngIf="showMore" >
+                                </div>
+                            </div>
+                        </div>
                         <div class="card-footer">
                             <div class="card" style="    width: 100%;
     height: auto;
     border-radius: 15px;
     padding: 10px;
     border: 1px solid #e2e6ea;">
-                                <div class="text-center"><a> View more </a></div>
+                                <button class="text-center" (click)="moreImages()"> View more</button>
                             </div>
                         </div>
                     </div>

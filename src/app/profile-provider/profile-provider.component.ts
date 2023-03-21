@@ -13,8 +13,8 @@ import { ProvisionProviderService } from '../service/provisionprovider/provision
 import { ProvisionProvider } from '../model/ProvisionProvider';
 import { CreateProvider } from '../model/CreateProvider';
 import { AccountForChange } from '../model/AccountForChange';
-import { ImageUrlDTO } from '../model/ImageUrlDTO/ImageUrlDTO';
 import { ImageService } from '../service/image/image.service';
+import { Image1 } from '../model/Image1';
 
 @Component({
     selector: 'app-profile-provider',
@@ -34,7 +34,7 @@ export class ProfileProviderComponent implements OnInit {
     statusProvider!: number;
     startTimeDB!:number
     endTimeDB!:number
-    showImgActive:ImageUrlDTO[]=[];
+    showImgActive:Image1[]=[];
     id!:number;
     constructor(private providerService: ProviderService,
                 private route: ActivatedRoute,

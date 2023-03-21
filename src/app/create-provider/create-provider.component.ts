@@ -4,7 +4,7 @@ import {FormControl, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
 import Swal from "sweetalert2";
 import { AccountForChange } from "../model/AccountForChange";
-import { ImageUrlDTO } from "../model/ImageUrlDTO/ImageUrlDTO";
+import { Image1 } from "../model/Image1";
 import { Provider } from "../model/Provider";
 import { ProvisionProvider } from "../model/ProvisionProvider";
 import { AccountService } from "../service/account/account.service";
@@ -25,7 +25,7 @@ export class CreateProviderComponent implements OnInit {
     provider!: Provider;
     allServicesOfProvider!: ProvisionProvider[];
 
-    showImgActive:ImageUrlDTO[]=[];
+    showImgActive:Image1[]=[];
     id!:number;
     formChangePrice!:any;
 
