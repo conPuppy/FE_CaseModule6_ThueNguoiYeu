@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup } from '@angular/forms';
 import {Router} from '@angular/router';
 import {CreateProvider} from 'src/app/model/CreateProvider';
 import {OrderLover} from 'src/app/model/OrderLover';
 import {AccountService} from 'src/app/service/account/account.service';
+import { CommentService } from 'src/app/service/comment/comment.service';
 import {OrderLoverService} from 'src/app/service/Order/order-lover.service';
 import { ProviderService } from 'src/app/service/provider/provider.service';
 import Swal from 'sweetalert2';
@@ -23,6 +25,12 @@ export class UserShowBillComponent implements OnInit {
     statusProvider!: number;
     provider!: CreateProvider;
     orderLovers: OrderLover[] = [];
+    rateForm = new FormGroup({
+        rate: new FormControl(),
+        comment : new FormControl(),
+        account : new FormControl(),
+        provider : new FormControl()
+    })
 
     showCart(id: number, statusOrder: number) {
         this.orderLoverService.getAllBillOfAccountByIdAndStartOrder(id, statusOrder).subscribe((data: OrderLover[]) => {
@@ -30,7 +38,12 @@ export class UserShowBillComponent implements OnInit {
         })
     }
 
-    constructor(private orderLoverService: OrderLoverService, private accountService: AccountService, private router: Router,private providerService: ProviderService) {
+    constructor(private orderLoverService: OrderLoverService,
+                private accountService: AccountService,
+                private router: Router,
+                private providerService: ProviderService,
+                private commentService:CommentService
+    ) {
     }
 
     ngOnInit(): void {
@@ -74,12 +87,19 @@ export class UserShowBillComponent implements OnInit {
     }
 
     changeToCompleted(idOrder: number) {
+        this.orderLoverService.findOrderById(idOrder).subscribe((res)=>{
+            // @ts-ignore
+            this.rateForm.get("account").setValue(res.account)
+            // @ts-ignore
+            this.rateForm.get("provider").setValue(res.provider)
+        })
         this.orderLoverService.changeToCompleted(idOrder).subscribe(() => {
             this.getAllBillOfAccountById();
         })
     }
 
     getAllBillOfAccountByIdAndStartOrder(idAccount: number, statusOrder: number) {
+
         this.orderLoverService.getAllBillOfAccountByIdAndStartOrder(idAccount, statusOrder).subscribe((data) => {
             this.listBillOfAccount = data;
         })
@@ -103,5 +123,32 @@ export class UserShowBillComponent implements OnInit {
 
     goToEditProfile() {
         this.router.navigate(['/changeInfo'])
+    }
+    rate5(){
+        // @ts-ignore
+        this.rateForm.get("rate").setValue(5)
+    }
+    rate4(){
+        // @ts-ignore
+        this.rateForm.get("rate").setValue(4)
+    }
+    rate3(){
+        // @ts-ignore
+        this.rateForm.get("rate").setValue(3)
+    }
+    rate2(){
+        // @ts-ignore
+        this.rateForm.get("rate").setValue(2)
+    }
+    rate1(){
+        // @ts-ignore
+        this.rateForm.get("rate").setValue(1)
+    }
+
+    sendComment(){
+        console.log(this.rateForm.value)
+        this.commentService.saveComment(this.rateForm.value).subscribe((data)=>{
+        })
+
     }
 }
