@@ -1,11 +1,23 @@
 <!--&lt;!&ndash; Content-->
 <!--    ================================================== &ndash;&gt;-->
-<div uk-height-viewport="expand: true" class="uk-flex uk-flex-middle">
-    <div class="uk-width-1-3@m uk-width-1-2@s m-auto">
-        <div class="px-2 uk-animation-scale-up">
+<!---->
+
+
+
+
+
+<div uk-height-viewport class="uk-flex uk-flex-middle uk-grid-collapse uk-grid-match" uk-grid>
+    <div class="uk-width-2-3@m uk-width-1-2@s uk-visible@s uk-height-viewport uk-background-cover"
+         data-src="https://scontent.fhan17-1.fna.fbcdn.net/v/t39.30808-6/337136322_234573825595274_6593274067083442156_n.jpg?stp=cp6_dst-jpg&_nc_cat=102&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=B--paI_NSSkAX9Q4pXp&_nc_ht=scontent.fhan17-1.fna&oh=00_AfCfKLYn31gMEqY38cTY_di2VpP09X6rb7cuyOTvUp_9GA&oe=641E518E" uk-img>
+
+    </div>
+    <div class="uk-width-1-3@m uk-width-1-2@s uk-animation-slide-right-medium">
+
+
+        <div class="px-5">
             <div class="my-4 uk-text-center">
-                <h1 class="mb-2"> Register Form  </h1>
-                <p class="my-2">Do you have an a account. <a routerLink="/login"> Log in </a> </p>
+                <h1 class="mb-2"> Register  </h1>
+                <p class="my-2">Do you have an a account. <a routerLink="/login" style="color: #f2999f"> Log in</a> </p>
             </div>
             <form [formGroup]="formRegister" (ngSubmit)="createAccount()">
                 <div class="uk-form-group">
@@ -51,18 +63,22 @@
                 </div>
                 <div class="uk-form-group">
                     <div class="uk-position-relative w-100">
-                        <input class="uk-input" type="text"  placeholder="Phone Number" formControlName="phoneNumber">
+                        <input class="uk-input" type="text" (ngModelChange)="funcCheckDuplicatephoneNumber(formRegister.get('phoneNumber')?.value)" placeholder="Phone Number" formControlName="phoneNumber">
                     </div>
                     <div class="uk-position-relative w-100" *ngFor="let validation of validation_messages.phoneNumber">
                         <div class="error-message"
                              *ngIf="formRegister?.get('phoneNumber')?.hasError(validation.type) && (formRegister?.get('phoneNumber')?.dirty || formRegister?.get('phoneNumber')?.touched)">
                             {{validation.message}}</div>
                     </div>
-
+                    <div class="uk-position-relative w-100" *ngIf="checkConfirmPhoneNumber">
+                        <div class="error-message">
+                            PhoneNumber already exists!
+                        </div>
+                    </div>
                 </div>
                 <div class="uk-form-group">
                     <div class="uk-position-relative w-100">
-                        <input class="uk-input" type="password"  placeholder="Your password" formControlName="password">
+                        <input  [type]="changeType" class="uk-input"   placeholder="Your password" formControlName="password">
                     </div>
                     <div class="uk-position-relative w-100" *ngFor="let validation of validation_messages.password">
                         <div class="error-message"
@@ -72,7 +88,7 @@
                 </div>
                 <div class="uk-form-group">
                     <div class="uk-position-relative w-100">
-                        <input class="uk-input" type="password" (ngModelChange)="funcCheckConfirmPassword()"  placeholder="Confirm password" formControlName="confirmPassword">
+                        <input  [type]="changeType" class="uk-input"  (ngModelChange)="funcCheckConfirmPassword()"  placeholder="Confirm password" formControlName="confirmPassword">
                     </div>
                     <div class="uk-position-relative w-100" *ngFor="let validation of validation_messages.confirmPassword">
                         <div class="error-message"
@@ -107,9 +123,12 @@
                             </select>
                         </fieldset>
                     </div>
+                    <a (click)="funcShowPassword()" *ngIf="changeType=='text'" class="opts_account"> <i class="uil-eye-slash" ></i> <span> Hidden password</span> </a>
+                    <a (click)="funcShowPassword()" *ngIf="changeType=='password'" class="opts_account"> <i class="uil-eye"></i> <span>Show password</span> </a>
                 </div>
-                <button type="submit" [disabled]="!formRegister.valid" class="btn btn-primary btn-block mb-4">Register</button>
+                <button type="submit" [disabled]="!formRegister.valid" class="btn btn-block mb-4" style="background-color: #f2999f; color: white">Register</button>
             </form>
         </div>
+
     </div>
 </div>

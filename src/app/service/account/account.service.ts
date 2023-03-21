@@ -35,7 +35,12 @@ export class AccountService implements OnInit {
     findAccountByEmail(email: String): Observable<any> {
         return this.http.get<any>(`http://localhost:8080/register/findAccountByEmail/${email}`)
     }
-
+    findAccountByPhoneNumber(phoneNumber: String): Observable<any> {
+            return this.http.get<any>(`http://localhost:8080/register/findAccountByPhoneNumber/${phoneNumber}`)
+    }
+    forgotPass(account:Account):Observable<any>{
+        return this.http.post<any>('http://localhost:8080/register/forgetPass',account)
+    }
     getAllAccount(page: number): Observable<any> {
         return this.http.get<any>(this.url + '?page=' + page);
     }
@@ -48,6 +53,12 @@ export class AccountService implements OnInit {
     search(stringSearch: String): Observable<any> {
         return this.http.get<any>(`http://localhost:8080/admin/search/${stringSearch}`)
     }
+
+
+    searchProvider(stringSearch: String): Observable<any> {
+        return this.http.get<any>(`http://localhost:8080/user/searchProvider/${stringSearch}`)
+    }
+
 
     findById(id: number): Observable<any> {
         return this.http.get<any>(`http://localhost:8080/admin/accounts/${id}`)

@@ -116,10 +116,11 @@ body {
     font-weight: 400;
     line-height: 1.6;
     text-align: left;
-    background: #fff;
+    /*background: -webkit-linear-gradient(45deg, #ff6e7b, #ff7e7c) !important;*/
+    /*background: linear-gradient(45deg, #ff6e7b, #ff7e7c) !important;*/
     color: #666;
     -webkit-text-size-adjust: 100%;
-    background-color: #4223e1;
+    /*background-color: #4223e1;*/
 }
 
 [tabindex="-1"]:focus {
@@ -559,7 +560,7 @@ mark,
 .blockquote-footer {
     display: block;
     font-size: 80%;
-    color: #6c757d;
+    /*color: #6c757d;*/
 }
 
 .blockquote-footer::before {
@@ -925,6 +926,8 @@ fieldset {
 .page-content {
     display: block;
     position: relative;
+    /*background: -webkit-linear-gradient(45deg, #fab0b1, #fdbfba) !important;*/
+    /*background: linear-gradient(45deg, #fab0b1, #fdbfba) !important;*/
     /* padding-top: 40px; */
 }
 
@@ -934,6 +937,7 @@ fieldset {
     padding: 30px;
     padding-bottom: 0;
     position: relative;
+
 }
 
 .side-nav~.page-content {
@@ -1862,6 +1866,8 @@ button.mark-as-read:hover {
 
 .dropdown-notifications-footer {
     background: #f7f8fa;
+    /*background: -webkit-linear-gradient(45deg, #ff6e7b, #ff7e7c) !important;*/
+    /*background: linear-gradient(45deg, #ff6e7b, #ff7e7c) !important;*/
     height: 51px;
     display: flex;
     justify-content: center;
@@ -1870,6 +1876,8 @@ button.mark-as-read:hover {
 
 .dropdown-notifications-footer a {
     color: #007791 !important;
+    /*background: -webkit-linear-gradient(45deg, #ff6e7b, #ff7e7c) !important;*/
+    /*background: linear-gradient(45deg, #ff6e7b, #ff7e7c) !important;*/
     display: block;
     font-size: 13px;
     font-weight: 600;
@@ -2168,8 +2176,12 @@ ul.dropdown-user-menu .menu-divider {
     height: 260px;
     -webkit-transition: .3s ease all;
     transition: .3s ease all;
-    background: -webkit-linear-gradient(45deg, #303f9f, #7b1fa2) !important;
-    background: linear-gradient(45deg, #303f9f, #7b1fa2) !important;
+    background-image: url("https://scontent.fhan17-1.fna.fbcdn.net/v/t39.30808-6/336897288_887104529185510_8868335239712084378_n.jpg?stp=cp6_dst-jpg&_nc_cat=103&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=2zCFZ5jsNQ8AX9kk8Zz&_nc_ht=scontent.fhan17-1.fna&oh=00_AfA53U9KUmBD_7jnW-FKtLM4i-N6UVLTwOiXv3_MqV0rPg&oe=641D4E90") !important;
+    background-size: cover;
+    /*background-image: url("https://scontent.fhan17-1.fna.fbcdn.net/v/t39.30808-6/336647511_226684473247026_780558364310787225_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=730e14&_nc_ohc=hJ0KFIjmcT0AX_PtBqA&_nc_ht=scontent.fhan17-1.fna&oh=00_AfDoe8u9L0FyXcDIidHppBFLLx3VvpClfv4CPOtjnpntVw&oe=641A1048") !important;*/
+    /*background-image: url("https://anotherdating.com/wp-content/uploads/2020/08/bg-banner.jpg") !important;*/
+    /*background: -webkit-linear-gradient(45deg, #fab0b1, #fdbfba) !important;*/
+    /*background: linear-gradient(45deg, #fab0b1, #fdbfba) !important;*/
 }
 
 

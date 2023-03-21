@@ -53,4 +53,9 @@ export class OrderLoverService {
   findOrderByAccountIdAndProviderId(idAccount:number , idProvider: number): Observable<OrderLover>{
     return this.http.get<OrderLover>("http://localhost:8080/orders/m/findOrderByAccountId/" + idAccount + "/ProviderId/" + idProvider)
   }
+
+  getAllBillOfProviderIdAndStatus3(providerId:number):Observable<OrderLover[]>{
+    return this.http.get<OrderLover[]>(`http://localhost:8080/orders/getOrdersByStatus3/${providerId}`)
+
+  }
 }

@@ -19,6 +19,7 @@ export class HomeAdminComponent implements OnInit{
 
   stringSearch: any;
   account: any;
+  accountLogin!: Account;
 
   p: number = 1;
   total: number = 0;
@@ -28,7 +29,7 @@ export class HomeAdminComponent implements OnInit{
   ngOnInit(): void {
     this.getAllAccount();
     this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res => {
-      this.account = res})
+      this.accountLogin = res})
   }
 
   getAllAccount() {

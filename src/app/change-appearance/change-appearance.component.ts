@@ -6,6 +6,8 @@ import Swal from "sweetalert2";
 import { Router } from '@angular/router';
 import { ProviderService } from '../service/provider/provider.service';
 import { CreateProvider } from '../model/CreateProvider';
+import { OrderLoverService } from '../service/Order/order-lover.service';
+import { OrderLover } from '../model/OrderLover';
 
 @Component({
     selector: 'app-change-appearance',
@@ -13,7 +15,7 @@ import { CreateProvider } from '../model/CreateProvider';
     styleUrls: ['./change-appearance.component.css']
 })
 export class ChangeAppearanceComponent implements OnInit {
-    constructor(private accountsService: AccountService,private router:Router,private providerService:ProviderService) {
+    constructor(private accountsService: AccountService,private router:Router,private providerService:ProviderService, private orderLoverService: OrderLoverService) {
     }
 
     account!: AccountForChange;
@@ -21,7 +23,8 @@ export class ChangeAppearanceComponent implements OnInit {
     id!: number;
     formChangeAppearance: any;
     statusProvider!:number;
-    provider!:CreateProvider
+    provider!:CreateProvider;
+    orderLovers: OrderLover[] = [];
 
     ngOnInit() {
         this.providerService.findProviderByAccount_Id(this.accountsService.getAccountToken().id).subscribe(res=>{
@@ -36,7 +39,8 @@ export class ChangeAppearanceComponent implements OnInit {
             hobby: new FormControl('', [Validators.required, Validators.maxLength(256)]),
             description: new FormControl('', [Validators.required, Validators.maxLength(256)]),
         })
-        this.id = this.accountsService.getAccountToken().id
+        this.id = this.accountsService.getAccountToken().id;
+        this.showCart(this.id,1);
         this.accountsService.findById(this.id).subscribe((res) => {
             this.account = res
             this.formChangeAppearance.get('id').setValue(res.id)
@@ -45,6 +49,22 @@ export class ChangeAppearanceComponent implements OnInit {
             this.formChangeAppearance.get('hobby').setValue(res.hobby)
             this.formChangeAppearance.get('description').setValue(res.description)
         })
+    }
+    goToTheHome() {
+        if(this.account.gender=="Male") {
+            this.router.navigate(["/homeBoy"]);
+        } else this.router.navigate(["/homeGirl"]);
+    }
+    goToProviderSetting() {
+        this.router.navigate(["/profileProvider"])
+    }
+    showCart(id: number, statusOrder: number) {
+        this.orderLoverService.getAllBillOfAccountByIdAndStartOrder(id, statusOrder).subscribe(data => {
+            this.orderLovers = data;
+        })
+    }
+    goToMyOrder() {
+        this.router.navigate(["/userShowBill"])
     }
     createProvider(){
         const providerCreate= new CreateProvider("",0,0,3,this.account)

@@ -1,19 +1,61 @@
 <!-- Content
 ================================================== -->
-<div uk-height-viewport="expand: true" class="uk-flex uk-flex-middle">
-    <div class="uk-width-1-3@m uk-width-1-2@s m-auto">
-        <div class="px-2 uk-animation-scale-up">
+<!--<div uk-height-viewport="expand: true" class="uk-flex uk-flex-middle">-->
+<!--    <div class="uk-width-1-3@m uk-width-1-2@s m-auto">-->
+<!--        <div class="px-2 uk-animation-scale-up">-->
+<!--            <div class="my-4 uk-text-center">-->
+<!--                <h1 class="mb-2"> Login Form  </h1>-->
+<!--                <p class="my-2">Don't have an a account. <a routerLink="/register"> Register</a> </p>-->
+<!--            </div>-->
+<!--            <form [formGroup]="loginForm" (ngSubmit)="login()">-->
+
+<!--                <div class="uk-form-group">-->
+<!--                    <div class="uk-position-relative w-100">-->
+<!--                        <input class="uk-input" type="text" placeholder="Your username" formControlName="username">-->
+<!--                    </div>-->
+<!--                    <p *ngIf="loginForm.get('username')?.errors?.['required'] && loginForm.get('username')?.['touched']" style="color: red">Vui lòng không để trống</p>-->
+<!--                </div>-->
+
+<!--                <div class="uk-form-group">-->
+<!--                    <div class="uk-position-relative w-100">-->
+<!--                        <input class="uk-input" type="password" placeholder="Your password" formControlName="password">-->
+<!--                    </div>-->
+<!--                    <p *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.['touched']" style="color: red">Vui lòng không để trống</p>-->
+<!--                </div>-->
+
+<!--                <button type="submit" class="btn btn-primary btn-block mb-4"  style="background-color: #6e00ff;border-color: #6e00ff;">Login</button>-->
+
+<!--                <a (click)="forgotPass()" class="text-center uk-display-block"> Forget your password</a>-->
+
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<!-- Content
+    ================================================== -->
+<div uk-height-viewport class="uk-flex uk-flex-middle uk-grid-collapse uk-grid-match" uk-grid>
+    <div class="uk-width-2-3@m uk-width-1-2@s uk-visible@s uk-height-viewport uk-background-cover"
+         data-src="https://scontent.fhan17-1.fna.fbcdn.net/v/t39.30808-6/337136322_234573825595274_6593274067083442156_n.jpg?stp=cp6_dst-jpg&_nc_cat=102&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=B--paI_NSSkAX9Q4pXp&_nc_ht=scontent.fhan17-1.fna&oh=00_AfCfKLYn31gMEqY38cTY_di2VpP09X6rb7cuyOTvUp_9GA&oe=641E518E" uk-img>
+
+    </div>
+    <div class="uk-width-1-3@m uk-width-1-2@s uk-animation-slide-right-medium">
+
+
+        <div class="px-5">
             <div class="my-4 uk-text-center">
-                <h1 class="mb-2"> Login Form  </h1>
-                <p class="my-2">Don't have an a account. <a routerLink="/register"> Register</a> </p>
+                <h1 class="mb-2"> Log In  </h1>
+                <p class="my-2">Do you have an a account. <a routerLink="/register" style="color: #f2999f"> Register </a> </p>
             </div>
             <form [formGroup]="loginForm" (ngSubmit)="login()">
 
                 <div class="uk-form-group">
                     <div class="uk-position-relative w-100">
-                        <input class="uk-input" type="text" placeholder="Your username" formControlName="username">
+                        <input class="uk-input" type="email" placeholder="Your username" formControlName="username">
                     </div>
                     <p *ngIf="loginForm.get('username')?.errors?.['required'] && loginForm.get('username')?.['touched']" style="color: red">Vui lòng không để trống</p>
+
                 </div>
 
                 <div class="uk-form-group">
@@ -21,19 +63,26 @@
                         <input class="uk-input" type="password" placeholder="Your password" formControlName="password">
                     </div>
                     <p *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.['touched']" style="color: red">Vui lòng không để trống</p>
+
                 </div>
+<!--                <div class="uk-form-group">-->
+<!--                    <div class="uk-position-relative w-100">-->
+<!--                        <input class="uk-input" type="password" placeholder="Confirm password">-->
+<!--                    </div>-->
+<!--                </div>-->
 
-                <button type="submit" class="btn btn-primary btn-block mb-4"  style="background-color: #6e00ff;border-color: #6e00ff;">Login</button>
-
-                <a href="#" class="text-center uk-display-block"> Forget your password</a>
+                <button type="submit" class="btn btn-block mb-4" style="background-color: #f2999f; color: white">Login</button>
+                <a (click)="forgotPass()" class="text-center uk-display-block"> Forget your password</a>
+<!--                <a href="#" class="text-center uk-display-block">-->
+<!--                    <div class="checkbox">-->
+<!--                        <input type="checkbox" id="chekcbox2">-->
+<!--                        <label for="chekcbox2"><span class="checkbox-icon"></span> I Agree terms </label>-->
+<!--                    </div>  </a>-->
 
             </form>
         </div>
+
     </div>
 </div>
-
-
-
-
 <!-- javaScripts
 ================================================== -->

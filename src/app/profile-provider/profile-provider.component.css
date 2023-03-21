@@ -1,3 +1,4 @@
+
 body{
     background-color: #eee;
 }
@@ -147,4 +148,11 @@ label.star:hover { transform: rotate(-15deg) scale(1.3); }
 label.star:before {
     content: '\f006';
     font-family: FontAwesome;
+
+#main_header.header-transparent {
+    background-color: transparent;
+    box-shadow: none !important;
+    border-color: transparent;
+    color: white;
+
 }

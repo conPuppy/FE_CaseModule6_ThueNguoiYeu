@@ -9,10 +9,17 @@ import {ProviderService} from '../service/provider/provider.service';
 import * as moment from 'moment';
 import {OrderLoverService} from '../service/Order/order-lover.service';
 import Swal from 'sweetalert2';
-import {ProvisionProviderService} from '../service/provisionprovider/provisionprovider.service';
-import {ProvisionProvider} from '../model/ProvisionProvider';
+
 import { CommentService } from '../service/comment/comment.service';
 import {Comment} from '../model/Comment';
+
+import { ProvisionProviderService } from '../service/provisionprovider/provisionprovider.service';
+import { ProvisionProvider } from '../model/ProvisionProvider';
+import { CreateProvider } from '../model/CreateProvider';
+import { AccountForChange } from '../model/AccountForChange';
+import { ImageService } from '../service/image/image.service';
+import { Image1 } from '../model/Image1';
+
 
 @Component({
     selector: 'app-profile-provider',
@@ -22,10 +29,10 @@ import {Comment} from '../model/Comment';
 export class ProfileProviderComponent implements OnInit {
     provider!: Provider;
     orderLover: OrderLover = new OrderLover();
+    orderLovers: OrderLover[]=[];
     formOrder!: any;
-    account!: Account;
-    startTimeConvert!: String;
-    endTimeConvert!: String;
+
+    
     providerProvisions: ProvisionProvider[] = [];
     listComment : Comment[] = [];
     listOrderDone : OrderLover[] = [];
@@ -33,13 +40,27 @@ export class ProfileProviderComponent implements OnInit {
     averageScore !: number
     starsScore !: number
     countComment !: number
+
+    account!:Account;
+    account1!: AccountForChange;
+    startTimeConvert!:String;
+    endTimeConvert!:String;
+    allServicesOfProvider:ProvisionProvider[]=[];
+    statusProvider!: number;
+    startTimeDB!:number
+    endTimeDB!:number
+    showImgActive:Image1[]=[];
+    id!:number;
+
     constructor(private providerService: ProviderService,
                 private route: ActivatedRoute,
                 private router: Router,
                 private accountService: AccountService,
                 private orderLoverService: OrderLoverService,
                 private provisionProviderService: ProvisionProviderService,
-                private commentService: CommentService) {
+                private commentService: CommentService,
+                private imageService:ImageService) {
+
     }
 
     rateForm = new FormGroup({
@@ -61,10 +82,24 @@ export class ProfileProviderComponent implements OnInit {
         this.commentService.countComment(+this.route.snapshot.params['id']).subscribe((data)=>{
             this.countComment = data;
         })
+        this.id=this.accountService.getAccountToken().id;
+        this.accountService.findById(this.id).subscribe(res=> {
+            this.account = res;
+            this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res => {
+                if (res != null) {
+                    this.statusProvider = res.statusProvider;
+                    this.showCart(this.account.id,1);
+                }
+            })
+        })
+        this.provisionProviderService.findProvisionProviderByProviderIdStatus1(+this.route.snapshot.params['id']).subscribe(data=>this.allServicesOfProvider=data)
+        this.providerService.findProviderById(+this.route.snapshot.params['id']).subscribe(res => {
+            this.provider = res;
+            this.imageService.findByAccount_IdAAndStatusImg1(this.provider.account.id).subscribe(res=>{
+                console.log(res);
+                this.showImgActive=res})
+        })
 
-        this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res => this.account = res)
-        this.provisionProviderService.findProvisionProviderByProviderIdAndStatusServiceProvider(+this.route.snapshot.params['id']).subscribe(data => this.providerProvisions = data)
-        this.providerService.findProviderById(+this.route.snapshot.params['id']).subscribe(res => this.provider = res)
         this.formOrder = new FormGroup({
             startOrder: new FormControl(),
             selectTime: new FormGroup({
@@ -93,14 +128,43 @@ export class ProfileProviderComponent implements OnInit {
     }
         )
     }
-
-    caculatorTotal() {
+    goToTheHome() {
+        if(this.account.gender=="Male") {
+            this.router.navigate(["/homeBoy"]);
+        } else this.router.navigate(["/homeGirl"]);
+    }
+    goToProviderSetting() {
+        this.router.navigate(["/profileProvider"])
+    }
+    showCart(id: number, statusOrder: number) {
+        this.orderLoverService.getAllBillOfAccountByIdAndStartOrder(id,statusOrder).subscribe(data=> {
+            this.orderLovers = data;
+        })
+    }
+    caculatorTotal(){
         this.formOrder.get('total').setValue(this.formOrder.value.selectTime.orderTime * this.provider.price)
+    }
+    goToMyOrder() {
+        this.router.navigate(["/userShowBill"])
+    }
+    goToMyBill() {
+        this.router.navigate(["/providerShowBill"])
+    }
+    createProvider(){
+        const providerCreate= new CreateProvider("",0,0,3,this.account1)
+        this.providerService.createProvider(providerCreate).subscribe(res=>{
+            Swal.fire('Done!', 'Sended!', 'success');
+            this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res=>{
+                if (res!=null){
+                    this.statusProvider=res.statusProvider;
+                }
+            })
+        })
+
     }
 
 
     createOrderLover() {
-
 
         // @ts-ignore
         this.startTimeConvert = document.getElementById('startOrder').value;
@@ -113,14 +177,31 @@ export class ProfileProviderComponent implements OnInit {
         this.orderLover.statusOrder = 2;
         this.orderLover.account = this.account
         this.orderLover.provider = this.provider
-        if (this.account.wallet > this.orderLover.total) {
-            this.orderLoverService.createOrder(this.orderLover).subscribe((res) => {
-                Swal.fire('Done!', 'Sended!', 'success')
-                this.router.navigate(["/userShowBill"])
-            });
-        } else {
-            Swal.fire('Your balance is not enough! please refill')
-        }
+        this.orderLoverService.getAllBillOfProviderIdAndStatus3(+this.route.snapshot.params['id']).subscribe(res=>{
+            let checkTime=true;
+            for (let i=0;i<res.length;i++){
+                // @ts-ignore
+                this.startTimeDB=+moment(res[i].startOrder).format('x');
+                // @ts-ignore
+                 this.endTimeDB=+moment(res[i].endOrder).format('x');
+                    if(+this.startTimeConvert>this.startTimeDB && +this.startTimeConvert<this.endTimeDB){
+                        checkTime=false
+                        Swal.fire('Oops!','Your Provider has a oder'+ "<br>" + ' from ' + res[i].startOrder+ ' to '+ res[i].endOrder, 'error');
+                        break;
+                }
+            }
+            if (checkTime=true){
+                if (this.account.wallet > this.orderLover.total) {
+                    this.orderLoverService.createOrder(this.orderLover).subscribe((res) => {
+                        Swal.fire('Done!', 'Sended!', 'success')
+                        this.router.navigate(["/userShowBill"])
+                    });
+                } else {
+                    Swal.fire('Your balance is not enough! please refill')
+                }
+            }
+        })
+
     }
 
     closeOrderLover() {
@@ -136,13 +217,12 @@ export class ProfileProviderComponent implements OnInit {
         this.orderLover.statusOrder = 1;
         this.orderLover.account = this.account
         this.orderLover.provider = this.provider
-        this.orderLoverService.createOrder(this.orderLover);
-        this.orderLoverService.createOrder(this.orderLover).subscribe((res) => {
-            Swal.fire({
-                icon: 'error',
-                title: 'Cancel...',
-                text: 'See you again',
-            })
+
+        this.orderLoverService.createOrder(this.orderLover).subscribe((res)=> {
+        Swal.fire({icon: 'error',
+            title: 'Cancel...',
+            text: 'See you again',}),
+            this.showCart(this.account.id,1);
         });
     }
 

@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {Account} from "../../model/Account";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Provider} from "../../model/Provider";
@@ -15,6 +14,12 @@ export class ProviderService {
     private url = "http://localhost:8080/providers";
 
     constructor(private http: HttpClient) {
+    }
+    changeStatusProvider(id: number): Observable<Provider> {
+        return this.http.post<Provider>(this.url+"/status/"+id,this.findProviderById(id));
+    }
+    getNewProviders(): Observable<Provider[]> {
+        return this.http.get<Provider[]>(this.url+"/newProviders");
     }
 
     getProviderTopSell(): Observable<Provider[]> {
@@ -48,7 +53,9 @@ export class ProviderService {
     getAllProviderAcc(page: number): Observable<Provider[]> {
         return this.http.get<Provider[]>(this.url + "?page" + page);
     }
-
+    getAllProvider(page:number):Observable<Provider[]>{
+        return this.http.get<Provider[]>(this.url+"/t/gatAllProviders"+ "?page" + page)
+    }
     getBillByIdProvider(idProvider: number): Observable<OrderLover[]> {
         return this.http.get<OrderLover[]>(this.url + "/orders/" + idProvider);
     }
@@ -63,9 +70,15 @@ export class ProviderService {
     createProvider(provider:CreateProvider):Observable<CreateProvider>{
         return this.http.post<CreateProvider>(this.url + "/a/createProviderAndService",provider);
     }
+    acceptProvider(provider:Provider):Observable<Provider>{
+        return this.http.post<Provider>(this.url + "/a/acceptProvider/sendEmail",provider);
+    }
 
     getAllBillOfProviderAndStartOrder(idProvider: number, statusOrder: number): Observable<OrderLover[]> {
         return this.http.get<OrderLover[]>(this.url + `/user/getOrdersByStatus/${idProvider}/${statusOrder}`)
+    }
+    editProvider(provider:Provider):Observable<Provider>{
+        return this.http.post<Provider>(this.url + "/a/createProviderAndService",provider);
     }
 
 }

@@ -9,7 +9,6 @@ import {ChangeAppearanceComponent} from "./change-appearance/change-appearance.c
 import {ChangePasswordComponent} from "./change-password/change-password.component";
 import {ShowComponent} from "./show/show.component";
 import {ShowtopviewComponent} from "./showtopview/showtopview.component";
-import {SupplierComponent} from "./User/supplier/supplier.component";
 import { HomeComponent } from './User/home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -22,6 +21,11 @@ import { ProfileProviderComponent } from './profile-provider/profile-provider.co
 import { ProviderShowBillComponent } from './User/provider-show-bill/provider-show-bill.component';
 import { CreateProviderComponent } from './create-provider/create-provider.component';
 import { UserShowBillComponent } from './User/user-show-bill/user-show-bill.component';
+import { AdproviderComponent } from './admin/adprovider/adprovider.component';
+import { ForgetPassComponent } from './forget-pass/forget-pass.component';
+import { ViewProviderComponent } from './view-provider/view-provider.component';
+import { ImageComponent } from './image/image.component';
+
 
 
 
@@ -33,7 +37,6 @@ const routes: Routes = [
   {path:"admin", component: HomeAdminComponent},
   {path:"login", component: LoginComponent},
   {path:"", component: HomeComponent},
-  {path:"supplier", component: SupplierComponent},
   {path:"changeInfo", component: ChangeInfoComponent},
   {path:"changeAvatar", component: ChangeAvatarComponent},
   {path:"changeAppearance", component: ChangeAppearanceComponent},
@@ -44,14 +47,13 @@ const routes: Routes = [
   {path:"showAllBill", component: ShowAllBillComponent},
   {path:"bill/:id", component: ProfileProviderComponent},
   {path:"providerShowBill", component: ProviderShowBillComponent},
-  {path:"createProvider", component: CreateProviderComponent},
+  {path:"profileProvider", component: CreateProviderComponent},
   {path:"userShowBill", component: UserShowBillComponent},
+  {path:"adProvider", component: AdproviderComponent},
   {path:"showAllProvider", component: ShowAllProviderComponent},
-
-
-
+  {path:"viewProvider/:id", component: ViewProviderComponent},
+  {path:"image/:id", component: ImageComponent},
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
