@@ -11,17 +11,6 @@
                 <img src="assets/bg-removebg-preview.png" style="width: 110px;height: 70px"></i>
 
             <div class="h5 uk-hidden@m mr-3 mb-0"> Date Web</div>
-            <!-- form search-->
-            <div class="head_search uk-visible@m">
-                <form>
-                    <div class="head_search_cont">
-                        <input value="" type="text" class="form-control"
-                               placeholder="Search for Customers, Products, Files and more.." autocomplete="off">
-                        <i class="s_icon uil-search-alt"></i>
-                    </div>
-
-                </form>
-            </div>
 
             <!-- user icons -->
             <div class="head_user">
@@ -393,7 +382,7 @@ align-content: center">
     line-height: 1.42857143;
     color: #333;
     background-color: #fff;box-sizing: border-box;    display: table;">
-                                <div class="p-2 border; btn btn-secondary" style="margin: 0 8px 6px 0;
+                                <div class="p-2 border; btn" style="margin: 0 8px 6px 0; background-color: #f2999f; color: white;
     border-radius: 10px;
     float: left;
     min-width: 100px;
@@ -471,15 +460,15 @@ align-content: center">
                         <div class="card-body pb-0">
                             <div class="row">
                                 <div class="col-md-4 col-6 animate-this mb-2 px-lg-2"
-                                     *ngFor="let image of showImgActive">
-                                    <img style="width: 100%;height: 100%;" src="{{image.url}}"
+                                     *ngFor="let image of showImgActive ">
+                                    <img style="width: 100px;height: 100px;" src="{{image.url}}"
                                          class="img-fluid mb-1 rounded"
                                          alt="avtar img holder">
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer">
-                            <div class="text-center"><a href="#"> Veiw more </a></div>
+                            <div class="text-center"><a> View more </a></div>
                         </div>
                     </div>
 

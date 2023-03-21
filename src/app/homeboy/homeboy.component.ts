@@ -82,10 +82,22 @@ export class HomeboyComponent implements OnInit{
   accounts1: Account[] = [];
   providers1: Provider[] = [];
   provisionproviders1: ProvisionProvider[] = [];
+
+  providersOK: Provider[] = [];
+  index!: number
   
   getTopSellProviderAcc() {
     this.providerService.getProviderTopSell().subscribe(data=>{
       this.providers1 = data;
+      for (let i = 0; i < this.providers1.length; i++) {
+        if(this.providers1[i].account.id==this.account.id) {
+          this.index = i;
+          this.providers1.splice(this.index,1);
+          console.log(this.index)
+        }
+      }
+      
+      console.log(this.providers1.length)
       this.total = this.providers1.length;
       this.provisionproviderService.getAllProvisionProvider().subscribe(data=>{
         this.provisionproviders1 = data;

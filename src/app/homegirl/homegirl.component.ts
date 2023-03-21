@@ -76,6 +76,11 @@ export class HomegirlComponent implements OnInit {
     getTopSellProviderAcc() {
         this.providerService.getProviderTopSell().subscribe(data => {
             this.providers1 = data;
+            for (let i = 0; i < this.providers1.length; i++) {
+                if(this.providers1[i].account.id==this.account.id){
+                    this.providers1.splice(i,1);
+                }
+            }
             this.total = this.providers1.length;
             this.provisionproviderService.getAllProvisionProvider().subscribe(data => {
                 this.provisionproviders1 = data;

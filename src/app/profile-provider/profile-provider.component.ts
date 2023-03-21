@@ -47,7 +47,6 @@ export class ProfileProviderComponent implements OnInit {
 
     ngOnInit() {
         this.id=this.accountService.getAccountToken().id;
-        this.imageService.findByAccount_IdAAndStatusImg1(this.id).subscribe(res=>this.showImgActive=res)
         this.accountService.findById(this.id).subscribe(res=> {
             this.account = res;
             this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res => {
@@ -58,7 +57,12 @@ export class ProfileProviderComponent implements OnInit {
             })
         })
         this.provisionProviderService.findProvisionProviderByProviderIdStatus1(+this.route.snapshot.params['id']).subscribe(data=>this.allServicesOfProvider=data)
-        this.providerService.findProviderById(+this.route.snapshot.params['id']).subscribe(res => this.provider = res)
+        this.providerService.findProviderById(+this.route.snapshot.params['id']).subscribe(res => {
+            this.provider = res;
+            this.imageService.findByAccount_IdAAndStatusImg1(this.provider.account.id).subscribe(res=>{
+                console.log(res);
+                this.showImgActive=res})
+        })
         this.formOrder = new FormGroup({
             startOrder: new FormControl(),
             selectTime: new FormGroup({
