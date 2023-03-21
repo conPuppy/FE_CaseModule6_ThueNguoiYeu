@@ -30,6 +30,9 @@ export class ProfileProviderComponent implements OnInit {
     listComment : Comment[] = [];
     listOrderDone : OrderLover[] = [];
     orderDone !: OrderLover
+    averageScore !: number
+    starsScore !: number
+    countComment !: number
     constructor(private providerService: ProviderService,
                 private route: ActivatedRoute,
                 private router: Router,
@@ -47,6 +50,18 @@ export class ProfileProviderComponent implements OnInit {
     })
 
     ngOnInit() {
+        this.commentService.averageScore(+this.route.snapshot.params['id']).subscribe((data)=>{
+            this.averageScore = data;
+            
+        })
+        this.commentService.starsScore(+this.route.snapshot.params['id']).subscribe((data)=>{
+            this.starsScore = data;
+
+        })
+        this.commentService.countComment(+this.route.snapshot.params['id']).subscribe((data)=>{
+            this.countComment = data;
+        })
+
         this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res => this.account = res)
         this.provisionProviderService.findProvisionProviderByProviderIdAndStatusServiceProvider(+this.route.snapshot.params['id']).subscribe(data => this.providerProvisions = data)
         this.providerService.findProviderById(+this.route.snapshot.params['id']).subscribe(res => this.provider = res)
@@ -175,7 +190,9 @@ export class ProfileProviderComponent implements OnInit {
     }
 
     send(){
+
         this.commentService.saveComment(this.rateForm.value).subscribe((data)=>{
+            location.reload();
         })
 
     }

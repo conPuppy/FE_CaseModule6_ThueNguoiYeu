@@ -429,7 +429,8 @@
                         </div>
                         <hr>
                         <div>
-                            <p class="h4">Evaluate</p>
+                            <p class="h4">Evaluate </p>
+                            <p>({{countComment}} reviews)</p>
                             <br>
                             <a data-bs-toggle="collapse" data-bs-target="#demo" >
                                 <span class="icon-line-awesome-pencil">
@@ -547,7 +548,48 @@
 
                     <div class="card">
                         <h3><strong>{{provider.price}} $/h</strong></h3>
-                        <br>
+
+
+                        <div *ngIf="starsScore == 5">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span>   ({{averageScore}} points)</span>
+                        </div>
+                        <div *ngIf="starsScore == 4">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star "></span>
+                            <span>   ({{averageScore}} points)</span>
+                        </div>
+                        <div *ngIf="starsScore == 3">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star "></span>
+                            <span>   ({{averageScore}} points)</span>
+                        </div>
+                        <div *ngIf="starsScore == 2">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                            <span>   ({{averageScore}} points)</span>
+                        </div>
+                        <div *ngIf="starsScore == 1">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                            <span>   ({{averageScore}} points)</span>
+                        </div>
+
                         <button type="button" data-bs-toggle="modal" data-bs-target="#myModal"
                                 class="btn btn-outline-danger" style="width: 90%;margin-left: 5%">Order
                         </button>
