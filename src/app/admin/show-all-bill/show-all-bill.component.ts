@@ -43,10 +43,14 @@ export class ShowAllBillComponent implements OnInit{
   goToShowAllAccount(){
     this.router.navigate(['/admin'])
   }
-  goToShowAllProvider(){
-    this.router.navigate(['/showAllProvider'])
-  }
   goToShowAllBill() {
     this.router.navigate(['/showAllBill'])
+  }
+  goToTheHomeAdmin() {
+    this.router.navigate(["/admin"])
+  }
+
+  goToAcceptProvider() {
+    this.router.navigate(["/adProvider"])
   }
 }

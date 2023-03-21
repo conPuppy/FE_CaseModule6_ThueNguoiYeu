@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 export class AdproviderComponent implements OnInit {
     providers: Provider[] = [];
     page: number = 1;
-    formSearch: FormGroup = new FormGroup({
+    formSearchProvider: FormGroup = new FormGroup({
         search: new FormControl()
     });
 
@@ -25,11 +25,15 @@ export class AdproviderComponent implements OnInit {
     p: number = 1;
     total: number = 0;
 
+    accountLogin!: Account;
+
     constructor(private accountService: AccountService, private router: Router, private providerService: ProviderService) {
     }
 
     ngOnInit(): void {
         this.getProviderAcc()
+        this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res => {
+            this.accountLogin = res})
     }
 
     getProviderAcc() {
@@ -56,7 +60,16 @@ export class AdproviderComponent implements OnInit {
         })
     }
 
-    search() {
+    searchProvider() {
+        this.stringSearch = this.formSearchProvider.controls["search"].value
+        if (this.stringSearch != "") {
+            this.accountService.searchProvider(this.stringSearch).subscribe((data) => {
+                this.providers = data;
+                console.log(data);
+            })
+        } else {
+            this.ngOnInit();
+        }
     }
 
 
@@ -65,16 +78,22 @@ export class AdproviderComponent implements OnInit {
         this.router.navigate([''])
     }
 
-    goToProfile() {
-        this.router.navigate(['/showProfile'])
+    goToShowAllAccount(){
+        this.router.navigate(['/admin'])
     }
-
-    goToEditProfile() {
-        this.router.navigate(['/changeInfo'])
+    goToShowAllProvider(){
+        this.router.navigate(['/showAllProvider'])
     }
-
     goToShowAllBill() {
         this.router.navigate(['/showAllBill'])
+    }
+
+    goToTheHomeAdmin() {
+        this.router.navigate(["/admin"])
+    }
+
+    goToAcceptProvider() {
+        this.router.navigate(["/adProvider"])
     }
 
 }
