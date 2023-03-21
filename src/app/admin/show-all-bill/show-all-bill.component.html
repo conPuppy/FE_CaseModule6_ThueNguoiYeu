@@ -9,7 +9,8 @@
         <header>
 
             <!-- Logo-->
-            <i class="header-traiger uil-bars" uk-toggle="target: #wrapper ; cls: mobile-active"></i>
+            <i class="header-traiger uil-bars icon-feather-home" uk-toggle="target: #wrapper ; cls: mobile-active" (click)="goToTheHomeAdmin()">
+                <img src="assets/bg-removebg-preview.png" style="width: 110px;height: 70px"></i>
 
 
             <div class="h5 uk-hidden@m mr-3 mb-0"> Bootstro </div>
@@ -18,10 +19,9 @@
                 <form>
                     <div class="head_search_cont">
                         <input value="" type="text" class="form-control"
-                               placeholder="Search for Customers, Products, Files and more.." autocomplete="off">
+                               placeholder="Search ..." autocomplete="off">
                         <i class="s_icon uil-search-alt"></i>
                     </div>
-
                 </form>
             </div>
 
@@ -224,13 +224,11 @@
                     <!-- User menu -->
 
                     <ul class="dropdown-user-menu">
-                        <li><a href="#"> <i class="uil-bolt"></i> Go PRO</a></li>
+                        <li><a (click)="goToAcceptProvider()"> <i class="uil-bolt"></i> Accept Provider</a></li>
                         <li><a (click)="goToShowAllAccount()"> <i class="uil-user"></i> All Account </a></li>
                         <li><a (click)="goToShowAllBill()" > <i class="uil-envelope"></i> All Bill </a></li>
-                        <li><a (click)="goToShowAllProvider()"> <i class="uil-edit"></i> All Provider </a></li>
-                        <li><a href="profile-setting.html"> <i class="uil-cog"></i> Account Settings</a></li>
                         <li class="menu-divider"></li>
-                        <li><a (click)="logout()"> <i class="icon-feather-log-out"></i> Sing Out</a></li>
+                        <li><a (click)="logout()"> <i class="icon-feather-log-out"></i> Sign Out</a></li>
                     </ul>
 
 
@@ -250,7 +248,7 @@
     <div class="page-content">
         <div class="page-content-inner">
 
-            <h2 class="text-white"> All Orders</h2>
+            <h2 class="" style="color: #f2999f"> All Orders</h2>
             <nav id="breadcrumbs" class="text-white">
             </nav>
 
@@ -261,15 +259,6 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <h4 class="d-inline-block mb-0">List</h4>
                         <div class="d-flex">
-
-                            <a href="#" class="btn btn-icon btn-hover  btn-circle" uk-tooltip="Search product" >
-                                <i class="uil-search"></i>
-                            </a>
-                            <div class="uk-drop" uk-drop="mode: click; pos: left-center; offset: 0">
-                                <form class="uk-search uk-search-navbar uk-width-1-1">
-                                    <input class="uk-search-input shadow-0" type="search" placeholder="Search..." autofocus>
-                                </form>
-                            </div>
 
                             <a href="#" class="btn btn-icon btn-hover  btn-circle" uk-tooltip="filter">
                                 <i class="uil-filter"></i>

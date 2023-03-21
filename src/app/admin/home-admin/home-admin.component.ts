@@ -81,10 +81,15 @@ export class HomeAdminComponent implements OnInit{
   goToShowAllAccount(){
     this.router.navigate(['/admin'])
   }
-  goToShowAllProvider(){
-    this.router.navigate(['/showAllProvider'])
-  }
   goToShowAllBill() {
     this.router.navigate(['/showAllBill'])
+  }
+
+  goToTheHome() {
+    this.router.navigate(["/home"])
+  }
+
+  goToAcceptProvider() {
+    this.router.navigate(["/adProvider"])
   }
 }
