@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Account} from '../model/Account';
+import {Comment} from '../model/Comment';
 import {OrderLover} from '../model/OrderLover';
 import {Provider} from '../model/Provider';
 import {AccountService} from '../service/account/account.service';
@@ -15,6 +16,7 @@ import { CreateProvider } from '../model/CreateProvider';
 import { AccountForChange } from '../model/AccountForChange';
 import { ImageService } from '../service/image/image.service';
 import { Image1 } from '../model/Image1';
+import { CommentService } from '../service/comment/comment.service';
 
 @Component({
     selector: 'app-profile-provider',
@@ -30,30 +32,62 @@ export class ProfileProviderComponent implements OnInit {
     account1!: AccountForChange;
     startTimeConvert!:String;
     endTimeConvert!:String;
+    // khác mạnh
     allServicesOfProvider:ProvisionProvider[]=[];
     statusProvider!: number;
     startTimeDB!:number
     endTimeDB!:number
     showImgActive:Image1[]=[];
     id!:number;
+
     today!:string;
+
+    // của Mạnh làm rate:
+    listComment : Comment[] = [];
+    listOrderDone : OrderLover[] = [];
+    orderDone !: OrderLover
+    averageScore !: number
+    starsScore !: number
+    countComment !: number
+
     constructor(private providerService: ProviderService,
                 private route: ActivatedRoute,
                 private router: Router,
                 private accountService: AccountService,
                 private orderLoverService: OrderLoverService,
                 private provisionProviderService: ProvisionProviderService,
-                private imageService:ImageService) {
+                private imageService:ImageService,
+                private commentService: CommentService) {
     }
+    rateForm = new FormGroup({
+        rate: new FormControl(),
+        comment : new FormControl(),
+        account : new FormControl(),
+        provider : new FormControl()
+    })
 
     ngOnInit() {
         this.today = new Date().toISOString().split(".")[0];
         this.id=this.accountService.getAccountToken().id;
+        this.commentService.averageScore(+this.route.snapshot.params['id']).subscribe((data)=>{
+            this.averageScore = data;
+
+        })
+        this.commentService.starsScore(+this.route.snapshot.params['id']).subscribe((data)=>{
+            this.starsScore = data;
+
+        })
+        this.commentService.countComment(+this.route.snapshot.params['id']).subscribe((data)=>{
+            this.countComment = data;
+        })
+        this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res => this.account = res)
+
         this.accountService.findById(this.id).subscribe(res=> {
             this.account = res;
             this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res => {
                 if (res != null) {
                     this.statusProvider = res.statusProvider;
+                    console.log()
                     this.showCart(this.account.id,1);
                 }
             })
@@ -71,6 +105,25 @@ export class ProfileProviderComponent implements OnInit {
                 orderTime: new FormControl(),
             }),
             total: new FormControl()
+        })
+        this.commentService.findCommentById(+this.route.snapshot.params['id']).subscribe((res)=>{
+            // @ts-ignore
+            this.listComment = res;
+
+        })
+
+        this.orderLoverService.findOrderByAccountIdAndProviderId(this.accountService.getAccountToken().id, +this.route.snapshot.params['id']).subscribe((data)=>{
+            // @ts-ignore
+            this.listOrderDone = data;
+
+        })
+
+        // @ts-ignore
+        this.rateForm.get("account").setValue(this.accountService.getAccountToken())
+        this.providerService.findProviderById(+this.route.snapshot.params['id']).subscribe((res) => {
+            this.provider = res;
+            // @ts-ignore
+            this.rateForm.get("provider").setValue(this.provider)
         })
     }
     goToTheHome() {
@@ -170,7 +223,34 @@ export class ProfileProviderComponent implements OnInit {
             this.showCart(this.account.id,1);
         });
     }
+    rate5(){
+        // @ts-ignore
+        this.rateForm.get("rate").setValue(5)
+    }
+    rate4(){
+        // @ts-ignore
+        this.rateForm.get("rate").setValue(4)
+    }
+    rate3(){
+        // @ts-ignore
+        this.rateForm.get("rate").setValue(3)
+    }
+    rate2(){
+        // @ts-ignore
+        this.rateForm.get("rate").setValue(2)
+    }
+    rate1(){
+        // @ts-ignore
+        this.rateForm.get("rate").setValue(1)
+    }
 
+    send(){
+
+        this.commentService.saveComment(this.rateForm.value).subscribe((data)=>{
+            location.reload();
+        })
+
+    }
 
     logout() {
         localStorage.clear();
