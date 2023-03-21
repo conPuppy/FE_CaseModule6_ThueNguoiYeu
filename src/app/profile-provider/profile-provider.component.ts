@@ -39,6 +39,9 @@ export class ProfileProviderComponent implements OnInit {
     endTimeDB!:number
     showImgActive:Image1[]=[];
     id!:number;
+
+    today!:string;
+
     // của Mạnh làm rate:
     listComment : Comment[] = [];
     listOrderDone : OrderLover[] = [];
@@ -46,6 +49,7 @@ export class ProfileProviderComponent implements OnInit {
     averageScore !: number
     starsScore !: number
     countComment !: number
+
     constructor(private providerService: ProviderService,
                 private route: ActivatedRoute,
                 private router: Router,
@@ -63,6 +67,7 @@ export class ProfileProviderComponent implements OnInit {
     })
 
     ngOnInit() {
+        this.today = new Date().toISOString().split(".")[0];
         this.id=this.accountService.getAccountToken().id;
         this.commentService.averageScore(+this.route.snapshot.params['id']).subscribe((data)=>{
             this.averageScore = data;

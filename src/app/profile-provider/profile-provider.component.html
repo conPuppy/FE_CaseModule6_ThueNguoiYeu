@@ -509,7 +509,7 @@ align-content: center">
                         <div class="row">
                             <div class="col">Start day:</div>
                             <div class="col">
-                                <input type="datetime-local" formcontrolname="startOrder" id="startOrder">
+                                <input type="datetime-local" [min]="today" max="2024-12-31T00:00" formcontrolname="startOrder" id="startOrder">
                             </div>
                         </div>
                         <br>
