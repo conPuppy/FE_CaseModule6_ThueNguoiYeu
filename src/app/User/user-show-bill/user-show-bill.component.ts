@@ -31,6 +31,7 @@ export class UserShowBillComponent implements OnInit {
         account : new FormControl(),
         provider : new FormControl()
     })
+    
 
     showCart(id: number, statusOrder: number) {
         this.orderLoverService.getAllBillOfAccountByIdAndStartOrder(id, statusOrder).subscribe((data: OrderLover[]) => {
@@ -144,11 +145,18 @@ export class UserShowBillComponent implements OnInit {
         // @ts-ignore
         this.rateForm.get("rate").setValue(1)
     }
+    
 
     sendComment(){
         console.log(this.rateForm.value)
         this.commentService.saveComment(this.rateForm.value).subscribe((data)=>{
+            this.router.navigate(['/bill/'+this.rateForm.value.provider.id]);
+            this.closeModalAndBack();
         })
-
+        console.log(this.rateForm.value.provider.id)
+    }
+    closeModalAndBack() {
+        // @ts-ignore
+        UIkit.modal('#modal-example').hide();
     }
 }
