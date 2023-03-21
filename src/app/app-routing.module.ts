@@ -16,7 +16,6 @@ import { ShowProfileComponent } from './User/show-profile/show-profile.component
 import { HomeboyComponent } from './homeboy/homeboy.component';
 import { HomegirlComponent } from './homegirl/homegirl.component';
 import { ShowAllBillComponent } from './admin/show-all-bill/show-all-bill.component';
-import { ShowAllProviderComponent } from './admin/show-all-provider/show-all-provider.component';
 import { ProfileProviderComponent } from './profile-provider/profile-provider.component';
 import { ProviderShowBillComponent } from './User/provider-show-bill/provider-show-bill.component';
 import { CreateProviderComponent } from './create-provider/create-provider.component';
@@ -50,7 +49,6 @@ const routes: Routes = [
   {path:"profileProvider", component: CreateProviderComponent},
   {path:"userShowBill", component: UserShowBillComponent},
   {path:"adProvider", component: AdproviderComponent},
-  {path:"showAllProvider", component: ShowAllProviderComponent},
   {path:"viewProvider/:id", component: ViewProviderComponent},
   {path:"image/:id", component: ImageComponent},
 ];
