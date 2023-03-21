@@ -85,6 +85,13 @@ export class CreateProviderComponent implements OnInit {
             })
         })
     }
+    setStatusProvider(id: number) {
+        this.providerService.changeStatusProvider(id).subscribe(data=>{
+            this.provider = data;
+            console.log(this.provider);
+        })
+    }
+    
     goToTheHome() {
         if(this.account.gender=="Male") {
             this.router.navigate(["/homeBoy"]);

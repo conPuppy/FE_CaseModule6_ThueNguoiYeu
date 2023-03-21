@@ -278,10 +278,6 @@
                             <li class="uk-active"><a class="active" href="#0">Your Profile</a></li>
                         </ul>
                     </nav>
-                    <form class="nav-profile-saerchbox">
-                        <i class="uil-search"></i>
-                        <input class="uk-input" type="text" value="Search Post...">
-                    </form>
                 </div>
             </div>
 
@@ -298,11 +294,11 @@
                         </div></h3>
                     </div>
                     <h3 *ngIf="provider?.statusProvider==1">
-                        <button type="button" class="btn btn-success">
+                        <button type="button" class="btn btn-success" (click)="setStatusProvider(provider.id)">
                             Active
                         </button>
                     </h3>
-                    <h3 *ngIf="provider?.statusProvider==2">
+                    <h3 *ngIf="provider?.statusProvider==2" (click)="setStatusProvider(provider.id)">
                         <button type="button" class="btn btn-danger">
                             Busy
                         </button>

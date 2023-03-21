@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Account } from '../model/Account';
@@ -29,6 +30,7 @@ export class HomeboyComponent implements OnInit{
   provider1!:CreateProvider
 
 
+
   constructor(private accountService: AccountService, private router: Router, private providerService: ProviderService,
               private provisionproviderService: ProvisionProviderService, private orderLoverService:OrderLoverService) {
   }
@@ -38,16 +40,16 @@ export class HomeboyComponent implements OnInit{
       this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res=>{
         if (res!=null){
           this.statusProvider=res.statusProvider;
+          this.providerService.getGirlProviderTopView().subscribe(data=>{
+            this.providers = data;
+            this.getTopSellProviderAcc();
+            this.provisionproviderService.getAllProvisionProvider().subscribe(data=>{
+              this.provisionproviders = data;
+            })
+          });
           console.log(this.statusProvider);
         }
       })
-      this.providerService.getGirlProviderTopView().subscribe(data=>{
-        this.providers = data;
-        this.provisionproviderService.getAllProvisionProvider().subscribe(data=>{
-          this.provisionproviders = data;
-        })
-      });
-      this.getTopSellProviderAcc();
       this.showCart(this.account.id,1);
     })
     
@@ -82,10 +84,22 @@ export class HomeboyComponent implements OnInit{
   accounts1: Account[] = [];
   providers1: Provider[] = [];
   provisionproviders1: ProvisionProvider[] = [];
+
+  providersOK: Provider[] = [];
+  index!: number
   
   getTopSellProviderAcc() {
     this.providerService.getProviderTopSell().subscribe(data=>{
       this.providers1 = data;
+      for (let i = 0; i < this.providers1.length; i++) {
+        if(this.providers1[i].account.id==this.account.id ) {
+          this.providers1.splice(i,1);
+        }
+        if(this.providers1[i].statusProvider==2) {
+          this.providers1.splice(i,1);
+        }
+      }
+      console.log(this.providers1.length)
       this.total = this.providers1.length;
       this.provisionproviderService.getAllProvisionProvider().subscribe(data=>{
         this.provisionproviders1 = data;
@@ -130,5 +144,22 @@ export class HomeboyComponent implements OnInit{
       this.orderLovers = data;
     })
   }
-  
+
+  stringSearch: any;
+  formSearch: FormGroup = new FormGroup({
+    search: new FormControl()
+  });
+
+  providersSearch: Provider[] = []
+  searchProvider() {
+    this.stringSearch = this.formSearch.controls["searchProvider"].value
+    alert(this.stringSearch)
+    if (this.stringSearch != "") {
+      this.accountService.searchProvider(this.stringSearch).subscribe((data) => {
+        this.providersSearch = data;
+      })
+    } else {
+      this.ngOnInit();
+    }
+  }
 }

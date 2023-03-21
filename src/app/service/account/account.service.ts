@@ -54,6 +54,12 @@ export class AccountService implements OnInit {
         return this.http.get<any>(`http://localhost:8080/admin/search/${stringSearch}`)
     }
 
+
+    searchProvider(stringSearch: String): Observable<any> {
+        return this.http.get<any>(`http://localhost:8080/user/searchProvider/${stringSearch}`)
+    }
+
+
     findById(id: number): Observable<any> {
         return this.http.get<any>(`http://localhost:8080/admin/accounts/${id}`)
     }

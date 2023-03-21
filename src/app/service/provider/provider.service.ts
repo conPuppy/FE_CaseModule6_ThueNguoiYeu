@@ -15,6 +15,9 @@ export class ProviderService {
 
     constructor(private http: HttpClient) {
     }
+    changeStatusProvider(id: number): Observable<Provider> {
+        return this.http.post<Provider>(this.url+"/status/"+id,this.findProviderById(id));
+    }
     getNewProviders(): Observable<Provider[]> {
         return this.http.get<Provider[]>(this.url+"/newProviders");
     }

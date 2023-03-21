@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup } from '@angular/forms';
 import {Router} from '@angular/router';
 import Swal from 'sweetalert2';
 import {Account} from '../model/Account';
@@ -76,6 +77,11 @@ export class HomegirlComponent implements OnInit {
     getTopSellProviderAcc() {
         this.providerService.getProviderTopSell().subscribe(data => {
             this.providers1 = data;
+            for (let i = 0; i < this.providers1.length; i++) {
+                if(this.providers1[i].account.id==this.account.id){
+                    this.providers1.splice(i,1);
+                }
+            }
             this.total = this.providers1.length;
             this.provisionproviderService.getAllProvisionProvider().subscribe(data => {
                 this.provisionproviders1 = data;
@@ -136,5 +142,20 @@ export class HomegirlComponent implements OnInit {
 
     }
 
+    stringSearch: any;
+    formSearch: FormGroup = new FormGroup({
+        search: new FormControl()
+    });
+
+    searchProvider() {
+        this.stringSearch = this.formSearch.controls["searchProvider"].value
+        if (this.stringSearch != "") {
+            this.accountService.searchProvider(this.stringSearch).subscribe((data) => {
+                this.providers = data;
+            })
+        } else {
+            this.ngOnInit();
+        }
+    }
 
 }
