@@ -36,6 +36,7 @@ export class ProfileProviderComponent implements OnInit {
     endTimeDB!:number
     showImgActive:Image1[]=[];
     id!:number;
+    today!:string;
     constructor(private providerService: ProviderService,
                 private route: ActivatedRoute,
                 private router: Router,
@@ -46,6 +47,7 @@ export class ProfileProviderComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.today = new Date().toISOString().split(".")[0];
         this.id=this.accountService.getAccountToken().id;
         this.accountService.findById(this.id).subscribe(res=> {
             this.account = res;
