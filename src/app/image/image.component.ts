@@ -90,8 +90,10 @@ export class ImageComponent implements OnInit {
     moreImages() {
             if (this.showMore == false) {
                 this.showMore = true;
+                alert('tr')
             } else {
                 this.showMore = false
+                alert('fa')
             }
     }
 
