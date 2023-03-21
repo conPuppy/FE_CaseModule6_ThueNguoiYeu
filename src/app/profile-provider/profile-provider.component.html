@@ -538,13 +538,13 @@ align-content: center">
             <!-- Modal body -->
             <div class="modal-body">
                 <div class="form-outline">
-                    <textarea class="form-control" id="textAreaExample" rows="4" placeholder="Type your message"></textarea>
+                    <textarea class="form-control" id="textAreaExample" rows="4" placeholder="Type your message" [(ngModel)]="message" ></textarea>
                 </div>
             </div>
 
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" (click)="connect()" >Send</button>
+                <button type="button" class="btn btn-success" (click)="sendName()" [(ngModel)]="idAccountSend" >Send</button>
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
             </div>
 

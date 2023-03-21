@@ -41,7 +41,6 @@ export class ProfileProviderComponent implements OnInit {
     }
 
     ngOnInit() {
-
         this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res=> {
             this.account = res;
             this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res => {
@@ -168,7 +167,8 @@ export class ProfileProviderComponent implements OnInit {
     disabled = true;
     name: string | undefined;
     private stompClient: any;
-    id: number | any;
+    idAccountReceive: number | any;
+    idAccountSend: number | any;
 
     setConnected(connected: boolean) {
         this.disabled = !connected;
@@ -188,7 +188,7 @@ export class ProfileProviderComponent implements OnInit {
             console.log('Connected: ' + frame);
 
             // là chờ xèm thằng server gửi về.
-            _this.stompClient.subscribe('/topic/public/'+ _this.id, function (hello: any) {
+            _this.stompClient.subscribe('/topic/public/'+ _this.idAccountSend, function (hello: any) {
                 _this.showGreeting(JSON.parse(hello.body).greeting);
             });
 
@@ -205,10 +205,10 @@ export class ProfileProviderComponent implements OnInit {
 
     sendName() {
         this.stompClient.send(
-            '/gkz/hello',
+            '/gkz/createNotificationDTO',
             {},
             // Dữ liệu được gửi đi
-            JSON.stringify({'id': this.id ,'name': this.name, 'message': this.message})
+            JSON.stringify({'idAccountSend': this.idAccountSend ,'idAccountReceive': this.idAccountReceive, 'message': this.message})
         );
     }
 

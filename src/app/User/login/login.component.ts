@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import Swal from "sweetalert2";
 import {AccountToken} from "../../model/AccountToken";
 import {Account} from "../../model/Account";
+import { FunctionConnectService } from 'src/app/service/functionConnect/function-connect.service';
 
 @Component({
     selector: 'app-login',
@@ -12,7 +13,7 @@ import {Account} from "../../model/Account";
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-    constructor(private accountService: AccountService, private router: Router) {
+    constructor(private accountService: AccountService, private router: Router, private connectService: FunctionConnectService) {
     }
 
     ngOnInit(): void {
@@ -65,13 +66,18 @@ export class LoginComponent implements OnInit {
                 )
                 for (let i = 0; i < accountToken?.roles.length; i++) {
                     if (accountToken?.roles[i].id == 1) {
+                        this.connectService.connect(accountToken.id);
                         this.router.navigate(["/admin"]);
                         return;
                     }
                 }
                 if (this.account.gender == "Male") {
+                    this.connectService.connect(accountToken.id);
                     this.router.navigate(["/homeBoy"])
-                } else this.router.navigate(["/homeGirl"])
+                } else {
+                    this.connectService.connect(accountToken.id);
+                    this.router.navigate(["/homeGirl"])
+                }
             }
         });
 
