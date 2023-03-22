@@ -12,7 +12,7 @@ import {AccountToken} from "../../model/AccountToken";
 })
 export class AccountService implements OnInit {
     accounts: Account[] = [];
-    private url = 'http://localhost:8080/admin/accounts';
+    private url = 'http://103.57.220.123:8080/admin/accounts';
 
     constructor(private http: HttpClient) {
     }
@@ -21,25 +21,25 @@ export class AccountService implements OnInit {
     }
 
     getAllProvider(): Observable<Account[]> {
-        return this.http.get<Account[]>("http://localhost:8080/accounts");
+        return this.http.get<Account[]>("http://103.57.220.123:8080/accounts");
     }
 
     createAccount(accountCreate: AccountCreate): Observable<Account> {
-        return this.http.post<Account>('http://localhost:8080/register', accountCreate)
+        return this.http.post<Account>('http://103.57.220.123:8080/register', accountCreate)
     }
 
     findAccountByUsername(username: String): Observable<any> {
-        return this.http.get<any>(`http://localhost:8080/register/findAccountByUsername/${username}`)
+        return this.http.get<any>(`http://103.57.220.123:8080/register/findAccountByUsername/${username}`)
     }
 
     findAccountByEmail(email: String): Observable<any> {
-        return this.http.get<any>(`http://localhost:8080/register/findAccountByEmail/${email}`)
+        return this.http.get<any>(`http://103.57.220.123:8080/register/findAccountByEmail/${email}`)
     }
     findAccountByPhoneNumber(phoneNumber: String): Observable<any> {
-            return this.http.get<any>(`http://localhost:8080/register/findAccountByPhoneNumber/${phoneNumber}`)
+            return this.http.get<any>(`http://103.57.220.123:8080/register/findAccountByPhoneNumber/${phoneNumber}`)
     }
     forgotPass(account:Account):Observable<any>{
-        return this.http.post<any>('http://localhost:8080/register/forgetPass',account)
+        return this.http.post<any>('http://103.57.220.123:8080/register/forgetPass',account)
     }
     getAllAccount(page: number): Observable<any> {
         return this.http.get<any>(this.url + '?page=' + page);
@@ -47,34 +47,34 @@ export class AccountService implements OnInit {
 
     blockAccount(id: number): Observable<any> {
         // @ts-ignore
-        return this.http.post<any>(`http://localhost:8080/admin/accounts/block/${id}`);
+        return this.http.post<any>(`http://103.57.220.123:8080/admin/accounts/block/${id}`);
     }
 
     search(stringSearch: String): Observable<any> {
-        return this.http.get<any>(`http://localhost:8080/admin/search/${stringSearch}`)
+        return this.http.get<any>(`http://103.57.220.123:8080/admin/search/${stringSearch}`)
     }
 
 
     searchProvider(stringSearch: String): Observable<any> {
-        return this.http.get<any>(`http://localhost:8080/user/searchProvider/${stringSearch}`)
+        return this.http.get<any>(`http://103.57.220.123:8080/user/searchProvider/${stringSearch}`)
     }
 
 
     findById(id: number): Observable<any> {
-        return this.http.get<any>(`http://localhost:8080/admin/accounts/${id}`)
+        return this.http.get<any>(`http://103.57.220.123:8080/admin/accounts/${id}`)
     }
 
     upVip(id: number): Observable<any> {
         // @ts-ignore
-        return this.http.post <any>(`http://localhost:8080/admin/accounts/vip/${id}`);
+        return this.http.post <any>(`http://103.57.220.123:8080/admin/accounts/vip/${id}`);
     }
 
     login(account: any): Observable<AccountToken> {
-        return this.http.post<AccountToken>("http://localhost:8080/login", account)
+        return this.http.post<AccountToken>("http://103.57.220.123:8080/login", account)
     }
 
     changeInfo(account: any): Observable<any> {
-        return this.http.post<any>('http://localhost:8080/user/editProfile', account)
+        return this.http.post<any>('http://103.57.220.123:8080/user/editProfile', account)
     }
 
     setToken(token: string) {
