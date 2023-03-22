@@ -19,11 +19,11 @@
       <!-- form search-->
       <div class="head_search uk-visible@m">
         <form>
-          <div class="head_search_cont">
+          <a class="head_search_cont">
             <input value="" type="text" class="form-control"
                    placeholder="Search for Customers, Products, Files and more.." autocomplete="off">
             <i class="s_icon uil-search-alt"></i>
-          </div>
+          </a>
 
         </form>
       </div>
@@ -58,11 +58,11 @@
 
         <div class="col-md-3 col-sm-6" *ngFor="let pr of providersView">
           <div class="card uk-inline-clip text-center animate-this">
-            <img src="{{pr?.account?.avatar}}" alt="" style="height: 320px; width: 300px">
+            <img (click)="checkLogin()" src="{{pr?.account?.avatar}}" alt="" style="height: 320px; width: 300px">
             <div class="p-3">
-              <h4 class="mb-2" data-bs-toggle="modal" data-bs-target="#myModal">{{pr.account.fullName}}</h4>
+              <h4 class="mb-2" data-bs-toggle="modal" data-bs-target="#myModal" (click)="checkLogin()">{{pr.account.fullName}}</h4>
               <div >
-                <p><i class="uil-eye"></i> {{pr.view}}</p>
+                <p><i class="uil-eye" (click)="checkLogin()"></i> {{pr.view}}</p>
 <!--                <table style="width: 100%">-->
 <!--                  <tbody *ngFor="let pp of provisionprovidersView">-->
 <!--                  <tr *ngIf="pp.provider.id== pr.id &&pp.provision.category.id==1">-->
@@ -71,7 +71,7 @@
 <!--                  </tr>-->
 <!--                  </tbody>-->
 <!--                </table>-->
-                <p class="text-muted uk-text-bold my-0"
+                <p class="text-muted uk-text-bold my-0" (click)="checkLogin()"
                 >{{pr.price}} $/ giờ</p>
               </div>
 
@@ -110,9 +110,9 @@
 
           <div class="col-md-3 col-sm-6" *ngFor="let provider of providers | paginate: { itemsPerPage: 12, currentPage: page, totalItems: total} ">
             <div class="card uk-inline-clip text-center animate-this">
-              <img src="{{provider.account.avatar}}" alt="" style="height: 320px; width: 300px">
+              <img src="{{provider.account.avatar}}" alt="" style="height: 320px; width: 300px" (click)="checkLogin()">
               <div class="p-3">
-                <h4 class="mb-2">{{provider.account.fullName}}</h4>
+                <h4 class="mb-2" (click)="checkLogin()">{{provider.account.fullName}}</h4>
                 <div >
 
                   <p><i class="uil-eye"></i> {{provider.view}}</p>

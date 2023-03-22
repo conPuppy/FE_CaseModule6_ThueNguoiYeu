@@ -31,7 +31,6 @@ import {AppComponent} from './app.component';
 import { UserShowBillComponent } from './User/user-show-bill/user-show-bill.component';
 import { AdproviderComponent } from './admin/adprovider/adprovider.component';
 import { ForgetPassComponent } from './forget-pass/forget-pass.component';
-import { ShowAllProviderComponent } from './admin/show-all-provider/show-all-provider.component';
 import { ViewProviderComponent } from './view-provider/view-provider.component';
 import { ImageComponent } from './image/image.component';
 
@@ -64,7 +63,6 @@ import { ImageComponent } from './image/image.component';
         UserShowBillComponent,
         AdproviderComponent,
         ForgetPassComponent,
-        ShowAllProviderComponent,
         ViewProviderComponent,
         ImageComponent
 

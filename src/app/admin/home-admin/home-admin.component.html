@@ -31,8 +31,6 @@
                 <!-- browse apps  -->
                 <a href="#" class="opts_icon uk-visible@s"> <i class="uil-apps"></i> </a>
 
-
-
                 <!-- Message  notificiation dropdown -->
                 <a href="#" class="opts_icon"> <i class="uil-envelope-alt"></i> <span>4</span> </a>
 
@@ -276,10 +274,12 @@
                                 <div class="media align-items-center">
                                     <div>
                                         <img alt="Image placeholder" src="{{a.avatar}}"
-                                             style="height: 120px; width: 100px;">
+                                             style="height: 120px; width: 100px;" >
                                     </div>
                                     <div class="media-body ml-2">
-                                        <a href="shop-product.html" class="name h6 mb-2 text-sm">{{a.fullName}}</a>
+                                        <a (click)="findAccountById(a.id)"
+                                           data-bs-toggle="modal"
+                                           data-bs-target="#myModal" class="name h6 mb-2 text-sm">{{a.fullName}}</a>
                                         <span class="d-block text-warning">
                                                     <i class="fas fa-star"></i><i class="fas fa-star"></i><i
                                                 class="fas fa-star"></i>
