@@ -74,7 +74,6 @@ export class HomeboyComponent implements OnInit {
 
     findProviderById(id: number) {
         this.providerService.findProviderById(id).subscribe(data => {
-            console.log(data)
             this.provider = data;
         })
     }
