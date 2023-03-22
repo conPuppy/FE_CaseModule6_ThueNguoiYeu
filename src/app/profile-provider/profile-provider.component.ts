@@ -46,7 +46,7 @@ export class ProfileProviderComponent implements OnInit {
     listComment : Comment[] = [];
     listOrderDone : OrderLover[] = [];
     orderDone !: OrderLover
-    averageScore !: number
+    averageScore : number = 0;
     starsScore !: number
     countComment !: number
 

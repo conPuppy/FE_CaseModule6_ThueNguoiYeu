@@ -19,10 +19,22 @@
                 <form [formGroup]="formSearch" (change)="searchProvider()">
                     <div class="head_search_cont">
                         <input value="" type="text" class="form-control"
-                               placeholder="Search for User" autocomplete="off" formControlName="searchProvider">
+                               placeholder="Search for User" autocomplete="off" formControlName="search">
                         <i class="s_icon uil-search-alt"></i>
                     </div>
                 </form>
+                <div uk-drop="mode: click" class="header_search_dropdown">
+                    <ul *ngFor=" let ps of providersSearch">
+                        <li>
+                            <a (click)="goToProvider(ps.id)">
+                                <div>
+                                    <img src="{{ps.account.avatar}}" style="width: 50px; height: 60px; border-radius: 50%">
+                                    {{ps.account.fullName}}
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
             <!-- user icons -->
