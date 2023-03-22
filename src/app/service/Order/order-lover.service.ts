@@ -55,4 +55,9 @@ export class OrderLoverService {
   findOrderByAccountIdAndProviderId(idAccount:number , idProvider: number): Observable<OrderLover>{
     return this.http.get<OrderLover>("http://localhost:8080/orders/m/findOrderByAccountId/" + idAccount + "/ProviderId/" + idProvider)
   }
+
+  checkAndChangeStatus(idProvider:number , startDay: String): Observable<any>{
+    // @ts-ignore
+    return this.http.get<>("http://localhost:8080/orders/m/checkAndChangeToReject/" + idProvider + "/" + startDay)
+  }
 }

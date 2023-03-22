@@ -366,7 +366,7 @@
 <!--                                        <i class="icon-feather-check-square"></i> </a>-->
 
                                     <a *ngIf="ba.statusOrder == 3" class="btn btn-icon btn-hover btn-sm btn-circle"
-                                       uk-tooltip="Completed" (click)="changeToCompleted(ba.id)" uk-toggle="target: #modal-example">
+                                       uk-tooltip="Completed" (click)="changeToCompleted(ba.id) " uk-toggle="target: #modal-example">
                                         <i class="icon-feather-check-square"></i> </a>
                                     <!--                                    <a *ngIf="ba.statusOrder == 3" class="btn btn-icon btn-hover btn-sm btn-circle"-->
                                     <!--                                       uk-tooltip="Rejected" (click)="changeToRejected(ba.id)">-->
@@ -414,7 +414,7 @@
             <br>
             <p class="uk-text-right">
                 <button class="btn btn-outline-light text-dark uk-modal-close" type="button">Do it later</button>
-                <button class="btn btn-info" type="submit" data-bs-dismiss="modal">Send</button>
+                <button class="btn " type="submit" style="background-color: #f2999f; color: white" data-bs-dismiss="uk-modal-dialog">Send</button>
             </p>
 
         </form>
