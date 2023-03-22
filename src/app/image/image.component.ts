@@ -5,8 +5,10 @@ import {finalize} from 'rxjs';
 import {AccountForChange} from '../model/AccountForChange';
 import {Image1} from '../model/Image1';
 import {ImageNoId} from '../model/ImageNoId/ImageNoId';
+import { OrderLover } from '../model/OrderLover';
 import {AccountService} from '../service/account/account.service';
 import {ImageService} from '../service/image/image.service';
+import { OrderLoverService } from '../service/Order/order-lover.service';
 import {ProviderService} from '../service/provider/provider.service';
 
 @Component({
@@ -24,12 +26,15 @@ export class ImageComponent implements OnInit {
     showMore: boolean = false;
     id!: number;
     listMoreImages: Image1[] = [];
+    orderLovers : OrderLover[] = [];
+    
 
     constructor(private router: Router,
                 private storage: AngularFireStorage,
                 private accountService: AccountService,
                 private providerService: ProviderService,
                 private imageService: ImageService,
+                private orderLoverService: OrderLoverService
     ) {
     }
 
@@ -39,12 +44,18 @@ export class ImageComponent implements OnInit {
         this.imageService.findByAccount_IdAAndStatusImg1(this.id).subscribe(res => {
             this.showImgActive = res;
             this.count = this.showImgActive.length;
+            this.showCart(this.id,1);
         })
         this.accountService.findById(this.id).subscribe(res => this.account = res)
         this.providerService.findProviderByAccount_Id(this.id).subscribe(res => {
             if (res != null) {
                 this.statusProvider = res.statusProvider;
             }
+        })
+    }
+    showCart(id: number, statusOrder: number) {
+        this.orderLoverService.getAllBillOfAccountByIdAndStartOrder(id, statusOrder).subscribe(data => {
+            this.orderLovers = data;
         })
     }
 
