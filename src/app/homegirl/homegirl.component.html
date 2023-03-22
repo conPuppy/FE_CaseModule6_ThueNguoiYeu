@@ -23,13 +23,17 @@
                         <i class="s_icon uil-search-alt"></i>
                     </div>
                 </form>
-                <div uk-drop="mode: click" class="header_search_dropdown">
-                    <ul *ngFor=" let ps of providersSearch">
+                <div uk-drop="mode: click" class="header_search_dropdown" style=" background-color:#f2999f;  width: 566px" >
+                    <ul *ngFor=" let ps of providersSearch" style="list-style: none">
                         <li>
                             <a (click)="goToProvider(ps.id)">
-                                <div>
-                                    <img src="{{ps.account.avatar}}" style="width: 50px; height: 60px; border-radius: 50%">
-                                    {{ps.account.fullName}}
+                                <div class="row">
+                                    <div class="col-1">
+                                        <img src="{{ps.account.avatar}}" style="width: 100%; height: 100%; border-radius: 50%;">
+                                    </div>
+                                    <div class="col-3" style="color: white">
+                                        {{ps.account.fullName}}
+                                    </div>
                                 </div>
                             </a>
                         </li>
