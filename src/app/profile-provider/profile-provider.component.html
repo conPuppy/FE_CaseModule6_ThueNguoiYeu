@@ -30,7 +30,7 @@
                         <!-- notiviation list -->
                         <ul>
                             <li class="notifications-not-read">
-                                <table class="table">
+                                <table class="table" >
                                     <thead>
                                     <tr>
                                         <th></th>
@@ -297,31 +297,61 @@
                     <h2>Profile:</h2>
                     <div class="card">
                         <div class="card-body">
+                            <table style="width: 100%">
+                                <tr>
+                                    <td style="width: 50px; height: 50px; vertical-align: top"><b>Joined </b></td>
+                                    <td style="width: 70px; height: 50px; vertical-align: top; text-align: left">{{provider?.account?.dateOfRegister}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50px; height: 50px; vertical-align: top"><b>Lives</b></td>
+                                    <td style="width: 70px; height: 50px; vertical-align: top; text-align: left">{{provider?.account?.city}}, {{provider?.account?.country}} </td>
 
-                            <div class="mt-1">
-                                <h6 class="mb-0">Joined:</h6>
-                                <p>{{provider?.account?.dateOfRegister}}</p>
-                            </div>
-                            <div class="mt-1">
-                                <h6 class="mb-0">Lives:</h6>
-                                <p>{{provider?.account?.city}}, {{provider?.account?.country}} </p>
-                            </div>
-                            <div class="mt-1">
-                                <h6 class="mb-0">Email:</h6>
-                                <p>{{provider?.account?.email}}</p>
-                            </div>
-                            <div class="mt-1">
-                                <h6 class="mb-0">Birthday:</h6>
-                                <p>{{provider?.account?.birthday}}</p>
-                            </div>
-                            <div class="mt-1">
-                                <h6 class="mb-0">Gender:</h6>
-                                <p>{{provider?.account?.gender}}</p>
-                            </div>
-                            <div class="mt-1">
-                                <h6 class="mb-0">Heigth and Weight:</h6>
-                                <p> {{provider?.account?.height}}cm, {{provider?.account?.weight}} kg</p>
-                            </div>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50px; height: 50px; vertical-align: top"><b>Email</b></td>
+                                    <td style="width: 70px; height: 50px; vertical-align: top; text-align: left">{{provider?.account?.email}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50px; height: 50px; vertical-align: top"><b>Birthday</b></td>
+                                    <td style="width: 70px; height: 50px; vertical-align: top; text-align: left">{{provider?.account?.birthday}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50px; height: 50px; vertical-align: top"><b>Gender</b></td>
+                                    <td style="width: 70px; height: 50px; vertical-align: top; text-align: left">{{provider?.account?.gender}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50px; height: 50px; vertical-align: top"><b>Height</b></td>
+                                    <td style="width: 70px; height: 50px; vertical-align: top; text-align: left">{{provider?.account?.height}} cm</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50px; height: 50px; vertical-align: top"><b>Weight</b></td>
+                                    <td style="width: 70px; height: 50px; vertical-align: top; text-align: left">{{provider?.account?.weight}} kg</td>
+                                </tr>
+                            </table>
+<!--                            <div class="mt-1">-->
+<!--                                <h6 class="mb-0">Joined:</h6>-->
+<!--                                <p>{{provider?.account?.dateOfRegister}}</p>-->
+<!--                            </div>-->
+<!--                            <div class="mt-1">-->
+<!--                                <h6 class="mb-0">Lives:</h6>-->
+<!--                                <p>{{provider?.account?.city}}, {{provider?.account?.country}} </p>-->
+<!--                            </div>-->
+<!--                            <div class="mt-1">-->
+<!--                                <h6 class="mb-0">Email:</h6>-->
+<!--                                <p>{{provider?.account?.email}}</p>-->
+<!--                            </div>-->
+<!--                            <div class="mt-1">-->
+<!--                                <h6 class="mb-0">Birthday:</h6>-->
+<!--                                <p>{{provider?.account?.birthday}}</p>-->
+<!--                            </div>-->
+<!--                            <div class="mt-1">-->
+<!--                                <h6 class="mb-0">Gender:</h6>-->
+<!--                                <p>{{provider?.account?.gender}}</p>-->
+<!--                            </div>-->
+<!--                            <div class="mt-1">-->
+<!--                                <h6 class="mb-0">Heigth and Weight:</h6>-->
+<!--                                <p> {{provider?.account?.height}}cm, {{provider?.account?.weight}} kg</p>-->
+<!--                            </div>-->
                             <div>
                                 <button type="button" class="btn btn-facebook btn-icon-label" style="color: #fff;
     background-color: #3b5999;
@@ -401,7 +431,7 @@ align-content: center">
                             <p style='word-wrap:break-word; '>{{provider?.account?.description}}</p>
                         </div>
                         <hr>
-                        <p class="h4">Evaluate </p>
+                        <p class="h4">Rating </p>
                         <div>
                             <span class="fa fa-star star-active mx-1"></span>
                             <span class="fa fa-star star-active mx-1"></span>
@@ -521,7 +551,6 @@ align-content: center">
                             <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                         </div>
                         <p>({{averageScore}})</p>
-                        <br>
                         <button type="button" data-bs-toggle="modal" data-bs-target="#myModal"
                                 class="btn btn-danger" style="width: 100%;
     height: 54px;
@@ -578,7 +607,6 @@ align-content: center">
                 </div>
             </div>
         </div>
-
 
 
     </div>
