@@ -159,4 +159,6 @@ export class UserShowBillComponent implements OnInit {
         // @ts-ignore
         UIkit.modal('#modal-example').hide();
     }
+    
+   
 }

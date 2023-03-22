@@ -98,7 +98,6 @@ export class ProviderShowBillComponent implements OnInit{
   getBillByIdProvider(idProvider: number) {
     this.providerService.getBillByIdProvider(idProvider).subscribe((data) => {
       this.listBillOfProvider = data;
-      console.log(data);
     })
   }
 
@@ -106,15 +105,16 @@ export class ProviderShowBillComponent implements OnInit{
     this.usernameAccount = this.accountService.getAccountToken().username;
     this.providerService.findProviderByAccountUsername(this.usernameAccount).subscribe((data) => {
       this.provider = data;
-      console.log(data);
       this.getBillByIdProvider(this.provider.id);
     })
   }
 
   changeToConfirmed(idOrder: number) {
+    
+    
     this.orderLoverService.changeToConfirmed(idOrder).subscribe(() => {
       this.findProviderByAccountUsername();
-      this.router.navigate(["/providerShowBill"])
+      this.router.navigate(["/providerShowBill"]) 
     })
   }
 
@@ -129,5 +129,13 @@ export class ProviderShowBillComponent implements OnInit{
       this.listBillOfProvider = data;
     })
   }
+  changeAndCheck(idProvider: number, startOrder: String){
+    console.log(idProvider , startOrder)
+    this.orderLoverService.checkAndChangeStatus(idProvider,startOrder).subscribe((res)=>{
+      location.reload();
+    })
+  }
+
+
   
 }
