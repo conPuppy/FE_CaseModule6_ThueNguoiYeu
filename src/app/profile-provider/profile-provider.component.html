@@ -7,7 +7,8 @@
         <header>
 
             <!-- Logo-->
-            <i class="header-traiger uil-bars icon-feather-home" uk-toggle="target: #wrapper ; cls: mobile-active" (click)="goToTheHome()">
+            <i class="header-traiger uil-bars icon-feather-home" uk-toggle="target: #wrapper ; cls: mobile-active"
+               (click)="goToTheHome()">
                 <img src="assets/bg-removebg-preview.png" style="width: 110px;height: 70px"></i>
 
             <div class="h5 uk-hidden@m mr-3 mb-0"> Date Web</div>
@@ -371,9 +372,9 @@ align-content: center">
                     <br>
 
                     <div>
-                            <div >
-                                <p><i class="uil-eye"> </i> {{provider?.view}} views</p>
-                            </div>
+                        <div>
+                            <p><i class="uil-eye"> </i> {{provider?.view}} views</p>
+                        </div>
                         <hr>
                         <div>
                             <p class="h4">Service:</p>
@@ -388,7 +389,7 @@ align-content: center">
     min-width: 100px;
     text-align: center;
 "
-                                     *ngFor="let pp of allServicesOfProvider" >
+                                     *ngFor="let pp of allServicesOfProvider">
                                     {{pp?.provision?.name}}
                                 </div>
 
@@ -400,15 +401,115 @@ align-content: center">
                             <p style='word-wrap:break-word; '>{{provider?.account?.description}}</p>
                         </div>
                         <hr>
-                        <p class="h4">Evaluate</p>
+                        <p class="h4">Evaluate </p>
+                        <div>
+                            <span class="fa fa-star star-active mx-1"></span>
+                            <span class="fa fa-star star-active mx-1"></span>
+                            <span class="fa fa-star star-active mx-1"></span>
+                            <span class="fa fa-star star-active mx-1"></span>
+                            <span class="fa fa-star star-inactive mx-1"></span>
+                        </div>
+                        <p>({{countComment}} reviews)</p>
+                        <!-- Viết comment -->
+                        <a data-bs-toggle="collapse" data-bs-target="#demo">
+                                <span class="icon-line-awesome-pencil">
+
+                                    </span>
+                            Write your comment</a>
+                        <div *ngFor="let o of listOrderDone; index as i">
+                            <span *ngIf="i == 1"></span>
+                            <div *ngIf="o.statusOrder == 5">
+                                <div id="demo" class="collapse">
+                                    <form [formGroup]="rateForm" (submit)="send()">
+                                        <div class="stars">
+                                            <input class="star star-5" id="star-5" type="radio" name="star"
+                                                   (click)="rate5()"/>
+                                            <label style="width: 20%" class="star star-5" for="star-5"></label>
+                                            <input class="star star-4" id="star-4" type="radio" name="star"
+                                                   (click)="rate4()"/>
+                                            <label class="star star-4" for="star-4"></label>
+                                            <input class="star star-3" id="star-3" type="radio" name="star"
+                                                   (click)="rate3()"/>
+                                            <label class="star star-3" for="star-3"></label>
+                                            <input class="star star-2" id="star-2" type="radio" name="star"
+                                                   (click)="rate2()"/>
+                                            <label class="star star-2" for="star-2"></label>
+                                            <input class="star star-1" id="star-1" type="radio" name="star"
+                                                   (click)="rate1()"/>
+                                            <label class="star star-1" for="star-1"></label>
+                                        </div>
+                                        <textarea formControlName="comment">
+                                     </textarea>
+                                        <br>
+
+                                        <button class="btn" type="submit"
+                                                style="margin-left: 90%; background-color: #f2999f"> Send
+                                        </button>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
+                    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+                          rel="stylesheet"
+                          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+                          crossorigin="anonymous">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-20" *ngFor="let l of listComment">
+                                <div class="media g-mb-30 media-comment">
+                                    <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15"
+                                         src="{{l.account.avatar}}" alt="Image Description">
+                                    <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
+                                        <div class="g-mb-15">
+                                            <h5 class="h5 g-color-gray-dark-v1 mb-0">{{l.account.fullName}}</h5>
+
+                                            <div *ngIf="l.rate == 5">
+                                                <span class="fa fa-star star-active mx-1 checked"></span>
+                                                <span class="fa fa-star star-active mx-1 checked"></span>
+                                                <span class="fa fa-star star-active mx-1 checked"></span>
+                                                <span class="fa fa-star star-active mx-1 checked"></span>
+                                                <span class="fa fa-star star-active mx-1 checked"></span>
+                                            </div>
+                                            <div *ngIf="l.rate == 4">
+                                                <span class="fa fa-star star-active mx-1 checked"></span>
+                                                <span class="fa fa-star star-active mx-1 checked"></span>
+                                                <span class="fa fa-star star-active mx-1 checked"></span>
+                                                <span class="fa fa-star star-active mx-1 checked"></span>
+                                                <span class="fa fa-star star-active mx-1 "></span>
+                                            </div>
+                                            <div *ngIf="l.rate == 3">
+                                                <span class="fa fa-star star-active mx-1 checked"></span>
+                                                <span class="fa fa-star star-active mx-1 checked"></span>
+                                                <span class="fa fa-star star-active mx-1 checked"></span>
+                                                <span class="fa fa-star star-active mx-1 "></span>
+                                                <span class="fa fa-star star-active mx-1 "></span>
+                                            </div>
+                                            <div *ngIf="l.rate == 2">
+                                                <span class="fa fa-star star-active mx-1 checked"></span>
+                                                <span class="fa fa-star star-active mx-1 checked"></span>
+                                                <span class="fa fa-star star-active mx-1 "></span>
+                                                <span class="fa fa-star star-active mx-1 "></span>
+                                                <span class="fa fa-star star-active mx-1 "></span>
+                                            </div>
+                                            <div *ngIf="l.rate == 1">
+                                                <span class="fa fa-star star-active mx-1 checked"></span>
+                                                <span class="g-color-gray-dark-v4 g-font-size-12">5 days ago</span>
+                                            </div>
+
+                                            <p>{{l.comment}}</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-
                 <div class="col-lg-3 col-12">
-
-
                     <div class="card" style="    width: 100%;
     height: auto;
     border-radius: 15px;
@@ -419,6 +520,7 @@ align-content: center">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                             <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                         </div>
+                        <p>({{averageScore}})</p>
                         <br>
                         <button type="button" data-bs-toggle="modal" data-bs-target="#myModal"
                                 class="btn btn-danger" style="width: 100%;
@@ -474,15 +576,15 @@ align-content: center">
 
 
                 </div>
-
             </div>
-
         </div>
+
 
 
     </div>
 
 </div>
+
 <form [formGroup]="formOrder" (submit)="createOrderLover()">
     <div class="modal fade" id="myModal">
         <div class="modal-dialog">
@@ -509,7 +611,8 @@ align-content: center">
                         <div class="row">
                             <div class="col">Start day:</div>
                             <div class="col">
-                                <input type="datetime-local" [min]="today" max="2024-12-31T00:00" formcontrolname="startOrder" id="startOrder">
+                                <input type="datetime-local" [min]="today" max="2024-12-31T00:00"
+                                       formcontrolname="startOrder" id="startOrder">
                             </div>
                         </div>
                         <br>
@@ -576,4 +679,5 @@ align-content: center">
     </div>
 
 </form>
+
 
