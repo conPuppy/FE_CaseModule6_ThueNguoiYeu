@@ -24,33 +24,50 @@ import { AdproviderComponent } from './admin/adprovider/adprovider.component';
 import { ForgetPassComponent } from './forget-pass/forget-pass.component';
 import { ViewProviderComponent } from './view-provider/view-provider.component';
 import { ImageComponent } from './image/image.component';
+import { HomeAdminGuard } from './admin/home-admin/home-admin.guard';
+import { AdproviderGuard } from './admin/adprovider/adprovider.guard';
+import { ShowAllBillGuard } from './admin/show-all-bill/show-all-bill.guard';
+import { ChangeApprearanceGuard } from './change-appearance/change-apprearance.guard';
+import { ChangeAvatarGuard } from './change-avatar/change-avatar.guard';
+import { ChangeInfoGuard } from './change-info/change-info.guard';
+import { ChangePasswordGuard } from './change-password/change-password.guard';
+import { CreateProviderGuard } from './create-provider/create-provider.guard';
+import { HomeboyGuard } from './homeboy/homeboy.guard';
+import { HomegirlGuard } from './homegirl/homegirl.guard';
+import { ImageGuard } from './image/image.guard';
+import { ProfileProviderGuard } from './profile-provider/profile-provider.guard';
+import { ShowtopviewGuard } from './showtopview/showtopview.guard';
+import { ProviderShowBillGuard } from './User/provider-show-bill/provider-show-bill.guard';
+import { ShowProfileGuard } from './User/show-profile/show-profile.guard';
+import { UserShowBillGuard } from './User/user-show-bill/user-show-bill.guard';
+import { ViewProviderGuard } from './view-provider/view-provider.guard';
 
 
 
 
 const routes: Routes = [
-  {path:"admin", component: HomeAdminComponent},
+  {path:"admin", component: HomeAdminComponent, canActivate:[HomeAdminGuard]} ,
   {path:"show", component: ShowComponent},
-  {path:"topview", component: ShowtopviewComponent},
+  {path:"topview", component: ShowtopviewComponent, canActivate:[ShowtopviewGuard]},
   {path:"register", component: RegisterComponent},
-  {path:"admin", component: HomeAdminComponent},
+  {path:"admin", component: HomeAdminComponent, canActivate:[HomeAdminGuard]},
   {path:"login", component: LoginComponent},
   {path:"", component: HomeComponent},
-  {path:"changeInfo", component: ChangeInfoComponent},
-  {path:"changeAvatar", component: ChangeAvatarComponent},
-  {path:"changeAppearance", component: ChangeAppearanceComponent},
-  {path:"changePassword", component: ChangePasswordComponent},
-  {path:"showProfile", component: ShowProfileComponent},
-  {path:"homeBoy", component: HomeboyComponent},
-  {path:"homeGirl", component: HomegirlComponent},
-  {path:"showAllBill", component: ShowAllBillComponent},
-  {path:"bill/:id", component: ProfileProviderComponent},
-  {path:"providerShowBill", component: ProviderShowBillComponent},
-  {path:"profileProvider", component: CreateProviderComponent},
-  {path:"userShowBill", component: UserShowBillComponent},
-  {path:"adProvider", component: AdproviderComponent},
-  {path:"viewProvider/:id", component: ViewProviderComponent},
-  {path:"image/:id", component: ImageComponent},
+  {path:"changeInfo", component: ChangeInfoComponent, canActivate:[ChangeInfoGuard]},
+  {path:"changeAvatar", component: ChangeAvatarComponent, canActivate:[ChangeAvatarGuard]},
+  {path:"changeAppearance", component: ChangeAppearanceComponent, canActivate:[ChangeApprearanceGuard]},
+  {path:"changePassword", component: ChangePasswordComponent, canActivate:[ChangePasswordGuard]},
+  {path:"showProfile", component: ShowProfileComponent, canActivate: [ShowProfileGuard]},
+  {path:"homeBoy", component: HomeboyComponent, canActivate: [HomeboyGuard]},
+  {path:"homeGirl", component: HomegirlComponent, canActivate: [HomegirlGuard]},
+  {path:"showAllBill", component: ShowAllBillComponent, canActivate: [ShowAllBillGuard]},
+  {path:"bill/:id", component: ProfileProviderComponent, canActivate: [ProfileProviderGuard]},
+  {path:"providerShowBill", component: ProviderShowBillComponent, canActivate: [ProviderShowBillGuard]},
+  {path:"profileProvider", component: CreateProviderComponent, canActivate: [CreateProviderGuard]},
+  {path:"userShowBill", component: UserShowBillComponent, canActivate: [UserShowBillGuard]},
+  {path:"adProvider", component: AdproviderComponent, canActivate: [AdproviderGuard]},
+  {path:"viewProvider/:id", component: ViewProviderComponent, canActivate: [ViewProviderGuard]},
+  {path:"image/:id", component: ImageComponent, canActivate: [ImageGuard]},
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
