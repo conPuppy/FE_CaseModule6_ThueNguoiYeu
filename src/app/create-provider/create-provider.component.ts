@@ -5,10 +5,12 @@ import { Router } from "@angular/router";
 import Swal from "sweetalert2";
 import { AccountForChange } from "../model/AccountForChange";
 import { Image1 } from "../model/Image1";
+import { OrderLover } from "../model/OrderLover";
 import { Provider } from "../model/Provider";
 import { ProvisionProvider } from "../model/ProvisionProvider";
 import { AccountService } from "../service/account/account.service";
 import { ImageService } from "../service/image/image.service";
+import { OrderLoverService } from "../service/Order/order-lover.service";
 import { ProviderService } from "../service/provider/provider.service";
 import { ProvisionService } from "../service/provision/provision.service";
 import { ProvisionProviderService } from "../service/provisionprovider/provisionprovider.service";
@@ -24,7 +26,7 @@ export class CreateProviderComponent implements OnInit {
     statusProvider!: number;
     provider!: Provider;
     allServicesOfProvider!: ProvisionProvider[];
-
+    orderLovers: OrderLover[] = [];
     showImgActive:Image1[]=[];
     id!:number;
     formChangePrice!:any;
@@ -35,7 +37,8 @@ export class CreateProviderComponent implements OnInit {
                 private providerService: ProviderService,
                 private provisionProviderService: ProvisionProviderService,
                 private provisionService: ProvisionService,
-                private imageService:ImageService
+                private imageService:ImageService,
+                private orderLoverService: OrderLoverService
     ) {
     }
     ngOnInit() {
@@ -50,6 +53,7 @@ export class CreateProviderComponent implements OnInit {
                 this.provider=res;
                 this.formChangePrice.get('price').setValue(this.provider.price);
                 this.statusProvider = res.statusProvider;
+                this.showCart(this.account.id,1)
             }
         })
         this.getAllService()
@@ -128,6 +132,11 @@ export class CreateProviderComponent implements OnInit {
 
     goToEditImages() {
         this.router.navigate([`/image/${this.account.id}`])
+    }
+    showCart(id: number, statusOrder: number) {
+        this.orderLoverService.getAllBillOfAccountByIdAndStartOrder(id, statusOrder).subscribe(data => {
+            this.orderLovers = data;
+        })
     }
 
 }

@@ -43,7 +43,7 @@
 
                 <!-- browse apps  -->
 
-                <a href="#" class="opts_icon uk-visible@s"> <i class="uil-shopping-basket"></i></a>
+                <a href="#" class="opts_icon uk-visible@s"> <i class="icon-feather-heart"></i></a>
                 <!-- cart apps dropdown -->
                 <div uk-dropdown="pos: top-right;mode:click ; animation: uk-animation-slide-bottom-small"
                      class="dropdown-notifications large">
@@ -55,26 +55,15 @@
                         <ul>
                             <li class="notifications-not-read" >
                                 <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th scope="col" style="vertical-align: text-top; text-align: left; font: 0.875rem / 1.5 Consolas, monaco, monospace;">Provider</th>
-                                        <th scope="col" style="vertical-align: text-top; text-align: left; font: 0.875rem / 1.5 Consolas, monaco, monospace;">Order Time (giờ)</th>
-                                        <th scope="col" style="vertical-align: text-top; text-align: left; font: 0.875rem / 1.5 Consolas, monaco, monospace;">Total ($/giờ)</th>
-                                        <th scope="col" style="vertical-align: text-top; text-align: left; font: 0.875rem / 1.5 Consolas, monaco, monospace;"></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr *ngFor="let o of orderLovers">
-                                        <td><span class="notification-avatar" style="width: 26px; height: 26px">
+
+                                    <tr *ngFor="let o of orderLovers" style="width: 100%">
+                                        <td style="text-align: left"><span class="notification-avatar" >
                                             <img src="{{o?.provider?.account?.avatar}}" alt="">
                                         </span></td>
-                                        <td style="text-align: center; font: 0.875rem / 1.5 Consolas, monaco, monospace;color: #666;">{{o?.provider?.account?.fullName}}</td>
-                                        <td style="text-align: center;font: 0.875rem / 1.5 Consolas, monaco, monospace;color: #666;">{{o.orderTime}}</td>
-                                        <td style="text-align: center;font: 0.875rem / 1.5 Consolas, monaco, monospace;color: #666;">{{o.total}} </td>
+                                        <td style="vertical-align: bottom; text-align: left">{{o?.provider?.account?.fullName}}</td>
 <!--                                        <td><button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)="createOrderLover()">Order</button></td>-->
                                     </tr>
-                                    </tbody>
+
                                 </table>
                             </li>
                         </ul>
