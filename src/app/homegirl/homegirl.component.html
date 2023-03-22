@@ -9,7 +9,7 @@
         <header>
 
             <!-- Logo-->
-<!--            <i class="header-traiger uil-bars" uk-toggle="target: #wrapper ; cls: mobile-active"></i>-->
+            <!--            <i class="header-traiger uil-bars" uk-toggle="target: #wrapper ; cls: mobile-active"></i>-->
             <i class="header-traiger uil-bars icon-feather-home" uk-toggle="target: #wrapper ; cls: mobile-active">
                 <img src="assets/bg-removebg-preview.png" style="width: 110px;height: 70px"></i>
 
@@ -23,13 +23,15 @@
                         <i class="s_icon uil-search-alt"></i>
                     </div>
                 </form>
-                <div uk-drop="mode: click" class="header_search_dropdown" style=" background-color:#f2999f;  width: 566px" >
+                <div uk-drop="mode: click" class="header_search_dropdown"
+                     style=" background-color:#f2999f;  width: 566px">
                     <ul *ngFor=" let ps of providersSearch" style="list-style: none">
                         <li>
                             <a (click)="goToProvider(ps.id)">
                                 <div class="row">
                                     <div class="col-1">
-                                        <img src="{{ps.account.avatar}}" style="width: 100%; height: 100%; border-radius: 50%;">
+                                        <img src="{{ps.account.avatar}}"
+                                             style="width: 100%; height: 100%; border-radius: 50%;">
                                     </div>
                                     <div class="col-3" style="color: white">
                                         {{ps.account.fullName}}
@@ -57,11 +59,11 @@
 
                         <!-- notiviation list -->
                         <ul>
-                            <li class="notifications-not-read" >
+                            <li class="notifications-not-read">
                                 <table class="table">
 
                                     <tr *ngFor="let o of orderLovers" style="width: 100%">
-                                        <td style="text-align: left"><span class="notification-avatar" >
+                                        <td style="text-align: left"><span class="notification-avatar">
                                             <img src="{{o?.provider?.account?.avatar}}" alt="">
                                         </span></td>
                                         <td style="vertical-align: bottom; text-align: left">{{o?.provider?.account?.fullName}}</td>
@@ -99,7 +101,8 @@
                                     <img src="{{account?.avatar}}" alt=""></a>
                             </div>
                             <div class="dropdown-user-name">
-                                {{account?.username}} <span> {{account?.wallet}} <i class="icon-feather-dollar-sign"></i> </span>
+                                {{account?.username}} <span> {{account?.wallet}} <i
+                                    class="icon-feather-dollar-sign"></i> </span>
                             </div>
                         </div>
 
@@ -107,13 +110,16 @@
 
                     <!-- User menu -->
                     <ul class="dropdown-user-menu">
-                        <li><a class="btn-warning"  *ngIf="statusProvider==3"> <i class="uil-user"></i> Wait admin accept!</a></li>
-                        <li><a class="btn-success"  *ngIf="statusProvider==1"> <i class="uil-user" ></i> Ready</a></li>
-                        <li><a class="btn-danger"  *ngIf="statusProvider==2"> <i class="uil-user" ></i> Busy</a></li>
-                        <li><a class="btn-success" (click)="createProvider()" *ngIf="statusProvider!=1&&statusProvider!=2&&statusProvider!=3"> <i class="uil-bolt" ></i> Become Provider</a></li>
+                        <li><a class="btn-warning" *ngIf="statusProvider==3"> <i class="uil-user"></i> Wait admin
+                            accept!</a></li>
+                        <li><a class="btn-success" *ngIf="statusProvider==1"> <i class="uil-user"></i> Ready</a></li>
+                        <li><a class="btn-danger" *ngIf="statusProvider==2"> <i class="uil-user"></i> Busy</a></li>
+                        <li><a class="btn-success" (click)="createProvider()"
+                               *ngIf="statusProvider!=1&&statusProvider!=2&&statusProvider!=3"> <i class="uil-bolt"></i>
+                            Become Provider</a></li>
                         <li><a (click)="goToProfile()"> <i class="uil-user"></i> My Profile </a></li>
-                        <li><a (click)="goToMyOrder()" > <i class="uil-invoice"></i> My Order </a></li>
-                        <li><a (click)="goToMyBill()" > <i class="uil-invoice"></i> My Bill </a></li>
+                        <li><a (click)="goToMyOrder()"> <i class="uil-invoice"></i> My Order </a></li>
+                        <li><a (click)="goToMyBill()"> <i class="uil-invoice"></i> My Bill </a></li>
                         <li><a (click)="goToEditProfile()"> <i class="uil-edit"></i> Edit Profile </a></li>
                         <li><a (click)="goToProviderSetting()"> <i class="uil-cog"></i> Provider Settings</a></li>
                         <li class="menu-divider"></li>
@@ -150,17 +156,18 @@
                     <div class="card uk-inline-clip text-center animate-this">
                         <img src="{{pr?.account?.avatar}}" alt="" style="height: 320px; width: 300px">
                         <div class="p-3">
-                            <h4 class="mb-2" data-bs-toggle="modal" data-bs-target="#myModal" (click)="findProviderById(pr.id)">{{pr.account.fullName}}</h4>
-                            <div >
+                            <h4 class="mb-2" data-bs-toggle="modal" data-bs-target="#myModal"
+                                (click)="findProviderById(pr.id)">{{pr.account.fullName}}</h4>
+                            <div>
                                 <p><i class="uil-eye"></i> {{pr.view}}</p>
-<!--                                <table style="width: 100%">-->
-<!--                                    <tbody *ngFor="let pp of provisionproviders">-->
-<!--                                    <tr *ngIf="pp.provider.id== pr.id &&pp.provision.category.id==1">-->
-<!--                                        <td style="text-align: left">{{pp.provision.name}}</td>-->
-<!--                                        <td style="text-align: right">Free</td>-->
-<!--                                    </tr>-->
-<!--                                    </tbody>-->
-<!--                                </table>-->
+                                <!--                                <table style="width: 100%">-->
+                                <!--                                    <tbody *ngFor="let pp of provisionproviders">-->
+                                <!--                                    <tr *ngIf="pp.provider.id== pr.id &&pp.provision.category.id==1">-->
+                                <!--                                        <td style="text-align: left">{{pp.provision.name}}</td>-->
+                                <!--                                        <td style="text-align: right">Free</td>-->
+                                <!--                                    </tr>-->
+                                <!--                                    </tbody>-->
+                                <!--                                </table>-->
                                 <p class="text-muted uk-text-bold my-0"
                                 >{{pr.price}} $/ giờ</p>
                             </div>
@@ -194,26 +201,29 @@
 
         </div>
         <div class="page-content-inner">
-            <h5 class="title-header-left" style="font-weight: 700; font-size: 20px; color:#f2999f">Top 12 Seller Providers</h5>
+            <h5 class="title-header-left" style="font-weight: 700; font-size: 20px; color:#f2999f">Top 12 Seller
+                Providers</h5>
             <br>
 
             <div class="row">
 
-                <div class="col-md-3 col-sm-6" *ngFor="let provider of providers1 | paginate: { itemsPerPage: 12, currentPage: page, totalItems: total} ">
+                <div class="col-md-3 col-sm-6"
+                     *ngFor="let provider of providers1 | paginate: { itemsPerPage: 12, currentPage: page, totalItems: total} ">
                     <div class="card uk-inline-clip text-center animate-this">
                         <img src="{{provider.account.avatar}}" alt="" style="height: 320px; width: 300px">
                         <div class="p-3">
-                            <h4 class="mb-2" data-bs-toggle="modal" data-bs-target="#myModal" (click)="findProviderById(provider.id)">{{provider.account.fullName}}</h4>
-                            <div >
+                            <h4 class="mb-2" data-bs-toggle="modal" data-bs-target="#myModal"
+                                (click)="findProviderById(provider.id)">{{provider.account.fullName}}</h4>
+                            <div>
                                 <p><i class="uil-eye"></i> {{provider.view}}</p>
-<!--                                <table style="width: 100%">-->
-<!--                                    <tbody *ngFor="let pp of provisionproviders1">-->
-<!--                                    <tr *ngIf="pp.provider.id== provider.id && provider.account.id==provider.account.id &&pp.provision.category.id==1">-->
-<!--                                        <td style="text-align: left">{{pp.provision.name}}</td>-->
-<!--                                        <td style="text-align: right">Free</td>-->
-<!--                                    </tr>-->
-<!--                                    </tbody>-->
-<!--                                </table>-->
+                                <!--                                <table style="width: 100%">-->
+                                <!--                                    <tbody *ngFor="let pp of provisionproviders1">-->
+                                <!--                                    <tr *ngIf="pp.provider.id== provider.id && provider.account.id==provider.account.id &&pp.provision.category.id==1">-->
+                                <!--                                        <td style="text-align: left">{{pp.provision.name}}</td>-->
+                                <!--                                        <td style="text-align: right">Free</td>-->
+                                <!--                                    </tr>-->
+                                <!--                                    </tbody>-->
+                                <!--                                </table>-->
                                 <p class="text-muted uk-text-bold my-0"
                                    *ngIf="provider.account.id==provider.account.id">{{provider.price}} $/ giờ</p>
                             </div>
@@ -266,7 +276,8 @@
                             <div class="col-lg-4">
                                 <div class="card mb-4">
                                     <div class="card-body text-center">
-                                        <img src="{{provider?.account?.avatar}}" class="rounded-circle img-fluid" style="width: 150px;">
+                                        <img src="{{provider?.account?.avatar}}" class="rounded-circle img-fluid"
+                                             style="width: 150px;">
                                         <h5 class="my-3"><i class="uil-eye"></i> {{provider.view}}</h5>
                                         <p class="text-muted mb-4">Start at: {{provider?.account?.dateOfRegister}}</p>
                                         <div class="d-flex justify-content-center mb-2">
@@ -332,8 +343,12 @@
 
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="increaseViewProviderById(provider.id)">Close</button>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="goToProvider(provider.id)">View More</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                        (click)="increaseViewProviderById(provider.id)">Close
+                </button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                        (click)="goToProvider(provider.id)">View More
+                </button>
             </div>
 
         </div>

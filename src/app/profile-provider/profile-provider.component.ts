@@ -217,9 +217,10 @@ export class ProfileProviderComponent implements OnInit {
         this.orderLover.provider = this.provider
 
         this.orderLoverService.createOrder(this.orderLover).subscribe((res)=> {
-        Swal.fire({icon: 'error',
-            title: 'Cancel...',
-            text: 'See you again',}),
+            Swal.fire('Done!', 'Added!', 'success')
+        // Swal.fire({icon: 'error',
+        //     title: 'Cancel...',
+        //     text: 'See you again',}),
             this.showCart(this.account.id,1);
         });
     }

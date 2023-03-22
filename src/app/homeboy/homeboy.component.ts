@@ -37,16 +37,18 @@ export class HomeboyComponent implements OnInit {
     ngOnInit(): void {
         this.accountService.findById(this.accountService.getAccountToken().id).subscribe(res => {
             this.account = res;
+            this.providerService.getGirlProviderTopView().subscribe(data => {
+                this.providers = data;
+                console.log(data);
+                this.getTopSellProviderAcc();
+                this.provisionproviderService.getAllProvisionProvider().subscribe(data => {
+                    this.provisionproviders = data;
+                })
+            });
             this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res => {
                 if (res != null) {
                     this.statusProvider = res.statusProvider;
-                    this.providerService.getGirlProviderTopView().subscribe(data => {
-                        this.providers = data;
-                        this.getTopSellProviderAcc();
-                        this.provisionproviderService.getAllProvisionProvider().subscribe(data => {
-                            this.provisionproviders = data;
-                        })
-                    });
+
                     console.log(this.statusProvider);
                 }
             })
