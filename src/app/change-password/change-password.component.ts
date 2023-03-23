@@ -75,18 +75,6 @@ export class ChangePasswordComponent implements OnInit {
         }
     }
 
-    funcCheckPassword() {
-        this.id = this.accountService.getAccountToken().id;
-        this.accountService.findById(this.id).subscribe((res) => {
-                if (this.formChangePassword?.get('password').value != res.password) {
-                    this.checkPassword = true;
-                } else {
-                    this.checkPassword = false;
-                }
-
-            }
-        )
-    }
     createProvider(){
         const providerCreate= new CreateProvider("",0,0,3,this.accountChange)
         this.providerService.createProvider(providerCreate).subscribe(res=>{
@@ -108,17 +96,18 @@ export class ChangePasswordComponent implements OnInit {
     }
     funcChangePassword(){
         this.id = this.accountService.getAccountToken().id;
-        this.funcChangePassword();
-        if (this.checkPassword==false){
-            Swal.fire('Cancel!', 'Password Wrong!', 'error')
-        }else {
-            this.accountService.findById(this.id).subscribe((res) => {
-                this.accountChange=res
-                this.accountChange.password=this.formChangePassword.value.newPassword;
-                this.accountService.changeInfo(this.accountChange).subscribe(res=> Swal.fire('Done!', 'Change Password', 'success'))
-            })
-        }
-
+        this.accountService.findById(this.id).subscribe((res) => {
+                if (this.formChangePassword?.get('password').value == res.password) {
+                    this.accountService.findById(this.id).subscribe((res) => {
+                        this.accountChange=res
+                        this.accountChange.password=this.formChangePassword.value.newPassword;
+                        this.accountService.changeInfo(this.accountChange).subscribe(res=> Swal.fire('Done!', 'Change Password', 'success'))
+                    })
+                } else {
+                    Swal.fire('Cancel!', 'Password Wrong!', 'error')
+                }
+            }
+        )
     }
     requestVip(){
         this.accountChange.statusVip=3
