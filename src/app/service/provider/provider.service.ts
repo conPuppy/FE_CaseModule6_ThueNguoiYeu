@@ -78,7 +78,7 @@ export class ProviderService {
         return this.http.get<OrderLover[]>(this.url + `/user/getOrdersByStatus/${idProvider}/${statusOrder}`)
     }
     editProvider(provider:Provider):Observable<Provider>{
-        return this.http.post<Provider>(this.url + "/a/createProviderAndService",provider);
+        return this.http.post<Provider>(this.url + "/a/editProviderAndService",provider);
     }
 
 }
