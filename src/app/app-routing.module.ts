@@ -52,6 +52,7 @@ const routes: Routes = [
   {path:"register", component: RegisterComponent},
   {path:"admin", component: HomeAdminComponent, canActivate:[HomeAdminGuard]},
   {path:"login", component: LoginComponent},
+  {path:"forget", component: ForgetPassComponent},
   {path:"", component: HomeComponent},
   {path:"changeInfo", component: ChangeInfoComponent, canActivate:[ChangeInfoGuard]},
   {path:"changeAvatar", component: ChangeAvatarComponent, canActivate:[ChangeAvatarGuard]},
