@@ -11,7 +11,7 @@ import { CreateProvider } from 'src/app/model/CreateProvider';
 })
 export class ProviderService {
     providers: Provider[] = []
-    private url = "http://localhost:8080/providers";
+    private url = "http://103.57.220.123:8080/providers";
 
     constructor(private http: HttpClient) {
     }
