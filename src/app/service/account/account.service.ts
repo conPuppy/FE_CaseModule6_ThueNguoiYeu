@@ -6,6 +6,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {AccountCreate} from "../../model/AccountCreate";
 import {AccountToken} from "../../model/AccountToken";
+import { AccountForChange } from 'src/app/model/AccountForChange';
 
 @Injectable({
     providedIn: 'root'
@@ -73,8 +74,8 @@ export class AccountService implements OnInit {
         return this.http.post<AccountToken>("http://localhost:8080/login", account)
     }
 
-    changeInfo(account: any): Observable<any> {
-        return this.http.post<any>('http://localhost:8080/user/editProfile', account)
+    changeInfo(account: AccountForChange): Observable<AccountForChange> {
+        return this.http.post<AccountForChange>('http://localhost:8080/user/editProfile', account)
     }
 
     setToken(token: string) {

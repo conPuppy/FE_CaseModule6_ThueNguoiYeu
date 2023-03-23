@@ -30,7 +30,8 @@ export class ChangeInfoComponent implements OnInit {
     orderLovers: OrderLover[] = [];
 
     ngOnInit() {
-        this.providerService.findProviderByAccount_Id(this.accountService.getAccountToken().id).subscribe(res => {
+        this.id = this.accountService.getAccountToken().id
+        this.providerService.findProviderByAccount_Id(this.id).subscribe(res => {
             if (res != null) {
                 this.statusProvider = res.statusProvider;
             }
@@ -47,8 +48,7 @@ export class ChangeInfoComponent implements OnInit {
                 gender: new FormControl('Orther')
             }),
         })
-        
-        this.id = this.accountService.getAccountToken().id
+
         this.accountService.findById(this.id).subscribe((res) => {
             this.accountChange = res;
             this.accountChangeTemp = res;
@@ -157,7 +157,9 @@ export class ChangeInfoComponent implements OnInit {
     }
 
     requestVip() {
+        console.log(this.accountChange)
         this.accountChange.statusVip = 3
+        console.log(this.accountChange)
         this.accountService.changeInfo(this.accountChange).subscribe((res) => {
             this.accountService.findById(this.accountService.getAccountToken().id).subscribe((data) => {
                 this.accountChange = res;
