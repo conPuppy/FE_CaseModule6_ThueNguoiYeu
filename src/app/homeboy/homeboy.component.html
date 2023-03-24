@@ -153,7 +153,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6" *ngFor="let pr of providers">
                     <div class="card uk-inline-clip text-center animate-this">
-                        <img src="{{pr?.account?.avatar}}" alt="" style="height: 320px; width: 290px">
+                        <img src="{{pr?.account?.avatar}}" alt="" style="height: 398px; width: 290px">
                         <div class="p-3">
                             <h4 class="mb-2" data-bs-toggle="modal" data-bs-target="#myModal" (click)="findProviderById(pr.id)">{{pr?.account?.fullName}}</h4>
                             <div >
@@ -206,7 +206,7 @@
 
                 <div class="col-md-3 col-sm-6" *ngFor="let provider of providers1 | paginate: { itemsPerPage: 12, currentPage: page, totalItems: total} ">
                     <div class="card uk-inline-clip text-center animate-this">
-                        <img src="{{provider.account.avatar}}" alt="" style="height: 320px; width: 300px">
+                        <img src="{{provider.account.avatar}}" alt="" style="height: 398px; width: 290px">
                         <div class="p-3">
                             <h4 class="mb-2" data-bs-toggle="modal" data-bs-target="#myModal" (click)="findProviderById(provider.id)">{{provider.account.fullName}}</h4>
                             <div >

@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
             } else {
                 Swal.fire(
                     ' ',
-                    '<h2 style="color: green; font-size: 32px">Đăng nhập thành công!!!</h2>',
+                    '<h2 style="color: green; font-size: 32px">Logged in successfully!!!</h2>',
                     'success'
                 )
                 for (let i = 0; i < accountToken?.roles.length; i++) {

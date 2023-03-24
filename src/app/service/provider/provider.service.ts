@@ -11,7 +11,7 @@ import { CreateProvider } from 'src/app/model/CreateProvider';
 })
 export class ProviderService {
     providers: Provider[] = []
-    private url = "http://103.57.220.123:8080/providers";
+    private url = "http://localhost:8080/providers";
 
     constructor(private http: HttpClient) {
     }
@@ -78,7 +78,6 @@ export class ProviderService {
         return this.http.get<OrderLover[]>(this.url + `/user/getOrdersByStatus/${idProvider}/${statusOrder}`)
     }
     editProvider(provider:Provider):Observable<Provider>{
-        return this.http.post<Provider>(this.url + "/a/createProviderAndService",provider);
+        return this.http.post<Provider>(this.url + "/a/editProviderAndService",provider);
     }
-
 }

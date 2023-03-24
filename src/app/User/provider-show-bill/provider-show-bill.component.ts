@@ -105,6 +105,7 @@ export class ProviderShowBillComponent implements OnInit{
     this.usernameAccount = this.accountService.getAccountToken().username;
     this.providerService.findProviderByAccountUsername(this.usernameAccount).subscribe((data) => {
       this.provider = data;
+      
       this.getBillByIdProvider(this.provider.id);
     })
   }
@@ -114,6 +115,7 @@ export class ProviderShowBillComponent implements OnInit{
     
     this.orderLoverService.changeToConfirmed(idOrder).subscribe(() => {
       this.findProviderByAccountUsername();
+      
       this.router.navigate(["/providerShowBill"]) 
     })
   }

@@ -202,7 +202,7 @@
                                 <!-- Actions -->
                                 <div class="actions ml-3">
                                     <a *ngIf="b.statusOrder == 2" class="btn btn-icon btn-hover btn-sm btn-circle"
-                                       uk-tooltip="Confirmed" (click)="changeToConfirmed(b.id) ; changeAndCheck(b.provider.id , b.startOrder) " >
+                                       uk-tooltip="Confirmed" (click)="changeToConfirmed(b.id) " >
                                         <i class="icon-feather-check-square"></i> </a>
                                     <a *ngIf="b.statusOrder == 2" class="btn btn-icon btn-hover btn-sm btn-circle"
                                        uk-tooltip="Rejected" (click)="changeToRejected(b.id)">
