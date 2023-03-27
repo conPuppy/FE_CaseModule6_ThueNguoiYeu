@@ -33,6 +33,7 @@ import { AdproviderComponent } from './admin/adprovider/adprovider.component';
 import { ForgetPassComponent } from './forget-pass/forget-pass.component';
 import { ViewProviderComponent } from './view-provider/view-provider.component';
 import { ImageComponent } from './image/image.component';
+import { VerifyComponent } from './verify/verify.component';
 
 
 
@@ -64,7 +65,8 @@ import { ImageComponent } from './image/image.component';
         AdproviderComponent,
         ForgetPassComponent,
         ViewProviderComponent,
-        ImageComponent
+        ImageComponent,
+        VerifyComponent
 
     ],
     imports: [

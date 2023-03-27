@@ -41,6 +41,7 @@ import { ProviderShowBillGuard } from './User/provider-show-bill/provider-show-b
 import { ShowProfileGuard } from './User/show-profile/show-profile.guard';
 import { UserShowBillGuard } from './User/user-show-bill/user-show-bill.guard';
 import { ViewProviderGuard } from './view-provider/view-provider.guard';
+import { VerifyComponent } from './verify/verify.component';
 
 
 
@@ -69,6 +70,8 @@ const routes: Routes = [
   {path:"adProvider", component: AdproviderComponent, canActivate: [AdproviderGuard]},
   {path:"viewProvider/:id", component: ViewProviderComponent, canActivate: [ViewProviderGuard]},
   {path:"image/:id", component: ImageComponent, canActivate: [ImageGuard]},
+  {path:"verify/:code", component: VerifyComponent},
+
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -77,6 +77,9 @@ export class AccountService implements OnInit {
     changeInfo(account: AccountForChange): Observable<AccountForChange> {
         return this.http.post<AccountForChange>('http://103.57.220.123:8080/user/editProfile', account)
     }
+    verify(code: String): Observable<boolean> {
+        return this.http.get<boolean>(`http://103.57.220.123:8080/verify/${code}`)
+    }
 
     setToken(token: string) {
         localStorage.setItem("token", token)

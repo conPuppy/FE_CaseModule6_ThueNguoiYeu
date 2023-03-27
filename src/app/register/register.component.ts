@@ -138,7 +138,7 @@ export class RegisterComponent implements OnInit {
         this.accountCreate=new AccountCreate(this.formRegister.value.username,this.formRegister.value.fullName,this.formRegister.value.email,this.formRegister.value.phoneNumber,this.formRegister.value.password,this.formRegister.value.birthday,this.formRegister.value.genderObj.gender)
         this.accountService.createAccount(this.accountCreate).subscribe(
             (res) => {
-                Swal.fire('Done!', 'Congratulations on your successful registration', 'success');
+                Swal.fire('Done!', 'Check your verification email to log in', 'success');
                 this.router.navigate(["/login"]);
             }
         )
